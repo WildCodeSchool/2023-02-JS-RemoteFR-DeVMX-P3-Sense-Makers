@@ -1,10 +1,4 @@
 
-CREATE TABLE adress (
-  id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
-  city VARCHAR(254),
-  street_number INT,
-  street_name VARCHAR(254)
-);
 CREATE TABLE roles (
   id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
   role_name VARCHAR(254) NOT NULL
@@ -16,17 +10,20 @@ CREATE TABLE users (
   lastname VARCHAR(100) NOT NULL,
   photo VARCHAR(254),
   email VARCHAR(100) NOT NULL UNIQUE,
-  password VARCHAR(500) NOT NULL UNIQUE,
-  phone_number VARCHAR(100),
-  decision_maker TINYINT,
+  password VARCHAR(254) NOT NULL UNIQUE,
   job_title VARCHAR(254),
-  role_id INT NOT NULL,
-  adress_id INT NOT NULL,
+  department VARCHAR(254),
+  creation_date DATE,
+);
+CREATE TABLE users_roles (
+  id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
+  user_id INT FOREIGN KEY,
+  role_id INT FOREIGN KEY,
   FOREIGN KEY (role_id)
   REFERENCES roles(id),
-  FOREIGN KEY (adress_id)
-  REFERENCES adress(id)
-);
+  FOREIGN KEY (user_id)
+  REFERENCES users(id),
+)
 
 CREATE TABLE experts (
   id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
@@ -63,6 +60,16 @@ CREATE TABLE decisions (
   REFERENCES `status`(id)
 );
 
+CREATE TABLE status_date (
+  id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
+  `date` DATE NOT NULL,
+  decision_id INT NOT NULL,
+  status_id INT NOT NULL,
+  FOREIGN KEY (decision_id)
+  REFERENCES decisions(id),
+  FOREIGN KEY (status_id)
+  REFERENCES `status`(id)
+)
 CREATE TABLE categories (
   id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
   title VARCHAR(254) NOT NULL
@@ -109,6 +116,7 @@ CREATE TABLE comments (
   id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
     user_id INT NOT NULL,
   decision_id INT NOT NULL,
+  creation_date DATE NOT NULL,
     FOREIGN KEY (user_id)
   REFERENCES users(id),
     FOREIGN KEY (decision_id)
@@ -116,3 +124,24 @@ CREATE TABLE comments (
   `comment` VARCHAR(3000),
   vote TINYINT
 );
+
+INSERT INTO roles (name) VALUES
+("administrator"),
+("employee"),
+("volunteer"),
+("decision maker");
+
+INSERT INTO `status` VALUES
+("created"),
+("opinion deadline"),
+("decision taken"),
+("conflict deadline"),
+("final decison")
+
+INSERT INTO users_roles (user_id, role_id) VALUES (
+1, 1
+);
+
+INSERT INTO users (firstname, lastname, email, password, creation_date) VALUES (
+  "place", "holder", "place.holder@test.com", "99922242", 9849:96:54
+)
