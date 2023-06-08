@@ -1,3 +1,3 @@
 export default function Decision() {
-  return <div className="Decision" />;
+  return <div className="decision" />;
 }

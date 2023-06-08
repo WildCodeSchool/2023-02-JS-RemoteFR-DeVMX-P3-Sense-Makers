@@ -1,3 +1,3 @@
 export default function DecisionsManagement() {
-  return <div className="DecisionsManagement" />;
+  return <div className="decisionsManagement" />;
 }

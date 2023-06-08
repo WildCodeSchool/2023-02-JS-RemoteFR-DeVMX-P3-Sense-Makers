@@ -1,3 +1,3 @@
 export default function UserManagement() {
-  return <div className="UserManagement" />;
+  return <div className="userManagement" />;
 }
