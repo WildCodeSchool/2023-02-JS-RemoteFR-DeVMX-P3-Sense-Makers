@@ -1,3 +1,4 @@
+-- Active: 1682342351805@@127.0.0.1@3306@make_sense
 
 CREATE TABLE roles (
   id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
@@ -10,20 +11,20 @@ CREATE TABLE users (
   lastname VARCHAR(100) NOT NULL,
   photo VARCHAR(254),
   email VARCHAR(100) NOT NULL UNIQUE,
-  password VARCHAR(254) NOT NULL UNIQUE,
+  password VARCHAR(254) NOT NULL,
   job_title VARCHAR(254),
   department VARCHAR(254),
-  creation_date DATE,
+  creation_date DATE
 );
 CREATE TABLE users_roles (
   id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
-  user_id INT FOREIGN KEY,
-  role_id INT FOREIGN KEY,
+  user_id INT,
+  role_id INT,
   FOREIGN KEY (role_id)
   REFERENCES roles(id),
   FOREIGN KEY (user_id)
-  REFERENCES users(id),
-)
+  REFERENCES users(id)
+);
 
 CREATE TABLE experts (
   id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
@@ -69,7 +70,8 @@ CREATE TABLE status_date (
   REFERENCES decisions(id),
   FOREIGN KEY (status_id)
   REFERENCES `status`(id)
-)
+);
+
 CREATE TABLE categories (
   id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
   title VARCHAR(254) NOT NULL
@@ -125,23 +127,23 @@ CREATE TABLE comments (
   vote TINYINT
 );
 
-INSERT INTO roles (name) VALUES
+INSERT INTO roles (role_name) VALUES
 ("administrator"),
 ("employee"),
 ("volunteer"),
 ("decision maker");
 
-INSERT INTO `status` VALUES
+INSERT INTO `status` (title) VALUES
 ("created"),
 ("opinion deadline"),
 ("decision taken"),
 ("conflict deadline"),
-("final decison")
+("final decison");
+
+INSERT INTO users (firstname, lastname, email, password, creation_date) VALUES (
+  "place", "holder", "place.holder@test.com", "99922242", "2023-03-03"
+);
 
 INSERT INTO users_roles (user_id, role_id) VALUES (
 1, 1
 );
-
-INSERT INTO users (firstname, lastname, email, password, creation_date) VALUES (
-  "place", "holder", "place.holder@test.com", "99922242", 9849:96:54
-)
