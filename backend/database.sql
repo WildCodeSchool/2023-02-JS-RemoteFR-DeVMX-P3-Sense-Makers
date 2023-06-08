@@ -1,4 +1,4 @@
--- Active: 1682342351805@@127.0.0.1@3306@make_sense
+-- Active: 1686231917905@@127.0.0.1@3306@makesense
 
 CREATE TABLE roles (
   id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
@@ -147,3 +147,8 @@ INSERT INTO users (firstname, lastname, email, password, creation_date) VALUES (
 INSERT INTO users_roles (user_id, role_id) VALUES (
 1, 1
 );
+
+INSERT INTO decisions ( title, content, usefulness,context,benefit,disavantages,positives_votes,negatives_votes,status_id) VALUES ("Test","On test","pourris","on test toujours","Aucun","Enormement",0,0,1);
+
+
+INSERT INTO comments (user_id, decision_id,creation_date, comment) VALUES (1,2,"2023-06-08","blablalballblalb");
