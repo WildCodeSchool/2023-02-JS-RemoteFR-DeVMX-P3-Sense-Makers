@@ -1,14 +1,7 @@
-import Home from "./pages/Home";
-
-import "./App.css";
+import "./scss/styles.scss";
 
 function App() {
-  return (
-    <div className="App">
-      <Home />
-      <p>coucou</p>
-    </div>
-  );
+  return <div className="app" />;
 }
 
 export default App;

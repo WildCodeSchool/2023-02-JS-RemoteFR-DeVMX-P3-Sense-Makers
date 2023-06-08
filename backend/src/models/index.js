@@ -34,6 +34,11 @@ const ItemManager = require("./ItemManager");
 models.item = new ItemManager();
 models.item.setDatabase(pool);
 
+const DecisionManager = require("./DecisionManager");
+
+models.decision = new DecisionManager();
+models.decision.setDatabase(pool);
+
 // bonus: use a proxy to personalize error message,
 // when asking for a non existing model
 
