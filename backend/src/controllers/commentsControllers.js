@@ -1,8 +1,10 @@
 const models = require("../models");
 
 const browse = (req, res) => {
+  const decisionId = parseInt(req.params.id, 10);
+
   models.comment
-    .findAll()
+    .findAll(decisionId)
     .then(([rows]) => {
       res.send(rows);
     })
@@ -14,7 +16,7 @@ const browse = (req, res) => {
 
 const read = (req, res) => {
   models.comment
-    .find(req.params.id)
+    .find(req.params.commentid)
     .then(([rows]) => {
       if (rows[0] == null) {
         res.sendStatus(404);
@@ -33,7 +35,7 @@ const edit = (req, res) => {
 
   // TODO validations (length, format...)
 
-  comment.id = parseInt(req.params.id, 10);
+  comment.id = parseInt(req.params.commentid, 10);
 
   models.comment
     .update(comment)
@@ -51,12 +53,13 @@ const edit = (req, res) => {
 };
 
 const add = (req, res) => {
+  const decisionId = parseInt(req.params.id, 10);
   const comment = req.body;
 
   // TODO validations (length, format...)
 
   models.comment
-    .insert(comment)
+    .insert(comment, decisionId)
     .then(([result]) => {
       res.location(`/comments/${result.insertId}`).sendStatus(201);
     })
@@ -68,7 +71,7 @@ const add = (req, res) => {
 
 const destroy = (req, res) => {
   models.comment
-    .delete(req.params.id)
+    .delete(req.params.commentid)
     .then(([result]) => {
       if (result.affectedRows === 0) {
         res.sendStatus(404);

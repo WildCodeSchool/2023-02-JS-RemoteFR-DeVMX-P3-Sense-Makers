@@ -5,12 +5,19 @@ class CommentsManager extends AbstractManager {
     super({ table: "comments" });
   }
 
-  insert(comment) {
+  findAll(decisionId) {
+    return this.database.query(
+      `select * from ${this.table} where decision_id = ?`,
+      [decisionId]
+    );
+  }
+
+  insert(comment, decisionId) {
     return this.database.query(
       `insert into ${this.table} (user_id, decision_id, creation_date, comment, vote) values (?,?,?,?,?)`,
       [
         comment.user_id,
-        comment.decision_id,
+        decisionId,
         comment.creation_date,
         comment.comment,
         comment.vote,
@@ -21,7 +28,7 @@ class CommentsManager extends AbstractManager {
   update(comment) {
     return this.database.query(
       `update ${this.table} set comment = ?, vote = ? where id = ?`,
-      [comment.comment, comment.vote, comment.id]
+      [comment.comment, comment.vote, comment.commentid]
     );
   }
 }
