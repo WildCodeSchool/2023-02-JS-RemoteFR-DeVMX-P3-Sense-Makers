@@ -20,6 +20,7 @@
 }
 
 .login-button {
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -27,6 +28,14 @@
   gap: 0.5rem;
   border: 1px solid #eff2f7;
   border-radius: $space-l;
+}
+
+.login-button:hover:focus {
+  border: 1px solid black;
+}
+
+.login-menu-hidden {
+  display: none;
 }
 
 .login-menu {
@@ -42,7 +51,7 @@
 
   > :first-child {
     &> :last-child {
-      margin-bottom: $space-m;
+      padding-bottom: $space-s;
     }
   }
 
@@ -59,20 +68,11 @@
     border-bottom-color: #ffffff;
   }
 
-  // ul {
-  //   list-style-type: none;
-  //   padding: 0;
-  //   margin-bottom: $space-m;
-  // }
-
-
-
   .login-menu-app {
     list-style-type: none;
     padding: 0;
-    margin-bottom: $space-m;
+    margin: 0;
     border-bottom: 1px solid $border-color-base;
-      // margin-bottom: $space-m;
 
     li {
       display: flex;
@@ -83,37 +83,31 @@
       svg {
         padding-top: $space-xs;
         cursor: pointer;
-
-        // padding-right: $space-xs;
       }
     }
 
     .li-text {
       color: $color-default;
-      padding-top: $space-xs;
       padding-left: $space-xs;
       cursor: pointer;
-
     }
   }
 
   .login-menu-user {
     list-style-type: none;
     padding: 0;
-    margin-bottom: $space-m;
+    margin: 0;
+
     > :first-child {
-      padding-top: 0;
+      padding-top: $space-xs;
     }
 
     li {
       display: flex;
       justify-content: flex-start;
       align-items: start;
-      // margin-bottom: 5px;
       color: $color-default;
       padding-top: $space-xs;
-      // padding-left: $space-xs;
-      margin: 0, auto, 5px, auto;
     }
   }
 

@@ -240,6 +240,7 @@ body {
 }
 
 .login-button {
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -247,6 +248,14 @@ body {
   gap: 0.5rem;
   border: 1px solid #eff2f7;
   border-radius: 30px;
+}
+
+.login-button:hover:focus {
+  border: 1px solid black;
+}
+
+.login-menu-hidden {
+  display: none;
 }
 
 .login-menu {
@@ -261,7 +270,7 @@ body {
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.13);
 }
 .login-menu > :first-child > :last-child {
-  margin-bottom: 20px;
+  padding-bottom: 15px;
 }
 .login-menu:before {
   content: " ";
@@ -278,7 +287,7 @@ body {
 .login-menu .login-menu-app {
   list-style-type: none;
   padding: 0;
-  margin-bottom: 20px;
+  margin: 0;
   border-bottom: 1px solid rgb(224, 228, 235);
 }
 .login-menu .login-menu-app li {
@@ -293,17 +302,16 @@ body {
 }
 .login-menu .login-menu-app .li-text {
   color: rgb(12, 57, 68);
-  padding-top: 10px;
   padding-left: 10px;
   cursor: pointer;
 }
 .login-menu .login-menu-user {
   list-style-type: none;
   padding: 0;
-  margin-bottom: 20px;
+  margin: 0;
 }
 .login-menu .login-menu-user > :first-child {
-  padding-top: 0;
+  padding-top: 10px;
 }
 .login-menu .login-menu-user li {
   display: flex;
@@ -311,7 +319,6 @@ body {
   align-items: start;
   color: rgb(12, 57, 68);
   padding-top: 10px;
-  margin: 0, auto, 5px, auto;
 }
 .login-menu .li-text {
   color: rgb(12, 57, 68);
