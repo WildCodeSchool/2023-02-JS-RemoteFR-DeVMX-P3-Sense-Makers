@@ -31,8 +31,8 @@
   cursor: pointer;
 }
 
-.login-button:hover:focus:active {
-  border: 1px solid black;
+.login-button:hover {
+  border: 1px solid $color-default;
 }
 
 .login-menu-hidden {
@@ -44,8 +44,10 @@
   top: 10%;
   right: 7%;
   padding: $space-s $space-m;
-  border-radius: 10px;
+  background-color: $background-color-base;
+  border-radius: $border-radius-m;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.13);
+  z-index: 9999;
 
   > :first-child {
     &> :last-child {
@@ -82,11 +84,12 @@
         padding-top: $space-xs;
         cursor: pointer;
       }
+
       :hover {
         text-decoration: underline;
         color: $color-primary-active;
       }
-    
+
       :active {
         color: $color-primary;
       }
@@ -127,7 +130,6 @@
   align-items: center;
   flex-flow: column nowrap;
   margin: 10px 0px 10px 15px;
-  z-index: 10;
 
   svg {
     path {

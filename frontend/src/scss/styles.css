@@ -251,8 +251,8 @@ body {
   cursor: pointer;
 }
 
-.login-button:hover:focus:active {
-  border: 1px solid black;
+.login-button:hover {
+  border: 1px solid rgb(12, 57, 68);
 }
 
 .login-menu-hidden {
@@ -264,8 +264,10 @@ body {
   top: 10%;
   right: 7%;
   padding: 15px 20px;
+  background-color: rgb(255, 255, 255);
   border-radius: 10px;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.13);
+  z-index: 9999;
 }
 .login-menu > :first-child > :last-child {
   padding-bottom: 15px;
@@ -334,7 +336,6 @@ body {
   align-items: center;
   flex-flow: column nowrap;
   margin: 10px 0px 10px 15px;
-  z-index: 10;
 }
 .burger-icon svg path {
   color: rgb(12, 57, 68);
