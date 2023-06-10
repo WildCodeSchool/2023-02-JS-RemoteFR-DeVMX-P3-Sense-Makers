@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import kikoAvatar from "../assets/avatar0.png";
 
 export default function LoginButton() {
@@ -10,6 +10,7 @@ export default function LoginButton() {
   };
 
   const menuRef = useRef();
+  const { pathname } = useLocation();
 
   useEffect(() => {
     const handler = (e) => {
@@ -18,8 +19,6 @@ export default function LoginButton() {
       }
     };
     document.addEventListener("mousedown", handler);
-
-    // return () => document.removeEventListener("mousedown", handler);
   }, []);
   return (
     <div ref={menuRef}>
@@ -64,8 +63,36 @@ export default function LoginButton() {
         <ul className="login-menu-app">
           <li>
             <Link
-              className="link-style"
+              className={
+                pathname === "/decision" ? "link-style active" : "link-style"
+              }
               to="/decision"
+              onClick={() => handleShowLoginMenu()}
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                className="feather feather-home"
+              >
+                <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
+                <polyline points="9 22 9 12 15 12 15 22" />
+              </svg>
+              <div className="li-text">Parcourir les décisions</div>
+            </Link>
+          </li>
+          <li>
+            <Link
+              className={
+                pathname === "/myDecisions" ? "link-style active" : "link-style"
+              }
+              to="/myDecisions"
               onClick={() => handleShowLoginMenu()}
             >
               <svg
@@ -85,30 +112,7 @@ export default function LoginButton() {
                 <rect x="14" y="14" width="7" height="7" />
                 <rect x="3" y="14" width="7" height="7" />
               </svg>
-              <div className="li-text">Parcourir les décisions</div>
-            </Link>
-          </li>
-          <li>
-            <Link
-              className="link-style"
-              to="/myDecisions"
-              onClick={() => handleShowLoginMenu()}
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="16"
-                height="16"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                className="feather feather-home"
-              >
-                <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
-                <polyline points="9 22 9 12 15 12 15 22" />
-              </svg>
+
               <div className="li-text">Mes décisions</div>
             </Link>
           </li>
@@ -132,7 +136,9 @@ export default function LoginButton() {
           </li>
           <li>
             <Link
-              className="link-style"
+              className={
+                pathname === "/profil" ? "link-style active" : "link-style"
+              }
               to="/profil"
               onClick={() => handleShowLoginMenu()}
             >
@@ -156,17 +162,35 @@ export default function LoginButton() {
         </ul>
         <ul className="login-menu-user">
           <li>
-            <Link to="/profil" onClick={() => handleShowLoginMenu()}>
+            <Link
+              className={
+                pathname === "/profil" ? "link-style active" : "link-style"
+              }
+              to="/profil"
+              onClick={() => handleShowLoginMenu()}
+            >
               <div className="li-text">Mon compte</div>
             </Link>
           </li>
           <li>
-            <Link to="/postDecision" onClick={() => handleShowLoginMenu()}>
+            <Link
+              className={
+                pathname === "/postDecision"
+                  ? "link-style active"
+                  : "link-style"
+              }
+              to="/postDecision"
+              onClick={() => handleShowLoginMenu()}
+            >
               <div className="li-text">Créer une décision</div>{" "}
             </Link>
           </li>
           <li>
-            <Link to="/" onClick={() => handleShowLoginMenu()}>
+            <Link
+              className={pathname === "/" ? "link-style active" : "link-style"}
+              to="/"
+              onClick={() => handleShowLoginMenu()}
+            >
               <div className="li-text">Déconnexion</div>{" "}
             </Link>
           </li>

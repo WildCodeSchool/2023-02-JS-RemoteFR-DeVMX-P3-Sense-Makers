@@ -263,10 +263,7 @@ body {
   position: absolute;
   top: 10%;
   right: 7%;
-  background-color: whitesmoke;
   padding: 15px 20px;
-  color: rgb(12, 57, 68);
-  background-color: rgb(255, 255, 255);
   border-radius: 10px;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.13);
 }
@@ -301,10 +298,15 @@ body {
   padding-top: 10px;
   cursor: pointer;
 }
+.login-menu .login-menu-app li :hover {
+  text-decoration: underline;
+  color: rgb(32, 136, 167);
+}
+.login-menu .login-menu-app li :active {
+  color: rgb(227, 97, 100);
+}
 .login-menu .login-menu-app .li-text {
-  color: rgb(12, 57, 68);
   padding-left: 10px;
-  cursor: pointer;
 }
 .login-menu .login-menu-user {
   list-style-type: none;
@@ -318,13 +320,10 @@ body {
   display: flex;
   justify-content: flex-start;
   align-items: start;
-  color: rgb(12, 57, 68);
-  padding-top: 10px;
+  padding-top: 5px;
 }
 .login-menu .li-text {
-  color: rgb(12, 57, 68);
   padding-top: 10px;
-  cursor: pointer;
 }
 
 .burger-icon {
@@ -352,7 +351,15 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  color: rgb(12, 57, 68);
+  text-decoration: none;
+}
+.link-style :hover {
+  text-decoration: underline;
+  color: rgb(32, 136, 167);
+}
+
+.active {
+  color: rgb(227, 97, 100);
 }
 
 /*

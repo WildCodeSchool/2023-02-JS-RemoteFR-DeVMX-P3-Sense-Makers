@@ -43,10 +43,7 @@
   position: absolute;
   top: 10%;
   right: 7%;
-  background-color: whitesmoke;
   padding: $space-s $space-m;
-  color: $color-default;
-  background-color: rgb(255, 255, 255);
   border-radius: 10px;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.13);
 
@@ -85,12 +82,18 @@
         padding-top: $space-xs;
         cursor: pointer;
       }
+      :hover {
+        text-decoration: underline;
+        color: $color-primary-active;
+      }
+    
+      :active {
+        color: $color-primary;
+      }
     }
 
     .li-text {
-      color: $color-default;
       padding-left: $space-xs;
-      cursor: pointer;
     }
   }
 
@@ -107,15 +110,12 @@
       display: flex;
       justify-content: flex-start;
       align-items: start;
-      color: $color-default;
-      padding-top: $space-xs;
+      padding-top: $space-xxs;
     }
   }
 
   .li-text {
-    color: $color-default;
     padding-top: $space-xs;
-    cursor: pointer;
   }
 }
 
@@ -147,5 +147,14 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  color: $color-default;
+  text-decoration: none;
+
+  :hover {
+    text-decoration: underline;
+    color: $color-primary-active;
+  }
+}
+
+.active {
+  color: $color-primary;
 }
