@@ -1,3 +1,3 @@
 export default function PostDecision() {
-  return <div className="postDecision" />;
+  return <h1 className="postDecision">Post decision</h1>;
 }

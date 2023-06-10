@@ -1,3 +1,3 @@
 export default function MyDecisions() {
-  return <div className="myDecisions" />;
+  return <h1 className="myDecisions">My decisions</h1>;
 }

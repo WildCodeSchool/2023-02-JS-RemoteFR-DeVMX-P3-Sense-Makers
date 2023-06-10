@@ -5,6 +5,7 @@ export default function Profil() {
   return (
     <div className="profil">
       <AdminProfil />
+      <h1>profil pages</h1>
       <UserProfil />
     </div>
   );
