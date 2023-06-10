@@ -12,8 +12,8 @@ import "./scss/styles.scss";
 function App() {
   return (
     <div className="app">
-      <Header />
       <Router>
+        <Header />
         <Routes>
           <Route path="/" element={<Login />} />
           <Route path="/decision" element={<Decision />} />

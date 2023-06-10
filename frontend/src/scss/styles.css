@@ -348,6 +348,13 @@ body {
   margin: 0.2rem;
 }
 
+.link-style {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: rgb(12, 57, 68);
+}
+
 /*
 --color-default-inverse: rgb(255, 255, 255);
 --color-primary: rgb(25, 108, 132);

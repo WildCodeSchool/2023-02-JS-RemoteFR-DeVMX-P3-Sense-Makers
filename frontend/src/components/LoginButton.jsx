@@ -1,20 +1,34 @@
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
+import { Link } from "react-router-dom";
 import kikoAvatar from "../assets/avatar0.png";
 
 export default function LoginButton() {
   const [showLoginMenu, setShowLoginMenu] = useState(false);
 
-  const handleToggleBurger = () => {
+  const handleShowLoginMenu = () => {
     setShowLoginMenu(!showLoginMenu);
   };
+
+  const menuRef = useRef();
+
+  useEffect(() => {
+    const handler = (e) => {
+      if (!menuRef.current.contains(e.target)) {
+        setShowLoginMenu(false);
+      }
+    };
+    document.addEventListener("mousedown", handler);
+
+    // return () => document.removeEventListener("mousedown", handler);
+  }, []);
   return (
-    <>
+    <div ref={menuRef}>
       <div
         className="login-button"
         role="button"
         tabIndex="0"
         onKeyDown={() => {}}
-        onClick={() => handleToggleBurger()}
+        onClick={() => handleShowLoginMenu()}
       >
         <div className="burger-icon">
           <svg
@@ -49,42 +63,54 @@ export default function LoginButton() {
       <div className={showLoginMenu ? "login-menu" : "login-menu-hidden"}>
         <ul className="login-menu-app">
           <li>
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="16"
-              height="16"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              className="feather feather-grid"
+            <Link
+              className="link-style"
+              to="/decision"
+              onClick={() => handleShowLoginMenu()}
             >
-              <rect x="3" y="3" width="7" height="7" />
-              <rect x="14" y="3" width="7" height="7" />
-              <rect x="14" y="14" width="7" height="7" />
-              <rect x="3" y="14" width="7" height="7" />
-            </svg>
-            <div className="li-text">Parcourir les décisions</div>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                className="feather feather-grid"
+              >
+                <rect x="3" y="3" width="7" height="7" />
+                <rect x="14" y="3" width="7" height="7" />
+                <rect x="14" y="14" width="7" height="7" />
+                <rect x="3" y="14" width="7" height="7" />
+              </svg>
+              <div className="li-text">Parcourir les décisions</div>
+            </Link>
           </li>
           <li>
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="16"
-              height="16"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              className="feather feather-home"
+            <Link
+              className="link-style"
+              to="/myDecisions"
+              onClick={() => handleShowLoginMenu()}
             >
-              <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
-              <polyline points="9 22 9 12 15 12 15 22" />
-            </svg>
-            <div className="li-text">Mes décisions</div>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                className="feather feather-home"
+              >
+                <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
+                <polyline points="9 22 9 12 15 12 15 22" />
+              </svg>
+              <div className="li-text">Mes décisions</div>
+            </Link>
           </li>
           <li>
             <svg
@@ -105,35 +131,47 @@ export default function LoginButton() {
             <div className="li-text">Notifications</div>
           </li>
           <li>
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="16"
-              height="16"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              className="feather feather-table"
+            <Link
+              className="link-style"
+              to="/profil"
+              onClick={() => handleShowLoginMenu()}
             >
-              <path d="M9 3H5a2 2 0 0 0-2 2v4m6-6h10a2 2 0 0 1 2 2v4M9 3v18m0 0h10a2 2 0 0 0 2-2V9M9 21H5a2 2 0 0 1-2-2V9m0 0h18" />
-            </svg>
-            <div className="li-text">Administration</div>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                className="feather feather-table"
+              >
+                <path d="M9 3H5a2 2 0 0 0-2 2v4m6-6h10a2 2 0 0 1 2 2v4M9 3v18m0 0h10a2 2 0 0 0 2-2V9M9 21H5a2 2 0 0 1-2-2V9m0 0h18" />
+              </svg>
+              <div className="li-text">Administration</div>
+            </Link>
           </li>
         </ul>
         <ul className="login-menu-user">
           <li>
-            <div className="li-text">Mon compte</div>
+            <Link to="/profil" onClick={() => handleShowLoginMenu()}>
+              <div className="li-text">Mon compte</div>
+            </Link>
           </li>
           <li>
-            <div className="li-text">Decisions</div>
+            <Link to="/postDecision" onClick={() => handleShowLoginMenu()}>
+              <div className="li-text">Créer une décision</div>{" "}
+            </Link>
           </li>
           <li>
-            <div className="li-text">Déconnexion</div>
+            <Link to="/" onClick={() => handleShowLoginMenu()}>
+              <div className="li-text">Déconnexion</div>{" "}
+            </Link>
           </li>
         </ul>
       </div>
-    </>
+    </div>
   );
 }
