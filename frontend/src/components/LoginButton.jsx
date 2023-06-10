@@ -1,14 +1,13 @@
-import { useState, useEffect, useRef } from "react";
+import { useEffect, useRef } from "react";
 import { Link, useLocation } from "react-router-dom";
+import PropTypes from "prop-types";
 import kikoAvatar from "../assets/avatar0.png";
 
-export default function LoginButton() {
-  const [showLoginMenu, setShowLoginMenu] = useState(false);
-
-  const handleShowLoginMenu = () => {
-    setShowLoginMenu(!showLoginMenu);
-  };
-
+export default function LoginButton({
+  setShowLoginMenu,
+  showLoginMenu,
+  handleShowLoginMenu,
+}) {
   const menuRef = useRef();
   const { pathname } = useLocation();
 
@@ -31,30 +30,20 @@ export default function LoginButton() {
       >
         <div className="burger-icon">
           <svg
+            xmlns="http://www.w3.org/2000/svg"
             width="20"
             height="20"
             viewBox="0 0 24 24"
             fill="none"
-            xmlns="http://www.w3.org/2000/svg"
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            className="feather feather-menu"
           >
-            <path
-              d="M4 18L20 18"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-            />
-            <path
-              d="M4 12L20 12"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-            />
-            <path
-              d="M4 6L20 6"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-            />
+            <line x1="3" y1="12" x2="21" y2="12" />
+            <line x1="3" y1="6" x2="21" y2="6" />
+            <line x1="3" y1="18" x2="21" y2="18" />
           </svg>
         </div>
         <img className="img-avatar" src={kikoAvatar} alt="avatar" />
@@ -84,7 +73,7 @@ export default function LoginButton() {
                 <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
                 <polyline points="9 22 9 12 15 12 15 22" />
               </svg>
-              <div className="li-text">Parcourir les décisions</div>
+              <div className="li-text">Décisions</div>
             </Link>
           </li>
           <li>
@@ -117,29 +106,33 @@ export default function LoginButton() {
             </Link>
           </li>
           <li>
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="16"
-              height="16"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              className="feather feather-bell"
+            <Link
+              className={pathname === "*" ? "link-style active" : "link-style"}
+              to="*"
+              onClick={() => handleShowLoginMenu()}
             >
-              <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9" />
-              <path d="M13.73 21a2 2 0 0 1-3.46 0" />
-            </svg>
-            <div className="li-text">Notifications</div>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                className="feather feather-bell"
+              >
+                <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9" />
+                <path d="M13.73 21a2 2 0 0 1-3.46 0" />
+              </svg>
+              <div className="li-text">Notifications</div>
+            </Link>
           </li>
           <li>
             <Link
-              className={
-                pathname === "/profil" ? "link-style active" : "link-style"
-              }
-              to="/profil"
+              className={pathname === "*" ? "link-style active" : "link-style"}
+              to="*"
               onClick={() => handleShowLoginMenu()}
             >
               <svg
@@ -163,10 +156,8 @@ export default function LoginButton() {
         <ul className="login-menu-user">
           <li>
             <Link
-              className={
-                pathname === "/profil" ? "link-style active" : "link-style"
-              }
-              to="/profil"
+              className={pathname === "*" ? "link-style active" : "link-style"}
+              to="*"
               onClick={() => handleShowLoginMenu()}
             >
               <div className="li-text">Mon compte</div>
@@ -199,3 +190,9 @@ export default function LoginButton() {
     </div>
   );
 }
+
+LoginButton.propTypes = {
+  showLoginMenu: PropTypes.bool.isRequired,
+  setShowLoginMenu: PropTypes.func.isRequired,
+  handleShowLoginMenu: PropTypes.func.isRequired,
+};

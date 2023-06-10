@@ -233,10 +233,31 @@ body {
   font-size: 16px;
 }
 .header .logo-container {
-  margin: 10px;
+  flex-grow: 2;
 }
 .header .logo-container img {
-  width: 100px;
+  width: 125px;
+}
+
+.navBar-icons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.navBar-icons ul {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  list-style: none;
+  gap: 15px;
+  margin-right: 20px;
+}
+.navBar-icons ul .link-style {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  font-size: 0.875rem;
 }
 
 .login-button {
@@ -263,7 +284,7 @@ body {
   position: absolute;
   top: 10%;
   right: 7%;
-  padding: 15px 20px;
+  padding: 0 20px 15px 20px;
   background-color: rgb(255, 255, 255);
   border-radius: 10px;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.13);
@@ -286,7 +307,7 @@ body {
 }
 .login-menu .login-menu-app {
   list-style-type: none;
-  padding: 0;
+  padding: 10px 0 0 0;
   margin: 0;
   border-bottom: 1px solid rgb(224, 228, 235);
 }
@@ -337,7 +358,7 @@ body {
   flex-flow: column nowrap;
   margin: 10px 0px 10px 15px;
 }
-.burger-icon svg path {
+.burger-icon svg line {
   color: rgb(12, 57, 68);
 }
 
@@ -353,6 +374,7 @@ body {
   justify-content: center;
   align-items: center;
   text-decoration: none;
+  color: rgb(12, 57, 68);
 }
 .link-style :hover {
   text-decoration: underline;
@@ -363,6 +385,16 @@ body {
   color: rgb(227, 97, 100);
 }
 
+@media screen and (max-width: 768px) {
+  .navBar-icons {
+    display: none;
+  }
+}
+@media screen and (min-width: 768px) {
+  .login-menu-app {
+    display: none;
+  }
+}
 /*
 --color-default-inverse: rgb(255, 255, 255);
 --color-primary: rgb(25, 108, 132);

@@ -11,10 +11,34 @@
   font-size: 16px;
 
   .logo-container {
-    margin: $space-xs;
-
+    // margin: $space-xs;
+    flex-grow: 2;
     img {
-      width: 100px;
+      width: 125px;
+    }
+  }
+}
+
+.navBar-icons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+
+  ul {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    list-style: none;
+    gap: $space-s;
+    margin-right: $space-m;
+
+    .link-style {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      font-size: $fonte-size-s;
     }
   }
 }
@@ -43,7 +67,7 @@
   position: absolute;
   top: 10%;
   right: 7%;
-  padding: $space-s $space-m;
+  padding: 0 $space-m $space-s $space-m;
   background-color: $background-color-base;
   border-radius: $border-radius-m;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.13);
@@ -70,7 +94,7 @@
 
   .login-menu-app {
     list-style-type: none;
-    padding: 0;
+    padding: $space-xs 0 0 0;
     margin: 0;
     border-bottom: 1px solid $border-color-base;
 
@@ -132,7 +156,7 @@
   margin: 10px 0px 10px 15px;
 
   svg {
-    path {
+    line {
       color: $color-default;
     }
   }
@@ -150,6 +174,7 @@
   justify-content: center;
   align-items: center;
   text-decoration: none;
+  color: $color-default;
 
   :hover {
     text-decoration: underline;
@@ -159,4 +184,17 @@
 
 .active {
   color: $color-primary;
+}
+
+@media screen and (max-width: 768px) {
+  .navBar-icons {
+    display: none;
+  }
+
+}
+@media screen and (min-width: 768px) {
+
+  .login-menu-app {
+    display: none;
+  }
 }
