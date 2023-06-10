@@ -28,9 +28,10 @@
   gap: 0.5rem;
   border: 1px solid #eff2f7;
   border-radius: $space-l;
+  cursor: pointer;
 }
 
-.login-button:hover:focus {
+.login-button:hover:focus:active {
   border: 1px solid black;
 }
 
