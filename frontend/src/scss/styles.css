@@ -275,9 +275,22 @@ body {
 }
 .login-menu ul {
   list-style-type: none;
+  padding: 0;
+  color: rgb(12, 57, 68);
 }
 .login-menu ul li {
+  display: flex;
+  justify-content: flex-start;
+  align-items: start;
   margin-bottom: 15px;
+}
+.login-menu ul li svg {
+  padding-top: 10px;
+}
+.login-menu ul .li-text {
+  color: rgb(12, 57, 68);
+  padding-top: 10px;
+  padding-left: 10px;
 }
 
 .burger-icon {

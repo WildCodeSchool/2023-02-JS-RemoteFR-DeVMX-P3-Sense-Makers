@@ -57,9 +57,24 @@
 
   ul {
     list-style-type: none;
+    padding: 0;
+    color: $color-default;
 
     li {
+      display: flex;
+      justify-content: flex-start;
+      align-items: start;
       margin-bottom: 15px;
+
+      svg {
+        padding-top: $space-xs;
+      }
+    }
+
+    .li-text {
+      color: $color-default;
+      padding-top: $space-xs;
+      padding-left: $space-xs;
     }
   }
 }
@@ -76,7 +91,7 @@
 
   svg {
     path {
-      color: rgb(12, 57, 68);
+      color: $color-default;
     }
   }
 }
