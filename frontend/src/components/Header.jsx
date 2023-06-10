@@ -24,7 +24,7 @@ export default function Header() {
         >
           {showLoginMenu && (
             <nav className="login-menu">
-              <ul>
+              <ul className="login-menu-app">
                 <li>
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -99,10 +99,16 @@ export default function Header() {
                   <div className="li-text">Administration</div>
                 </li>
               </ul>
-              <ul>
-                <li>Mon compte</li>
-                <li>Decisions</li>
-                <li>Déconnexion</li>
+              <ul className="login-menu-user">
+                <li>
+                  <div className="li-text">Mon compte</div>
+                </li>
+                <li>
+                  <div className="li-text">Decisions</div>
+                </li>
+                <li>
+                  <div className="li-text">Déconnexion</div>
+                </li>
               </ul>
             </nav>
           )}

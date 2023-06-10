@@ -230,6 +230,7 @@ body {
   padding: 15px 20px;
   font-family: "Raleway", Helvetica, Arial, sans-serif;
   font-weight: 700;
+  font-size: 16px;
 }
 .header .logo-container {
   margin: 10px;
@@ -254,12 +255,13 @@ body {
   right: 7%;
   background-color: whitesmoke;
   padding: 15px 20px;
+  color: rgb(12, 57, 68);
   background-color: rgb(255, 255, 255);
   border-radius: 10px;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.13);
 }
-.login-menu > :first-child {
-  border-bottom: 1px solid rgb(224, 228, 235);
+.login-menu > :first-child > :last-child {
+  margin-bottom: 20px;
 }
 .login-menu:before {
   content: " ";
@@ -273,24 +275,48 @@ body {
   border: 8px solid transparent;
   border-bottom-color: #ffffff;
 }
-.login-menu ul {
+.login-menu .login-menu-app {
   list-style-type: none;
   padding: 0;
-  color: rgb(12, 57, 68);
+  margin-bottom: 20px;
+  border-bottom: 1px solid rgb(224, 228, 235);
 }
-.login-menu ul li {
+.login-menu .login-menu-app li {
   display: flex;
   justify-content: flex-start;
   align-items: start;
-  margin-bottom: 15px;
+  margin-bottom: 5px;
 }
-.login-menu ul li svg {
+.login-menu .login-menu-app li svg {
   padding-top: 10px;
+  cursor: pointer;
 }
-.login-menu ul .li-text {
+.login-menu .login-menu-app .li-text {
   color: rgb(12, 57, 68);
   padding-top: 10px;
   padding-left: 10px;
+  cursor: pointer;
+}
+.login-menu .login-menu-user {
+  list-style-type: none;
+  padding: 0;
+  margin-bottom: 20px;
+}
+.login-menu .login-menu-user > :first-child {
+  padding-top: 0;
+}
+.login-menu .login-menu-user li {
+  display: flex;
+  justify-content: flex-start;
+  align-items: start;
+  color: rgb(12, 57, 68);
+  padding-top: 10px;
+  margin: 0, auto, 5px, auto;
+}
+.login-menu .li-text {
+  color: rgb(12, 57, 68);
+  padding-top: 10px;
+  cursor: pointer;
 }
 
 .burger-icon {

@@ -8,6 +8,7 @@
   padding: $space-s $space-m;
   font-family: "Raleway", Helvetica, Arial, sans-serif;
   font-weight: 700;
+  font-size: 16px;
 
   .logo-container {
     margin: $space-xs;
@@ -34,12 +35,15 @@
   right: 7%;
   background-color: whitesmoke;
   padding: $space-s $space-m;
+  color: $color-default;
   background-color: rgb(255, 255, 255);
   border-radius: 10px;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.13);
 
   > :first-child {
-    border-bottom: 1px solid $border-color-base;
+    &> :last-child {
+      margin-bottom: $space-m;
+    }
   }
 
   &:before {
@@ -55,19 +59,32 @@
     border-bottom-color: #ffffff;
   }
 
-  ul {
+  // ul {
+  //   list-style-type: none;
+  //   padding: 0;
+  //   margin-bottom: $space-m;
+  // }
+
+
+
+  .login-menu-app {
     list-style-type: none;
     padding: 0;
-    color: $color-default;
+    margin-bottom: $space-m;
+    border-bottom: 1px solid $border-color-base;
+      // margin-bottom: $space-m;
 
     li {
       display: flex;
       justify-content: flex-start;
       align-items: start;
-      margin-bottom: 15px;
+      margin-bottom: 5px;
 
       svg {
         padding-top: $space-xs;
+        cursor: pointer;
+
+        // padding-right: $space-xs;
       }
     }
 
@@ -75,7 +92,35 @@
       color: $color-default;
       padding-top: $space-xs;
       padding-left: $space-xs;
+      cursor: pointer;
+
     }
+  }
+
+  .login-menu-user {
+    list-style-type: none;
+    padding: 0;
+    margin-bottom: $space-m;
+    > :first-child {
+      padding-top: 0;
+    }
+
+    li {
+      display: flex;
+      justify-content: flex-start;
+      align-items: start;
+      // margin-bottom: 5px;
+      color: $color-default;
+      padding-top: $space-xs;
+      // padding-left: $space-xs;
+      margin: 0, auto, 5px, auto;
+    }
+  }
+
+  .li-text {
+    color: $color-default;
+    padding-top: $space-xs;
+    cursor: pointer;
   }
 }
 
