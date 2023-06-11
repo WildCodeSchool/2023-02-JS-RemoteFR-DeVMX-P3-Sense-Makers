@@ -40,6 +40,11 @@
       flex-direction: column;
       font-size: $fonte-size-s;
     }
+    
+  :hover {
+    text-decoration: underline;
+    color: $color-primary-active;
+  }
   }
 }
 
