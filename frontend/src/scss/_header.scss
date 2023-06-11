@@ -58,10 +58,12 @@
   border: 1px solid #eff2f7;
   border-radius: $space-l;
   cursor: pointer;
+  transition: all 500ms ease-in-out;
 }
 
 .login-button:hover {
   border: 1px solid $color-default;
+  
 }
 
 .login-menu-hidden {
