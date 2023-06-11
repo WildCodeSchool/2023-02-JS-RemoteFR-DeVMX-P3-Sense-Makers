@@ -24,7 +24,6 @@ export default function Header() {
                 pathname === "/decision" ? "link-style active" : "link-style"
               }
               to="/decision"
-              onClick={() => handleShowLoginMenu()}
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -50,7 +49,6 @@ export default function Header() {
                 pathname === "/myDecisions" ? "link-style active" : "link-style"
               }
               to="/myDecisions"
-              onClick={() => handleShowLoginMenu()}
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -77,7 +75,6 @@ export default function Header() {
             <Link
               className={pathname === "*" ? "link-style active" : "link-style"}
               to="*"
-              onClick={() => handleShowLoginMenu()}
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -101,7 +98,6 @@ export default function Header() {
             <Link
               className={pathname === "*" ? "link-style active" : "link-style"}
               to="*"
-              onClick={() => handleShowLoginMenu()}
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"

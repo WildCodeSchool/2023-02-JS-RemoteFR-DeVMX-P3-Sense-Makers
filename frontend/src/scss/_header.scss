@@ -11,7 +11,6 @@
   font-size: 16px;
 
   .logo-container {
-    // margin: $space-xs;
     flex-grow: 2;
 
     img {
@@ -24,7 +23,6 @@
   display: flex;
   justify-content: center;
   align-items: center;
-
 
   ul {
     display: flex;
@@ -59,7 +57,7 @@
   border: 1px solid #eff2f7;
   border-radius: $space-l;
   cursor: pointer;
-  transition: all 500ms ease-in-out;
+  transition: border 500ms ease-in-out;
 }
 
 .login-button:hover {
@@ -68,7 +66,6 @@
 }
 
 .login-menu-hidden {
-  animation: closeLoginMenu 350ms 1 ease-in-out;
   display: none;
 }
 
@@ -82,11 +79,7 @@
   border-radius: $border-radius-m;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.13);
   z-index: 9999;
-
-  animation-direction: alternate;
   animation: openLoginMenu 350ms 1 ease-in-out;
-
-
 
   > :first-child {
     &> :last-child {
@@ -154,6 +147,15 @@
       align-items: start;
       padding-top: $space-xxs;
     }
+
+    :hover {
+      text-decoration: underline;
+      color: $color-primary-active;
+    }
+
+    :active {
+      color: $color-primary;
+    }
   }
 
   .li-text {
@@ -162,16 +164,31 @@
 }
 
 @keyframes openLoginMenu {
-  from{
+  from {
     opacity: 0;
   }
-  to{opacity: 1;}
-}
-@keyframes closeLoginMenu {
-  from{
+
+  to {
     opacity: 1;
   }
-  to{opacity: 0;}
+}
+
+.link-style {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: $color-default;
+  text-decoration: underline;
+  text-decoration-color: transparent;
+  transition: 350ms ease-out;
+
+  :hover {
+    color: $color-primary-active;
+  }
+}
+
+.active {
+  color: $color-primary;
 }
 
 .burger-icon {
@@ -195,23 +212,6 @@
   height: 35px;
   border-radius: 50%;
   margin: 0.2rem;
-}
-
-.link-style {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-decoration: none;
-  color: $color-default;
-
-  :hover {
-    text-decoration: underline;
-    color: $color-primary-active;
-  }
-}
-
-.active {
-  color: $color-primary;
 }
 
 @media screen and (max-width: 768px) {
