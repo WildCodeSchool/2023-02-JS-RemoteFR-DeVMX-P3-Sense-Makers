@@ -1,7 +1,9 @@
+import CardDecision from "../components/Profils/CardDecision";
+
 export default function Home() {
   return (
-    <div className="profil">
-      <h1>home</h1>
+    <div className="all-decisions-container">
+      <CardDecision />
     </div>
   );
 }
