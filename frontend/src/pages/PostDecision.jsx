@@ -1,22 +1,24 @@
 export default function PostDecision() {
   return (
     <div className="post-container">
-      <h1 className="post-decision">Poster une décision </h1>
+      <div className="title-container">
+        <h1 className="post-decision">Poster une décision </h1>
+      </div>
 
       <div className="decision-information">
-        <label htmlFor="Title_decision">
+        <label htmlFor="title_decision">
           Titre de la décision *
-          <input type="text" id="Title_decision" className="title-decision" />
+          <input type="text" id="title_decision" className="title-decision" />
         </label>
 
-        <label htmlFor="Deadline_decision">
+        <label htmlFor="deadline_decision">
           Deadline *
-          <input type="date" id="Deadline_decision" />
+          <input type="date" id="deadline_decision" />
         </label>
 
-        <label htmlFor="Hub_decision">
+        <label htmlFor="hub_decision">
           Pôle concerné*
-          <input type="text" id="Hub_decision" />
+          <input type="text" id="hub_decision" />
         </label>
 
         <div className="impacted-people">
@@ -53,6 +55,10 @@ export default function PostDecision() {
           Inconvenients de la décision *
           <textarea type="text" id="disavantages_decision" />
         </label>
+      </div>
+
+      <div className="button-container">
+        <button type="button">Poster cette décision</button>
       </div>
     </div>
   );

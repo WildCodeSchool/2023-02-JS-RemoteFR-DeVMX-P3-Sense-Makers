@@ -1,9 +1,16 @@
 .post-container {
-  margin: 2rem;
+  margin: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
 
-
-  .post-decision {
-    color: #9b084f;
+  .title-container {
+    width: 91vw;
+    align-items: left;
+    h1 {
+      color: #9b084f;
+    }
   }
 
   .decision-information {
@@ -11,7 +18,7 @@
     flex-direction: column;
     justify-content: space-around;
     gap: 1.5rem;
-    color: #BDBDBD;
+    color: #bdbdbd;
 
     label {
       display: flex;
@@ -20,15 +27,15 @@
       gap: 0.2rem;
     }
 
-    #Title_decision {
+    #title_decision {
       align-items: center;
-      width: 45vw;
+      width: 90vw;
       height: 1.5rem;
       border-radius: 10px;
       border: 1px #bdbdbd solid;
     }
 
-    #Deadline_decision {
+    #deadline_decision {
       align-items: center;
       width: 30vw;
       height: 1.5rem;
@@ -36,7 +43,7 @@
       border: 1px #bdbdbd solid;
       color: #bdbdbd;
     }
-    #Hub_decision {
+    #hub_decision {
       width: 30vw;
       height: 1.5rem;
       border-radius: 10px;
@@ -46,48 +53,71 @@
     .impacted-people {
       display: flex;
       flex-direction: column;
-      justify-content: space-between;
-      gap: 2rem;
+      justify-content: space-around;
+      gap: 1.5rem;
+      @media screen and (min-width: 1024px) {
+        flex-direction: row;
+    
+      }
 
       #concerned_decision {
-        width: 80vw;
+        width: 90vw;
         height: 1.5rem;
         border-radius: 10px;
         border: 1px #bdbdbd solid;
+        @media screen and (min-width: 1024px) {
+          width: 20vw;
+        }
       }
       #expert_decision {
-        width: 80vw;
+        width: 90vw;
         height: 1.5rem;
         border-radius: 10px;
         border: 1px #bdbdbd solid;
-        margin-bottom: 2rem;
+        gap: 2rem;
+        @media screen and (min-width: 1024px) {
+          width: 20vw;
+          
+        }
       }
     }
-
   }
   .decision-write {
     display: flex;
     flex-direction: column;
     justify-content: space-around;
-    
+    margin-top: 1.5rem;
+
     label {
-        display: flex;
-        flex-direction: column;
-        justify-content: space-around;
-        color: #BDBDBD;
-        margin-bottom: 2rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+      color: #bdbdbd;
+      margin-bottom: 2rem;
+    }
+    textarea {
+      width: 90vw;
+      height: 10rem;
+      border-radius: 10px;
+      border: 1px #bdbdbd solid;
+      margin-top: 0.2rem;
+    }
+  }
+  .button-container {
+    display: flex;
+    width: 90vh;
+    justify-content: center;
+    @media screen and (min-width: 1024px) {
+      width: 91vw;
+      justify-content: flex-end;
+    }
 
-      }
-      textarea{
-        width: 80vw;
-        height: 10rem;
-        border-radius: 10px;
-        border: 1px #bdbdbd solid;
-        margin-top: 0.2rem;
-        
-       
-
-      }
-
+    button {
+      color: #ffffff;
+      background-color: #9b084f;
+      border-radius: 50px;
+      height: 2.4rem;
+      width: 14.6rem;
+    }
   }
 }
