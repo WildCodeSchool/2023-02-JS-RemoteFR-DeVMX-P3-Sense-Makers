@@ -40,6 +40,13 @@ class DecisionManager extends AbstractManager {
     );
   }
 
+  findAllDecisionWithStatusForCard() {
+    return this.database.query(
+      `SELECT d.id, d.title, d.status_id, s.title FROM ${this.table} d
+      JOIN status s ON s.id = d.status_id`
+    );
+  }
+
   findDecision(id) {
     return this.database.query(
       `select title, content, usefulness,context, benefit,disavantages,positives_votes, negatives_votes, comment, comments.creation_date, users.firstname, users.lastname from  comments
