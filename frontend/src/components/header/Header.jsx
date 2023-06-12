@@ -1,7 +1,8 @@
 import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import LoginButton from "./LoginButton";
-import makeSenseLogo from "../assets/make_sense.png";
+import NotificationButton from "./NotificationsButton";
+import makeSenseLogo from "../../assets/make_sense.png";
 
 export default function Header() {
   const [showLoginMenu, setShowLoginMenu] = useState(false);
@@ -72,9 +73,9 @@ export default function Header() {
             </Link>
           </li>
           <li>
-            <Link
+            <NotificationButton />
+            {/* <span
               className={pathname === "*" ? "link-style active" : "link-style"}
-              to="*"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -92,7 +93,7 @@ export default function Header() {
                 <path d="M13.73 21a2 2 0 0 1-3.46 0" />
               </svg>
               <div className="li-text">Notifications</div>
-            </Link>
+            </span> */}
           </li>
           <li>
             <Link

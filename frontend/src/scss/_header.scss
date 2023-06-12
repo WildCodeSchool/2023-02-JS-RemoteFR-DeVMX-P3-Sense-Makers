@@ -241,3 +241,29 @@
     right: 3%;
   }
 }
+
+.notifications-modal {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 90vw;
+  height: 90vh;
+  background-color: green;
+}
+
+.notifications-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 300px;
+  height: 400px;
+  background-color: grey;
+
+  ul {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+}

@@ -1,9 +1,4 @@
-<<<<<<< HEAD
 -- Active: 1682397207093@@127.0.0.1@3306@makesense
-
-=======
--- Active: 1682342351805@@127.0.0.1@3306@make_sense
->>>>>>> dev
 CREATE TABLE roles (
   id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
   role_name VARCHAR(254) NOT NULL
