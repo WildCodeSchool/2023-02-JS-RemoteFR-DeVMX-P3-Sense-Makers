@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 export default function PostDecision() {
-  const [hub, setHub] = useState("Hub France");
+  const [hub, setHub] = useState("--");
   const handleChangeSelect = (e) => {
     setHub(e.target.value);
   };

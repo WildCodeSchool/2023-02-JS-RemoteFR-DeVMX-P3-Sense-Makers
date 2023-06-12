@@ -43,6 +43,7 @@
       height: 1.5rem;
       border-radius: 10px;
       border: 1px #bdbdbd solid;
+      box-shadow: 5px 5px 8px #bdbdbd;
     }
 
     #deadline_decision {
@@ -53,6 +54,7 @@
       border: 1px #bdbdbd solid;
       color: #bdbdbd;
       text-align: center;
+      box-shadow: 5px 5px 8px #bdbdbd;
       @media screen and (min-width: 1024px) {
         width: 15vw;
       }
@@ -60,6 +62,7 @@
     .hub-container{
       display: flex;
       justify-content: space-between;
+
      
   
 
@@ -68,6 +71,7 @@
         height: 1.5rem;
         border-radius: 10px;
         border: 1px #bdbdbd solid;
+        box-shadow: 5px 5px 8px #bdbdbd;
         @media screen and (min-width: 1024px) {
           width: 15vw;
         }
@@ -85,6 +89,7 @@
         color:#C10B63;
         border: #C10B63 1px solid;
         margin-top: 1rem;
+        box-shadow: 5px 5px 8px #bdbdbd;
       }
       }
 
@@ -104,6 +109,7 @@
         height: 1.5rem;
         border-radius: 10px;
         border: 1px #bdbdbd solid;
+        box-shadow: 5px 5px 8px #bdbdbd;
         @media screen and (min-width: 1024px) {
           width: 20vw;
         }
@@ -113,8 +119,10 @@
         border-radius: 10px;
         border: 1px #bdbdbd solid;
         gap: 2rem;
+        box-shadow: 5px 5px 8px #bdbdbd;
         @media screen and (min-width: 1024px) {
           width: 20vw;
+
         }
       }
     }
@@ -125,6 +133,7 @@
     justify-content: space-around;
     margin-top: 1.5rem;
     width: 100%;
+    
 
     label {
       display: flex;
@@ -139,6 +148,7 @@
       border-radius: 10px;
       border: 1px #bdbdbd solid;
       margin-top: 0.2rem;
+      box-shadow: 5px 5px 8px #bdbdbd;
     }
   }
   .button-container {
