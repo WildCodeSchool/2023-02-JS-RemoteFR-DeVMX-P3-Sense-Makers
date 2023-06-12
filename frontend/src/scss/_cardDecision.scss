@@ -16,15 +16,18 @@
       border: 1px solid #2088a7;
       background: rgba(32, 136, 167, 0.25);
       color: #2088A7;
-      width: auto;
+      width: 10rem;
       border-radius: 10px;
       padding: 0.5rem;
+      text-align: center;
     }
 
     :nth-child(2){
         border: 1px solid #C10B63;
         background: rgba(193, 11, 99, 0.25);
         color: #C10B63;
+        width: 5rem;
+        text-align: center;
     }
 }
   h1 {
