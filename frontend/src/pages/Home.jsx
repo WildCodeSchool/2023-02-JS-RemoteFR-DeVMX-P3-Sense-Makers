@@ -1,3 +1,7 @@
 export default function Home() {
-  return <header className="appHeader" />;
+  return (
+    <div className="profil">
+      <h1>home</h1>
+    </div>
+  );
 }
