@@ -31,6 +31,29 @@ export default function PostDecision() {
           </label>
         </div>
       </div>
+
+      <div className="decision-write">
+        <label htmlFor="description_decision">
+          Description de la décision *
+          <textarea type="text" id="description_decision" />
+        </label>
+        <label htmlFor="usefullness_decision">
+          Utilité de cette décision pour l'organisation *
+          <textarea type="text" id="usefullness_decision" />
+        </label>
+        <label htmlFor="context_decision">
+          Contexte autour de la décision *
+          <textarea type="text" id="context_decision" />
+        </label>
+        <label htmlFor="benefit_decision">
+          Bénéfices de la décision *
+          <textarea type="text" id="benefit_decision" />
+        </label>
+        <label htmlFor="disavantages_decision">
+          Inconvenients de la décision *
+          <textarea type="text" id="disavantages_decision" />
+        </label>
+      </div>
     </div>
   );
 }
