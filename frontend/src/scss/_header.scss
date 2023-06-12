@@ -13,8 +13,8 @@
   .logo-container {
     flex-grow: 2;
 
-    img {
-      width: 125px;
+    .img-logo {
+      width: 7.8rem;
     }
   }
 }
@@ -62,7 +62,6 @@
 
 .login-button:hover {
   border: 1px solid $color-default;
-
 }
 
 .login-menu-hidden {
@@ -72,7 +71,7 @@
 .login-menu {
   position: absolute;
   top: 10%;
-  right: 7%;
+  right: 6%;
   min-width: 150px;
   padding: 0 $space-m $space-s $space-m;
   background-color: $background-color-base;
@@ -218,12 +217,27 @@
   .navBar-icons {
     display: none;
   }
-
 }
 
 @media screen and (min-width: 768px) {
-
   .login-menu-app {
     display: none;
+  }
+
+  .header {
+    .logo-container {
+      .img-logo {
+        width: 11rem;
+      }
+    }
+  }
+
+  .img-avatar {
+    width: 40px;
+    height: 40px;
+  }
+
+  .login-menu {
+    right: 3%;
   }
 }

@@ -1,7 +1,7 @@
 import { useEffect, useRef } from "react";
 import { Link, useLocation } from "react-router-dom";
 import PropTypes from "prop-types";
-import kikoAvatar from "../assets/avatar0.png";
+import kikoAvatar from "../assets/kiko_avatar.png";
 
 export default function LoginButton({
   setShowLoginMenu,

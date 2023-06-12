@@ -14,7 +14,7 @@ export default function Header() {
   return (
     <div className="header">
       <div className="logo-container">
-        <img src={makeSenseLogo} alt="" />
+        <img className="img-logo" src={makeSenseLogo} alt="" />
       </div>
       <nav className="navBar-icons">
         <ul>
