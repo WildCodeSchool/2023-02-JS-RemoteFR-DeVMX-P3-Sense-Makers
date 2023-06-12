@@ -36,14 +36,21 @@ class DecisionManager extends AbstractManager {
         decision.negatives_votes,
         decision.status_id,
         decision.id,
+
+        // LEFT JOIN users_decisions ON users_decisions.decision_id = d.id
+        // LEFT JOIN users u ON users_decisions.user_id = u.id
+
+        // u.firstname, d.concerned_hub, users_decisions.decision_id
       ]
     );
   }
 
-  findAllDecisionWithStatusForCard() {
+  findAllDecisionsWithStatusAndNameOfCreatorForCard() {
     return this.database.query(
-      `SELECT d.id, d.title, d.status_id, s.title FROM ${this.table} d
-      JOIN status s ON s.id = d.status_id`
+      `SELECT d.id, d.title AS title_decision, d.status_id, d.concerned_hub, s.title AS title_status, u.firstname, u.lastname, u.photo  FROM ${this.table} d
+     JOIN status s ON s.id = d.status_id
+     LEFT JOIN users_decisions ON users_decisions.decision_id = d.id
+     LEFT JOIN users u ON users_decisions.user_id = u.id`
     );
   }
 

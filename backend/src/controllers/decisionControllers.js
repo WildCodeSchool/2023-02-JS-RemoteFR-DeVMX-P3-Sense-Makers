@@ -2,7 +2,7 @@ const models = require("../models");
 
 const browse = (req, res) => {
   models.decision
-    .findAllDecisionWithStatusForCard()
+    .findAllDecisionsWithStatusAndNameOfCreatorForCard()
     .then(([rows]) => {
       res.send(rows);
     })

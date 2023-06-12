@@ -102,6 +102,9 @@ INSERT INTO decisions ( title, content, usefulness, context, benefit, disavantag
 ("le chat", "manger le chat", "manger", "faim", "manger = plus faim", "a plus de chat", "Hub France", 42, 12, 5),
 ("placeholder", "je place holder; tu places holder; il place holder; nous plaçons holder; vous placez holder; ils placent holder", "il faut placer holder", "placer holder", "holder sera enfin placé", "c'est long de placer holder", "Hub France", 42, 42, 2);
 
+INSERT INTO users_decisions (user_id, decision_id) VALUES
+(2, 1), (3, 2), (1, 3), (4, 4);
+
 INSERT INTO comments (user_id, decision_id,creation_date, comment) VALUES
 (1, 2, "2023-06-08", "blablalballblalb"),
 (1, 3, "2023-06-09", "miam"),
