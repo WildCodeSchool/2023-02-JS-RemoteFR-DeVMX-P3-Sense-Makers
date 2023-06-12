@@ -12,7 +12,6 @@ CREATE TABLE users (
   email VARCHAR(100) NOT NULL UNIQUE,
   password VARCHAR(254) NOT NULL,
   job_title VARCHAR(254),
-  department VARCHAR(254),
   role_id INT NOT NULL,
   creation_date DATE,
   FOREIGN KEY (role_id)
@@ -35,17 +34,6 @@ CREATE TABLE decisions (
   positives_votes INT,
   negatives_votes INT,
   status_id INT NOT NULL,
-  FOREIGN KEY (status_id)
-  REFERENCES `status`(id)
-);
-
-CREATE TABLE status_date (
-  id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
-  `date` DATE NOT NULL,
-  decision_id INT NOT NULL,
-  status_id INT NOT NULL,
-  FOREIGN KEY (decision_id)
-  REFERENCES decisions(id),
   FOREIGN KEY (status_id)
   REFERENCES `status`(id)
 );
