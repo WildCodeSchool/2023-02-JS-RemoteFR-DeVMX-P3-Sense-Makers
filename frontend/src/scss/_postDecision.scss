@@ -1,12 +1,17 @@
 .post-container {
-  margin: 1rem;
+  margin: auto;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
   align-items: center;
+  max-width: 90vw;
+  @media screen and (min-width: 1280px) {
+    max-width: 70vw;
+  }
+
 
   .title-container {
-    width: 91vw;
+    width:100%;
     align-items: left;
     h1 {
       color: #9b084f;
@@ -15,6 +20,7 @@
 
   .decision-information {
     display: flex;
+    width: 100%;
     flex-direction: column;
     justify-content: space-around;
     gap: 1.5rem;
@@ -29,7 +35,7 @@
 
     #title_decision {
       align-items: center;
-      width: 90vw;
+      width: 100%;
       height: 1.5rem;
       border-radius: 10px;
       border: 1px #bdbdbd solid;
@@ -37,31 +43,40 @@
 
     #deadline_decision {
       align-items: center;
-      width: 30vw;
+      width: 30%;
       height: 1.5rem;
       border-radius: 10px;
       border: 1px #bdbdbd solid;
       color: #bdbdbd;
+      text-align: center;
+      @media screen and (min-width: 1024px) {
+        width: 15vw;
+      }
     }
     #hub_decision {
-      width: 30vw;
+      width: 30%;
       height: 1.5rem;
       border-radius: 10px;
       border: 1px #bdbdbd solid;
+      @media screen and (min-width: 1024px) {
+        width: 15vw;
+      }
     }
 
     .impacted-people {
       display: flex;
+      width: 100%;
       flex-direction: column;
-      justify-content: space-around;
+      justify-content: space-between;
       gap: 1.5rem;
       @media screen and (min-width: 1024px) {
         flex-direction: row;
+       
     
       }
 
       #concerned_decision {
-        width: 90vw;
+        width: 90%;
         height: 1.5rem;
         border-radius: 10px;
         border: 1px #bdbdbd solid;
@@ -70,14 +85,13 @@
         }
       }
       #expert_decision {
-        width: 90vw;
+        width: 90%;
         height: 1.5rem;
         border-radius: 10px;
         border: 1px #bdbdbd solid;
         gap: 2rem;
         @media screen and (min-width: 1024px) {
           width: 20vw;
-          
         }
       }
     }
@@ -87,6 +101,7 @@
     flex-direction: column;
     justify-content: space-around;
     margin-top: 1.5rem;
+    width: 100%;
 
     label {
       display: flex;
@@ -96,7 +111,7 @@
       margin-bottom: 2rem;
     }
     textarea {
-      width: 90vw;
+      width: 100%;
       height: 10rem;
       border-radius: 10px;
       border: 1px #bdbdbd solid;
@@ -105,10 +120,10 @@
   }
   .button-container {
     display: flex;
-    width: 90vh;
+    width: 90%;
     justify-content: center;
     @media screen and (min-width: 1024px) {
-      width: 91vw;
+      width: 100%;
       justify-content: flex-end;
     }
 
