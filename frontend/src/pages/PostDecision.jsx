@@ -1,4 +1,11 @@
+import { useState } from "react";
+
 export default function PostDecision() {
+  const [hub, setHub] = useState("Hub France");
+  const handleChangeSelect = (e) => {
+    setHub(e.target.value);
+  };
+
   return (
     <div className="post-container">
       <div className="title-container">
@@ -8,7 +15,12 @@ export default function PostDecision() {
       <div className="decision-information">
         <label htmlFor="title_decision">
           Titre de la décision *
-          <input type="text" id="title_decision" className="title-decision" />
+          <input
+            type="text"
+            id="title_decision"
+            className="title-decision"
+            placeholder="Déménager hors de Paris..."
+          />
         </label>
 
         <label htmlFor="deadline_decision">
@@ -16,10 +28,16 @@ export default function PostDecision() {
           <input type="date" id="deadline_decision" />
         </label>
 
-        <label htmlFor="hub_decision">
-          Pôle concerné*
-          <input type="text" id="hub_decision" />
-        </label>
+        <div className="hub-container">
+          <label htmlFor="hub_decision">
+            Pôle concerné *
+            <select id="hub_decision" onChange={handleChangeSelect}>
+              <option value="--">--</option>
+              <option value="Hub France">Hub France</option>
+            </select>
+          </label>
+          <div className="hub-select">{hub}</div>
+        </div>
 
         <div className="impacted-people">
           <label htmlFor="concerned_decision">

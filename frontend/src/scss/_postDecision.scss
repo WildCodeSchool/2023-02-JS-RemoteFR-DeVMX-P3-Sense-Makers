@@ -31,6 +31,10 @@
       flex-direction: column;
       justify-content: space-around;
       gap: 0.2rem;
+      ::placeholder{
+        color:#bdbdbd;
+      padding-left: 1rem ;
+      }
     }
 
     #title_decision {
@@ -53,15 +57,36 @@
         width: 15vw;
       }
     }
-    #hub_decision {
-      width: 30%;
-      height: 1.5rem;
-      border-radius: 10px;
-      border: 1px #bdbdbd solid;
-      @media screen and (min-width: 1024px) {
-        width: 15vw;
+    .hub-container{
+      display: flex;
+      justify-content: space-between;
+     
+  
+
+      #hub_decision {
+        width: 100%;
+        height: 1.5rem;
+        border-radius: 10px;
+        border: 1px #bdbdbd solid;
+        @media screen and (min-width: 1024px) {
+          width: 15vw;
+        }
+        option{
+          text-align: center;
+          color: #bdbdbd;
+        }
       }
-    }
+      .hub-select{
+        display: flex;
+        align-items: center;
+        background-color:rgba(193, 11, 99, 0.25);
+        border-radius: 10px;
+        padding: 0.5em;
+        color:#C10B63;
+        border: #C10B63 1px solid;
+        margin-top: 1rem;
+      }
+      }
 
     .impacted-people {
       display: flex;
@@ -76,7 +101,6 @@
       }
 
       #concerned_decision {
-        width: 90%;
         height: 1.5rem;
         border-radius: 10px;
         border: 1px #bdbdbd solid;
@@ -85,7 +109,6 @@
         }
       }
       #expert_decision {
-        width: 90%;
         height: 1.5rem;
         border-radius: 10px;
         border: 1px #bdbdbd solid;
@@ -133,6 +156,7 @@
       border-radius: 50px;
       height: 2.4rem;
       width: 14.6rem;
+      margin-bottom: 15%;
     }
   }
 }
