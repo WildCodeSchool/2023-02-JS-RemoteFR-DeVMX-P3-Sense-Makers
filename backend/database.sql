@@ -1,4 +1,4 @@
--- Active: 1682342351805@@127.0.0.1@3306@make_sense
+-- Active: 1682397207093@@127.0.0.1@3306@makesense
 CREATE TABLE roles (
   id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
   role_name VARCHAR(254) NOT NULL
@@ -31,6 +31,7 @@ CREATE TABLE decisions (
   context VARCHAR(254) NOT NULL,
   benefit VARCHAR(254) NOT NULL,
   disavantages VARCHAR(254) NOT NULL,
+  concerned_hub VARCHAR(80) NOT NULL,
   positives_votes INT,
   negatives_votes INT,
   status_id INT NOT NULL,
@@ -95,11 +96,14 @@ INSERT INTO users (firstname, lastname, email, password, role_id, creation_date)
 ("mich", "mich", "michmich@mich.com", "michmich", 2, "1905-05-25"),
 ("gterzuib", "ergtziàj", "ureigsgpf@gtr.com", "igurezh", 2, "8674-02-05");
 
-INSERT INTO decisions ( title, content, usefulness, context, benefit, disavantages, positives_votes, negatives_votes, status_id) VALUES
-("Test", "On test", "pourris", "on test toujours", "Aucun", "Enormement", 0, 0, 1),
-("c'est un titre", "c'est un contenu placeholder copain on s'en tamponne bien cordialement de ce que t'écris. compris?", "c'est un placeholder pour l'utilité... oui c'est utile, tais-toi et code", "context du placeholder? placeholder", "les bénéfice d'un placeholder? bah c'est qu'on peu tester des trucs sur des trucs sans avoir de vrai trucs. du coup c'est cooool", "les désavantages? je me fais chier a écrire des trucs que tu va pas lire", 0, 1337, 1),
-("le chat", "manger le chat", "manger", "faim", "manger = plus faim", "a plus de chat", 42, 12, 5),
-("placeholder", "je place holder; tu places holder; il place holder; nous plaçons holder; vous placez holder; ils placent holder", "il faut placer holder", "placer holder", "holder sera enfin placé", "c'est long de placer holder", 42, 42, 2);
+INSERT INTO decisions ( title, content, usefulness, context, benefit, disavantages, concerned_hub, positives_votes, negatives_votes, status_id) VALUES
+("Test", "On test", "pourris", "on test toujours", "Aucun", "Enormement", "Hub France", 0, 0, 1),
+("c'est un titre", "c'est un contenu placeholder copain on s'en tamponne bien cordialement de ce que t'écris. compris?", "c'est un placeholder pour l'utilité... oui c'est utile, tais-toi et code", "context du placeholder? placeholder", "les bénéfice d'un placeholder? bah c'est qu'on peu tester des trucs sur des trucs sans avoir de vrai trucs. du coup c'est cooool", "les désavantages? je me fais chier a écrire des trucs que tu va pas lire", "Hub France", 0, 1337, 1),
+("le chat", "manger le chat", "manger", "faim", "manger = plus faim", "a plus de chat", "Hub France", 42, 12, 5),
+("placeholder", "je place holder; tu places holder; il place holder; nous plaçons holder; vous placez holder; ils placent holder", "il faut placer holder", "placer holder", "holder sera enfin placé", "c'est long de placer holder", "Hub France", 42, 42, 2);
+
+INSERT INTO users_decisions (user_id, decision_id) VALUES
+(2, 1), (3, 2), (1, 3), (4, 4);
 
 INSERT INTO comments (user_id, decision_id,creation_date, comment) VALUES
 (1, 2, "2023-06-08", "blablalballblalb"),
