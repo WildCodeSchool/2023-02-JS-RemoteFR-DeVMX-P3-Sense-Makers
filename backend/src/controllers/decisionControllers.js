@@ -1,6 +1,6 @@
 const models = require("../models");
 
-const browse = (req, res) => {
+const browseDecisions = (req, res) => {
   models.decision
     .findAllDecisionsWithStatusAndNameOfCreatorForCard()
     .then(([rows]) => {
@@ -12,7 +12,7 @@ const browse = (req, res) => {
     });
 };
 
-const read = (req, res) => {
+const readDecision = (req, res) => {
   models.decision
     .findDecision(req.params.id)
     .then(([rows]) => {
@@ -28,7 +28,7 @@ const read = (req, res) => {
     });
 };
 
-const edit = (req, res) => {
+const editDecision = (req, res) => {
   const decision = req.body;
 
   // TODO validations (length, format...)
@@ -50,7 +50,7 @@ const edit = (req, res) => {
     });
 };
 
-const add = (req, res) => {
+const addDecision = (req, res) => {
   const decision = req.body;
 
   // TODO validations (length, format...)
@@ -66,7 +66,7 @@ const add = (req, res) => {
     });
 };
 
-const destroy = (req, res) => {
+const destroyDecision = (req, res) => {
   models.decision
     .delete(req.params.id)
     .then(([result]) => {
@@ -83,9 +83,9 @@ const destroy = (req, res) => {
 };
 
 module.exports = {
-  browse,
-  read,
-  edit,
-  add,
-  destroy,
+  browseDecisions,
+  readDecision,
+  editDecision,
+  addDecision,
+  destroyDecision,
 };
