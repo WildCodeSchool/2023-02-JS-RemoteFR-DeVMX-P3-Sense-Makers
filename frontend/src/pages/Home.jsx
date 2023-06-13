@@ -15,8 +15,13 @@ export default function Home() {
   }, []);
   return (
     <div className="all-decisions-container">
-      <div className="desision-created-container">
-        <h1>Statut created</h1>
+      <div className="decisions-container">
+        <div className="infos-status-container">
+          <i className="fa-sharp fa-solid fa-caret-down" />
+          <h1>Statut created</h1>
+        </div>
+        <hr />
+
         <div className="cards-decision-container">
           {allDecisions
             .filter((decision) => decision.title_status === "created")
@@ -25,8 +30,12 @@ export default function Home() {
             ))}
         </div>
       </div>
-      <div className="opinion-deadline-container">
-        <h1>Statut deadline</h1>
+      <div className="decisions-container">
+        <div className="infos-status-container">
+          <i className="fa-sharp fa-solid fa-caret-down" />
+          <h1>Statut deadline</h1>
+        </div>
+        <hr />
         <div className="cards-decision-container">
           {allDecisions
             .filter((decision) => decision.title_status === "opinion deadline")
@@ -35,8 +44,12 @@ export default function Home() {
             ))}
         </div>
       </div>
-      <div className="decision-taken-container">
-        <h1>Statut decision prise</h1>
+      <div className="decisions-container">
+        <div className="infos-status-container">
+          <i className="fa-sharp fa-solid fa-caret-down" />
+          <h1>Statut decision prise</h1>
+        </div>
+        <hr />
         <div className="cards-decision-container">
           {allDecisions
             .filter((decision) => decision.title_status === "decision taken")
@@ -45,8 +58,12 @@ export default function Home() {
             ))}
         </div>
       </div>
-      <div className="conflict-deadline-container">
-        <h1>Statut fin de conflit</h1>
+      <div className="decisions-container">
+        <div className="infos-status-container">
+          <i className="fa-sharp fa-solid fa-caret-down" />
+          <h1>Statut fin de conflit</h1>
+        </div>
+        <hr />
         <div className="cards-decision-container">
           {allDecisions
             .filter((decision) => decision.title_status === "conflict deadline")
@@ -55,8 +72,12 @@ export default function Home() {
             ))}
         </div>
       </div>
-      <div className="final-decison-container">
-        <h1>Statut decision finale</h1>
+      <div className="decisions-container">
+        <div className="infos-status-container">
+          <i className="fa-sharp fa-solid fa-caret-down" />
+          <h1>Statut decision finale</h1>
+        </div>
+        <hr />
         <div className="cards-decision-container">
           {allDecisions
             .filter((decision) => decision.title_status === "final decision")
