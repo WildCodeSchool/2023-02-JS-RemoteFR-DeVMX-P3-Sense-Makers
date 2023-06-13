@@ -1,3 +1,3 @@
 export default function WrongPage() {
-  return <div className="wrongPage" />;
+  return <h1 className="wrongPage">Wrong page</h1>;
 }
