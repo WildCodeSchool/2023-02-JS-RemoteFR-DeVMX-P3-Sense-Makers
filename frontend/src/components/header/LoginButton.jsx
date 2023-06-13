@@ -9,7 +9,6 @@ export default function LoginButton({
   setShowLoginMenu,
   handleShowLoginMenu,
   showNotificationsMenu,
-  setShowNotificationsMenu,
   handleShowNotificationsMenu,
 }) {
   const menuRef = useRef();
@@ -116,7 +115,10 @@ export default function LoginButton({
               role="button"
               tabIndex="0"
               onKeyDown={() => {}}
-              onClick={() => setShowNotificationsMenu(!showNotificationsMenu)}
+              onClick={() => {
+                handleShowLoginMenu();
+                handleShowNotificationsMenu();
+              }}
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -208,6 +210,5 @@ LoginButton.propTypes = {
   setShowLoginMenu: PropTypes.func.isRequired,
   handleShowLoginMenu: PropTypes.func.isRequired,
   showNotificationsMenu: PropTypes.bool.isRequired,
-  setShowNotificationsMenu: PropTypes.func.isRequired,
   handleShowNotificationsMenu: PropTypes.func.isRequired,
 };

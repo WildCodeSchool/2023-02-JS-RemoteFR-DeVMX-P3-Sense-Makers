@@ -125,9 +125,7 @@
       .li-text {
         padding-left: $space-xs;
       }
-
     }
-
   }
 
   .login-menu-user {
@@ -264,7 +262,7 @@
   align-items: flex-start;
   width: 90vw;
   height: 85vh;
-  background-color: green;
+  background-color: #036103d3;
   z-index: 9999;
 
   .notifications-container {
@@ -273,14 +271,20 @@
     align-items: center;
     flex-direction: column;
     width: 200px;
-    height: 250px;
+    height: 400px;
     margin: $space-m 0;
-    padding: $space-m $space-m;
-    background-color: grey;
+    padding: $space-m;
+    background-color: $background-color-base;
+    border-radius: $border-radius-m;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.13);
+    
 
     .notifications-title {
-      font-size: $font-size-m;
       pointer-events: none;
+      font-size: $font-size-xl;
+      font-family: "Raleway", Helvetica, Arial, sans-serif;
+      font-weight: 700;
+      color: $color-default;
     }
 
     &>.icon-close-modal {
@@ -295,9 +299,20 @@
       padding: 0;
       list-style-type: none;
 
-      li {
-        
+      :last-child {
+        border-bottom: 1px solid $color-default;
+      }
+
+      .li-notifications {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding:$space-m;
         min-width: 100%;
+        border-top: 1px solid $color-default;
+
+
+
       }
     }
   }

@@ -22,10 +22,10 @@ export default function NotificationButton({ handleShowNotificationsMenu }) {
         </svg>
         <div className="notifications-title">Notifications</div>
         <ul>
-          <li>Titre décision 1</li>
-          <li>Titre décision 2</li>
-          <li>Titre décision 3</li>
-          <li>Titre décision 4</li>
+          <li className="li-notifications">Titre décision 1</li>
+          <li className="li-notifications">Titre décision 2</li>
+          <li className="li-notifications">Titre décision 3</li>
+          <li className="li-notifications">Titre décision 4</li>
         </ul>
       </div>
     </div>
