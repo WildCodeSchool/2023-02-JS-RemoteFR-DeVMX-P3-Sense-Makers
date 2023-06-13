@@ -27,9 +27,11 @@ export default function Header() {
           <li>
             <Link
               className={
-                pathname === "/decision" ? "link-style active" : "link-style"
+                pathname === "/alldecisions"
+                  ? "link-style active"
+                  : "link-style"
               }
-              to="/decision"
+              to="/alldecisions"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
