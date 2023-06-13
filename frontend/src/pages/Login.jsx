@@ -12,7 +12,7 @@ export default function Login() {
           <label htmlFor="logInPassword">Mot de passe</label>
           <input autoComplete="mot de passe" id="logInPassword" type="text" />
           <button type="button">
-            <h4>Se connecter</h4>
+            <h2>Se connecter</h2>
           </button>
           <p>Mot de passe oublié ?</p>
         </div>
