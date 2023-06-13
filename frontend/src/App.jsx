@@ -19,8 +19,8 @@ function App() {
           <Route path="/" element={<Login />} />
           <Route path="/alldecisions" element={<Home />} />
           <Route path="/decision" element={<Decision />} />
-          <Route path="/myDecisions" element={<MyDecisions />} />
-          <Route path="/postDecision" element={<PostDecision />} />
+          <Route path="/mydecisions" element={<MyDecisions />} />
+          <Route path="/postdecision" element={<PostDecision />} />
           <Route path="/profil" element={<Profil />} />
           <Route path="*" element={<WrongPage />} />
         </Routes>
