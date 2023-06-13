@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
-import LoginButton from "./LoginButton";
-import NotificationButton from "./NotificationsButton";
+import LoginButton from "./ProfileMenuButton";
+import NotificationButton from "./NotificationsMenu";
 import makeSenseLogo from "../../assets/make_sense.png";
 
 export default function Header() {
@@ -24,12 +24,14 @@ export default function Header() {
       </div>
       <nav className="navBar-icons">
         <ul className="navBar-list">
-          <li className="navBar-list-li">
+          <li>
             <Link
               className={
-                pathname === "/decision" ? "link-style active" : "link-style"
+                pathname === "/alldecisions"
+                  ? "link-style active"
+                  : "link-style"
               }
-              to="/decision"
+              to="/alldecisions"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -49,12 +51,12 @@ export default function Header() {
               <div className="li-text">Décisions</div>
             </Link>
           </li>
-          <li className="navBar-list-li">
+          <li>
             <Link
               className={
-                pathname === "/myDecisions" ? "link-style active" : "link-style"
+                pathname === "/mydecisions" ? "link-style active" : "link-style"
               }
-              to="/myDecisions"
+              to="/mydecisions"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -79,7 +81,7 @@ export default function Header() {
           </li>
           <li>
             <div
-              className="notifications-icon"
+              className="notifications-icon-style"
               role="button"
               tabIndex="0"
               onKeyDown={() => {}}
@@ -87,8 +89,8 @@ export default function Header() {
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                width="16"
-                height="16"
+                width="20"
+                height="20"
                 viewBox="0 0 24 24"
                 fill="none"
                 stroke="currentColor"
@@ -102,6 +104,7 @@ export default function Header() {
               </svg>
               <div className="notification-icon-title">Notifications</div>
             </div>
+
             {showNotificationsMenu && (
               <NotificationButton
                 showNotificationsMenu={showNotificationsMenu}
@@ -110,9 +113,9 @@ export default function Header() {
               />
             )}
           </li>
-          <li className="navBar-list-li">
+          <li>
             <Link
-              className={pathname === "*" ? "link-style active" : "link-style"}
+              className={pathname === "/*" ? "link-style active" : "link-style"}
               to="*"
             >
               <svg

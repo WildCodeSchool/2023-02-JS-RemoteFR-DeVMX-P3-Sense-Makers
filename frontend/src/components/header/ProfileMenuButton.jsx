@@ -1,7 +1,7 @@
 import { useEffect, useRef } from "react";
 import { Link, useLocation } from "react-router-dom";
 import PropTypes from "prop-types";
-import NotificationButton from "./NotificationsButton";
+import NotificationButton from "./NotificationsMenu";
 import kikoAvatar from "../../assets/kiko_avatar.png";
 
 export default function LoginButton({
@@ -57,9 +57,11 @@ export default function LoginButton({
           <li>
             <Link
               className={
-                pathname === "/decision" ? "link-style active" : "link-style"
+                pathname === "/alldecisions"
+                  ? "link-style active"
+                  : "link-style"
               }
-              to="/decision"
+              to="/alldecisions"
               onClick={() => handleShowLoginMenu()}
             >
               <svg
@@ -83,9 +85,9 @@ export default function LoginButton({
           <li>
             <Link
               className={
-                pathname === "/myDecisions" ? "link-style active" : "link-style"
+                pathname === "/mydecisions" ? "link-style active" : "link-style"
               }
-              to="/myDecisions"
+              to="/mydecisions"
               onClick={() => handleShowLoginMenu()}
             >
               <svg
@@ -140,7 +142,7 @@ export default function LoginButton({
           </li>
           <li>
             <Link
-              className={pathname === "*" ? "link-style active" : "link-style"}
+              className={pathname === "/*" ? "link-style active" : "link-style"}
               to="*"
               onClick={() => handleShowLoginMenu()}
             >
@@ -165,8 +167,10 @@ export default function LoginButton({
         <ul className="login-menu-user">
           <li>
             <Link
-              className={pathname === "*" ? "link-style active" : "link-style"}
-              to="*"
+              className={
+                pathname === "/profil" ? "link-style active" : "link-style"
+              }
+              to="/profil"
               onClick={() => handleShowLoginMenu()}
             >
               <div className="li-text">Mon compte</div>
@@ -175,11 +179,11 @@ export default function LoginButton({
           <li>
             <Link
               className={
-                pathname === "/postDecision"
+                pathname === "/postdecision"
                   ? "link-style active"
                   : "link-style"
               }
-              to="/postDecision"
+              to="/postdecision"
               onClick={() => handleShowLoginMenu()}
             >
               <div className="li-text">Créer une décision</div>{" "}
