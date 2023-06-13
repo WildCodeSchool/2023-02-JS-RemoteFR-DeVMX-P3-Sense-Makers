@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
-import LoginButton from "./LoginButton";
-import NotificationButton from "./NotificationsButton";
+import LoginButton from "./ProfileMenuButton";
+import NotificationButton from "./NotificationsMenu";
 import makeSenseLogo from "../../assets/make_sense.png";
 
 export default function Header() {

@@ -1,7 +1,7 @@
 import { useEffect, useRef } from "react";
 import { Link, useLocation } from "react-router-dom";
 import PropTypes from "prop-types";
-import NotificationButton from "./NotificationsButton";
+import NotificationButton from "./NotificationsMenu";
 import kikoAvatar from "../../assets/kiko_avatar.png";
 
 export default function LoginButton({
