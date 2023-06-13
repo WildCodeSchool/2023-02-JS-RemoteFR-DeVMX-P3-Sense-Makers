@@ -4,6 +4,14 @@ import CardDecision from "../components/CardDecision";
 
 export default function Home() {
   const [allDecisions, setAllDecision] = useState([]);
+  const [showDecisionsCreated, setShowDecisionsCreated] = useState(false);
+  const [showDecisionsOpinionDeadline, setShowDecisionsOpinionDeadline] =
+    useState(false);
+  const [showDecisionsDecisionTaken, setShowDecisionsDecisionTaken] =
+    useState(false);
+  const [showDecisionsConflict, setShowDecisionsConflict] = useState(false);
+  const [showDecisionsFinalDecision, setShowDecisionsFinalDecision] =
+    useState(false);
 
   useEffect(() => {
     axios
@@ -17,74 +25,118 @@ export default function Home() {
     <div className="all-decisions-container">
       <div className="decisions-container">
         <div className="infos-status-container">
-          <i className="fa-sharp fa-solid fa-caret-down" />
+          <button
+            type="button"
+            onClick={() => setShowDecisionsCreated(!showDecisionsCreated)}
+          >
+            <i className="fa-sharp fa-solid fa-caret-down" />
+          </button>
           <h1>Statut created</h1>
         </div>
         <hr />
-
-        <div className="cards-decision-container">
-          {allDecisions
-            .filter((decision) => decision.title_status === "created")
-            .map((decision) => (
-              <CardDecision key={decision.id} decision={decision} />
-            ))}
-        </div>
+        {showDecisionsCreated && (
+          <div className="cards-decision-container">
+            {allDecisions
+              .filter((decision) => decision.title_status === "created")
+              .map((decision) => (
+                <CardDecision key={decision.id} decision={decision} />
+              ))}
+          </div>
+        )}
       </div>
       <div className="decisions-container">
         <div className="infos-status-container">
-          <i className="fa-sharp fa-solid fa-caret-down" />
+          <button
+            type="button"
+            onClick={() =>
+              setShowDecisionsOpinionDeadline(!showDecisionsOpinionDeadline)
+            }
+          >
+            <i className="fa-sharp fa-solid fa-caret-down" />
+          </button>
           <h1>Statut deadline</h1>
         </div>
         <hr />
-        <div className="cards-decision-container">
-          {allDecisions
-            .filter((decision) => decision.title_status === "opinion deadline")
-            .map((decision) => (
-              <CardDecision key={decision.id} decision={decision} />
-            ))}
-        </div>
+        {showDecisionsOpinionDeadline && (
+          <div className="cards-decision-container">
+            {allDecisions
+              .filter(
+                (decision) => decision.title_status === "opinion deadline"
+              )
+              .map((decision) => (
+                <CardDecision key={decision.id} decision={decision} />
+              ))}
+          </div>
+        )}
       </div>
       <div className="decisions-container">
         <div className="infos-status-container">
-          <i className="fa-sharp fa-solid fa-caret-down" />
+          <button
+            type="button"
+            onClick={() =>
+              setShowDecisionsDecisionTaken(!showDecisionsDecisionTaken)
+            }
+          >
+            <i className="fa-sharp fa-solid fa-caret-down" />
+          </button>
           <h1>Statut decision prise</h1>
         </div>
         <hr />
-        <div className="cards-decision-container">
-          {allDecisions
-            .filter((decision) => decision.title_status === "decision taken")
-            .map((decision) => (
-              <CardDecision key={decision.id} decision={decision} />
-            ))}
-        </div>
+        {showDecisionsDecisionTaken && (
+          <div className="cards-decision-container">
+            {allDecisions
+              .filter((decision) => decision.title_status === "decision taken")
+              .map((decision) => (
+                <CardDecision key={decision.id} decision={decision} />
+              ))}
+          </div>
+        )}
       </div>
       <div className="decisions-container">
         <div className="infos-status-container">
-          <i className="fa-sharp fa-solid fa-caret-down" />
+          <button
+            type="button"
+            onClick={() => setShowDecisionsConflict(!showDecisionsConflict)}
+          >
+            <i className="fa-sharp fa-solid fa-caret-down" />
+          </button>
           <h1>Statut fin de conflit</h1>
         </div>
         <hr />
-        <div className="cards-decision-container">
-          {allDecisions
-            .filter((decision) => decision.title_status === "conflict deadline")
-            .map((decision) => (
-              <CardDecision key={decision.id} decision={decision} />
-            ))}
-        </div>
+        {showDecisionsConflict && (
+          <div className="cards-decision-container">
+            {allDecisions
+              .filter(
+                (decision) => decision.title_status === "conflict deadline"
+              )
+              .map((decision) => (
+                <CardDecision key={decision.id} decision={decision} />
+              ))}
+          </div>
+        )}
       </div>
       <div className="decisions-container">
         <div className="infos-status-container">
-          <i className="fa-sharp fa-solid fa-caret-down" />
+          <button
+            type="button"
+            onClick={() =>
+              setShowDecisionsFinalDecision(!showDecisionsFinalDecision)
+            }
+          >
+            <i className="fa-sharp fa-solid fa-caret-down" />
+          </button>
           <h1>Statut decision finale</h1>
         </div>
         <hr />
-        <div className="cards-decision-container">
-          {allDecisions
-            .filter((decision) => decision.title_status === "final decision")
-            .map((decision) => (
-              <CardDecision key={decision.id} decision={decision} />
-            ))}
-        </div>
+        {showDecisionsFinalDecision && (
+          <div className="cards-decision-container">
+            {allDecisions
+              .filter((decision) => decision.title_status === "final decision")
+              .map((decision) => (
+                <CardDecision key={decision.id} decision={decision} />
+              ))}
+          </div>
+        )}
       </div>
     </div>
   );
