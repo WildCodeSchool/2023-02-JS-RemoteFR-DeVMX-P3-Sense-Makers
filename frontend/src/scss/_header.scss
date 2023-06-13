@@ -8,7 +8,7 @@
   padding: $space-s $space-m;
   font-family: "Raleway", Helvetica, Arial, sans-serif;
   font-weight: 700;
-  font-size: 16px;
+  font-size: 14px;
 
   .logo-container {
     flex-grow: 2;
@@ -45,7 +45,17 @@
       color: $color-primary-active;
     }
 
+
   }
+}
+
+.notifications-icon-style {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  color: $color-default;
+  cursor: pointer;
 }
 
 .login-button {
@@ -247,22 +257,30 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  color: $color-default;
 
   .notification-icon-title {
+    color: $color-default;
     padding: $space-xs 0 0 $space-xs;
+
+    cursor: pointer;
+
+    :hover {
+      color: $color-primary-active;
+    }
   }
 }
 
 .notifications-modal {
   position: fixed;
-  top: 10vh;
+  top: 1vh;
   left: 5vw;
   display: flex;
   justify-content: center;
   align-items: flex-start;
   width: 90vw;
-  height: 85vh;
-  background-color: #036103d3;
+  height: 98vh;
+  background-color: transparent;
   z-index: 9999;
 
   .notifications-container {
@@ -277,7 +295,7 @@
     background-color: $background-color-base;
     border-radius: $border-radius-m;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.13);
-    
+
 
     .notifications-title {
       pointer-events: none;
@@ -307,7 +325,7 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        padding:$space-m;
+        padding: $space-m;
         min-width: 100%;
         border-top: 1px solid $color-default;
 

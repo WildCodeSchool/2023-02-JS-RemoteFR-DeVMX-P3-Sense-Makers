@@ -142,7 +142,7 @@ export default function LoginButton({
           </li>
           <li>
             <Link
-              className={pathname === "*" ? "link-style active" : "link-style"}
+              className={pathname === "/*" ? "link-style active" : "link-style"}
               to="*"
               onClick={() => handleShowLoginMenu()}
             >
