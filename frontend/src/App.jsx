@@ -7,6 +7,7 @@ import MyDecisions from "./pages/MyDecisions";
 import PostDecision from "./pages/PostDecision";
 import Profil from "./pages/Profil";
 import WrongPage from "./pages/WrongPage";
+import Admin from "./pages/Admin";
 
 import "./scss/styles.scss";
 
@@ -22,6 +23,7 @@ function App() {
           <Route path="/postdecision" element={<PostDecision />} />
           <Route path="/decisions/:id" element={<Decision />} />
           <Route path="/profil" element={<Profil />} />
+          <Route path="/admin" element={<Admin />} />
           <Route path="*" element={<WrongPage />} />
         </Routes>
       </Router>
