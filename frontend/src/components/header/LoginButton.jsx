@@ -5,9 +5,12 @@ import NotificationButton from "./NotificationsButton";
 import kikoAvatar from "../../assets/kiko_avatar.png";
 
 export default function LoginButton({
-  setShowLoginMenu,
   showLoginMenu,
+  setShowLoginMenu,
   handleShowLoginMenu,
+  showNotificationsMenu,
+  setShowNotificationsMenu,
+  handleShowNotificationsMenu,
 }) {
   const menuRef = useRef();
   const { pathname } = useLocation();
@@ -20,6 +23,7 @@ export default function LoginButton({
     };
     document.addEventListener("mousedown", handler);
   }, []);
+
   return (
     <div ref={menuRef}>
       <div
@@ -107,7 +111,30 @@ export default function LoginButton({
             </Link>
           </li>
           <li>
-            <NotificationButton />
+            <div
+              className="notifications-icon"
+              role="button"
+              tabIndex="0"
+              onKeyDown={() => {}}
+              onClick={() => setShowNotificationsMenu(!showNotificationsMenu)}
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                className="feather feather-bell"
+              >
+                <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9" />
+                <path d="M13.73 21a2 2 0 0 1-3.46 0" />
+              </svg>
+              <div className="notification-icon-title">Notifications</div>
+            </div>
           </li>
           <li>
             <Link
@@ -167,6 +194,11 @@ export default function LoginButton({
           </li>
         </ul>
       </div>
+      {showNotificationsMenu && (
+        <NotificationButton
+          handleShowNotificationsMenu={handleShowNotificationsMenu}
+        />
+      )}
     </div>
   );
 }
@@ -175,4 +207,7 @@ LoginButton.propTypes = {
   showLoginMenu: PropTypes.bool.isRequired,
   setShowLoginMenu: PropTypes.func.isRequired,
   handleShowLoginMenu: PropTypes.func.isRequired,
+  showNotificationsMenu: PropTypes.bool.isRequired,
+  setShowNotificationsMenu: PropTypes.func.isRequired,
+  handleShowNotificationsMenu: PropTypes.func.isRequired,
 };

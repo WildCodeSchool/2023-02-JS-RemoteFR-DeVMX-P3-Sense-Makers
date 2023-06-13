@@ -6,20 +6,25 @@ import makeSenseLogo from "../../assets/make_sense.png";
 
 export default function Header() {
   const [showLoginMenu, setShowLoginMenu] = useState(false);
+  const [showNotificationsMenu, setShowNotificationsMenu] = useState(false);
+
   const { pathname } = useLocation();
+
+  const handleShowNotificationsMenu = () => {
+    setShowNotificationsMenu(!showNotificationsMenu);
+  };
 
   const handleShowLoginMenu = () => {
     setShowLoginMenu(!showLoginMenu);
   };
-
   return (
     <div className="header">
       <div className="logo-container">
         <img className="img-logo" src={makeSenseLogo} alt="" />
       </div>
       <nav className="navBar-icons">
-        <ul>
-          <li>
+        <ul className="navBar-list">
+          <li className="navBar-list-li">
             <Link
               className={
                 pathname === "/decision" ? "link-style active" : "link-style"
@@ -44,7 +49,7 @@ export default function Header() {
               <div className="li-text">Décisions</div>
             </Link>
           </li>
-          <li>
+          <li className="navBar-list-li">
             <Link
               className={
                 pathname === "/myDecisions" ? "link-style active" : "link-style"
@@ -73,9 +78,39 @@ export default function Header() {
             </Link>
           </li>
           <li>
-            <NotificationButton />
+            <div
+              className="notifications-icon"
+              role="button"
+              tabIndex="0"
+              onKeyDown={() => {}}
+              onClick={handleShowNotificationsMenu}
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                className="feather feather-bell"
+              >
+                <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9" />
+                <path d="M13.73 21a2 2 0 0 1-3.46 0" />
+              </svg>
+              <div className="notification-icon-title">Notifications</div>
+            </div>
+            {showNotificationsMenu && (
+              <NotificationButton
+                showNotificationsMenu={showNotificationsMenu}
+                setShowNotificationsMenu={setShowNotificationsMenu}
+                handleShowNotificationsMenu={handleShowNotificationsMenu}
+              />
+            )}
           </li>
-          <li>
+          <li className="navBar-list-li">
             <Link
               className={pathname === "*" ? "link-style active" : "link-style"}
               to="*"
@@ -103,6 +138,9 @@ export default function Header() {
         setShowLoginMenu={setShowLoginMenu}
         handleShowLoginMenu={handleShowLoginMenu}
         showLoginMenu={showLoginMenu}
+        showNotificationsMenu={showNotificationsMenu}
+        setShowNotificationsMenu={setShowNotificationsMenu}
+        handleShowNotificationsMenu={handleShowNotificationsMenu}
       />
     </div>
   );
