@@ -25,6 +25,13 @@ export default function Login() {
             //   setLogInPassword(e.target.value);
             // }}
           />
+          <button type="button">
+            <h4>Se connecter</h4>
+          </button>
+          <p>
+            {/* <Link to=""> */}
+            Mot de passe oublié ?{/* </Link> */}
+          </p>
         </div>
       </form>
     </div>
