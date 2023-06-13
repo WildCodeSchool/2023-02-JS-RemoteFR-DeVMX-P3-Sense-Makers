@@ -72,7 +72,6 @@ export default function PostDecision() {
             Pôle concerné *
             <select
               id="hub_decision"
-              // onChange={handleChangeSelect}
               value={state.concerned_hub}
               onChange={(e) => {
                 dispatch({
