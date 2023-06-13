@@ -40,7 +40,9 @@ export default function PostDecision() {
         console.info(response.data);
         if (response.status === 201) {
           dispatch({ type: "reset" });
-          navigate(`/decision/${response.data}`);
+          setTimeout(() => {
+            navigate(`/decision/${response.data}`);
+          }, 250);
         }
       });
   }
