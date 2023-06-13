@@ -36,11 +36,6 @@ class DecisionManager extends AbstractManager {
         decision.negatives_votes,
         decision.status_id,
         decision.id,
-
-        // LEFT JOIN users_decisions ON users_decisions.decision_id = d.id
-        // LEFT JOIN users u ON users_decisions.user_id = u.id
-
-        // u.firstname, d.concerned_hub, users_decisions.decision_id
       ]
     );
   }
