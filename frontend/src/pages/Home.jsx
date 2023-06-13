@@ -1,3 +1,12 @@
+import CardDecision from "../components/Profils/CardDecision";
+
 export default function Home() {
-  return <header className="appHeader" />;
+  return (
+    <div className="all-decisions-container">
+      <CardDecision />
+      <CardDecision />
+      <CardDecision />
+      <CardDecision />
+    </div>
+  );
 }
