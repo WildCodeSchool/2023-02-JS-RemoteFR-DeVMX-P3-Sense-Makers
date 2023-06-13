@@ -1,14 +1,18 @@
 import { useReducer } from "react";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const initialState = {
   title: "",
-  date: "",
   content: "",
-  usefullness: "",
+  usefulness: "",
   context: "",
   benefit: "",
   disavantages: "",
   concerned_hub: "--",
+  positives_votes: 0,
+  negatives_votes: 0,
+  status_id: 1,
 };
 
 function reducer(state, action) {
@@ -18,6 +22,8 @@ function reducer(state, action) {
         ...state,
         [action.key]: action.value,
       };
+    case "reset":
+      return { initialState };
     default:
       return state;
   }
@@ -25,6 +31,19 @@ function reducer(state, action) {
 
 export default function PostDecision() {
   const [state, dispatch] = useReducer(reducer, initialState);
+  const navigate = useNavigate();
+
+  function DecisionPosted(status) {
+    axios
+      .post(`${import.meta.env.VITE_BACKEND_URL}/decisions`, status)
+      .then((response) => {
+        console.info(response.data);
+        if (response.status === 201) {
+          dispatch({ type: "reset" });
+          navigate(`/decision/${response.data}`);
+        }
+      });
+  }
 
   return (
     <div className="post-container">
@@ -56,12 +75,12 @@ export default function PostDecision() {
           <input
             type="date"
             id="deadline_decision"
-            value={state.date}
+            value={state.deadline}
             onChange={(e) => {
               dispatch({
                 type: "update_input",
                 value: e.target.value,
-                key: "date",
+                key: "deadline",
               });
             }}
           />
@@ -183,7 +202,7 @@ export default function PostDecision() {
         <button
           type="button"
           onClick={() => {
-            console.info(state);
+            DecisionPosted(state);
           }}
         >
           Poster cette décision
