@@ -5,6 +5,7 @@ const router = express.Router();
 const commentsControllers = require("./controllers/commentsControllers");
 const decisionControllers = require("./controllers/decisionControllers");
 const statusControllers = require("./controllers/statusControllers");
+const usersControllers = require("./controllers/usersControllers");
 
 router.get("/decisions", decisionControllers.browseDecisions);
 router.get("/decisions/:id", decisionControllers.readDecision);
@@ -36,5 +37,7 @@ router.delete(
 );
 
 router.get("/status", statusControllers.browseStatus);
+
+router.get("/users", usersControllers.browseUsers);
 
 module.exports = router;
