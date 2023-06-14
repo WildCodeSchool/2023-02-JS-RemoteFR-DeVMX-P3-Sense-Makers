@@ -1,4 +1,4 @@
-import CardDecision from "../components/Profils/CardDecision";
+import CardDecision from "../components/Profiles/CardDecision";
 
 export default function Home() {
   return (
