@@ -5,13 +5,17 @@ import { useParams } from "react-router-dom";
 export default function Decision() {
   const [decision, setDecison] = useState([]);
   const [comments, setComments] = useState([]);
+  const [impactedUsers, setimpactedUsers] = useState([]);
+  const [experts, setExperts] = useState([]);
   const { id } = useParams();
+
   useEffect(() => {
     axios
       .get(`${import.meta.env.VITE_BACKEND_URL}/decisions/${id}`)
       .then((res) => setDecison(res.data))
       .catch((err) => console.error(err));
   }, []);
+
   useEffect(() => {
     axios
       .get(`${import.meta.env.VITE_BACKEND_URL}/decisions/${id}/comments`)
@@ -19,17 +23,36 @@ export default function Decision() {
       .catch((err) => console.error(err));
   }, []);
 
-  console.info({ decision });
+  useEffect(() => {
+    axios
+      .get(`${import.meta.env.VITE_BACKEND_URL}/decisions/${id}/impacted`)
+      .then((res) => setimpactedUsers(res.data))
+      .catch((err) => console.error(err));
+  }, []);
+
+  useEffect(() => {
+    axios
+      .get(`${import.meta.env.VITE_BACKEND_URL}/decisions/${id}/expert`)
+      .then((res) => setExperts(res.data))
+      .catch((err) => console.error(err));
+  }, []);
+
   return (
     <div className="decision">
       <div>
-        <div>status</div>
-        <div>hub france</div>
+        <div>{decision.title_status}</div>
+        <div>{decision.concerned_hub}</div>
       </div>
-      <h1>{decision.title}</h1>
-      <img src="on verre plus tard" alt="on verra plus tard" />
+      <h1>{decision.title_decision}</h1>
+      <img
+        src={decision.photo}
+        alt={`${decision.firstname} ${decision.lastname}`}
+      />
       <p>
-        par {decision.firstname} {decision.lastname}
+        par{" "}
+        <span>
+          {decision.firstname} {decision.lastname}
+        </span>
       </p>
       <h2>Les details de la décison</h2>
       <div>
@@ -44,14 +67,47 @@ export default function Decision() {
       {decision.disavantages}
       <h2>Avis</h2>
       {comments.map((comment) => (
-        <div key={comment.id}>{comment.comment}</div>
+        <div key={comment.id}>
+          <div>
+            {" "}
+            <img
+              src={comment.photo}
+              alt={`${comment.firstname} ${comment.lastname}`}
+            />{" "}
+            <div>
+              {comment.firstname} {comment.lastname}{" "}
+              {experts.some((expert) => expert.id === comment.user_id) ? (
+                <p>expert</p>
+              ) : (
+                impactedUsers.some(
+                  (impactedUser) => impactedUser.id === comment.user_id
+                ) && <p>impacté par la décision</p>
+              )}{" "}
+            </div>
+          </div>
+          {comment.comment}
+        </div>
       ))}
+      <button type="button">Donner mon avis</button>
       <h2>Dates à retenir</h2>
       <div> timeline</div>
       <h2>Personnes impactées</h2>
-      <div>photos</div>
+      {impactedUsers.map((impactedUser) => (
+        <div key={impactedUser.id}>
+          <img
+            src={impactedUser.photo}
+            alt={`${impactedUser.firstname} ${impactedUser.lastname}`}
+          />{" "}
+          {impactedUser.firstname} {impactedUser.lastname}{" "}
+        </div>
+      ))}
       <h2>Personnes expertes</h2>
-      <div>photos</div>
+      {experts.map((expert) => (
+        <div key={expert.id}>
+          <img src={expert.photo} alt={`${expert.photo} ${expert.firstname}`} />{" "}
+          {expert.photo} {expert.firstname} {expert.lastname}{" "}
+        </div>
+      ))}
     </div>
   );
 }
