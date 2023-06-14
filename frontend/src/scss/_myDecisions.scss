@@ -6,7 +6,7 @@
 
     button {
         height: 2.5rem;
-        width: 58%;
+        max-width: 58%;
        margin: 2rem auto;
        padding: 1remrem;
        display: flex;
@@ -28,4 +28,8 @@
         padding: 0.2rem;
        }
     }
+    @media screen and (min-width: 768px) {
+        flex-direction: row;
+        align-items: center;
+      }
 }   
