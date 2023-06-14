@@ -39,7 +39,10 @@ export default function MyDecisions() {
     <div className="all-decisions-container">
       <div className="title-container">
         <h1>Mes décisions</h1>
-        <button type="button">Créer une décisions</button>
+        <button type="button">
+          <i className="fa-solid fa-plus" />
+          Créer une décision
+        </button>
       </div>
       {allStatus.map((statut) => (
         <div className="decisions-container" key={statut.id}>
