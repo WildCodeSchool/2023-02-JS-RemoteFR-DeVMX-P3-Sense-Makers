@@ -48,7 +48,7 @@ export default function PostDecision() {
   const [state, dispatch] = useReducer(reducer, initialState);
   // const navigate = useNavigate();
   // const [users, setUsers] = useState();
-  // const [impacted, setImpacted] = useState();
+  const [impacted, setImpacted] = useState();
   const [experts, setExperts] = useState();
 
   const users = [
@@ -85,17 +85,21 @@ export default function PostDecision() {
     }, 1000);
   };
 
-  const ExpertChange = (e) => {
-    setExperts(e.target.value);
+  const onChangeExpert = (inputValue) => {
+    setExperts(inputValue);
   };
+  console.info(experts);
+  const onChangeImpacted = (inputValue) => {
+    setImpacted(inputValue);
+  };
+
+  console.info(impacted);
 
   function DecisionPosted(status) {
     axios
       .post(`${import.meta.env.VITE_BACKEND_URL}/decisions`, status)
       .then((response) => {
         if (response.status === 201) {
-          // console.info(impacted);
-          console.info(experts);
           // setTimeout(() => {
           //   navigate(`/decisions/${response.data[0].insertId}`);
           // }, 250);
@@ -174,9 +178,7 @@ export default function PostDecision() {
               defaultOptions
               loadOptions={loadOptions}
               isMulti
-              onChange={(e) => {
-                setExperts(e.target.value);
-              }}
+              onChange={onChangeImpacted}
             />
           </label>
 
@@ -188,7 +190,7 @@ export default function PostDecision() {
               defaultOptions
               loadOptions={loadOptions}
               isMulti
-              onChange={ExpertChange}
+              onChange={onChangeExpert}
             />
           </label>
         </div>
