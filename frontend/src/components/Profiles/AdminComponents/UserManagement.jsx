@@ -1,6 +1,9 @@
+import { useState } from "react";
+import Dropzone from "../../../services/hookDropzone";
 import Avatar0 from "../../../assets/avatar0.png";
 
 export default function UserManagement() {
+  const [dropzoneImage, setDropzoneImage] = useState([]);
   return (
     <div className="user-management">
       <div className="input-container">
@@ -42,9 +45,17 @@ export default function UserManagement() {
       </div>
       <div className="profile-photo-container">
         <label htmlFor="profile-photo-input">
-          <img src={Avatar0} alt="profil" sizes="200px" />
-          <input type="file" title="" />
-          <button type="submit">Choisi un fichier</button>
+          <Dropzone
+            className="dropzone"
+            dropzoneImage={dropzoneImage}
+            setDropzoneImage={setDropzoneImage}
+          />
+          <img
+            src={
+              dropzoneImage[0]?.preview ? dropzoneImage[0]?.preview : Avatar0
+            }
+            alt="profil"
+          />
         </label>
       </div>
       <div className="input-buttons-container">
