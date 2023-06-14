@@ -1,4 +1,4 @@
--- Active: 1682397207093@@127.0.0.1@3306@makesense
+-- Active: 1682342351805@@127.0.0.1@3306@make_sense
 CREATE TABLE roles (
   id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
   role_name VARCHAR(254) NOT NULL
@@ -32,6 +32,8 @@ CREATE TABLE decisions (
   benefit VARCHAR(254) NOT NULL,
   disavantages VARCHAR(254) NOT NULL,
   concerned_hub VARCHAR(80) NOT NULL,
+  initial_date DATE NOT NULL,
+  deadline DATE NOT NULL,
   positives_votes INT,
   negatives_votes INT,
   status_id INT NOT NULL,
@@ -84,11 +86,11 @@ INSERT INTO roles (role_name) VALUES
 ("employee");
 
 INSERT INTO `status` (title) VALUES
-("created"),
-("opinion deadline"),
-("decision taken"),
-("conflict deadline"),
-("final decison");
+("prise de décision débutée"),
+("première décision prise"),
+("conflit sur la décision"),
+("décision définitive"),
+("décision terminée");
 
 INSERT INTO users (firstname, lastname, email, password, role_id, creation_date) VALUES
 ("place", "holder", "place.holder@test.com", "99922242", 1, "2023-03-03"),
@@ -96,14 +98,20 @@ INSERT INTO users (firstname, lastname, email, password, role_id, creation_date)
 ("mich", "mich", "michmich@mich.com", "michmich", 2, "1905-05-25"),
 ("gterzuib", "ergtziàj", "ureigsgpf@gtr.com", "igurezh", 2, "8674-02-05");
 
-INSERT INTO decisions ( title, content, usefulness, context, benefit, disavantages, concerned_hub, positives_votes, negatives_votes, status_id) VALUES
-("Test", "On test", "pourris", "on test toujours", "Aucun", "Enormement", "Hub France", 0, 0, 1),
-("c'est un titre", "c'est un contenu placeholder copain on s'en tamponne bien cordialement de ce que t'écris. compris?", "c'est un placeholder pour l'utilité... oui c'est utile, tais-toi et code", "context du placeholder? placeholder", "les bénéfice d'un placeholder? bah c'est qu'on peu tester des trucs sur des trucs sans avoir de vrai trucs. du coup c'est cooool", "les désavantages? je me fais chier a écrire des trucs que tu va pas lire", "Hub France", 0, 1337, 1),
-("le chat", "manger le chat", "manger", "faim", "manger = plus faim", "a plus de chat", "Hub France", 42, 12, 5),
-("placeholder", "je place holder; tu places holder; il place holder; nous plaçons holder; vous placez holder; ils placent holder", "il faut placer holder", "placer holder", "holder sera enfin placé", "c'est long de placer holder", "Hub France", 42, 42, 2);
+INSERT INTO decisions ( title, content, usefulness, context, benefit, disavantages, concerned_hub, initial_date, deadline, positives_votes, negatives_votes, status_id) VALUES
+("Test", "On test", "pourris", "on test toujours", "Aucun", "Enormement", "Hub France", "2023-06-03", "2023-09-12", 0, 0, 1),
+("c'est un titre", "c'est un contenu placeholder copain on s'en tamponne bien cordialement de ce que t'écris. compris?", "c'est un placeholder pour l'utilité... oui c'est utile, tais-toi et code", "context du placeholder? placeholder", "les bénéfice d'un placeholder? bah c'est qu'on peu tester des trucs sur des trucs sans avoir de vrai trucs. du coup c'est cooool", "les désavantages? je me fais chier a écrire des trucs que tu va pas lire", "Hub France", "2023-06-04", "2023-09-25", 0, 1337, 1),
+("le chat", "manger le chat", "manger", "faim", "manger = plus faim", "a plus de chat", "Hub France", "2023-06-05", "2023-10-18", 42, 12, 5),
+("placeholder", "je place holder; tu places holder; il place holder; nous plaçons holder; vous placez holder; ils placent holder", "il faut placer holder", "placer holder", "holder sera enfin placé", "c'est long de placer holder", "Hub France", "2023-06-07", "2023-11-14", 42, 42, 2);
 
 INSERT INTO users_decisions (user_id, decision_id) VALUES
 (2, 1), (3, 2), (1, 3), (4, 4);
+
+INSERT INTO tagged_as_experts (user_id, decision_id) VALUES
+(2, 1), (3, 1), (1, 3), (2, 4), (1, 2), (2, 3), (1, 4), (2, 2), (4, 3), (4, 4), (3, 2);
+
+INSERT INTO tagged_as_impacted (user_id, decision_id) VALUES
+(2, 1), (3, 1), (1, 1), (4, 1), (3, 1), (1, 2), (4, 2), (3, 2), (1, 2), (4, 2), (3, 2), (1, 2), (4, 3), (3, 3), (1, 3), (4, 3), (1, 3), (4, 3), (3, 3), (1, 4), (4, 4), (3, 4), (1, 4), (4, 4);
 
 INSERT INTO comments (user_id, decision_id,creation_date, comment) VALUES
 (1, 2, "2023-06-08", "blablalballblalb"),
