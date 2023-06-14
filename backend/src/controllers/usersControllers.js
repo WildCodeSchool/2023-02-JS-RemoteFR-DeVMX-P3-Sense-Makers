@@ -12,6 +12,18 @@ const browseUsers = (req, res) => {
     });
 };
 
+const browseAllDecisionsByUser = (req, res) => {
+  models.users
+    .findAllDecisionsByUserId(req.params.id)
+    .then(([rows]) => {
+      res.send(rows);
+    })
+    .catch((err) => {
+      console.error(err);
+      res.sendStatus(500);
+    });
+};
+
 const readUser = (req, res) => {
   models.users
     .find(req.params.id)
@@ -84,6 +96,7 @@ const destroyUser = (req, res) => {
 
 module.exports = {
   browseUsers,
+  browseAllDecisionsByUser,
   readUser,
   editUser,
   addUser,
