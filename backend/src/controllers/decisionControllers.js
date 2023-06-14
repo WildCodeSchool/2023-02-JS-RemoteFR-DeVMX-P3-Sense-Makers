@@ -19,7 +19,7 @@ const readDecision = (req, res) => {
       if (rows[0] == null) {
         res.sendStatus(404);
       } else {
-        res.send(rows);
+        res.send(rows[0]);
       }
     })
     .catch((err) => {
@@ -98,6 +98,32 @@ const addDecision = (req, res) => {
     });
 };
 
+const addImpacted = (req, res) => {
+  const { decisionId, impactedId } = req.body;
+  models.decision
+    .insertImpactedOnDecisionById(impactedId, decisionId)
+    .then(() => {
+      res.sendStatus(201);
+    })
+    .catch((err) => {
+      console.error(err);
+      res.sendStatus(500);
+    });
+};
+
+const addExpert = (req, res) => {
+  const { decisionId, expertId } = req.body;
+  models.decision
+    .insertExpertOnDecisionById(expertId, decisionId)
+    .then(() => {
+      res.sendStatus(201);
+    })
+    .catch((err) => {
+      console.error(err);
+      res.sendStatus(500);
+    });
+};
+
 const destroyDecision = (req, res) => {
   models.decision
     .delete(req.params.id)
@@ -122,4 +148,6 @@ module.exports = {
   destroyDecision,
   readImpactedOnDecision,
   readExpertOnDecision,
+  addImpacted,
+  addExpert,
 };

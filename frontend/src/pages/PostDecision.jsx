@@ -1,6 +1,6 @@
-import { useEffect, useReducer } from "react";
+import { useEffect, useReducer, useState } from "react";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 import AsyncSelect from "react-select/async";
 
 const initialState = {
@@ -40,14 +40,17 @@ const customStyles = {
     boxShadow: "5px 5px 8px #bdbdbd",
     borderRadius: "10px",
     width: "auto",
-    minWidth: "40vw",
+    minWidth: "30vw",
   }),
 };
 
 export default function PostDecision() {
   const [state, dispatch] = useReducer(reducer, initialState);
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
   // const [users, setUsers] = useState();
+  // const [impacted, setImpacted] = useState();
+  const [experts, setExperts] = useState();
+
   const users = [
     { value: "chocolate", label: "Chocolate" },
     { value: "strawberry", label: "Strawberry" },
@@ -82,14 +85,20 @@ export default function PostDecision() {
     }, 1000);
   };
 
+  const ExpertChange = (e) => {
+    setExperts(e.target.value);
+  };
+
   function DecisionPosted(status) {
     axios
       .post(`${import.meta.env.VITE_BACKEND_URL}/decisions`, status)
       .then((response) => {
         if (response.status === 201) {
-          setTimeout(() => {
-            navigate(`/decisions/${response.data[0].insertId}`);
-          }, 250);
+          console.info(impacted);
+          console.info(experts);
+          // setTimeout(() => {
+          //   navigate(`/decisions/${response.data[0].insertId}`);
+          // }, 250);
         }
       });
   }
@@ -165,6 +174,9 @@ export default function PostDecision() {
               defaultOptions
               loadOptions={loadOptions}
               isMulti
+              onChange={(e) => {
+                setExperts(e.target.value);
+              }}
             />
           </label>
 
@@ -176,6 +188,7 @@ export default function PostDecision() {
               defaultOptions
               loadOptions={loadOptions}
               isMulti
+              onChange={ExpertChange}
             />
           </label>
         </div>
