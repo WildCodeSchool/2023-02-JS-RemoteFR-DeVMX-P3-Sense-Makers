@@ -86,10 +86,9 @@ export default function PostDecision() {
     axios
       .post(`${import.meta.env.VITE_BACKEND_URL}/decisions`, status)
       .then((response) => {
-        console.info(response.data);
         if (response.status === 201) {
           setTimeout(() => {
-            navigate(`/decisions/${response.data.insertId}`);
+            navigate(`/decisions/${response.data[0].insertId}`);
           }, 250);
         }
       });
