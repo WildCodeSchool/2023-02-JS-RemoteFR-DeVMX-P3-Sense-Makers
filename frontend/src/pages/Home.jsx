@@ -1,10 +1,6 @@
-<<<<<<< HEAD
-import CardDecision from "../components/Profiles/CardDecision";
-=======
 import { useEffect, useState } from "react";
 import axios from "axios";
 import CardDecision from "../components/CardDecision";
->>>>>>> dev
 
 export default function Home() {
   const [allDecisions, setAllDecision] = useState([]);
