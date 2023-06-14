@@ -5,7 +5,7 @@
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;
-  width: 95vw;
+  width: 80%;
   margin: auto;
   padding: $space-s 0;
   font-family: "Raleway", Helvetica, Arial, sans-serif;
@@ -24,7 +24,9 @@
     flex-direction: column;
     width: 90%;
 
-    .input-title {}
+    .input-title {
+      margin: $space-s auto;
+    }
 
     .input-fields {
       display: flex;
@@ -38,14 +40,19 @@
 
         >input {
           margin-top: $space-xs;
+          padding: $space-xxs;
           border-radius: $space-xxs;
+          border: 1px solid $border-color-base;
+        }
 
+        :focus {
+          outline: none;
+          border: 1px solid $border-color-active;
         }
 
         input[type=email] {
-          width: 15rem;
+          width: 13rem;
         }
-
 
         >select {
           margin-top: $space-xs;
@@ -55,5 +62,33 @@
 
       }
     }
+  }
+
+  .profile-photo-container {
+
+    margin-top: $space-l;
+
+    label {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-direction: column;
+
+      img {
+        background-color: blue;
+        width: 100px;
+        height: 100px;
+        aspect-ratio: 1 / 1;
+      }
+
+      input[type=file]{
+        color: transparent;
+        font-size: $font-size-s;
+      }
+    }
+  }
+
+  .input-buttons-container {
+    margin-top: $space-l;
   }
 }

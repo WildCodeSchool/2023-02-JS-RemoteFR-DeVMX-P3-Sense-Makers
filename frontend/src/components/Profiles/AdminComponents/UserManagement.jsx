@@ -1,3 +1,5 @@
+import Avatar0 from "../../../assets/avatar0.png";
+
 export default function UserManagement() {
   return (
     <div className="user-management">
@@ -40,8 +42,8 @@ export default function UserManagement() {
       </div>
       <div className="profile-photo-container">
         <label htmlFor="profile-photo-input">
-          <img src="" alt="profil" />
-          <input type="file" />
+          <img src={Avatar0} alt="profil" sizes="200px" />
+          <input type="file" title="" />
         </label>
       </div>
       <div className="input-buttons-container">
