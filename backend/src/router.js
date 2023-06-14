@@ -12,7 +12,10 @@ router.get(
   "/decisions/:id/impacted",
   decisionControllers.readImpactedOnDecision
 );
+router.post("/decisions/:id/impacted", decisionControllers.addImpacted);
 router.get("/decisions/:id/expert", decisionControllers.readExpertOnDecision);
+router.post("/decisions/:id/expert", decisionControllers.addExpert);
+
 router.put("/decisions/:id", decisionControllers.editDecision);
 router.post("/decisions", decisionControllers.addDecision);
 router.delete("/decisions/:id", decisionControllers.destroyDecision);
