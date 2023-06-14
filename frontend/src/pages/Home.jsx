@@ -23,6 +23,7 @@ export default function Home() {
   }, []);
   return (
     <div className="all-decisions-container">
+      <h1>Toutes les décisions</h1>
       <div className="decisions-container">
         <div className="infos-status-container">
           <button

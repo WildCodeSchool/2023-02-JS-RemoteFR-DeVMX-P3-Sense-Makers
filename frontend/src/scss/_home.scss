@@ -5,7 +5,15 @@
   align-items: center;
   gap: 2rem;
   padding: 2rem;
+  font-family: "Raleway", Helvetica, Arial, sans-serif;
 
+  h1{
+    color: #0c3944;
+    width: 100%;
+    margin: 0;
+    text-align: start;
+    font-size: 1.8rem;
+  }
   hr {
     color: #e0e4eb;
   }
@@ -47,6 +55,9 @@
   }
 
   @media screen and (min-width: 1024px) {
+    h1{
+      font-size: 2.5rem;
+    }
     .decisions-container {
       .infos-status-container {
         h1 {
