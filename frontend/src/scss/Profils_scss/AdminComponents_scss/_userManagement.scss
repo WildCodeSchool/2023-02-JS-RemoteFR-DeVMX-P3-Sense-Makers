@@ -82,8 +82,7 @@
       }
 
       input[type=file]{
-        color: transparent;
-        font-size: $font-size-s;
+        visibility: hidden;
       }
     }
   }

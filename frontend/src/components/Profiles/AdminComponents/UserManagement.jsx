@@ -44,6 +44,7 @@ export default function UserManagement() {
         <label htmlFor="profile-photo-input">
           <img src={Avatar0} alt="profil" sizes="200px" />
           <input type="file" title="" />
+          <button type="submit">Choisi un fichier</button>
         </label>
       </div>
       <div className="input-buttons-container">
