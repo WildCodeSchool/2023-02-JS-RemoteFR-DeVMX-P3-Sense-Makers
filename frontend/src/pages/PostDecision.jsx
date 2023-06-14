@@ -1,6 +1,6 @@
-import { useEffect, useReducer, useState } from "react";
+import { useReducer, useState } from "react";
 import axios from "axios";
-// import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import AsyncSelect from "react-select/async";
 
 const initialState = {
@@ -46,7 +46,7 @@ const customStyles = {
 
 export default function PostDecision() {
   const [state, dispatch] = useReducer(reducer, initialState);
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
   // const [users, setUsers] = useState();
   const [impacted, setImpacted] = useState();
   const [experts, setExperts] = useState();
@@ -66,12 +66,11 @@ export default function PostDecision() {
     { value: "vania", label: "Vania" },
   ];
 
-  useEffect(() => {
-    axios.get(`${import.meta.env.VITE_BACKEND_URL}/users`).then((response) => {
-      console.info(response);
-      // setUsers([response]);
-    });
-  }, []);
+  // useEffect(() => {
+  //   axios.get(`${import.meta.env.VITE_BACKEND_URL}/users`).then((response) => {
+  //     setUsers([response]);
+  //   });
+  // }, []);
 
   const filterUsers = (inputValue) => {
     return users.filter((i) =>
@@ -92,7 +91,6 @@ export default function PostDecision() {
   const onChangeImpacted = (inputValue) => {
     setImpacted(inputValue);
   };
-
   console.info(impacted);
 
   function DecisionPosted(status) {
@@ -100,9 +98,21 @@ export default function PostDecision() {
       .post(`${import.meta.env.VITE_BACKEND_URL}/decisions`, status)
       .then((response) => {
         if (response.status === 201) {
-          // setTimeout(() => {
-          //   navigate(`/decisions/${response.data[0].insertId}`);
-          // }, 250);
+          impacted.map((impact) => {
+            return axios.post(
+              `${import.meta.env.VITE_BACKEND_URL}/decisions/:id/impacted`,
+              { impactedId: impact.id, decisionId: response.data[0].insertId }
+            );
+          });
+          experts.map((expert) => {
+            return axios.post(
+              `${import.meta.env.VITE_BACKEND_URL}/decisions/:id/experts`,
+              { expertId: expert.id, decisionId: response.data[0].insertId }
+            );
+          });
+          setTimeout(() => {
+            navigate(`/decisions/${response.data[0].insertId}`);
+          }, 250);
         }
       });
   }
