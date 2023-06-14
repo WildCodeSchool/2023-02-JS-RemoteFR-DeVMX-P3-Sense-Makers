@@ -94,7 +94,7 @@ export default function PostDecision() {
       .post(`${import.meta.env.VITE_BACKEND_URL}/decisions`, status)
       .then((response) => {
         if (response.status === 201) {
-          console.info(impacted);
+          // console.info(impacted);
           console.info(experts);
           // setTimeout(() => {
           //   navigate(`/decisions/${response.data[0].insertId}`);
