@@ -19,6 +19,7 @@ export default function Decision() {
       .catch((err) => console.error(err));
   }, []);
 
+  console.info({ decision });
   return (
     <div className="decision">
       <div>

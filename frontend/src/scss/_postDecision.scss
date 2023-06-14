@@ -9,9 +9,8 @@
     max-width: 70vw;
   }
 
-
   .title-container {
-    width:100%;
+    width: 100%;
     align-items: left;
     h1 {
       color: #9b084f;
@@ -31,9 +30,9 @@
       flex-direction: column;
       justify-content: space-around;
       gap: 0.2rem;
-      ::placeholder{
-        color:#bdbdbd;
-      padding-left: 1rem ;
+      ::placeholder {
+        color: #bdbdbd;
+        padding-left: 1rem;
       }
     }
 
@@ -50,7 +49,7 @@
     #deadline_decision {
       align-items: center;
       width: 30%;
-      height: 1.5rem;
+      height: 2rem;
       border-radius: 10px;
       border: 1px #bdbdbd solid;
       color: #bdbdbd;
@@ -60,40 +59,39 @@
         width: 15vw;
       }
     }
-    .hub-container{
+    .hub-container {
       display: flex;
       justify-content: space-between;
 
-
       #hub_decision {
         width: 100%;
-        height: 1.5rem;
+        height: 2rem;
         border-radius: 10px;
         border: 1px #bdbdbd solid;
         box-shadow: 5px 5px 8px #bdbdbd;
         @media screen and (min-width: 1024px) {
           width: 15vw;
         }
-        option{
+        option {
           text-align: center;
           color: #bdbdbd;
         }
       }
-      .hub-select{
+      .hub-select {
         display: flex;
         align-items: center;
-        background-color:rgba(193, 11, 99, 0.25);
+        background-color: rgba(193, 11, 99, 0.25);
         border-radius: 10px;
         padding: 0.5em;
-        color:#C10B63;
-        border: #C10B63 1px solid;
+        color: #c10b63;
+        border: #c10b63 1px solid;
         margin-top: 1rem;
         box-shadow: 5px 5px 8px #bdbdbd;
-      @media screen and (min-width: 768px) {
-        margin-right: 1.6rem;  
+        @media screen and (min-width: 768px) {
+          margin-right: 1.6rem;
+        }
       }
-      }
-      }
+    }
 
     .impacted-people {
       display: flex;
@@ -102,34 +100,11 @@
       justify-content: space-between;
       gap: 1.5rem;
       @media screen and (min-width: 768px) {
-        width: 97%;    
+        width: 97%;
       }
 
       @media screen and (min-width: 1024px) {
-        flex-direction: row;   
-      }
-
-      #concerned_decision {
-        height: 1.5rem;
-        border-radius: 10px;
-        border: 1px #bdbdbd solid;
-        box-shadow: 5px 5px 8px #bdbdbd;
-        padding: 0.5rem;
-        @media screen and (min-width: 1024px) {
-          width: 20vw;
-        }
-      }
-      #expert_decision {
-        height: 1.5rem;
-        border-radius: 10px;
-        border: 1px #bdbdbd solid;
-        gap: 2rem;
-        box-shadow: 5px 5px 8px #bdbdbd;
-        padding: 0.5rem;
-        @media screen and (min-width: 1024px) {
-          width: 20vw;
-
-        }
+        flex-direction: row;
       }
     }
   }
@@ -139,7 +114,6 @@
     justify-content: space-around;
     margin-top: 1.5rem;
     width: 100%;
-    
 
     label {
       display: flex;
