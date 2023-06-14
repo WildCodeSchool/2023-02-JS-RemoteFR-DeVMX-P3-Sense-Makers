@@ -13,7 +13,7 @@ export default function CardDecision({ decision }) {
       <div className="card-creator-container">
         <img src={decision.photo} alt="img profil creator" />
         <p>
-          par
+          par{" "}
           <span>
             {decision.firstname} {decision.lastname}
           </span>
