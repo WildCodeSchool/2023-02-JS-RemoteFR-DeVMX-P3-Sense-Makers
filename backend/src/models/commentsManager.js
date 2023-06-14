@@ -7,7 +7,7 @@ class CommentsManager extends AbstractManager {
 
   findAllCommentsForOneDecision(decisionId) {
     return this.database.query(
-      `select c.id, c.comment, c.vote, c.creation_date, u.firstname, u.lastname, u.photo from ${this.table} c
+      `select c.user_id, c.id, c.comment, c.vote, c.creation_date, u.firstname, u.lastname, u.photo from ${this.table} c
       INNER JOIN users u ON c.user_id = u.id
       where decision_id = ?`,
       [decisionId]
