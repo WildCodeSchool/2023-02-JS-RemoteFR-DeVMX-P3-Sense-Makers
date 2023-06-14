@@ -15,7 +15,7 @@ export default function Decision() {
       .then((res) => setDecison(res.data))
       .catch((err) => console.error(err));
   }, []);
-  
+
   useEffect(() => {
     axios
       .get(`${import.meta.env.VITE_BACKEND_URL}/decisions/${id}/comments`)
