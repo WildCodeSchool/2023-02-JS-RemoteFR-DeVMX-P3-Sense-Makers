@@ -14,12 +14,44 @@ const browseDecisions = (req, res) => {
 
 const readDecision = (req, res) => {
   models.decision
-    .findDecision(req.params.id)
+    .findDecisionWithStatusById(req.params.id)
     .then(([rows]) => {
       if (rows[0] == null) {
         res.sendStatus(404);
       } else {
-        res.send(rows[0]);
+        res.send(rows);
+      }
+    })
+    .catch((err) => {
+      console.error(err);
+      res.sendStatus(500);
+    });
+};
+
+const readImpactedOnDecision = (req, res) => {
+  models.decision
+    .findImpactedOnDecisionById(req.params.id)
+    .then(([rows]) => {
+      if (rows == null) {
+        res.sendStatus(404);
+      } else {
+        res.send(rows);
+      }
+    })
+    .catch((err) => {
+      console.error(err);
+      res.sendStatus(500);
+    });
+};
+
+const readExpertOnDecision = (req, res) => {
+  models.decision
+    .findExpertOnDecisionById(req.params.id)
+    .then(([rows]) => {
+      if (rows == null) {
+        res.sendStatus(404);
+      } else {
+        res.send(rows);
       }
     })
     .catch((err) => {
@@ -88,4 +120,6 @@ module.exports = {
   editDecision,
   addDecision,
   destroyDecision,
+  readImpactedOnDecision,
+  readExpertOnDecision,
 };
