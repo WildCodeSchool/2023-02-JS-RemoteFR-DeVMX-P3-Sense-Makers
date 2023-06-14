@@ -46,8 +46,7 @@ class UsersManager extends AbstractManager {
       LEFT JOIN users_decisions ON users_decisions.decision_id = d.id
       JOIN users u ON u.id = users_decisions.user_id
       JOIN status s ON s.id = d.status_id
-      WHERE u.id = ?
-      `,
+      WHERE u.id = ?`,
       [id]
     );
   }
