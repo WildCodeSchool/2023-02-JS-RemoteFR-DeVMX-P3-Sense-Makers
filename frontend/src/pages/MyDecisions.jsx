@@ -1,8 +1,11 @@
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import CardDecision from "../components/CardDecision";
 
 export default function MyDecisions() {
+  const navigate = useNavigate();
+
   const [allDecisions, setAllDecision] = useState([]);
   const [allStatus, setAllStatus] = useState([]);
   const [currentStatus, setCurrentStatus] = useState();
@@ -39,7 +42,7 @@ export default function MyDecisions() {
     <div className="all-decisions-container">
       <div className="title-container">
         <h1>Mes décisions</h1>
-        <button type="button">
+        <button type="button" onClick={() => navigate("/postdecision")}>
           <i className="fa-solid fa-plus" />
           Créer une décision
         </button>
