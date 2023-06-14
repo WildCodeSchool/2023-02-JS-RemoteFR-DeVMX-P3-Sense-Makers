@@ -11,6 +11,7 @@ const initialState = {
   benefit: "",
   disavantages: "",
   concerned_hub: "--",
+  deadline: "",
   positives_votes: 0,
   negatives_votes: 0,
   status_id: 1,
@@ -43,7 +44,6 @@ const customStyles = {
     minWidth: "30vw",
   }),
 };
-
 export default function PostDecision() {
   const [state, dispatch] = useReducer(reducer, initialState);
   const navigate = useNavigate();
@@ -52,18 +52,18 @@ export default function PostDecision() {
   const [experts, setExperts] = useState();
 
   const users = [
-    { value: "chocolate", label: "Chocolate" },
-    { value: "strawberry", label: "Strawberry" },
-    { value: "vanilla", label: "Vanilla" },
-    { value: "chocole", label: "Chocole" },
-    { value: "strawbey", label: "Strawbey" },
-    { value: "vani", label: "Vani" },
-    { value: "colate", label: "colate" },
-    { value: "strberry", label: "Strberry" },
-    { value: "valla", label: "Valla" },
-    { value: "chlate", label: "Chlate" },
-    { value: "strerry", label: "Strerry" },
-    { value: "vania", label: "Vania" },
+    { id: 1, value: "chocolate", label: "Chocolate" },
+    { id: 2, value: "strawberry", label: "Strawberry" },
+    { id: 3, value: "vanilla", label: "Vanilla" },
+    { id: 4, value: "chocole", label: "Chocole" },
+    { id: 5, value: "strawbey", label: "Strawbey" },
+    { id: 6, value: "vani", label: "Vani" },
+    { id: 7, value: "colate", label: "colate" },
+    { id: 8, value: "strberry", label: "Strberry" },
+    { id: 9, value: "valla", label: "Valla" },
+    { id: 10, value: "chlate", label: "Chlate" },
+    { id: 11, value: "strerry", label: "Strerry" },
+    { id: 12, value: "vania", label: "Vania" },
   ];
 
   // useEffect(() => {
@@ -98,18 +98,19 @@ export default function PostDecision() {
       .post(`${import.meta.env.VITE_BACKEND_URL}/decisions`, status)
       .then((response) => {
         if (response.status === 201) {
+          experts.map((expert) => {
+            return axios.post(
+              `${import.meta.env.VITE_BACKEND_URL}/decisions/:id/expert`,
+              { expertId: expert.id, decisionId: response.data[0].insertId }
+            );
+          });
           impacted.map((impact) => {
             return axios.post(
               `${import.meta.env.VITE_BACKEND_URL}/decisions/:id/impacted`,
               { impactedId: impact.id, decisionId: response.data[0].insertId }
             );
           });
-          experts.map((expert) => {
-            return axios.post(
-              `${import.meta.env.VITE_BACKEND_URL}/decisions/:id/experts`,
-              { expertId: expert.id, decisionId: response.data[0].insertId }
-            );
-          });
+
           setTimeout(() => {
             navigate(`/decisions/${response.data[0].insertId}`);
           }, 250);

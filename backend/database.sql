@@ -32,7 +32,7 @@ CREATE TABLE decisions (
   benefit VARCHAR(254) NOT NULL,
   disavantages VARCHAR(254) NOT NULL,
   concerned_hub VARCHAR(80) NOT NULL,
-  initial_date DATE NOT NULL,
+  initial_date DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
   deadline DATE NOT NULL,
   positives_votes INT,
   negatives_votes INT,
