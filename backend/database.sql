@@ -11,7 +11,6 @@ CREATE TABLE users (
   photo VARCHAR(254),
   email VARCHAR(100) NOT NULL UNIQUE,
   password VARCHAR(254) NOT NULL,
-  job_title VARCHAR(254),
   role_id INT NOT NULL,
   creation_date DATE,
   FOREIGN KEY (role_id)
