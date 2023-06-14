@@ -49,12 +49,31 @@ class DecisionManager extends AbstractManager {
     );
   }
 
-  findDecision(id) {
+  findDecisionWithStatusById(id) {
     return this.database.query(
-      `select title, content, usefulness,context, benefit,disavantages,positives_votes, negatives_votes, comment, comments.creation_date, users.firstname, users.lastname from  comments
-      INNER JOIN ${this.table} ON ${this.table}.id = comments.decision_id
-      INNER JOIN users ON users.id = comments.user_id
-    where ${this.table}.id = ?`,
+      `SELECT d.title AS title_decision, s.title AS title_status, d.content, d.context, d.usefulness, d.benefit, d.disavantages, d.concerned_hub, d.initial_date, d.deadline, u.firstname, u.lastname, u.photo FROM ${this.table} d
+      INNER JOIN status s ON s.id = d.status_id
+      INNER JOIN users_decisions ud ON d.id = ud.decision_id
+      INNER JOIN users u ON ud.user_id = u.id 
+      where d.id = ?`,
+      [id]
+    );
+  }
+
+  findImpactedOnDecisionById(id) {
+    return this.database.query(
+      `SELECT u.firstname, u.lastname, u.photo FROM tagged_as_impacted ti
+      INNER JOIN users u ON u.id = ti.user_id
+    where ti.decision_id = ?`,
+      [id]
+    );
+  }
+
+  findExpertOnDecisionById(id) {
+    return this.database.query(
+      `SELECT u.firstname, u.lastname, u.photo  FROM tagged_as_experts te
+      INNER JOIN users u ON u.id = te.user_id
+    where te.decision_id = ?`,
       [id]
     );
   }
