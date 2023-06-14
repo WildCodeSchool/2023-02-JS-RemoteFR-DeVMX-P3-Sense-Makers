@@ -29,7 +29,7 @@ export default function Dropzone({ className, setDropzoneImage }) {
       })}
     >
       <input {...getInputProps()} />
-      <p className="dropzone-placeholder-text">Drop the files here </p>
+      <p className="dropzone-placeholder-text">Drop the image here </p>
     </div>
   );
 }

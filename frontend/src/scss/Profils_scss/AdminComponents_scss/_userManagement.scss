@@ -65,7 +65,6 @@
   }
 
   .profile-photo-container {
-
     margin-top: $space-l;
 
     label {
@@ -97,17 +96,25 @@
       border-radius: $space-xxs;
       border: 1px dashed $color-default;
       margin: 0;
-      
+
       .dropzone-placeholder-text {
+        font-size: $font-size-xxs;
+        text-align: center;
+        color: $color-default;
         margin: 0;
         padding: $space-xxs;
-        font-size: $font-size-s;
-        
       }
     }
   }
 
   .input-buttons-container {
     margin-top: $space-l;
+
+    button {
+      padding: $space-xxs;
+      background-color: #C1E94E;
+      border-radius: $space-s;
+      border: 1px solid $color-default;
+    }
   }
 }
