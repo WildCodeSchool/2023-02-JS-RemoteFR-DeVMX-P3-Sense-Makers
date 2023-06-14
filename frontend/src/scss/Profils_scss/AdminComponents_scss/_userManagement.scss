@@ -1,0 +1,120 @@
+@import "../../variables";
+
+.user-management {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 80%;
+  margin: auto;
+  padding: $space-s 0;
+  font-family: "Raleway", Helvetica, Arial, sans-serif;
+  font-weight: 700;
+  font-size: $font-size-m;
+  line-height: $font-size-s;
+  color: $color-default;
+  background-color: #F2F2F2;
+  border-radius: $space-xs;
+  box-shadow: 5px 9px 19px 8px rgba(0, 0, 0, 0.25);
+
+  .input-container {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex-direction: column;
+    width: 90%;
+
+    .input-title {
+      margin: $space-s auto;
+    }
+
+    .input-fields {
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      flex-direction: column;
+
+      >label {
+        margin-top: $space-xs;
+        font-size: $font-size-s;
+
+        >input {
+          margin-top: $space-xs;
+          padding: $space-xxs;
+          border-radius: $space-xxs;
+          border: 1px solid $border-color-base;
+        }
+
+        :focus {
+          outline: none;
+          border: 1px solid $border-color-active;
+        }
+
+        input[type=email] {
+          width: 13rem;
+        }
+
+        >select {
+          margin-top: $space-xs;
+          margin-right: $space-m;
+          border-radius: $space-xxs;
+        }
+
+      }
+    }
+  }
+
+  .profile-photo-container {
+    margin-top: $space-l;
+
+    label {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-direction: column;
+
+      img {
+        width: 50px;
+        object-fit: cover;
+        aspect-ratio: 1/1;
+        border-radius: 50%;
+        margin-top: $space-s;
+      }
+
+      input[type=file] {
+        visibility: hidden;
+      }
+    }
+
+    .dropzone {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      max-width: 5rem;
+      aspect-ratio: 2/1;
+      background-color: rgba(145, 148, 145, 0.267);
+      border-radius: $space-xxs;
+      border: 1px dashed $color-default;
+      margin: 0;
+
+      .dropzone-placeholder-text {
+        font-size: $font-size-xxs;
+        text-align: center;
+        color: $color-default;
+        margin: 0;
+        padding: $space-xxs;
+      }
+    }
+  }
+
+  .input-buttons-container {
+    margin-top: $space-l;
+
+    button {
+      padding: $space-xxs;
+      background-color: #C1E94E;
+      border-radius: $space-s;
+      border: 1px solid $color-default;
+    }
+  }
+}

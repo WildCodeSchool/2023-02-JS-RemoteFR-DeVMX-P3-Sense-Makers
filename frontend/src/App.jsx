@@ -5,7 +5,7 @@ import Home from "./pages/Home";
 import Decision from "./pages/Decision";
 import MyDecisions from "./pages/MyDecisions";
 import PostDecision from "./pages/PostDecision";
-import Profil from "./pages/Profil";
+import Profile from "./pages/Profile";
 import WrongPage from "./pages/WrongPage";
 
 import "./scss/styles.scss";
@@ -21,7 +21,7 @@ function App() {
           <Route path="/mydecisions" element={<MyDecisions />} />
           <Route path="/postdecision" element={<PostDecision />} />
           <Route path="/decisions/:id" element={<Decision />} />
-          <Route path="/profil" element={<Profil />} />
+          <Route path="/profile" element={<Profile />} />
           <Route path="*" element={<WrongPage />} />
         </Routes>
       </Router>
