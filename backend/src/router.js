@@ -39,5 +39,9 @@ router.delete(
 router.get("/status", statusControllers.browseStatus);
 
 router.get("/users", usersControllers.browseUsers);
+router.get("/users/:id", usersControllers.readUser);
+router.post("/users", usersControllers.addUser);
+router.put("/users/:id", usersControllers.editUser);
+router.delete("/users/:id", usersControllers.destroyUser);
 
 module.exports = router;

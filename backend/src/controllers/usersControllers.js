@@ -12,7 +12,7 @@ const browseUsers = (req, res) => {
     });
 };
 
-const readUsers = (req, res) => {
+const readUser = (req, res) => {
   models.users
     .find(req.params.id)
     .then(([rows]) => {
@@ -28,7 +28,7 @@ const readUsers = (req, res) => {
     });
 };
 
-const editUsers = (req, res) => {
+const editUser = (req, res) => {
   const users = req.body;
 
   // TODO validations (length, format...)
@@ -50,13 +50,13 @@ const editUsers = (req, res) => {
     });
 };
 
-const addUsers = (req, res) => {
-  const users = req.body;
+const addUser = (req, res) => {
+  const user = req.body;
 
   // TODO validations (length, format...)
 
   models.users
-    .insert(users)
+    .insert(user)
     .then(([result]) => {
       res.location(`/status/${result.insertId}`).sendStatus(201);
     })
@@ -66,7 +66,7 @@ const addUsers = (req, res) => {
     });
 };
 
-const destroyUsers = (req, res) => {
+const destroyUser = (req, res) => {
   models.users
     .delete(req.params.id)
     .then(([result]) => {
@@ -84,8 +84,8 @@ const destroyUsers = (req, res) => {
 
 module.exports = {
   browseUsers,
-  readUsers,
-  editUsers,
-  addUsers,
-  destroyUsers,
+  readUser,
+  editUser,
+  addUser,
+  destroyUser,
 };
