@@ -1,0 +1,50 @@
+@import "./variables.scss";
+
+.logInContainer {
+    display: flex;
+    justify-content: center;
+
+.logIn-input {
+padding: 10%;
+height: 80%;
+width:fit-content;
+background: #FFFFFF;
+mix-blend-mode: normal;
+box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+border-radius: 5px;
+
+label {
+
+    
+    p{
+        color: $color-default;
+        font-size: $font-size-m;
+        margin: auto;
+    }
+    
+}
+
+input {
+    border-radius: $border-radius-m;
+    height: 15%;
+    box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.25);
+}
+
+p {
+    color: #F3976B;
+    font-size: $font-size-s;
+}
+
+button {
+    width:65%;
+    background-color: #196C84;
+    color:$background-color-base;
+    border-radius: $border-radius-m;
+
+    h2 {
+        font-size: $font-size-s;
+        margin:0.5rem 0rem 0.5rem 0rem;
+    }
+}
+}
+}
