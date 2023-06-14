@@ -32,7 +32,7 @@ export default function Home() {
           >
             <i className="fa-sharp fa-solid fa-caret-down" />
           </button>
-          <h1>Statut created</h1>
+          <h1>Décisions créées</h1>
         </div>
         <hr />
         {showDecisionsCreated && (
@@ -50,37 +50,12 @@ export default function Home() {
           <button
             type="button"
             onClick={() =>
-              setShowDecisionsOpinionDeadline(!showDecisionsOpinionDeadline)
-            }
-          >
-            <i className="fa-sharp fa-solid fa-caret-down" />
-          </button>
-          <h1>Statut deadline</h1>
-        </div>
-        <hr />
-        {showDecisionsOpinionDeadline && (
-          <div className="cards-decision-container">
-            {allDecisions
-              .filter(
-                (decision) => decision.title_status === "opinion deadline"
-              )
-              .map((decision) => (
-                <CardDecision key={decision.id} decision={decision} />
-              ))}
-          </div>
-        )}
-      </div>
-      <div className="decisions-container">
-        <div className="infos-status-container">
-          <button
-            type="button"
-            onClick={() =>
               setShowDecisionsDecisionTaken(!showDecisionsDecisionTaken)
             }
           >
             <i className="fa-sharp fa-solid fa-caret-down" />
           </button>
-          <h1>Statut decision prise</h1>
+          <h1>Première décision prise</h1>
         </div>
         <hr />
         {showDecisionsDecisionTaken && (
@@ -101,7 +76,7 @@ export default function Home() {
           >
             <i className="fa-sharp fa-solid fa-caret-down" />
           </button>
-          <h1>Statut fin de conflit</h1>
+          <h1>Conflits sur les décisions</h1>
         </div>
         <hr />
         {showDecisionsConflict && (
@@ -126,7 +101,7 @@ export default function Home() {
           >
             <i className="fa-sharp fa-solid fa-caret-down" />
           </button>
-          <h1>Statut decision finale</h1>
+          <h1>Décisions définitives</h1>
         </div>
         <hr />
         {showDecisionsFinalDecision && (
@@ -138,6 +113,31 @@ export default function Home() {
               ))}
           </div>
         )}
+      </div>
+      <div className="decisions-container">
+        <div className="infos-status-container">
+          <button
+            type="button"
+            onClick={() =>
+              setShowDecisionsOpinionDeadline(!showDecisionsOpinionDeadline)
+            }
+          >
+            <i className="fa-sharp fa-solid fa-caret-down" />
+          </button>
+          <h1>Décisions terminées</h1>
+        </div>
+        <hr />
+        {/* {showDecisionsOpinionDeadline && (
+          <div className="cards-decision-container">
+            {allDecisions
+              .filter(
+                (decision) => decision.title_status === "opinion deadline"
+              )
+              .map((decision) => (
+                <CardDecision key={decision.id} decision={decision} />
+              ))}
+          </div>
+        )} */}
       </div>
     </div>
   );
