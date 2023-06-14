@@ -1,10 +1,8 @@
 const models = require("../models");
 
-const browseComments = (req, res) => {
-  const decisionId = parseInt(req.params.id, 10);
-
-  models.comment
-    .findAllCommentsForOneDecision(decisionId)
+const browseStatus = (req, res) => {
+  models.status
+    .findAll()
     .then(([rows]) => {
       res.send(rows);
     })
@@ -14,9 +12,9 @@ const browseComments = (req, res) => {
     });
 };
 
-const readComment = (req, res) => {
-  models.comment
-    .find(req.params.commentid)
+const readStatus = (req, res) => {
+  models.status
+    .find(req.params.id)
     .then(([rows]) => {
       if (rows[0] == null) {
         res.sendStatus(404);
@@ -30,15 +28,15 @@ const readComment = (req, res) => {
     });
 };
 
-const editComment = (req, res) => {
-  const comment = req.body;
+const editStatus = (req, res) => {
+  const status = req.body;
 
   // TODO validations (length, format...)
 
-  comment.id = parseInt(req.params.commentid, 10);
+  status.id = parseInt(req.params.id, 10);
 
-  models.comment
-    .update(comment)
+  models.status
+    .update(status)
     .then(([result]) => {
       if (result.affectedRows === 0) {
         res.sendStatus(404);
@@ -52,16 +50,15 @@ const editComment = (req, res) => {
     });
 };
 
-const addComment = (req, res) => {
-  const decisionId = parseInt(req.params.id, 10);
-  const comment = req.body;
+const addStatus = (req, res) => {
+  const status = req.body;
 
   // TODO validations (length, format...)
 
-  models.comment
-    .insert(comment, decisionId)
+  models.status
+    .insert(status)
     .then(([result]) => {
-      res.location(`/comments/${result.insertId}`).sendStatus(201);
+      res.location(`/status/${result.insertId}`).sendStatus(201);
     })
     .catch((err) => {
       console.error(err);
@@ -69,9 +66,9 @@ const addComment = (req, res) => {
     });
 };
 
-const destroyComment = (req, res) => {
-  models.comment
-    .delete(req.params.commentid)
+const destroyStatus = (req, res) => {
+  models.status
+    .delete(req.params.id)
     .then(([result]) => {
       if (result.affectedRows === 0) {
         res.sendStatus(404);
@@ -86,9 +83,9 @@ const destroyComment = (req, res) => {
 };
 
 module.exports = {
-  browseComments,
-  readComment,
-  editComment,
-  addComment,
-  destroyComment,
+  browseStatus,
+  readStatus,
+  editStatus,
+  addStatus,
+  destroyStatus,
 };
