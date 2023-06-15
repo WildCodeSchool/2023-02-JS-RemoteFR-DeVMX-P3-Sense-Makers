@@ -15,23 +15,25 @@ export default function Dropzone({ className, setDropzoneImage }) {
       );
     }
   }, []);
-  const { getRootProps, getInputProps, isDragReject } = useDropzone({
+  const { getRootProps, getInputProps, fileRejections } = useDropzone({
     onDrop,
+    maxSize: 1048576,
     accept: { "image/*": [".jpeg"], "image/png": [".png"] },
-    maxSize: 1024 * 1000,
     multiple: false,
   });
 
   return (
-    <div
-      {...getRootProps({
-        className,
-      })}
-    >
-      <input {...getInputProps()} />
-      <p className="dropzone-placeholder-text">Drop the image here </p>
-      {isDragReject && <p>Only images *.jpeg or *.png</p>}
-    </div>
+    <>
+      <div
+        {...getRootProps({
+          className,
+        })}
+      >
+        <input {...getInputProps()} />
+        <p className="dropzone-placeholder-text">Drop the image here </p>
+      </div>
+      {fileRejections && <span>{fileRejections[0]?.errors[0].message}</span>}
+    </>
   );
 }
 
