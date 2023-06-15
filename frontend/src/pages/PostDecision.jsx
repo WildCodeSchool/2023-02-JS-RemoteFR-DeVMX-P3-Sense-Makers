@@ -1,20 +1,7 @@
-import { useReducer, useState } from "react";
+import { useEffect, useReducer, useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import AsyncSelect from "react-select/async";
-
-const initialState = {
-  title: "",
-  content: "",
-  usefulness: "",
-  context: "",
-  benefit: "",
-  disavantages: "",
-  concerned_hub: "--",
-  positives_votes: 0,
-  negatives_votes: 0,
-  status_id: 1,
-};
 
 function reducer(state, action) {
   switch (action.type) {
@@ -43,71 +30,99 @@ const customStyles = {
     minWidth: "30vw",
   }),
 };
-
 export default function PostDecision() {
-  const [state, dispatch] = useReducer(reducer, initialState);
   const navigate = useNavigate();
-  // const [users, setUsers] = useState();
+  const [users, setUsers] = useState();
+  // const [expertUsers, setExpertUsers] = useState();
   const [impacted, setImpacted] = useState();
-  const [experts, setExperts] = useState();
+  // const [experts, setExperts] = useState();
+  const [hub, setHub] = useState("--");
 
-  const users = [
-    { value: "chocolate", label: "Chocolate" },
-    { value: "strawberry", label: "Strawberry" },
-    { value: "vanilla", label: "Vanilla" },
-    { value: "chocole", label: "Chocole" },
-    { value: "strawbey", label: "Strawbey" },
-    { value: "vani", label: "Vani" },
-    { value: "colate", label: "colate" },
-    { value: "strberry", label: "Strberry" },
-    { value: "valla", label: "Valla" },
-    { value: "chlate", label: "Chlate" },
-    { value: "strerry", label: "Strerry" },
-    { value: "vania", label: "Vania" },
-  ];
+  const initialState = {
+    title: "",
+    content: "",
+    usefulness: "",
+    context: "",
+    benefit: "",
+    disavantages: "",
+    concerned_hub: `${hub}`,
+    positives_votes: 0,
+    negatives_votes: 0,
+    status_id: 1,
+  };
+  const [state, dispatch] = useReducer(reducer, initialState);
 
-  // useEffect(() => {
-  //   axios.get(`${import.meta.env.VITE_BACKEND_URL}/users`).then((response) => {
-  //     setUsers([response]);
-  //   });
-  // }, []);
+  // const users = [
+  //   { id: 1, label: "Chocolate" },
+  //   { id: 2, value: "strawberry", label: "Strawberry" },
+  //   { id: 3, value: "vanilla", label: "Vanilla" },
+  //   { id: 4, value: "chocole", label: "Chocole" },
+  //   { id: 5, value: "strawbey", label: "Strawbey" },
+  //   { id: 6, value: "vani", label: "Vani" },
+  //   { id: 7, value: "colate", label: "colate" },
+  //   { id: 8, value: "strberry", label: "Strberry" },
+  //   { id: 9, value: "valla", label: "Valla" },
+  //   { id: 10, value: "chlate", label: "Chlate" },
+  //   { id: 11, value: "strerry", label: "Strerry" },
+  //   { id: 12, value: "vania", label: "Vania" },
+  // ];
+  /* import users & experts for select */
 
+  useEffect(() => {
+    axios
+      .get(`${import.meta.env.VITE_BACKEND_URL}/users/concat`)
+      .then((response) => {
+        console.info(response.data);
+        setUsers(response.data);
+      });
+    // .get(`${import.meta.env.VITE_BACKEND_URL}/users/experts`).then((response)=>
+    // setExperts([response]));
+  }, []);
   const filterUsers = (inputValue) => {
-    return users.filter((i) =>
-      i.label.toLowerCase().includes(inputValue.toLowerCase())
+    return users.filter((user) =>
+      user.label.toLowerCase().includes(inputValue.toLowerCase())
     );
   };
-
-  const loadOptions = (inputValue, callback) => {
+  // const filterExperts = (inputValue) => {
+  //   return expertUsers.filter((expertUser) =>
+  //     expertUser.toLowerCase().includes(inputValue.toLowerCase())
+  //   );
+  // };
+  const loadOptionsUsers = (inputValue, callback) => {
     setTimeout(() => {
       callback(filterUsers(inputValue));
-    }, 1000);
+    }, 500);
   };
-
-  const onChangeExpert = (inputValue) => {
-    setExperts(inputValue);
-  };
-  console.info(experts);
+  // const loadOptionExperts = (inputValue, callback) => {
+  //   setTimeout(() => {
+  //     callback(filterExperts(inputValue));
+  //   }, 1000);
+  // };
+  // const onChangeExpert = (inputValue) => {
+  //   setExperts(inputValue);
+  // };
   const onChangeImpacted = (inputValue) => {
     setImpacted(inputValue);
   };
+  console.info(users);
   console.info(impacted);
 
+  /* Post de la décision dans le back */
   function DecisionPosted(status) {
     axios
       .post(`${import.meta.env.VITE_BACKEND_URL}/decisions`, status)
       .then((response) => {
         if (response.status === 201) {
+          // experts.map((expert) => {
+          //   return axios.post(
+          //     `${import.meta.env.VITE_BACKEND_URL}/decisions/:id/expert`,
+          //     { expertId: expert.id, decisionId: response.data[0].Id }
+          //   );
+          // });
           impacted.map((impact) => {
             return axios.post(
               `${import.meta.env.VITE_BACKEND_URL}/decisions/:id/impacted`,
-              { impactedId: impact.id, decisionId: response.data[0].insertId }
-            );
-          });
-          experts.map((expert) => {
-            return axios.post(
-              `${import.meta.env.VITE_BACKEND_URL}/decisions/:id/experts`,
-              { expertId: expert.id, decisionId: response.data[0].insertId }
+              { impactedId: impact.id, decisionId: response.data[0].Id }
             );
           });
           setTimeout(() => {
@@ -142,22 +157,6 @@ export default function PostDecision() {
           />
         </label>
 
-        <label htmlFor="deadline_decision">
-          Deadline *
-          <input
-            type="date"
-            id="deadline_decision"
-            value={state.deadline}
-            onChange={(e) => {
-              dispatch({
-                type: "update_input",
-                value: e.target.value,
-                key: "deadline",
-              });
-            }}
-          />
-        </label>
-
         <div className="hub-container">
           <label htmlFor="hub_decision">
             Pôle concerné *
@@ -165,11 +164,7 @@ export default function PostDecision() {
               id="hub_decision"
               value={state.concerned_hub}
               onChange={(e) => {
-                dispatch({
-                  type: "update_input",
-                  value: e.target.value,
-                  key: "concerned_hub",
-                });
+                setHub(e.target.value);
               }}
             >
               <option value="--">--</option>
@@ -186,7 +181,7 @@ export default function PostDecision() {
               styles={customStyles}
               cacheOptions
               defaultOptions
-              loadOptions={loadOptions}
+              loadOptions={loadOptionsUsers}
               isMulti
               onChange={onChangeImpacted}
             />
@@ -194,14 +189,14 @@ export default function PostDecision() {
 
           <label htmlFor="expert_decision">
             Personnes expertes *
-            <AsyncSelect
+            {/* <AsyncSelect
               styles={customStyles}
               cacheOptions
               defaultOptions
-              loadOptions={loadOptions}
+              loadOptions={loadOptionExperts}
               isMulti
               onChange={onChangeExpert}
-            />
+            /> */}
           </label>
         </div>
       </div>
