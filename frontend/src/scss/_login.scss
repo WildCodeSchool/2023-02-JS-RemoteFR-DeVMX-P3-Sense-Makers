@@ -6,7 +6,7 @@ box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 border-radius: 5px;
 position: relative;
 top: 7rem;
-left:3rem;
+left:13%;
 height: 50vh;
 max-width: 75vw;
 display: flex;
@@ -71,5 +71,74 @@ button {
     }
 }
 
-
 }
+
+@media screen and (min-width: 768px) {
+    .logInContainer {
+      left:30%;
+      max-width: 45vw;
+        // label {
+        //     p {
+        //         font-size: $font-size-xl;
+        //     }
+        // }
+        input {
+          width:25vw;
+        }
+  
+        button {
+          margin:0 0 3% 0;
+        }
+    }
+}
+
+@media screen and (min-width: 1024px) {
+    .logInContainer {
+
+        .logInUsername {
+        label {
+            p {
+                font-size: $font-size-l;
+            }
+        }
+    }
+        button {
+            width: 12rem;
+            h2 {
+                font-size: $font-size-l;
+            }
+            
+        }
+        
+        p {
+            font-size: $font-size-l;
+        }
+        
+
+    }
+}
+
+.rectangle {
+    position: absolute;
+  margin: auto;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  width: 200px;
+  height: 30px;
+  background: $light-yellow;
+}
+
+.circle {
+    position: absolute;
+    margin: auto;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    width: 30px;
+    height: 30px;
+    background: $light-yellow;
+    border-radius: 50%;
+  }
