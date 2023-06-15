@@ -10,6 +10,7 @@ export default function UserManagement() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [role, setRole] = useState("");
+  const [isExpert, setIsExpert] = useState("");
 
   const handleAddNewUserButton = (
     userFirstName,
@@ -17,7 +18,8 @@ export default function UserManagement() {
     userPhoto,
     userEmail,
     userPassword,
-    userRole
+    userRole,
+    userIsExpert
   ) => {
     axios
       .post(`${import.meta.env.VITE_BACKEND_URL}/users`, {
@@ -27,6 +29,7 @@ export default function UserManagement() {
         email: userEmail,
         password: userPassword,
         role_id: parseInt(userRole, 10),
+        is_expert: parseInt(userIsExpert, 10),
         creation_date: new Date().toJSON().slice(0, 10),
       })
       .catch((err) => console.error(err));
@@ -86,7 +89,11 @@ export default function UserManagement() {
             </label>
             <label htmlFor="role-expert" className="role-expert">
               Expert <br />
-              <input type="checkbox" id="role-expert" />
+              <input
+                type="checkbox"
+                id="role-expert"
+                onChange={(e) => setIsExpert(e.target.value)}
+              />
             </label>
           </div>
         </div>
@@ -117,7 +124,8 @@ export default function UserManagement() {
                 dropzoneImage[0]?.preview,
                 email,
                 password,
-                role
+                role,
+                isExpert
               );
             }}
           >
