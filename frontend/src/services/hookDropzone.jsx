@@ -1,9 +1,12 @@
 /* eslint-disable react/jsx-props-no-spreading */
-import { useCallback } from "react";
+import { useCallback, useRef } from "react";
 import { useDropzone } from "react-dropzone";
 import PropTypes from "prop-types";
 
 export default function Dropzone({ className, setDropzoneImage }) {
+  const imageRef = useRef();
+  console.info("🚀 - imageRef:", imageRef);
+
   const onDrop = useCallback((acceptedFiles) => {
     if (acceptedFiles?.length) {
       setDropzoneImage(
@@ -29,7 +32,7 @@ export default function Dropzone({ className, setDropzoneImage }) {
           className,
         })}
       >
-        <input {...getInputProps()} />
+        <input {...getInputProps()} ref={imageRef} />
         <p className="dropzone-placeholder-text">Drop the image here </p>
       </div>
       {fileRejections && <span>{fileRejections[0]?.errors[0].message}</span>}

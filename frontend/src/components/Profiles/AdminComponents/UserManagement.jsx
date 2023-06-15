@@ -1,79 +1,95 @@
 import { useState } from "react";
-import axios from "axios";
+// import axios from "axios";
 import Dropzone from "../../../services/hookDropzone";
 import Avatar0 from "../../../assets/avatar0.png";
 
 export default function UserManagement() {
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
+  // const [firstName, setFirstName] = useState("");
+  // const [lastName, setLastName] = useState("");
   const [dropzoneImage, setDropzoneImage] = useState([]);
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [role, setRole] = useState("");
-  const [isExpert, setIsExpert] = useState("");
 
-  // const [targetValues, setTargetValues] = useState({
-  //   firstName: "",
-  //   lastName: "",
-  //   email: "",
-  //   password: "",
-  //   roleExperts: false,
-  // });
+  // const [email, setEmail] = useState("");
+  // const [password, setPassword] = useState("");
+  // const [role, setRole] = useState("");
+  // const [isExpert, setIsExpert] = useState("");
 
-  // const update = (event) => {
-  //   const target = event.currentTarget;
+  const [targetValues, setTargetValues] = useState({
+    firstName: "",
+    lastName: "",
+    email: "",
+    password: "",
+    photo: dropzoneImage[0]?.preview,
+    role: 0,
+    roleExpert: false,
+  });
 
-  //   setTargetValues({
-  //     ...targetValues,
-  //     [target.name]: target.type === "checkbox" ? target.checked : target.value,
-  //   });
-  // };
+  const update = (event) => {
+    const target = event.currentTarget;
 
-  // const isValidEmail = (mail) => {
-  //   const regex =
-  //     /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-
-  //   return regex.test(String(mail).toLowerCase());
-  // };
-
-  // const validationRules = {
-  //   firstName:
-  //     !!targetValues.firstName && targetValues.firstName.match(/^ *$/ === null),
-  //   lastName:
-  //     !!targetValues.lastName && targetValues.lastName.match(/^ *$/ === null),
-  //   email: isValidEmail(targetValues.email),
-  //   message:
-  //     !!targetValues.message &&
-  //     targetValues.password.length < 8 &&
-  //     targetValues.password.match(/^ *$/) === null,
-  //   roleExperts: targetValues.roleExperts,
-  // };
-
-  const handleAddNewUserButton = (
-    userFirstName,
-    userLastName,
-    userPhoto,
-    userEmail,
-    userPassword,
-    userRole,
-    userIsExpert
-  ) => {
-    axios
-      .post(`${import.meta.env.VITE_BACKEND_URL}/users`, {
-        firstname: userFirstName,
-        lastname: userLastName,
-        photo: userPhoto,
-        email: userEmail,
-        password: userPassword,
-        role_id: parseInt(userRole, 10),
-        is_expert: parseInt(userIsExpert, 10),
-        creation_date: new Date().toJSON().slice(0, 10),
-      })
-      .catch((err) => console.error(err));
+    setTargetValues({
+      ...targetValues,
+      [target.name]: target.type === "checkbox" ? target.checked : target.value,
+    });
   };
 
+  const isValidEmail = (mail) => {
+    const regex =
+      /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+
+    return regex.test(String(mail).toLowerCase());
+  };
+
+  const validationRules = {
+    firstName:
+      !!targetValues.firstName && targetValues.firstName.match(/^ *$/ === null),
+    lastName:
+      !!targetValues.lastName && targetValues.lastName.match(/^ *$/ === null),
+    email: isValidEmail(targetValues.email),
+    password:
+      !!targetValues.message &&
+      targetValues.password.length < 8 &&
+      targetValues.password.match(/^ *$/) === null,
+    photo: true,
+    role: targetValues.role !== "0",
+    roleExperts: targetValues.roleExpert,
+  };
+
+  const submit = (event) => {
+    event.preventDefault();
+
+    const isValidForm = Object.values(validationRules).every((key) => key);
+
+    if (isValidForm) {
+      console.info("✅ Submitting form with state:", targetValues);
+    } else {
+      console.info("XXX Submitting form with state:", targetValues);
+    }
+  };
+  // const handleAddNewUserButton = (
+  //   userFirstName,
+  //   userLastName,
+  //   userPhoto,
+  //   userEmail,
+  //   userPassword,
+  //   userRole,
+  //   userIsExpert
+  // ) => {
+  //   axios
+  //     .post(`${import.meta.env.VITE_BACKEND_URL}/users`, {
+  //       firstname: userFirstName,
+  //       lastname: userLastName,
+  //       photo: userPhoto,
+  //       email: userEmail,
+  //       password: userPassword,
+  //       role_id: parseInt(userRole, 10),
+  //       is_expert: parseInt(userIsExpert, 10),
+  //       creation_date: new Date().toJSON().slice(0, 10),
+  //     })
+  //     .catch((err) => console.error(err));
+  // };
+
   return (
-    <form className="user-management">
+    <form className="user-management" onSubmit={submit}>
       <div className="input-container">
         <h2 className="input-title">Ajout d'utilisateur</h2>
         <div className="input-fields">
@@ -82,9 +98,11 @@ export default function UserManagement() {
             <input
               type="text"
               id="lastName"
-              placeholder="Insérez votre nom"
               name="lastName"
-              onChange={(e) => setLastName(e.target.value)}
+              placeholder="Insérez votre nom"
+              // onChange={(e) => setLastName(e.target.value)}
+              onChange={update}
+              required
             />
           </label>
           <label htmlFor="firstName">
@@ -92,8 +110,11 @@ export default function UserManagement() {
             <input
               type="text"
               id="firstName"
+              name="firstName"
               placeholder="Insérez votre prénom"
-              onChange={(e) => setFirstName(e.target.value)}
+              // onChange={(e) => setFirstName(e.target.value)}
+              onChange={update}
+              required
             />
           </label>
           <label htmlFor="email">
@@ -104,18 +125,21 @@ export default function UserManagement() {
               name="email"
               className="input-email"
               placeholder="Insérez votre email"
-              onChange={(e) => setEmail(e.target.value)}
+              // onChange={(e) => setEmail(e.target.value)}
+              onChange={update}
               required
             />
           </label>
           <label htmlFor="password">
             Mot de passe <br />
             <input
-              id="password"
               type="password"
+              id="password"
               name="password"
               placeholder="Insérez votre mot de passe"
-              onChange={(e) => setPassword(e.target.value)}
+              // onChange={(e) => setPassword(e.target.value)}
+              onChange={update}
+              required
             />
           </label>
           <div className="roles-container">
@@ -124,7 +148,9 @@ export default function UserManagement() {
               <select
                 id="role"
                 name="role"
-                onChange={(e) => setRole(e.target.value)}
+                // onChange={(e) => setRole(e.target.value)}
+                onChange={update}
+                required
               >
                 <option value="">Sélectionne votre role</option>
                 <option value="1">Admin</option>
@@ -137,7 +163,8 @@ export default function UserManagement() {
                 type="checkbox"
                 id="role-expert"
                 name="roleExpert"
-                onChange={(e) => setIsExpert(e.target.value)}
+                // onChange={(e) => setIsExpert(e.target.value)}
+                onChange={update}
               />
             </label>
           </div>
@@ -146,6 +173,7 @@ export default function UserManagement() {
       <div className="profile-photo-container">
         <label htmlFor="profile-photo-input">
           <Dropzone
+            name="photo"
             className="dropzone"
             dropzoneImage={dropzoneImage}
             setDropzoneImage={setDropzoneImage}
@@ -160,7 +188,8 @@ export default function UserManagement() {
       </div>
       <div className="input-buttons-container">
         <div className="add-button-container">
-          <button
+          <button type="submit">Ajouter l'utilisateur</button>
+          {/* <button
             type="button"
             onClick={() => {
               handleAddNewUserButton(
@@ -175,7 +204,7 @@ export default function UserManagement() {
             }}
           >
             Ajouter l'utilisateur
-          </button>
+          </button> */}
         </div>
       </div>
     </form>
