@@ -114,10 +114,10 @@ INSERT INTO users_decisions (user_id, decision_id) VALUES
 (2, 1), (3, 2), (1, 3), (4, 4);
 
 INSERT INTO tagged_as_experts (user_id, decision_id) VALUES
-(1, 1), (1, 1), (1, 3), (4, 4), (4, 2), (1, 3), (1, 4), (4, 2), (4, 3), (1, 4), (4, 2);
+(1, 1), (1, 3), (4, 4), (4, 2), (1, 4), (4, 3);
 
 INSERT INTO tagged_as_impacted (user_id, decision_id) VALUES
-(2, 1), (3, 1), (3, 1), (2, 1), (3, 1), (3, 2), (2, 2), (3, 2), (3, 2), (2, 2), (3, 2), (2, 2), (2, 3), (3, 3), (3, 3), (2, 3), (3, 3), (2, 3), (3, 3), (3, 4), (2, 4), (3, 4), (3, 4), (2, 4);
+(2, 1), (3, 1), (2, 2), (3, 2), (3, 3), (2, 3), (3, 4), (2, 4);
 
 INSERT INTO comments (user_id, decision_id,creation_date, comment) VALUES
 (1, 2, "2023-06-08", "blablalballblalb"),
