@@ -1,9 +1,37 @@
 import { useState } from "react";
+import axios from "axios";
 import Dropzone from "../../../services/hookDropzone";
 import Avatar0 from "../../../assets/avatar0.png";
 
 export default function UserManagement() {
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
   const [dropzoneImage, setDropzoneImage] = useState([]);
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [role, setRole] = useState("");
+
+  const handleAddNewUserButton = (
+    userFirstName,
+    userLastName,
+    userPhoto,
+    userEmail,
+    userPassword,
+    userRole
+  ) => {
+    axios
+      .post(`${import.meta.env.VITE_BACKEND_URL}/users`, {
+        firstname: userFirstName,
+        lastname: userLastName,
+        photo: userPhoto,
+        email: userEmail,
+        password: userPassword,
+        role_id: parseInt(userRole, 10),
+        creation_date: new Date().toJSON().slice(0, 10),
+      })
+      .catch((err) => console.error(err));
+  };
+
   return (
     <div className="user-management">
       <div className="input-container">
@@ -15,11 +43,16 @@ export default function UserManagement() {
               type="text"
               placeholder="Insérez votre nom"
               name="lastName"
+              onChange={(e) => setLastName(e.target.value)}
             />
           </label>
           <label htmlFor="firstName">
             Prénom <br />
-            <input type="text" placeholder="Insérez votre prénom" />
+            <input
+              type="text"
+              placeholder="Insérez votre prénom"
+              onChange={(e) => setFirstName(e.target.value)}
+            />
           </label>
           <label htmlFor="email">
             Email <br />
@@ -27,18 +60,27 @@ export default function UserManagement() {
               type="email"
               className="input-email"
               placeholder="Insérez votre email"
+              onChange={(e) => setEmail(e.target.value)}
             />
           </label>
           <label htmlFor="password">
             Mot de passe <br />
-            <input type="password" placeholder="Insérez votre mot de passe" />
+            <input
+              type="password"
+              placeholder="Insérez votre mot de passe"
+              onChange={(e) => setPassword(e.target.value)}
+            />
           </label>
           <label htmlFor="role">
             Role <br />
-            <select name="role" id="select-role">
+            <select
+              name="role"
+              id="select-role"
+              onChange={(e) => setRole(e.target.value)}
+            >
               <option value="">Sélectionne votre role</option>
-              <option value="">Admin</option>
-              <option value="">Utilisateur</option>
+              <option value="1">Admin</option>
+              <option value="2">Utilisateur</option>
             </select>
           </label>
         </div>
@@ -59,7 +101,21 @@ export default function UserManagement() {
         </label>
       </div>
       <div className="input-buttons-container">
-        <button type="button">Ajouter l'utilisateur</button>
+        <button
+          type="button"
+          onClick={() => {
+            handleAddNewUserButton(
+              firstName,
+              lastName,
+              dropzoneImage[0]?.preview,
+              email,
+              password,
+              role
+            );
+          }}
+        >
+          Ajouter l'utilisateur
+        </button>
       </div>
     </div>
   );

@@ -33,9 +33,9 @@ const customStyles = {
 export default function PostDecision() {
   const navigate = useNavigate();
   const [users, setUsers] = useState();
-  // const [expertUsers, setExpertUsers] = useState();
+  const [expertUsers, setExpertUsers] = useState();
   const [impacted, setImpacted] = useState();
-  // const [experts, setExperts] = useState();
+  const [experts, setExperts] = useState();
   const [hub, setHub] = useState("--");
 
   const initialState = {
@@ -44,28 +44,14 @@ export default function PostDecision() {
     usefulness: "",
     context: "",
     benefit: "",
-    disavantages: "",
-    concerned_hub: `${hub}`,
+    disadvantages: "",
+    concerned_hub_id: `${hub.id}`,
     positives_votes: 0,
     negatives_votes: 0,
     status_id: 1,
   };
   const [state, dispatch] = useReducer(reducer, initialState);
 
-  // const users = [
-  //   { id: 1, label: "Chocolate" },
-  //   { id: 2, value: "strawberry", label: "Strawberry" },
-  //   { id: 3, value: "vanilla", label: "Vanilla" },
-  //   { id: 4, value: "chocole", label: "Chocole" },
-  //   { id: 5, value: "strawbey", label: "Strawbey" },
-  //   { id: 6, value: "vani", label: "Vani" },
-  //   { id: 7, value: "colate", label: "colate" },
-  //   { id: 8, value: "strberry", label: "Strberry" },
-  //   { id: 9, value: "valla", label: "Valla" },
-  //   { id: 10, value: "chlate", label: "Chlate" },
-  //   { id: 11, value: "strerry", label: "Strerry" },
-  //   { id: 12, value: "vania", label: "Vania" },
-  // ];
   /* import users & experts for select */
 
   useEffect(() => {
@@ -75,37 +61,50 @@ export default function PostDecision() {
         console.info(response.data);
         setUsers(response.data);
       });
-    // .get(`${import.meta.env.VITE_BACKEND_URL}/users/experts`).then((response)=>
-    // setExperts([response]));
   }, []);
+  useEffect(() => {
+    axios
+      .get(`${import.meta.env.VITE_BACKEND_URL}/users/experts`)
+      .then((response) => {
+        console.info(response.data);
+        setExpertUsers([response]);
+      });
+  }, []);
+  // useEffect(() => {
+  //   axios
+  //     .get(`${import.meta.env.VITE_BACKEND_URL}/`)
+  //     .then((response) => {
+  //       console.info(response.data);
+  //       setExpertUsers([response]);
+  //     });
+  // }, []);
   const filterUsers = (inputValue) => {
     return users.filter((user) =>
       user.label.toLowerCase().includes(inputValue.toLowerCase())
     );
   };
-  // const filterExperts = (inputValue) => {
-  //   return expertUsers.filter((expertUser) =>
-  //     expertUser.toLowerCase().includes(inputValue.toLowerCase())
-  //   );
-  // };
+  const filterExperts = (inputValue) => {
+    return expertUsers.filter((expertUser) =>
+      expertUser.label.toLowerCase().includes(inputValue.toLowerCase())
+    );
+  };
   const loadOptionsUsers = (inputValue, callback) => {
     setTimeout(() => {
       callback(filterUsers(inputValue));
     }, 500);
   };
-  // const loadOptionExperts = (inputValue, callback) => {
-  //   setTimeout(() => {
-  //     callback(filterExperts(inputValue));
-  //   }, 1000);
-  // };
-  // const onChangeExpert = (inputValue) => {
-  //   setExperts(inputValue);
-  // };
+  const loadOptionExperts = (inputValue, callback) => {
+    setTimeout(() => {
+      callback(filterExperts(inputValue));
+    }, 1000);
+  };
+  const onChangeExpert = (inputValue) => {
+    setExperts(inputValue);
+  };
   const onChangeImpacted = (inputValue) => {
     setImpacted(inputValue);
   };
-  console.info(users);
-  console.info(impacted);
+  console.info(hub);
 
   /* Post de la décision dans le back */
   function DecisionPosted(status) {
@@ -113,12 +112,12 @@ export default function PostDecision() {
       .post(`${import.meta.env.VITE_BACKEND_URL}/decisions`, status)
       .then((response) => {
         if (response.status === 201) {
-          // experts.map((expert) => {
-          //   return axios.post(
-          //     `${import.meta.env.VITE_BACKEND_URL}/decisions/:id/expert`,
-          //     { expertId: expert.id, decisionId: response.data[0].Id }
-          //   );
-          // });
+          experts.map((expert) => {
+            return axios.post(
+              `${import.meta.env.VITE_BACKEND_URL}/decisions/:id/expert`,
+              { expertId: expert.id, decisionId: response.data[0].Id }
+            );
+          });
           impacted.map((impact) => {
             return axios.post(
               `${import.meta.env.VITE_BACKEND_URL}/decisions/:id/impacted`,
@@ -162,13 +161,15 @@ export default function PostDecision() {
             Pôle concerné *
             <select
               id="hub_decision"
-              value={state.concerned_hub}
+              value={state.concerned_hub_id}
               onChange={(e) => {
                 setHub(e.target.value);
               }}
             >
               <option value="--">--</option>
-              <option value="Hub France">Hub France</option>
+              {hub.map((hu) => {
+                return <option value={hu.title}>{hu.title}</option>;
+              })}
             </select>
           </label>
           <div className="hub-select">{state.concerned_hub}</div>
@@ -189,14 +190,14 @@ export default function PostDecision() {
 
           <label htmlFor="expert_decision">
             Personnes expertes *
-            {/* <AsyncSelect
+            <AsyncSelect
               styles={customStyles}
               cacheOptions
               defaultOptions
               loadOptions={loadOptionExperts}
               isMulti
               onChange={onChangeExpert}
-            /> */}
+            />
           </label>
         </div>
       </div>
@@ -262,17 +263,17 @@ export default function PostDecision() {
             }}
           />
         </label>
-        <label htmlFor="disavantages_decision">
+        <label htmlFor="disadvantages_decision">
           Inconvenients de la décision *
           <textarea
             type="text"
-            id="disavantages_decision"
-            value={state.disavantages}
+            id="disadvantages_decision"
+            value={state.disadvantages}
             onChange={(e) => {
               dispatch({
                 type: "update_input",
                 value: e.target.value,
-                key: "disavantages",
+                key: "disadvantages",
               });
             }}
           />
