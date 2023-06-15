@@ -3,7 +3,7 @@ export default function Login() {
     <div className="logInContainer">
       <form>
         <div className="logIn-input">
-          <div>
+          <div className="inputsContainer">
             <label htmlFor="logInUsername">
               <p>Nom d'utilisateur</p>
             </label>
