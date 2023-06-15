@@ -38,7 +38,15 @@ export default function PostDecision() {
   const [experts, setExperts] = useState([]);
   const [hub, setHub] = useState([]);
   const [selectedHub, setSelectedHub] = useState();
+  const [hubId, setHubId] = useState();
 
+  const addID = () => {
+    for (let i = 0; i < hub.length; i += 1) {
+      if (hub[i].title === selectedHub) {
+        setHubId(hub[i].id);
+      }
+    }
+  };
   const initialState = {
     title: "",
     content: "",
@@ -46,7 +54,7 @@ export default function PostDecision() {
     context: "",
     benefit: "",
     disadvantages: "",
-    concerned_hub_id: "",
+    concerned_hub_id: hubId,
     positives_votes: 0,
     negatives_votes: 0,
     status_id: 1,
@@ -98,16 +106,14 @@ export default function PostDecision() {
   };
 
   const onChangeExpert = (inputValue) => {
+    console.info("input value : ", inputValue);
     setExperts(inputValue);
   };
 
   const onChangeImpacted = (inputValue) => {
     setImpacted(inputValue);
   };
-  console.info("user :", users);
-  console.info("expert :", expertUsers);
-  console.info("taggeuser :", impacted);
-  console.info("taggeExpert", experts);
+
   /* Post de la décision dans le back */
   function DecisionPosted(status) {
     axios
@@ -117,13 +123,13 @@ export default function PostDecision() {
           experts.map((expert) => {
             return axios.post(
               `${import.meta.env.VITE_BACKEND_URL}/decisions/:id/expert`,
-              { expertId: expert.id, decisionId: response.data[0].Id }
+              { expertId: expert.id, decisionId: response.data[0].insertId }
             );
           });
           impacted.map((impact) => {
             return axios.post(
               `${import.meta.env.VITE_BACKEND_URL}/decisions/:id/impacted`,
-              { impactedId: impact.id, decisionId: response.data[0].Id }
+              { impactedId: impact.id, decisionId: response.data[0].insertId }
             );
           });
           setTimeout(() => {
@@ -292,6 +298,7 @@ export default function PostDecision() {
           type="button"
           onClick={() => {
             DecisionPosted(state);
+            addID();
           }}
         >
           Poster cette décision
