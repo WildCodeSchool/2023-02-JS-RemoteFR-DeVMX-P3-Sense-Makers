@@ -53,11 +53,43 @@
         input[type=email] {
           width: 13rem;
         }
+      }
+    }
 
-        >select {
+    .roles-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-top: $space-xs;
+      font-size: $font-size-s;
+
+      :focus {
+        outline: none;
+        border: 1px solid $border-color-active;
+      }
+
+      select {
+        margin-top: $space-xs;
+        margin-right: $space-m;
+        border-radius: $space-xxs;
+        border: 1px solid $border-color-base;
+        cursor: pointer;
+      }
+
+      .role-expert {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+
+        input[type=checkbox] {
           margin-top: $space-xs;
-          margin-right: $space-m;
-          border-radius: $space-xxs;
+          border: 1px solid $border-color-base;
+          cursor: pointer;
+
+          :checked {
+            color: yellow;
+          }
         }
       }
     }
@@ -89,6 +121,7 @@
           color: $color-default;
           margin: 0;
           padding: $space-xxs;
+          cursor: pointer;
         }
       }
 
@@ -105,18 +138,27 @@
   .input-buttons-container {
     margin-top: $space-xs;
 
-    button {
-      font-weight: 700;
-      font-size: $font-size-s;
-      padding: $space-xxs;
-      background-color: #C1E94E;
-      border-radius: $space-s;
-      border: 1px solid $color-default;
-      transition: all 350ms ease-out;
+    .add-button-container {
+      display: flex;
+      justify-content: center;
+      align-items: flex-end;
+      width: 10rem;
+      height: 2rem;
 
-      &:hover {
-        border: none;
-        transform: scale(1.03);
+      button {
+        font-weight: 700;
+        font-size: $font-size-s;
+        padding: $space-xxs;
+        background-color: #C1E94E;
+        border-radius: $space-s;
+        border: 1px solid $color-default;
+        cursor: pointer;
+        transition: transform 350ms ease-out;
+
+        &:active {
+          border: none;
+          transform: scale(1.01);
+        }
       }
     }
   }
@@ -135,33 +177,16 @@
         }
 
         img {
-          margin-top: $space-xxl;
-          width: 100px;
+          margin-top: $space-l;
+          width: 125px;
           aspect-ratio: 1 /1;
         }
       }
     }
 
     .input-buttons-container {
-      margin-top: $space-xs;
-
       >:last-child {
         margin-top: 150%;
-      }
-
-      button {
-        font-weight: 700;
-        font-size: $font-size-s;
-        padding: $space-xxs;
-        background-color: #C1E94E;
-        border-radius: $space-s;
-        border: 1px solid $color-default;
-        transition: all 350ms ease-out;
-
-        &:hover {
-          border: none;
-          transform: scale(1.03);
-        }
       }
     }
   }

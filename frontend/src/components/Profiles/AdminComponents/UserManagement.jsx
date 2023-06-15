@@ -10,6 +10,7 @@ export default function UserManagement() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [role, setRole] = useState("");
+  const [isExpert, setIsExpert] = useState("");
 
   const handleAddNewUserButton = (
     userFirstName,
@@ -17,7 +18,8 @@ export default function UserManagement() {
     userPhoto,
     userEmail,
     userPassword,
-    userRole
+    userRole,
+    userIsExpert
   ) => {
     axios
       .post(`${import.meta.env.VITE_BACKEND_URL}/users`, {
@@ -27,6 +29,7 @@ export default function UserManagement() {
         email: userEmail,
         password: userPassword,
         role_id: parseInt(userRole, 10),
+        is_expert: parseInt(userIsExpert, 10),
         creation_date: new Date().toJSON().slice(0, 10),
       })
       .catch((err) => console.error(err));
@@ -41,6 +44,7 @@ export default function UserManagement() {
             Nom <br />
             <input
               type="text"
+              id="lastName"
               placeholder="Insérez votre nom"
               name="lastName"
               onChange={(e) => setLastName(e.target.value)}
@@ -50,6 +54,7 @@ export default function UserManagement() {
             Prénom <br />
             <input
               type="text"
+              id="firstName"
               placeholder="Insérez votre prénom"
               onChange={(e) => setFirstName(e.target.value)}
             />
@@ -58,6 +63,7 @@ export default function UserManagement() {
             Email <br />
             <input
               type="email"
+              id="email"
               className="input-email"
               placeholder="Insérez votre email"
               onChange={(e) => setEmail(e.target.value)}
@@ -66,23 +72,30 @@ export default function UserManagement() {
           <label htmlFor="password">
             Mot de passe <br />
             <input
+              id="password"
               type="password"
               placeholder="Insérez votre mot de passe"
               onChange={(e) => setPassword(e.target.value)}
             />
           </label>
-          <label htmlFor="role">
-            Role <br />
-            <select
-              name="role"
-              id="select-role"
-              onChange={(e) => setRole(e.target.value)}
-            >
-              <option value="">Sélectionne votre role</option>
-              <option value="1">Admin</option>
-              <option value="2">Utilisateur</option>
-            </select>
-          </label>
+          <div className="roles-container">
+            <label htmlFor="role">
+              Role <br />
+              <select id="role" onChange={(e) => setRole(e.target.value)}>
+                <option value="">Sélectionne votre role</option>
+                <option value="1">Admin</option>
+                <option value="2">Utilisateur</option>
+              </select>
+            </label>
+            <label htmlFor="role-expert" className="role-expert">
+              Expert <br />
+              <input
+                type="checkbox"
+                id="role-expert"
+                onChange={(e) => setIsExpert(e.target.value)}
+              />
+            </label>
+          </div>
         </div>
       </div>
       <div className="profile-photo-container">
@@ -101,21 +114,24 @@ export default function UserManagement() {
         </label>
       </div>
       <div className="input-buttons-container">
-        <button
-          type="button"
-          onClick={() => {
-            handleAddNewUserButton(
-              firstName,
-              lastName,
-              dropzoneImage[0]?.preview,
-              email,
-              password,
-              role
-            );
-          }}
-        >
-          Ajouter l'utilisateur
-        </button>
+        <div className="add-button-container">
+          <button
+            type="button"
+            onClick={() => {
+              handleAddNewUserButton(
+                firstName,
+                lastName,
+                dropzoneImage[0]?.preview,
+                email,
+                password,
+                role,
+                isExpert
+              );
+            }}
+          >
+            Ajouter l'utilisateur
+          </button>
+        </div>
       </div>
     </div>
   );
