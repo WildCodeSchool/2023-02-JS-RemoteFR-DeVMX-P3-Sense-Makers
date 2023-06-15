@@ -110,7 +110,6 @@ export default function PostDecision() {
               { impactedId: impact.id, decisionId: response.data[0].insertId }
             );
           });
-
           setTimeout(() => {
             navigate(`/decisions/${response.data[0].insertId}`);
           }, 250);
