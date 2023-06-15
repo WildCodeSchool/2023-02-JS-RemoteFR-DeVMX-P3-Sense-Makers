@@ -107,21 +107,23 @@ export default function UserManagement() {
         </label>
       </div>
       <div className="input-buttons-container">
-        <button
-          type="button"
-          onClick={() => {
-            handleAddNewUserButton(
-              firstName,
-              lastName,
-              dropzoneImage[0]?.preview,
-              email,
-              password,
-              role
-            );
-          }}
-        >
-          Ajouter l'utilisateur
-        </button>
+        <div className="add-button-container">
+          <button
+            type="button"
+            onClick={() => {
+              handleAddNewUserButton(
+                firstName,
+                lastName,
+                dropzoneImage[0]?.preview,
+                email,
+                password,
+                role
+              );
+            }}
+          >
+            Ajouter l'utilisateur
+          </button>
+        </div>
       </div>
     </div>
   );

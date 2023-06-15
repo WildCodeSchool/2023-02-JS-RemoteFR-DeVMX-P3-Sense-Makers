@@ -138,18 +138,27 @@
   .input-buttons-container {
     margin-top: $space-xs;
 
-    button {
-      font-weight: 700;
-      font-size: $font-size-s;
-      padding: $space-xxs;
-      background-color: #C1E94E;
-      border-radius: $space-s;
-      border: 1px solid $color-default;
-      transition: transform 350ms ease-out;
+    .add-button-container {
+      display: flex;
+      justify-content: center;
+      align-items: flex-end;
+      width: 10rem;
+      height: 2rem;
 
-      &:hover {
-        border: none;
-        transform: scale(1.01);
+      button {
+        font-weight: 700;
+        font-size: $font-size-s;
+        padding: $space-xxs;
+        background-color: #C1E94E;
+        border-radius: $space-s;
+        border: 1px solid $color-default;
+        cursor: pointer;
+        transition: transform 350ms ease-out;
+
+        &:active {
+          border: none;
+          transform: scale(1.01);
+        }
       }
     }
   }
