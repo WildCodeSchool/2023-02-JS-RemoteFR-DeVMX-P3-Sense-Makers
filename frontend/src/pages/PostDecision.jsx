@@ -1,4 +1,4 @@
-import { useReducer, useState } from "react";
+import { useEffect, useReducer, useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import AsyncSelect from "react-select/async";
@@ -32,10 +32,10 @@ const customStyles = {
 };
 export default function PostDecision() {
   const navigate = useNavigate();
-  // const [users, setUsers] = useState();
+  const [users, setUsers] = useState();
   // const [expertUsers, setExpertUsers] = useState();
   const [impacted, setImpacted] = useState();
-  const [experts, setExperts] = useState();
+  // const [experts, setExperts] = useState();
   const [hub, setHub] = useState("--");
 
   const initialState = {
@@ -52,57 +52,59 @@ export default function PostDecision() {
   };
   const [state, dispatch] = useReducer(reducer, initialState);
 
-  const users = [
-    { id: 1, value: "chocolate", label: "Chocolate" },
-    { id: 2, value: "strawberry", label: "Strawberry" },
-    { id: 3, value: "vanilla", label: "Vanilla" },
-    { id: 4, value: "chocole", label: "Chocole" },
-    { id: 5, value: "strawbey", label: "Strawbey" },
-    { id: 6, value: "vani", label: "Vani" },
-    { id: 7, value: "colate", label: "colate" },
-    { id: 8, value: "strberry", label: "Strberry" },
-    { id: 9, value: "valla", label: "Valla" },
-    { id: 10, value: "chlate", label: "Chlate" },
-    { id: 11, value: "strerry", label: "Strerry" },
-    { id: 12, value: "vania", label: "Vania" },
-  ];
+  // const users = [
+  //   { id: 1, label: "Chocolate" },
+  //   { id: 2, value: "strawberry", label: "Strawberry" },
+  //   { id: 3, value: "vanilla", label: "Vanilla" },
+  //   { id: 4, value: "chocole", label: "Chocole" },
+  //   { id: 5, value: "strawbey", label: "Strawbey" },
+  //   { id: 6, value: "vani", label: "Vani" },
+  //   { id: 7, value: "colate", label: "colate" },
+  //   { id: 8, value: "strberry", label: "Strberry" },
+  //   { id: 9, value: "valla", label: "Valla" },
+  //   { id: 10, value: "chlate", label: "Chlate" },
+  //   { id: 11, value: "strerry", label: "Strerry" },
+  //   { id: 12, value: "vania", label: "Vania" },
+  // ];
   /* import users & experts for select */
 
-  // useEffect(() => {
-  //   axios.get(`${import.meta.env.VITE_BACKEND_URL}/users`).then((response) => {
-  //     setUsers([response]);
-  //   });
-  // .get(`${import.meta.env.VITE_BACKEND_URL}/users/experts`).then((response)=>
-  // setExperts([response]));
-  // }, []);
-
+  useEffect(() => {
+    axios
+      .get(`${import.meta.env.VITE_BACKEND_URL}/users/concat`)
+      .then((response) => {
+        console.info(response.data);
+        setUsers(response.data);
+      });
+    // .get(`${import.meta.env.VITE_BACKEND_URL}/users/experts`).then((response)=>
+    // setExperts([response]));
+  }, []);
   const filterUsers = (inputValue) => {
-    return users.filter((i) =>
-      i.toLowerCase().includes(inputValue.toLowerCase())
+    return users.filter((user) =>
+      user.label.toLowerCase().includes(inputValue.toLowerCase())
     );
   };
-  const filterExperts = (inputValue) => {
-    return users.filter((i) =>
-      i.toLowerCase().includes(inputValue.toLowerCase())
-    );
-  };
+  // const filterExperts = (inputValue) => {
+  //   return expertUsers.filter((expertUser) =>
+  //     expertUser.toLowerCase().includes(inputValue.toLowerCase())
+  //   );
+  // };
   const loadOptionsUsers = (inputValue, callback) => {
     setTimeout(() => {
       callback(filterUsers(inputValue));
-    }, 1000);
+    }, 500);
   };
-  const loadOptionExperts = (inputValue, callback) => {
-    setTimeout(() => {
-      callback(filterExperts(inputValue));
-    }, 1000);
-  };
-  const onChangeExpert = (inputValue) => {
-    setExperts(inputValue);
-  };
+  // const loadOptionExperts = (inputValue, callback) => {
+  //   setTimeout(() => {
+  //     callback(filterExperts(inputValue));
+  //   }, 1000);
+  // };
+  // const onChangeExpert = (inputValue) => {
+  //   setExperts(inputValue);
+  // };
   const onChangeImpacted = (inputValue) => {
     setImpacted(inputValue);
   };
-  console.info(experts);
+  console.info(users);
   console.info(impacted);
 
   /* Post de la décision dans le back */
@@ -111,16 +113,16 @@ export default function PostDecision() {
       .post(`${import.meta.env.VITE_BACKEND_URL}/decisions`, status)
       .then((response) => {
         if (response.status === 201) {
-          experts.map((expert) => {
-            return axios.post(
-              `${import.meta.env.VITE_BACKEND_URL}/decisions/:id/expert`,
-              { expertId: expert.id, decisionId: response.data[0].insertId }
-            );
-          });
+          // experts.map((expert) => {
+          //   return axios.post(
+          //     `${import.meta.env.VITE_BACKEND_URL}/decisions/:id/expert`,
+          //     { expertId: expert.id, decisionId: response.data[0].Id }
+          //   );
+          // });
           impacted.map((impact) => {
             return axios.post(
               `${import.meta.env.VITE_BACKEND_URL}/decisions/:id/impacted`,
-              { impactedId: impact.id, decisionId: response.data[0].insertId }
+              { impactedId: impact.id, decisionId: response.data[0].Id }
             );
           });
           setTimeout(() => {
@@ -187,14 +189,14 @@ export default function PostDecision() {
 
           <label htmlFor="expert_decision">
             Personnes expertes *
-            <AsyncSelect
+            {/* <AsyncSelect
               styles={customStyles}
               cacheOptions
               defaultOptions
               loadOptions={loadOptionExperts}
               isMulti
               onChange={onChangeExpert}
-            />
+            /> */}
           </label>
         </div>
       </div>

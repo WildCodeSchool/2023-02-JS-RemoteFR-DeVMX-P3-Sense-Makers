@@ -11,7 +11,7 @@ class UsersManager extends AbstractManager {
 
   findUsersNameConcat() {
     return this.database.query(
-      `SELECT CONCAT(firstname, ' ',lastname) AS show_name FROM  ${this.table}`
+      `SELECT id, CONCAT(firstname, ' ',lastname) AS label FROM  ${this.table}`
     );
   }
 
