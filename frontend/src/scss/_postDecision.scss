@@ -45,19 +45,6 @@
       box-shadow: 5px 5px 8px #bdbdbd;
     }
 
-    #deadline_decision {
-      align-items: center;
-      width: 30%;
-      height: 2rem;
-      border-radius: 10px;
-      border: 1px #bdbdbd solid;
-      color: #bdbdbd;
-      text-align: center;
-      box-shadow: 5px 5px 8px #bdbdbd;
-      @media screen and (min-width: 1024px) {
-        width: 15vw;
-      }
-    }
     .hub-container {
       display: flex;
       justify-content: space-between;

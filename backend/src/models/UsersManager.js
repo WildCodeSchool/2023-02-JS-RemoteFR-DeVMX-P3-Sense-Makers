@@ -9,6 +9,19 @@ class UsersManager extends AbstractManager {
     return this.database.query(`SELECT * FROM  ${this.table}`);
   }
 
+  findUsersNameConcat() {
+    return this.database.query(
+      `SELECT id, CONCAT(firstname, ' ',lastname) AS label FROM  ${this.table}`
+    );
+  }
+
+  findUsersNameExpertConcat() {
+    return this.database.query(
+      `SELECT id, CONCAT(firstname, ' ',lastname) AS label FROM  ${this.table}
+      WHERE is_expert=1`
+    );
+  }
+
   insert(user) {
     return this.database.query(
       `insert into ${this.table} (firstname, lastname, photo, email, password, role_id, creation_date) values (?, ?, ?, ?, ?, ?, ?)`,

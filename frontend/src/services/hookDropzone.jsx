@@ -15,22 +15,25 @@ export default function Dropzone({ className, setDropzoneImage }) {
       );
     }
   }, []);
-  const { getRootProps, getInputProps } = useDropzone({
+  const { getRootProps, getInputProps, fileRejections } = useDropzone({
     onDrop,
-    accept: { "image/*": [] },
-    maxSize: 1024 * 1000,
-    maxFiles: 1,
+    maxSize: 1048576,
+    accept: { "image/*": [".jpeg"], "image/png": [".png"] },
+    multiple: false,
   });
 
   return (
-    <div
-      {...getRootProps({
-        className,
-      })}
-    >
-      <input {...getInputProps()} />
-      <p className="dropzone-placeholder-text">Drop the image here </p>
-    </div>
+    <>
+      <div
+        {...getRootProps({
+          className,
+        })}
+      >
+        <input {...getInputProps()} />
+        <p className="dropzone-placeholder-text">Drop the image here </p>
+      </div>
+      {fileRejections && <span>{fileRejections[0]?.errors[0].message}</span>}
+    </>
   );
 }
 
