@@ -1,0 +1,75 @@
+@import "./variables.scss";
+
+.decision {
+  padding: 1rem;
+
+  .status-hub {
+    display: flex;
+    gap: 1rem;
+
+    .status {
+      background-color: rgba(32, 136, 167, 0.25);
+      border: 2px solid #2088a7;
+      border-radius: 10px;
+      color: #2088a7;
+      padding: 2px 10px;
+    }
+    .hub {
+      background-color: rgba(193, 11, 99, 0.25);
+      border: 2px solid #c10b63;
+      border-radius: 10px;
+      color: #c10b63;
+      padding: 2px 10px;
+    }
+  }
+  .author {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+  .bold-text {
+    font-weight: bold;
+  }
+
+  h1 {
+    color: $color-default;
+  }
+  h2 {
+    color: $color-default;
+  }
+
+  hr {
+    color: #e0e4eb;
+  }
+
+  .sections {
+    display: flex;
+    align-items: center;
+
+    button {
+      width: 1.5rem;
+      display: flex;
+      justify-content: center;
+      border-radius: 50%;
+      border: none;
+      background: none;
+    }
+    i {
+      transform: rotate(-90deg);
+      font-size: 1.8rem;
+      color: $color-default;
+    }
+  }
+
+  .comment-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 1rem auto;
+    background-color: $color-default;
+    color: $background-color-base;
+    border: none;
+    padding: 0.6rem 2.6rem;
+    border-radius: 5px;
+  }
+}
