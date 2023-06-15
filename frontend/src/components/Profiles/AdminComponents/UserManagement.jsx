@@ -12,6 +12,43 @@ export default function UserManagement() {
   const [role, setRole] = useState("");
   const [isExpert, setIsExpert] = useState("");
 
+  // const [targetValues, setTargetValues] = useState({
+  //   firstName: "",
+  //   lastName: "",
+  //   email: "",
+  //   password: "",
+  //   roleExperts: false,
+  // });
+
+  // const update = (event) => {
+  //   const target = event.currentTarget;
+
+  //   setTargetValues({
+  //     ...targetValues,
+  //     [target.name]: target.type === "checkbox" ? target.checked : target.value,
+  //   });
+  // };
+
+  // const isValidEmail = (mail) => {
+  //   const regex =
+  //     /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+
+  //   return regex.test(String(mail).toLowerCase());
+  // };
+
+  // const validationRules = {
+  //   firstName:
+  //     !!targetValues.firstName && targetValues.firstName.match(/^ *$/ === null),
+  //   lastName:
+  //     !!targetValues.lastName && targetValues.lastName.match(/^ *$/ === null),
+  //   email: isValidEmail(targetValues.email),
+  //   message:
+  //     !!targetValues.message &&
+  //     targetValues.password.length < 8 &&
+  //     targetValues.password.match(/^ *$/) === null,
+  //   roleExperts: targetValues.roleExperts,
+  // };
+
   const handleAddNewUserButton = (
     userFirstName,
     userLastName,
@@ -36,7 +73,7 @@ export default function UserManagement() {
   };
 
   return (
-    <div className="user-management">
+    <form className="user-management">
       <div className="input-container">
         <h2 className="input-title">Ajout d'utilisateur</h2>
         <div className="input-fields">
@@ -64,9 +101,11 @@ export default function UserManagement() {
             <input
               type="email"
               id="email"
+              name="email"
               className="input-email"
               placeholder="Insérez votre email"
               onChange={(e) => setEmail(e.target.value)}
+              required
             />
           </label>
           <label htmlFor="password">
@@ -74,6 +113,7 @@ export default function UserManagement() {
             <input
               id="password"
               type="password"
+              name="password"
               placeholder="Insérez votre mot de passe"
               onChange={(e) => setPassword(e.target.value)}
             />
@@ -81,7 +121,11 @@ export default function UserManagement() {
           <div className="roles-container">
             <label htmlFor="role">
               Role <br />
-              <select id="role" onChange={(e) => setRole(e.target.value)}>
+              <select
+                id="role"
+                name="role"
+                onChange={(e) => setRole(e.target.value)}
+              >
                 <option value="">Sélectionne votre role</option>
                 <option value="1">Admin</option>
                 <option value="2">Utilisateur</option>
@@ -92,6 +136,7 @@ export default function UserManagement() {
               <input
                 type="checkbox"
                 id="role-expert"
+                name="roleExpert"
                 onChange={(e) => setIsExpert(e.target.value)}
               />
             </label>
@@ -133,6 +178,6 @@ export default function UserManagement() {
           </button>
         </div>
       </div>
-    </div>
+    </form>
   );
 }
