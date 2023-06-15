@@ -34,6 +34,8 @@
       align-items: flex-start;
       flex-direction: column;
 
+
+
       >label {
         margin-top: $space-xs;
         font-size: $font-size-s;
@@ -53,12 +55,47 @@
         input[type=email] {
           width: 13rem;
         }
+      }
+    }
 
-        >select {
+    .roles-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-top: $space-xs;
+      font-size: $font-size-s;
+
+      :focus {
+        outline: none;
+        border: 1px solid $border-color-active;
+      }
+
+      select {
+        margin-top: $space-xs;
+        margin-right: $space-m;
+        border-radius: $space-xxs;
+        border: 1px solid $border-color-base;
+        cursor: pointer;
+      }
+
+      .role-expert {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+
+        input[type=checkbox] {
           margin-top: $space-xs;
-          margin-right: $space-m;
-          border-radius: $space-xxs;
+          border: 1px solid $border-color-base;
+          cursor: pointer;
+
+          :checked {
+            color: yellow;
+
+          }
         }
+
+
       }
     }
   }
@@ -89,6 +126,7 @@
           color: $color-default;
           margin: 0;
           padding: $space-xxs;
+          cursor: pointer;
         }
       }
 

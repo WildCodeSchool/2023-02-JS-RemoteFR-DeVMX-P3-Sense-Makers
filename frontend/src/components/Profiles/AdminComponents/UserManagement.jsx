@@ -41,6 +41,7 @@ export default function UserManagement() {
             Nom <br />
             <input
               type="text"
+              id="lastName"
               placeholder="Insérez votre nom"
               name="lastName"
               onChange={(e) => setLastName(e.target.value)}
@@ -50,6 +51,7 @@ export default function UserManagement() {
             Prénom <br />
             <input
               type="text"
+              id="firstName"
               placeholder="Insérez votre prénom"
               onChange={(e) => setFirstName(e.target.value)}
             />
@@ -58,6 +60,7 @@ export default function UserManagement() {
             Email <br />
             <input
               type="email"
+              id="email"
               className="input-email"
               placeholder="Insérez votre email"
               onChange={(e) => setEmail(e.target.value)}
@@ -66,23 +69,26 @@ export default function UserManagement() {
           <label htmlFor="password">
             Mot de passe <br />
             <input
+              id="password"
               type="password"
               placeholder="Insérez votre mot de passe"
               onChange={(e) => setPassword(e.target.value)}
             />
           </label>
-          <label htmlFor="role">
-            Role <br />
-            <select
-              name="role"
-              id="select-role"
-              onChange={(e) => setRole(e.target.value)}
-            >
-              <option value="">Sélectionne votre role</option>
-              <option value="1">Admin</option>
-              <option value="2">Utilisateur</option>
-            </select>
-          </label>
+          <div className="roles-container">
+            <label htmlFor="role">
+              Role <br />
+              <select id="role" onChange={(e) => setRole(e.target.value)}>
+                <option value="">Sélectionne votre role</option>
+                <option value="1">Admin</option>
+                <option value="2">Utilisateur</option>
+              </select>
+            </label>
+            <label htmlFor="role-expert" className="role-expert">
+              Expert <br />
+              <input type="checkbox" id="role-expert" />
+            </label>
+          </div>
         </div>
       </div>
       <div className="profile-photo-container">
