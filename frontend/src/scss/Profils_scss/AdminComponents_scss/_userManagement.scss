@@ -34,8 +34,6 @@
       align-items: flex-start;
       flex-direction: column;
 
-
-
       >label {
         margin-top: $space-xs;
         font-size: $font-size-s;
@@ -91,11 +89,8 @@
 
           :checked {
             color: yellow;
-
           }
         }
-
-
       }
     }
   }
@@ -150,11 +145,11 @@
       background-color: #C1E94E;
       border-radius: $space-s;
       border: 1px solid $color-default;
-      transition: all 350ms ease-out;
+      transition: transform 350ms ease-out;
 
       &:hover {
         border: none;
-        transform: scale(1.03);
+        transform: scale(1.01);
       }
     }
   }
@@ -173,33 +168,16 @@
         }
 
         img {
-          margin-top: $space-xxl;
-          width: 100px;
+          margin-top: $space-l;
+          width: 125px;
           aspect-ratio: 1 /1;
         }
       }
     }
 
     .input-buttons-container {
-      margin-top: $space-xs;
-
       >:last-child {
         margin-top: 150%;
-      }
-
-      button {
-        font-weight: 700;
-        font-size: $font-size-s;
-        padding: $space-xxs;
-        background-color: #C1E94E;
-        border-radius: $space-s;
-        border: 1px solid $color-default;
-        transition: all 350ms ease-out;
-
-        &:hover {
-          border: none;
-          transform: scale(1.03);
-        }
       }
     }
   }
