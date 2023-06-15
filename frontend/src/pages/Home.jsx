@@ -44,7 +44,7 @@ export default function Home() {
             <button type="button" onClick={() => ShowCurrentStatus(statut)}>
               <i className="fa-sharp fa-solid fa-caret-down" />
             </button>
-            <h1>{statut.title}</h1>
+            <h2>{statut.title}</h2>
           </div>
           <hr />
           {showDecisions && statut.id === currentStatus && (
