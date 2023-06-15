@@ -24,7 +24,7 @@ class UsersManager extends AbstractManager {
 
   insert(user) {
     return this.database.query(
-      `insert into ${this.table} (firstname, lastname, photo, email, password, role_id, creation_date) values (?, ?, ?, ?, ?, ?, ?)`,
+      `insert into ${this.table} (firstname, lastname, photo, email, password, role_id, is_expert, creation_date) values (?, ?, ?, ?, ?, ?, ?, ?)`,
       [
         user.firstname,
         user.lastname,
@@ -32,6 +32,7 @@ class UsersManager extends AbstractManager {
         user.email,
         user.password,
         user.role_id,
+        user.is_expert,
         user.creation_date,
       ]
     );
@@ -55,10 +56,11 @@ class UsersManager extends AbstractManager {
 
   findAllDecisionsByUserId(id) {
     return this.database.query(
-      `SELECT d.id d_id, d.title AS title_decision, d.status_id, d.concerned_hub, u.firstname, u.lastname, u.photo, u.id u_id, s.title title_status FROM decisions d
-      LEFT JOIN users_decisions ON users_decisions.decision_id = d.id
+      `SELECT d.id d_id, d.title AS title_decision, d.status_id, c.title, u.firstname, u.lastname, u.photo, u.id u_id, s.title title_status FROM decisions d
+      JOIN users_decisions ON users_decisions.decision_id = d.id
       JOIN users u ON u.id = users_decisions.user_id
       JOIN status s ON s.id = d.status_id
+      JOIN concernedhub c ON c.id = d.concerned_hub_id
       WHERE u.id = ?`,
       [id]
     );
