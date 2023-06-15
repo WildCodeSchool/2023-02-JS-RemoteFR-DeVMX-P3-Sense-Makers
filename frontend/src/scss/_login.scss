@@ -50,12 +50,18 @@ p {
     font-weight: $primary-font-weight;
 }
 
+:hover {
+    color:#196C84;
+    background-color: $background-color-base; 
+}
+
 button {
 
     background-color: #196C84;
     color:$background-color-base;
     border-radius: $border-radius-m;
     padding: 0 10%;
+
 
     h2 {
         font-size: $font-size-s;
@@ -64,4 +70,6 @@ button {
         font-weight: $primary-font-weight;
     }
 }
+
+
 }
