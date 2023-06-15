@@ -24,6 +24,17 @@ const BrowseConcatUsers = (req, res) => {
     });
 };
 
+const BrowseConcatExperts = (req, res) => {
+  models.users
+    .findUsersNameExpertConcat()
+    .then(([rows]) => {
+      res.send(rows);
+    })
+    .catch((err) => {
+      console.error(err);
+      res.sendStatus(500);
+    });
+};
 const browseAllDecisionsByUser = (req, res) => {
   models.users
     .findAllDecisionsByUserId(req.params.id)
@@ -114,4 +125,5 @@ module.exports = {
   addUser,
   destroyUser,
   BrowseConcatUsers,
+  BrowseConcatExperts,
 };

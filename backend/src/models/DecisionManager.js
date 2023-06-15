@@ -7,15 +7,15 @@ class DecisionManager extends AbstractManager {
 
   insert(decision) {
     return this.database.query(
-      `insert into ${this.table} (title, content, usefulness,context, benefit,disavantages,concerned_hub,deadline,positives_votes, negatives_votes, status_id) values (?,?,?,?,?,?,?,?,?,?,?)`,
+      `insert into ${this.table} (title, content, usefulness,context, benefit,disadvantages,concerned_hub,deadline,positives_votes, negatives_votes, status_id) values (?,?,?,?,?,?,?,?,?,?,?)`,
       [
         decision.title,
         decision.content,
         decision.usefulness,
         decision.context,
         decision.benefit,
-        decision.disavantages,
-        decision.concerned_hub,
+        decision.disadvantages,
+        decision.concerned_hub_id,
         decision.deadline,
         decision.positives_votes,
         decision.negatives_votes,
@@ -26,14 +26,14 @@ class DecisionManager extends AbstractManager {
 
   update(decision) {
     return this.database.query(
-      `update ${this.table} set title = ?, content = ?, usefulness = ?,context = ?, benefit = ?,disavantages = ?,positives_votes = ?, negatives_votes = ?, status_id = ? where id = ?`,
+      `update ${this.table} set title = ?, content = ?, usefulness = ?,context = ?, benefit = ?,disadvantages = ?,positives_votes = ?, negatives_votes = ?, status_id = ? where id = ?`,
       [
         decision.title,
         decision.content,
         decision.usefulness,
         decision.context,
         decision.benefit,
-        decision.disavantages,
+        decision.disadvantages,
         decision.positives_votes,
         decision.negatives_votes,
         decision.status_id,
@@ -44,19 +44,21 @@ class DecisionManager extends AbstractManager {
 
   findAllDecisionsWithStatusAndNameOfCreatorForCard() {
     return this.database.query(
-      `SELECT d.id, d.title AS title_decision, d.status_id, d.concerned_hub, s.title AS title_status, u.firstname, u.lastname, u.photo  FROM ${this.table} d
+      `SELECT d.id, d.title AS title_decision, d.status_id, c.title, s.title AS title_status, u.firstname, u.lastname, u.photo  FROM ${this.table} d
      JOIN status s ON s.id = d.status_id
-     LEFT JOIN users_decisions ON users_decisions.decision_id = d.id
-     LEFT JOIN users u ON users_decisions.user_id = u.id`
+     INNER JOIN users_decisions ON users_decisions.decision_id = d.id
+     INNER JOIN users u ON users_decisions.user_id = u.id
+     INNER JOIN concernedhub c ON c.id=d.concerned_hub_id`
     );
   }
 
   findDecisionWithStatusById(id) {
     return this.database.query(
-      `SELECT d.title AS title_decision, s.title AS title_status, d.content, d.context, d.usefulness, d.benefit, d.disavantages, d.concerned_hub, d.initial_date, d.deadline, u.firstname, u.lastname, u.photo FROM ${this.table} d
+      `SELECT d.title AS title_decision, s.title AS title_status, d.content, d.context, d.usefulness, d.benefit, d.disadvantages, c.title, d.initial_date, d.deadline, u.firstname, u.lastname, u.photo FROM ${this.table} d
       INNER JOIN status s ON s.id = d.status_id
       INNER JOIN users_decisions ud ON d.id = ud.decision_id
       INNER JOIN users u ON ud.user_id = u.id 
+      INNER JOIN concernedhub c ON c.id=d.concerned_hub_id
       where d.id = ?`,
       [id]
     );
@@ -92,6 +94,10 @@ class DecisionManager extends AbstractManager {
       `INSERT INTO tagged_as_experts (user_id,decision_id)  VALUES (?,?)`,
       [expertId, decisionId]
     );
+  }
+
+  findConcernedHub() {
+    return this.database.query(`SELECT * FROM concernedhub c`);
   }
 }
 
