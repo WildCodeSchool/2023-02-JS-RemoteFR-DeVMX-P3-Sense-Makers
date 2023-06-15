@@ -7,7 +7,7 @@ export default function CardDecision({ decision }) {
     <Link className="card-decision-container" to={`/decisions/${decision.id}`}>
       <div className="status-container">
         <p>{decision.title_status}</p>
-        <p>{decision.concerned_hub}</p>
+        <p>{decision.title}</p>
       </div>
       <h1>{decision.title_decision}</h1>
       <div className="card-creator-container">
