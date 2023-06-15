@@ -3,20 +3,6 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import AsyncSelect from "react-select/async";
 
-const initialState = {
-  title: "",
-  content: "",
-  usefulness: "",
-  context: "",
-  benefit: "",
-  disavantages: "",
-  concerned_hub: "--",
-  deadline: "",
-  positives_votes: 0,
-  negatives_votes: 0,
-  status_id: 1,
-};
-
 function reducer(state, action) {
   switch (action.type) {
     case "update_input":
@@ -45,11 +31,26 @@ const customStyles = {
   }),
 };
 export default function PostDecision() {
-  const [state, dispatch] = useReducer(reducer, initialState);
   const navigate = useNavigate();
   // const [users, setUsers] = useState();
+  // const [expertUsers, setExpertUsers] = useState();
   const [impacted, setImpacted] = useState();
   const [experts, setExperts] = useState();
+  const [hub, setHub] = useState("--");
+
+  const initialState = {
+    title: "",
+    content: "",
+    usefulness: "",
+    context: "",
+    benefit: "",
+    disavantages: "",
+    concerned_hub: `${hub}`,
+    positives_votes: 0,
+    negatives_votes: 0,
+    status_id: 1,
+  };
+  const [state, dispatch] = useReducer(reducer, initialState);
 
   const users = [
     { id: 1, value: "chocolate", label: "Chocolate" },
@@ -65,34 +66,46 @@ export default function PostDecision() {
     { id: 11, value: "strerry", label: "Strerry" },
     { id: 12, value: "vania", label: "Vania" },
   ];
+  /* import users & experts for select */
 
   // useEffect(() => {
   //   axios.get(`${import.meta.env.VITE_BACKEND_URL}/users`).then((response) => {
   //     setUsers([response]);
   //   });
+  // .get(`${import.meta.env.VITE_BACKEND_URL}/users/experts`).then((response)=>
+  // setExperts([response]));
   // }, []);
 
   const filterUsers = (inputValue) => {
     return users.filter((i) =>
-      i.label.toLowerCase().includes(inputValue.toLowerCase())
+      i.toLowerCase().includes(inputValue.toLowerCase())
     );
   };
-
-  const loadOptions = (inputValue, callback) => {
+  const filterExperts = (inputValue) => {
+    return users.filter((i) =>
+      i.toLowerCase().includes(inputValue.toLowerCase())
+    );
+  };
+  const loadOptionsUsers = (inputValue, callback) => {
     setTimeout(() => {
       callback(filterUsers(inputValue));
     }, 1000);
   };
-
+  const loadOptionExperts = (inputValue, callback) => {
+    setTimeout(() => {
+      callback(filterExperts(inputValue));
+    }, 1000);
+  };
   const onChangeExpert = (inputValue) => {
     setExperts(inputValue);
   };
-  console.info(experts);
   const onChangeImpacted = (inputValue) => {
     setImpacted(inputValue);
   };
+  console.info(experts);
   console.info(impacted);
 
+  /* Post de la décision dans le back */
   function DecisionPosted(status) {
     axios
       .post(`${import.meta.env.VITE_BACKEND_URL}/decisions`, status)
@@ -142,22 +155,6 @@ export default function PostDecision() {
           />
         </label>
 
-        <label htmlFor="deadline_decision">
-          Deadline *
-          <input
-            type="date"
-            id="deadline_decision"
-            value={state.deadline}
-            onChange={(e) => {
-              dispatch({
-                type: "update_input",
-                value: e.target.value,
-                key: "deadline",
-              });
-            }}
-          />
-        </label>
-
         <div className="hub-container">
           <label htmlFor="hub_decision">
             Pôle concerné *
@@ -165,11 +162,7 @@ export default function PostDecision() {
               id="hub_decision"
               value={state.concerned_hub}
               onChange={(e) => {
-                dispatch({
-                  type: "update_input",
-                  value: e.target.value,
-                  key: "concerned_hub",
-                });
+                setHub(e.target.value);
               }}
             >
               <option value="--">--</option>
@@ -186,7 +179,7 @@ export default function PostDecision() {
               styles={customStyles}
               cacheOptions
               defaultOptions
-              loadOptions={loadOptions}
+              loadOptions={loadOptionsUsers}
               isMulti
               onChange={onChangeImpacted}
             />
@@ -198,7 +191,7 @@ export default function PostDecision() {
               styles={customStyles}
               cacheOptions
               defaultOptions
-              loadOptions={loadOptions}
+              loadOptions={loadOptionExperts}
               isMulti
               onChange={onChangeExpert}
             />
