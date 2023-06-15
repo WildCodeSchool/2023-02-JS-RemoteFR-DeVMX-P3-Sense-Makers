@@ -5,7 +5,7 @@ import CardDecision from "../components/CardDecision";
 export default function Home() {
   const [allDecisions, setAllDecision] = useState([]);
   const [allStatus, setAllStatus] = useState([]);
-  const [currentStatus, setCurrentStatus] = useState("");
+  const [currentStatus, setCurrentStatus] = useState();
 
   const [showDecisions, setShowDecisions] = useState(false);
 
