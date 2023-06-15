@@ -5,7 +5,7 @@ import CardDecision from "../components/CardDecision";
 export default function Home() {
   const [allDecisions, setAllDecision] = useState([]);
   const [allStatus, setAllStatus] = useState([]);
-  const [currentStatus, setCurrentStatus] = useState();
+  const [currentStatus, setCurrentStatus] = useState("");
 
   const [showDecisions, setShowDecisions] = useState(false);
 
@@ -44,7 +44,7 @@ export default function Home() {
             <button type="button" onClick={() => ShowCurrentStatus(statut)}>
               <i className="fa-sharp fa-solid fa-caret-down" />
             </button>
-            <h2>{statut.title}</h2>
+            <h1>{statut.title}</h1>
           </div>
           <hr />
           {showDecisions && statut.id === currentStatus && (
