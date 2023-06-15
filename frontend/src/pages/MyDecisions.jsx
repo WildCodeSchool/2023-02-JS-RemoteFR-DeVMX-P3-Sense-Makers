@@ -1,10 +1,11 @@
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import CardDecision from "../components/CardDecision";
 
 export default function MyDecisions() {
   const navigate = useNavigate();
+  const { id } = useParams();
 
   const [allDecisions, setAllDecision] = useState([]);
   const [allStatus, setAllStatus] = useState([]);
@@ -14,7 +15,7 @@ export default function MyDecisions() {
 
   useEffect(() => {
     axios
-      .get(`${import.meta.env.VITE_BACKEND_URL}/decisions`)
+      .get(`${import.meta.env.VITE_BACKEND_URL}/users/${id}/decisions`)
       .then((res) => setAllDecision(res.data))
       .catch((err) => {
         console.error(err);
@@ -61,7 +62,7 @@ export default function MyDecisions() {
               {allDecisions
                 .filter((decision) => decision.title_status === statut.title)
                 .map((decision) => (
-                  <CardDecision key={decision.id} decision={decision} />
+                  <CardDecision key={decision.d_id} decision={decision} />
                 ))}
             </div>
           )}
