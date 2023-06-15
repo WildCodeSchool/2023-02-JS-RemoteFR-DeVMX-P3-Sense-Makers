@@ -34,9 +34,10 @@ export default function PostDecision() {
   const navigate = useNavigate();
   const [users, setUsers] = useState();
   const [expertUsers, setExpertUsers] = useState();
-  const [impacted, setImpacted] = useState();
-  const [experts, setExperts] = useState();
-  const [hub, setHub] = useState("--");
+  const [impacted, setImpacted] = useState([]);
+  const [experts, setExperts] = useState([]);
+  const [hub, setHub] = useState([]);
+  const [selectedHub, setSelectedHub] = useState();
 
   const initialState = {
     title: "",
@@ -45,7 +46,7 @@ export default function PostDecision() {
     context: "",
     benefit: "",
     disadvantages: "",
-    concerned_hub_id: `${hub.id}`,
+    concerned_hub_id: "",
     positives_votes: 0,
     negatives_votes: 0,
     status_id: 1,
@@ -58,7 +59,6 @@ export default function PostDecision() {
     axios
       .get(`${import.meta.env.VITE_BACKEND_URL}/users/concat`)
       .then((response) => {
-        console.info(response.data);
         setUsers(response.data);
       });
   }, []);
@@ -66,26 +66,19 @@ export default function PostDecision() {
     axios
       .get(`${import.meta.env.VITE_BACKEND_URL}/users/experts`)
       .then((response) => {
-        console.info(response.data);
-        setExpertUsers([response]);
+        setExpertUsers(response.data);
       });
   }, []);
-  // useEffect(() => {
-  //   axios
-  //     .get(`${import.meta.env.VITE_BACKEND_URL}/`)
-  //     .then((response) => {
-  //       console.info(response.data);
-  //       setExpertUsers([response]);
-  //     });
-  // }, []);
+  useEffect(() => {
+    axios
+      .get(`${import.meta.env.VITE_BACKEND_URL}/concernedhub`)
+      .then((response) => {
+        setHub(response.data);
+      });
+  }, []);
   const filterUsers = (inputValue) => {
     return users.filter((user) =>
       user.label.toLowerCase().includes(inputValue.toLowerCase())
-    );
-  };
-  const filterExperts = (inputValue) => {
-    return expertUsers.filter((expertUser) =>
-      expertUser.label.toLowerCase().includes(inputValue.toLowerCase())
     );
   };
   const loadOptionsUsers = (inputValue, callback) => {
@@ -93,19 +86,28 @@ export default function PostDecision() {
       callback(filterUsers(inputValue));
     }, 500);
   };
+  const filterExperts = (inputValue) => {
+    return expertUsers.filter((expertUser) =>
+      expertUser.label.toLowerCase().includes(inputValue.toLowerCase())
+    );
+  };
   const loadOptionExperts = (inputValue, callback) => {
     setTimeout(() => {
       callback(filterExperts(inputValue));
-    }, 1000);
+    }, 500);
   };
+
   const onChangeExpert = (inputValue) => {
     setExperts(inputValue);
   };
+
   const onChangeImpacted = (inputValue) => {
     setImpacted(inputValue);
   };
-  console.info(hub);
-
+  console.info("user :", users);
+  console.info("expert :", expertUsers);
+  console.info("taggeuser :", impacted);
+  console.info("taggeExpert", experts);
   /* Post de la décision dans le back */
   function DecisionPosted(status) {
     axios
@@ -161,18 +163,23 @@ export default function PostDecision() {
             Pôle concerné *
             <select
               id="hub_decision"
-              value={state.concerned_hub_id}
+              value={selectedHub}
+              defaultValue="--"
               onChange={(e) => {
-                setHub(e.target.value);
+                setSelectedHub(e.target.value);
               }}
             >
               <option value="--">--</option>
               {hub.map((hu) => {
-                return <option value={hu.title}>{hu.title}</option>;
+                return (
+                  <option key={hu.id} value={hu.title}>
+                    {hu.title}
+                  </option>
+                );
               })}
             </select>
           </label>
-          <div className="hub-select">{state.concerned_hub}</div>
+          {selectedHub && <div className="hub-select">{selectedHub}</div>}
         </div>
 
         <div className="impacted-people">
@@ -181,7 +188,7 @@ export default function PostDecision() {
             <AsyncSelect
               styles={customStyles}
               cacheOptions
-              defaultOptions
+              defaultOptions={users}
               loadOptions={loadOptionsUsers}
               isMulti
               onChange={onChangeImpacted}
@@ -193,7 +200,7 @@ export default function PostDecision() {
             <AsyncSelect
               styles={customStyles}
               cacheOptions
-              defaultOptions
+              defaultOptions={expertUsers}
               loadOptions={loadOptionExperts}
               isMulti
               onChange={onChangeExpert}
