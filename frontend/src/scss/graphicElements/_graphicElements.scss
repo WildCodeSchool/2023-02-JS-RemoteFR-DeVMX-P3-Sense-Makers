@@ -1,0 +1,128 @@
+@import "../variables.scss";
+
+.bottom-left-deco {
+  transform: rotate(30deg);
+  position: absolute;
+  left: 2rem;
+
+  .rectangle1 {
+    position: absolute;
+    width: 300px;
+    height: 200px;
+    clip-path: polygon(0 0, 10% 0, 10% 100%, 0% 100%);
+    background: $light-yellow;
+  }
+
+  .circle1 {
+    position: absolute;
+    margin: auto;
+    top: -1rem;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background: $light-yellow;
+  }
+
+  .rectangle2 {
+    position: absolute;
+    bottom: -16rem;
+    left: 2.5rem;
+    width: 300px;
+    height: 200px;
+    clip-path: polygon(0 0, 10% 0, 10% 100%, 0% 100%);
+    background: $color-primary;
+  }
+
+  .circle2 {
+    position: absolute;
+    margin: auto;
+    left: 40px;
+    top: 40px;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background: $color-primary;
+  }
+
+  .rectangle3 {
+    position: absolute;
+    left: 5rem;
+    width: 300px;
+    height: 200px;
+    clip-path: polygon(0 0, 10% 0, 10% 100%, 0% 100%);
+    background: $fluo-yellow;
+  }
+
+  .circle3 {
+    position: absolute;
+    margin: auto;
+    top: -1rem;
+    left: 5rem;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background: $fluo-yellow;
+  }
+
+  .rectangle4 {
+    position: absolute;
+    left: 7.5rem;
+    bottom: -16rem;
+    width: 300px;
+    height: 200px;
+    clip-path: polygon(0 0, 10% 0, 10% 100%, 0% 100%);
+    background: $sage-green;
+  }
+
+  .circle4 {
+    position: absolute;
+    margin: auto;
+    left: 120px;
+    top: 40px;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background: $sage-green;
+  }
+
+  .rectangle5 {
+    position: absolute;
+    left: 10rem;
+    width: 300px;
+    height: 200px;
+    clip-path: polygon(0 0, 10% 0, 10% 100%, 0% 100%);
+    background: $fluo-green;
+  }
+
+  .circle5 {
+    position: absolute;
+    margin: auto;
+    top: -1rem;
+    left: 10rem;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background: $fluo-green;
+  }
+
+  .rectangle6 {
+    position: absolute;
+    left: 12.5rem;
+    bottom: -16rem;
+    width: 300px;
+    height: 200px;
+    clip-path: polygon(0 0, 10% 0, 10% 100%, 0% 100%);
+    background: $color-peach;
+  }
+
+  .circle6 {
+    position: absolute;
+    margin: auto;
+    left: 200px;
+    top: 40px;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background: $color-peach;
+  }
+}
