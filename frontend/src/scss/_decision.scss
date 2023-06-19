@@ -2,6 +2,7 @@
 
 .decision {
   padding: 1rem;
+  color: $color-default;
 
   .status-hub {
     display: flex;
@@ -31,15 +32,12 @@
     font-weight: bold;
   }
 
-  h1 {
-    color: $color-default;
-  }
-  h2 {
-    color: $color-default;
-  }
-
   hr {
     color: #e0e4eb;
+  }
+
+  .opened-section {
+    color: #9b084f;
   }
 
   .sections {
@@ -61,6 +59,10 @@
     }
   }
 
+  .sections-content {
+    margin-left: 2rem;
+  }
+
   .comment-button {
     display: flex;
     justify-content: center;
@@ -71,5 +73,29 @@
     border: none;
     padding: 0.6rem 2.6rem;
     border-radius: 5px;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .decision {
+    display: flex;
+    flex-direction: row;
+
+    .main-content {
+      flex: 8 1 auto;
+    }
+    .side-content {
+      flex: 1 1 auto;
+      border-left: 2px solid #e0e4eb;
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+    }
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .decision {
+    padding-left: 10%;
   }
 }
