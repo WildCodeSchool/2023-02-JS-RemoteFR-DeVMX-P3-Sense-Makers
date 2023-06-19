@@ -1,12 +1,10 @@
 const express = require("express");
-const fs = require("fs");
 const multer = require("multer");
 
 const router = express.Router();
-
 const upload = multer({ dest: "./public/uploads/" });
-const { v4: uuidv4 } = require("uuid");
 
+const uploadFile = require("./services/uploadFile");
 const commentsControllers = require("./controllers/commentsControllers");
 const decisionControllers = require("./controllers/decisionControllers");
 const statusControllers = require("./controllers/statusControllers");
@@ -53,19 +51,6 @@ router.post("/users", usersControllers.addUser);
 router.put("/users/:id", usersControllers.editUser);
 router.delete("/users/:id", usersControllers.destroyUser);
 
-router.post("/uploads", upload.single("photo"), (req, res) => {
-  const { originalname } = req.file;
-
-  const { filename } = req.file;
-
-  fs.rename(
-    `./public/uploads/${filename}`,
-    `./public/uploads/${uuidv4()}-${originalname}`,
-    (err) => {
-      if (err) throw err;
-      res.send("File uploaded");
-    }
-  );
-});
+router.post("/uploads", upload.single("photo"), uploadFile.postFile);
 
 module.exports = router;
