@@ -1,6 +1,7 @@
 import { useEffect, useReducer, useState } from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom";
+import placeHolderPhoto from "../assets/Alaric.jpg";
 
 export default function Decision() {
   const [decision, setDecison] = useState([]);
@@ -93,7 +94,7 @@ export default function Decision() {
         <h1>{decision.title_decision}</h1>
         <div className="author">
           <img
-            src={decision.photo}
+            src={placeHolderPhoto}
             alt={`${decision.firstname} ${decision.lastname}`}
           />
           <p>
@@ -104,7 +105,11 @@ export default function Decision() {
           </p>
         </div>
         <div className="sections">
-          <button type="button" onClick={() => dispatch({ type: "details" })}>
+          <button
+            type="button"
+            onClick={() => dispatch({ type: "details" })}
+            className={showCategories.details && "section-arrow"}
+          >
             <i className="fa-sharp fa-solid fa-caret-down" />
           </button>
           <h2 className={showCategories.details && "opened-section"}>
@@ -112,14 +117,22 @@ export default function Decision() {
           </h2>
         </div>
         <hr />
-        {showCategories.details && (
-          <div className="sections-content">
-            <p>{decision.context}</p>
-            <p>{decision.content}</p>
-          </div>
-        )}
+
+        <div
+          className={`sections-content ${showCategories.details && "visible"}`}
+        >
+          <p>
+            <span className="bold-text">Context:</span> {decision.context}
+          </p>
+          <p>{decision.content}</p>
+        </div>
+
         <div className="sections">
-          <button type="button" onClick={() => dispatch({ type: "impact" })}>
+          <button
+            type="button"
+            onClick={() => dispatch({ type: "impact" })}
+            className={showCategories.impact && "section-arrow"}
+          >
             <i className="fa-sharp fa-solid fa-caret-down" />
           </button>
           <h2 className={showCategories.impact && "opened-section"}>
@@ -127,11 +140,19 @@ export default function Decision() {
           </h2>
         </div>
         <hr />
-        {showCategories.impact && (
-          <div className="sections-content">{decision.usefulness}</div>
-        )}
+
+        <div
+          className={`sections-content ${showCategories.impact && "visible"}`}
+        >
+          {decision.usefulness}
+        </div>
+
         <div className="sections">
-          <button type="button" onClick={() => dispatch({ type: "benefits" })}>
+          <button
+            type="button"
+            onClick={() => dispatch({ type: "benefits" })}
+            className={showCategories.benefits && "section-arrow"}
+          >
             <i className="fa-sharp fa-solid fa-caret-down" />
           </button>
           <h2 className={showCategories.benefits && "opened-section"}>
@@ -139,13 +160,18 @@ export default function Decision() {
           </h2>
         </div>
         <hr />
-        {showCategories.benefits && (
-          <div className="sections-content">{decision.benefit}</div>
-        )}
+
+        <div
+          className={`sections-content ${showCategories.benefits && "visible"}`}
+        >
+          {decision.benefit}
+        </div>
+
         <div className="sections">
           <button
             type="button"
             onClick={() => dispatch({ type: "disadvantages" })}
+            className={showCategories.disadvantages && "section-arrow"}
           >
             <i className="fa-sharp fa-solid fa-caret-down" />
           </button>
@@ -154,70 +180,84 @@ export default function Decision() {
           </h2>
         </div>
         <hr />
-        {showCategories.disadvantages && (
-          <div className="sections-content">{decision.disavantages}</div>
-        )}
+
+        <div
+          className={`sections-content ${
+            showCategories.disadvantages && "visible"
+          }`}
+        >
+          {decision.disavantages}
+        </div>
+
         <div className="sections">
-          <button type="button" onClick={() => dispatch({ type: "comments" })}>
+          <button
+            type="button"
+            onClick={() => dispatch({ type: "comments" })}
+            className={showCategories.comments && "section-arrow"}
+          >
             <i className="fa-sharp fa-solid fa-caret-down" />
           </button>
           <h2 className={showCategories.comments && "opened-section"}>Avis</h2>
         </div>
         <hr />
-        {showCategories.comments && (
-          <div className="comments sections-content">
-            {comments.map((comment) => (
-              <div key={comment.id}>
-                <div>
-                  {" "}
-                  <img
-                    src={comment.photo}
-                    alt={`${comment.firstname} ${comment.lastname}`}
-                  />{" "}
-                  <div className="bold-text">
-                    {comment.firstname} {comment.lastname}{" "}
-                    {experts.some((expert) => expert.id === comment.user_id) ? (
-                      <p>expert</p>
-                    ) : (
-                      impactedUsers.some(
-                        (impactedUser) => impactedUser.id === comment.user_id
-                      ) && <p>impacté par la décision</p>
-                    )}{" "}
-                  </div>
+
+        <div
+          className={`sections-content ${showCategories.comments && "visible"}`}
+        >
+          {comments.map((comment) => (
+            <div key={comment.id} className="comment">
+              <div>
+                {" "}
+                <img
+                  src={comment.photo}
+                  alt={`${comment.firstname} ${comment.lastname}`}
+                />{" "}
+                <div className="bold-text">
+                  {comment.firstname} {comment.lastname}{" "}
+                  {experts.some((expert) => expert.id === comment.user_id) ? (
+                    <p>expert</p>
+                  ) : (
+                    impactedUsers.some(
+                      (impactedUser) => impactedUser.id === comment.user_id
+                    ) && <p>impacté par la décision</p>
+                  )}{" "}
                 </div>
-                {comment.comment}
               </div>
-            ))}
-          </div>
-        )}
+              <p>{comment.comment}</p>
+            </div>
+          ))}
+        </div>
+
         <button type="button" className="comment-button">
           Donner mon avis
         </button>
       </div>
       <div className="side-content">
-        <div>
+        <div className="side-text">
           <h2>Dates à retenir</h2>
           <div> timeline</div>
           <h2>Personnes impactées</h2>
-          {impactedUsers.map((impactedUser) => (
-            <div key={impactedUser.id}>
+          <div className="tagged" data-count={impactedUsers.length}>
+            {impactedUsers.map((impactedUser) => (
               <img
-                src={impactedUser.photo}
+                key={impactedUser.id}
+                src={placeHolderPhoto}
                 alt={`${impactedUser.firstname} ${impactedUser.lastname}`}
-              />{" "}
-              {impactedUser.firstname} {impactedUser.lastname}{" "}
-            </div>
-          ))}
+                title={`${impactedUser.firstname} ${impactedUser.lastname}`}
+              />
+            ))}
+          </div>
           <h2>Personnes expertes</h2>
-          {experts.map((expert) => (
-            <div key={expert.id}>
+          <div className="tagged">
+            {experts.map((expert) => (
               <img
-                src={expert.photo}
+                key={expert.id}
+                src={placeHolderPhoto}
                 alt={`${expert.firstname} ${expert.lastname}`}
-              />{" "}
-              {expert.photo} {expert.firstname} {expert.lastname}{" "}
-            </div>
-          ))}
+                title={`${expert.firstname} ${expert.lastname}`}
+              />
+            ))}
+          </div>
         </div>
         <button type="button" className="comment-button">
           Donner mon avis

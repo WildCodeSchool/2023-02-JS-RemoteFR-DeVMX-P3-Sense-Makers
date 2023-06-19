@@ -4,6 +4,11 @@
   padding: 1rem;
   color: $color-default;
 
+  img {
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+  }
   .status-hub {
     display: flex;
     gap: 1rem;
@@ -45,12 +50,14 @@
     align-items: center;
 
     button {
+      cursor: pointer;
       width: 1.5rem;
       display: flex;
       justify-content: center;
       border-radius: 50%;
       border: none;
       background: none;
+      transition: all 0.5s;
     }
     i {
       transform: rotate(-90deg);
@@ -59,11 +66,28 @@
     }
   }
 
+  .section-arrow {
+    transform: rotate(90deg);
+    transition: all 0.5s;
+  }
+
   .sections-content {
-    margin-left: 2rem;
+    margin: auto 2rem;
+    // visibility: hidden;
+    opacity: 0;
+    max-height: 0;
+    transition: all 0.5s linear;
+  }
+
+  .visible {
+    opacity: 1;
+    max-height: 200rem;
+    // visibility: visible;
+    transition: all 0.5s linear;
   }
 
   .comment-button {
+    cursor: pointer;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -73,6 +97,27 @@
     border: none;
     padding: 0.6rem 2.6rem;
     border-radius: 5px;
+  }
+
+  .comments {
+    .comment {
+      margin-top: 1rem;
+      div {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        p {
+          margin: 0;
+        }
+      }
+    }
+  }
+
+  .side-content {
+    .tagged {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+    }
   }
 }
 
@@ -85,11 +130,13 @@
       flex: 8 1 auto;
     }
     .side-content {
-      flex: 1 1 auto;
+      flex: 0 0 25vw;
       border-left: 2px solid #e0e4eb;
       display: flex;
       align-items: center;
       flex-direction: column;
+
+      padding-left: 1rem;
     }
   }
 }
@@ -97,5 +144,12 @@
 @media screen and (min-width: 1024px) {
   .decision {
     padding-left: 10%;
+
+    .side-content {
+      flex: 0 0 20vw;
+      .side-text {
+        margin-left: 2rem;
+      }
+    }
   }
 }
