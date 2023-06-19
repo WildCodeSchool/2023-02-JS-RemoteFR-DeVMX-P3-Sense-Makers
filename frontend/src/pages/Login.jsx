@@ -1,4 +1,4 @@
-// import GraphicElements from "@components/graphicElements/GraphicElements";
+import GraphicElements from "../components/graphicElements/GraphicElements";
 
 export default function Login() {
   return (
@@ -31,7 +31,7 @@ export default function Login() {
           </div>
         </form>
       </div>
-      {/* <GraphicElements /> */}
+      <GraphicElements />
       {/* <div className="bottom-left-deco">
         <div className="rectangle1" />
         <div className="circle1" />

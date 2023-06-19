@@ -3,7 +3,8 @@
 .bottom-left-deco {
   transform: rotate(30deg);
   position: absolute;
-  left: 2rem;
+  left: 1rem;
+  top: 75%;
 
   .rectangle1 {
     position: absolute;
@@ -25,7 +26,7 @@
 
   .rectangle2 {
     position: absolute;
-    bottom: -16rem;
+    bottom: -15rem;
     left: 2.5rem;
     width: 300px;
     height: 200px;
@@ -37,7 +38,7 @@
     position: absolute;
     margin: auto;
     left: 40px;
-    top: 40px;
+    top: 25px;
     width: 30px;
     height: 30px;
     border-radius: 50%;
@@ -67,7 +68,7 @@
   .rectangle4 {
     position: absolute;
     left: 7.5rem;
-    bottom: -16rem;
+    bottom: -15rem;
     width: 300px;
     height: 200px;
     clip-path: polygon(0 0, 10% 0, 10% 100%, 0% 100%);
@@ -78,7 +79,7 @@
     position: absolute;
     margin: auto;
     left: 120px;
-    top: 40px;
+    top: 25px;
     width: 30px;
     height: 30px;
     border-radius: 50%;
@@ -108,7 +109,7 @@
   .rectangle6 {
     position: absolute;
     left: 12.5rem;
-    bottom: -16rem;
+    bottom: -15rem;
     width: 300px;
     height: 200px;
     clip-path: polygon(0 0, 10% 0, 10% 100%, 0% 100%);
@@ -119,10 +120,34 @@
     position: absolute;
     margin: auto;
     left: 200px;
-    top: 40px;
+    top: 25px;
     width: 30px;
     height: 30px;
     border-radius: 50%;
     background: $color-peach;
+  }
+}
+
+.top-left-deco {
+  .pill-border {
+    position: absolute;
+
+    .rectangle-pill-border {
+      position: absolute;
+      clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+      border: 2px solid $sage-green;
+      border-radius: 4rem;
+      width: 300px;
+      height: 100px;
+    }
+
+    .circle-pill-border {
+      position: absolute;
+      clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+      background-color: $sage-green;
+      width: 80px;
+      height: 30px;
+      border-radius: 2rem;
+    }
   }
 }
