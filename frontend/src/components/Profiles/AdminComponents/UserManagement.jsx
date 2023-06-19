@@ -7,6 +7,7 @@ export default function UserManagement() {
   // const [firstName, setFirstName] = useState("");
   // const [lastName, setLastName] = useState("");
   const [dropzoneImage, setDropzoneImage] = useState([]);
+  // console.log("🚀 - dropzoneImage:", dropzoneImage);
 
   // const [email, setEmail] = useState("");
   // const [password, setPassword] = useState("");
