@@ -8,7 +8,7 @@ CREATE TABLE users (
   id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
   firstname VARCHAR(100) NOT NULL,
   lastname VARCHAR(100) NOT NULL,
-  photo VARCHAR(254),
+  photo BLOB,
   email VARCHAR(100) NOT NULL UNIQUE,
   password VARCHAR(254) NOT NULL,
   role_id INT NOT NULL,
