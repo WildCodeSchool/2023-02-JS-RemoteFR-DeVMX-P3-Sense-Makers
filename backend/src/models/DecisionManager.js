@@ -7,7 +7,7 @@ class DecisionManager extends AbstractManager {
 
   insert(decision) {
     return this.database.query(
-      `insert into ${this.table} (title, content, usefulness,context, benefit,disadvantages,concerned_hub,deadline,positives_votes, negatives_votes, status_id) values (?,?,?,?,?,?,?,?,?,?,?)`,
+      `insert into ${this.table} (title, content, usefulness,context, benefit,disadvantages,concerned_hub_id,positives_votes, negatives_votes, status_id) values (?,?,?,?,?,?,?,?,?,?)`,
       [
         decision.title,
         decision.content,
@@ -16,7 +16,6 @@ class DecisionManager extends AbstractManager {
         decision.benefit,
         decision.disadvantages,
         decision.concerned_hub_id,
-        decision.deadline,
         decision.positives_votes,
         decision.negatives_votes,
         decision.status_id,

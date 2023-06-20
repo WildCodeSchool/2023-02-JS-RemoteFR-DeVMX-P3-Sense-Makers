@@ -11,13 +11,13 @@ class UsersManager extends AbstractManager {
 
   findUsersNameConcat() {
     return this.database.query(
-      `SELECT id, CONCAT(firstname, ' ',lastname) AS label FROM  ${this.table}`
+      `SELECT id, CONCAT(firstname, ' ',lastname) AS label, firstname AS value FROM  ${this.table}`
     );
   }
 
   findUsersNameExpertConcat() {
     return this.database.query(
-      `SELECT id, CONCAT(firstname, ' ',lastname) AS label FROM  ${this.table}
+      `SELECT id, CONCAT(firstname, ' ',lastname) AS label, firstname AS value  FROM  ${this.table}
       WHERE is_expert=1`
     );
   }

@@ -53,4 +53,6 @@ router.delete("/users/:id", usersControllers.destroyUser);
 
 router.post("/uploads", upload.single("photo"), uploadFile.postFile);
 
+router.get("/concernedhub", decisionControllers.concernedHub);
+
 module.exports = router;
