@@ -1,18 +1,18 @@
-import { useState } from "react";
-// import axios from "axios";
+import { useEffect, useState } from "react";
+import axios from "axios";
 import Dropzone from "../../../services/hookDropzone";
 import isValidEmail from "../../../services/isValidEmail";
 import Avatar0 from "../../../assets/avatar0.png";
 
 export default function UserManagement() {
   const [dropzoneImage, setDropzoneImage] = useState([]);
-  // const [isExpert, setIsExpert] = useState(false);
+  const [usersData, setUsersData] = useState([]);
   const [targetValues, setTargetValues] = useState({
     firstName: "",
     lastName: "",
     email: "",
     password: "",
-    photo: dropzoneImage[0]?.preview,
+    photo: "",
     role: 0,
     roleExpert: false,
   });
@@ -45,8 +45,6 @@ export default function UserManagement() {
     role: targetValues.role !== "0",
     roleExperts: true,
   };
-  // console.log("🚀 - validationRules:", validationRules);
-  // console.log("🚀 - targetValues.role:", targetValues.role);
 
   const submit = (event) => {
     event.preventDefault();
@@ -54,33 +52,30 @@ export default function UserManagement() {
     const isValidForm = Object.values(validationRules).every((key) => key);
 
     if (isValidForm) {
-      console.info("✅ Submitting form with state:", targetValues);
+      axios
+        .post(`${import.meta.env.VITE_BACKEND_URL}/users`, {
+          firstname: targetValues.firstName,
+          lastname: targetValues.lastName,
+          photo: dropzoneImage[0].name,
+          email: targetValues.email,
+          password: targetValues.password,
+          role_id: targetValues.role,
+          is_expert: targetValues.roleExpert,
+          creation_date: "2023-02-03",
+        })
+        .then((response) => console.info(response))
+        .catch((err) => console.error(err));
     } else {
       console.info("XXX Submitting form with state:", targetValues);
     }
   };
-  // const handleAddNewUserButton = (
-  //   userFirstName,
-  //   userLastName,
-  //   userPhoto,
-  //   userEmail,
-  //   userPassword,
-  //   userRole,
-  //   userIsExpert
-  // ) => {
-  //   axios
-  //     .post(`${import.meta.env.VITE_BACKEND_URL}/users`, {
-  //       firstname: userFirstName,
-  //       lastname: userLastName,
-  //       photo: userPhoto,
-  //       email: userEmail,
-  //       password: userPassword,
-  //       role_id: parseInt(userRole, 10),
-  //       is_expert: parseInt(userIsExpert, 10),
-  //       creation_date: new Date().toJSON().slice(0, 10),
-  //     })
-  //     .catch((err) => console.error(err));
-  // };
+
+  useEffect(() => {
+    axios
+      .get(`${import.meta.env.VITE_BACKEND_URL}/users`)
+      .then((result) => setUsersData(result.data))
+      .catch((err) => console.error(err));
+  }, []);
 
   return (
     <form className="user-management" onSubmit={submit}>
@@ -94,7 +89,6 @@ export default function UserManagement() {
               id="lastName"
               name="lastName"
               placeholder="Insérez votre nom"
-              // onChange={(e) => setLastName(e.target.value)}
               onChange={update}
               required
             />
@@ -106,7 +100,6 @@ export default function UserManagement() {
               id="firstName"
               name="firstName"
               placeholder="Insérez votre prénom"
-              // onChange={(e) => setFirstName(e.target.value)}
               onChange={update}
               required
             />
@@ -119,7 +112,6 @@ export default function UserManagement() {
               name="email"
               className="input-email"
               placeholder="Insérez votre email"
-              // onChange={(e) => setEmail(e.target.value)}
               onChange={update}
               required
             />
@@ -131,7 +123,6 @@ export default function UserManagement() {
               id="password"
               name="password"
               placeholder="Insérez votre mot de passe"
-              // onChange={(e) => setPassword(e.target.value)}
               onChange={update}
               required
             />
@@ -139,13 +130,7 @@ export default function UserManagement() {
           <div className="roles-container">
             <label htmlFor="role">
               Role <br />
-              <select
-                id="role"
-                name="role"
-                // onChange={(e) => setRole(e.target.value)}
-                onChange={update}
-                required
-              >
+              <select id="role" name="role" onChange={update} required>
                 <option value="0">Sélectionne votre role</option>
                 <option value="1">Admin</option>
                 <option value="2">Utilisateur</option>
@@ -157,7 +142,6 @@ export default function UserManagement() {
                 type="checkbox"
                 id="role-expert"
                 name="roleExpert"
-                // onChange={(e) => setIsExpert(e.target.value)}
                 onChange={update}
               />
             </label>
@@ -177,27 +161,19 @@ export default function UserManagement() {
             }
             alt="profil"
           />
+          {usersData &&
+            usersData.map((user) => (
+              <img
+                key={user.id}
+                src={`http://localhost:5000/uploads/${user.photo}`}
+                alt="profil"
+              />
+            ))}
         </label>
       </div>
       <div className="input-buttons-container">
         <div className="add-button-container">
           <button type="submit">Ajouter l'utilisateur</button>
-          {/* <button
-            type="button"
-            onClick={() => {
-              handleAddNewUserButton(
-                firstName,
-                lastName,
-                dropzoneImage[0]?.preview,
-                email,
-                password,
-                role,
-                isExpert
-              );
-            }}
-          >
-            Ajouter l'utilisateur
-          </button> */}
         </div>
       </div>
     </form>

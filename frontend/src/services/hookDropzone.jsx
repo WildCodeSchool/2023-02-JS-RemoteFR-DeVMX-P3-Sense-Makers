@@ -1,6 +1,7 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import { useCallback } from "react";
 import { useDropzone } from "react-dropzone";
+import axios from "axios";
 import PropTypes from "prop-types";
 
 export default function Dropzone({ className, setDropzoneImage }) {
@@ -13,8 +14,19 @@ export default function Dropzone({ className, setDropzoneImage }) {
           })
         )
       );
+
+      const formData = new FormData();
+      formData.append("photo", acceptedFiles[0]);
+
+      axios
+        .post(`${import.meta.env.VITE_BACKEND_URL}/uploads`, formData, {
+          headers: { "Content-Type": "multipart/form-data" },
+        })
+        .then((result) => console.info(result))
+        .catch((err) => console.error(err));
     }
   }, []);
+
   const { getRootProps, getInputProps, fileRejections } = useDropzone({
     onDrop,
     maxSize: 1048576,
