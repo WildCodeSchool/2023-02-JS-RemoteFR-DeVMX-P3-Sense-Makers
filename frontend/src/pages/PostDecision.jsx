@@ -3,18 +3,7 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import AsyncSelect from "react-select/async";
 
-function reducer(state, action) {
-  switch (action.type) {
-    case "update_input":
-      return {
-        ...state,
-        [action.key]: action.value,
-      };
-    default:
-      return state;
-  }
-}
-
+/* Style selector */
 const customStyles = {
   placeholder: (defaultStyles) => {
     return {
@@ -30,6 +19,24 @@ const customStyles = {
     minWidth: "30vw",
   }),
 };
+
+/* Reducer definition */
+function reducer(state, action) {
+  switch (action.type) {
+    case "update_input":
+      return {
+        ...state,
+        [action.key]: action.value,
+      };
+    case "update_hubID":
+      return {
+        ...state,
+        [action.key]: action.value,
+      };
+    default:
+      return state;
+  }
+}
 export default function PostDecision() {
   const navigate = useNavigate();
   const [users, setUsers] = useState();
@@ -38,15 +45,8 @@ export default function PostDecision() {
   const [experts, setExperts] = useState([]);
   const [hub, setHub] = useState([]);
   const [selectedHub, setSelectedHub] = useState();
-  const [hubId, setHubId] = useState();
 
-  const addID = () => {
-    for (let i = 0; i < hub.length; i += 1) {
-      if (hub[i].title === selectedHub) {
-        setHubId(hub[i].id);
-      }
-    }
-  };
+  /*  reducer initialisation */
   const initialState = {
     title: "",
     content: "",
@@ -54,12 +54,25 @@ export default function PostDecision() {
     context: "",
     benefit: "",
     disadvantages: "",
-    concerned_hub_id: hubId,
+    concerned_hub_id: 0,
     positives_votes: 0,
     negatives_votes: 0,
     status_id: 1,
   };
   const [state, dispatch] = useReducer(reducer, initialState);
+
+  /* Add the  Hub id to send in the Back */
+  const addID = () => {
+    for (let i = 0; i < hub.length; i += 1) {
+      if (hub[i].title === selectedHub) {
+        dispatch({
+          type: "update_hubID",
+          value: hub[i].id,
+          key: "concerned_hub_id",
+        });
+      }
+    }
+  };
 
   /* import users & experts for select */
 
@@ -70,6 +83,7 @@ export default function PostDecision() {
         setUsers(response.data);
       });
   }, []);
+
   useEffect(() => {
     axios
       .get(`${import.meta.env.VITE_BACKEND_URL}/users/experts`)
@@ -77,6 +91,8 @@ export default function PostDecision() {
         setExpertUsers(response.data);
       });
   }, []);
+
+  /* Import concerned Hub  */
   useEffect(() => {
     axios
       .get(`${import.meta.env.VITE_BACKEND_URL}/concernedhub`)
@@ -84,29 +100,34 @@ export default function PostDecision() {
         setHub(response.data);
       });
   }, []);
+
+  /* Fonction for experts & impacted selection */
   const filterUsers = (inputValue) => {
     return users.filter((user) =>
       user.label.toLowerCase().includes(inputValue.toLowerCase())
     );
   };
+
   const loadOptionsUsers = (inputValue, callback) => {
     setTimeout(() => {
       callback(filterUsers(inputValue));
     }, 500);
   };
+
   const filterExperts = (inputValue) => {
     return expertUsers.filter((expertUser) =>
       expertUser.label.toLowerCase().includes(inputValue.toLowerCase())
     );
   };
+
   const loadOptionExperts = (inputValue, callback) => {
     setTimeout(() => {
       callback(filterExperts(inputValue));
     }, 500);
   };
 
+  /* Update  experts & impacted on the decision */
   const onChangeExpert = (inputValue) => {
-    console.info("input value : ", inputValue);
     setExperts(inputValue);
   };
 
@@ -114,7 +135,7 @@ export default function PostDecision() {
     setImpacted(inputValue);
   };
 
-  /* Post de la décision dans le back */
+  /* Post decision to the back */
   function DecisionPosted(status) {
     axios
       .post(`${import.meta.env.VITE_BACKEND_URL}/decisions`, status)
