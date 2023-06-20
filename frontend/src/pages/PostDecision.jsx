@@ -3,6 +3,24 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import AsyncSelect from "react-select/async";
 
+/* Style selector */
+const customStyles = {
+  placeholder: (defaultStyles) => {
+    return {
+      ...defaultStyles,
+      color: "#bdbdbd",
+    };
+  },
+  control: (base) => ({
+    ...base,
+    boxShadow: "5px 5px 8px #bdbdbd",
+    borderRadius: "10px",
+    width: "auto",
+    minWidth: "30vw",
+  }),
+};
+
+/* Reducer definition */
 function reducer(state, action) {
   switch (action.type) {
     case "update_input":
@@ -19,22 +37,6 @@ function reducer(state, action) {
       return state;
   }
 }
-
-const customStyles = {
-  placeholder: (defaultStyles) => {
-    return {
-      ...defaultStyles,
-      color: "#bdbdbd",
-    };
-  },
-  control: (base) => ({
-    ...base,
-    boxShadow: "5px 5px 8px #bdbdbd",
-    borderRadius: "10px",
-    width: "auto",
-    minWidth: "30vw",
-  }),
-};
 export default function PostDecision() {
   const navigate = useNavigate();
   const [users, setUsers] = useState();
@@ -44,6 +46,7 @@ export default function PostDecision() {
   const [hub, setHub] = useState([]);
   const [selectedHub, setSelectedHub] = useState();
 
+  /*  reducer initialisation */
   const initialState = {
     title: "",
     content: "",
@@ -58,7 +61,7 @@ export default function PostDecision() {
   };
   const [state, dispatch] = useReducer(reducer, initialState);
 
-  /* Ajout de l'id du Hub pour envoie dans Back */
+  /* Add the  Hub id to send in the Back */
   const addID = () => {
     for (let i = 0; i < hub.length; i += 1) {
       if (hub[i].title === selectedHub) {
@@ -98,7 +101,7 @@ export default function PostDecision() {
       });
   }, []);
 
-  /* Fonction pour select des experts et impacted */
+  /* Fonction for experts & impacted selection */
   const filterUsers = (inputValue) => {
     return users.filter((user) =>
       user.label.toLowerCase().includes(inputValue.toLowerCase())
@@ -123,7 +126,7 @@ export default function PostDecision() {
     }, 500);
   };
 
-  /* Mise à jour des experts et impacted sur la décision */
+  /* Update  experts & impacted on the decision */
   const onChangeExpert = (inputValue) => {
     setExperts(inputValue);
   };
@@ -132,7 +135,7 @@ export default function PostDecision() {
     setImpacted(inputValue);
   };
 
-  /* Post de la décision dans le back */
+  /* Post decision to the back */
   function DecisionPosted(status) {
     axios
       .post(`${import.meta.env.VITE_BACKEND_URL}/decisions`, status)
