@@ -1,19 +1,12 @@
 import { useState } from "react";
 // import axios from "axios";
 import Dropzone from "../../../services/hookDropzone";
+import isValidEmail from "../../../services/isValidEmail";
 import Avatar0 from "../../../assets/avatar0.png";
 
 export default function UserManagement() {
-  // const [firstName, setFirstName] = useState("");
-  // const [lastName, setLastName] = useState("");
   const [dropzoneImage, setDropzoneImage] = useState([]);
-  // console.log("🚀 - dropzoneImage:", dropzoneImage);
-
-  // const [email, setEmail] = useState("");
-  // const [password, setPassword] = useState("");
-  // const [role, setRole] = useState("");
-  // const [isExpert, setIsExpert] = useState("");
-
+  // const [isExpert, setIsExpert] = useState(false);
   const [targetValues, setTargetValues] = useState({
     firstName: "",
     lastName: "",
@@ -33,27 +26,27 @@ export default function UserManagement() {
     });
   };
 
-  const isValidEmail = (mail) => {
-    const regex =
-      /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-
-    return regex.test(String(mail).toLowerCase());
+  const isValidPhoto = () => {
+    if (dropzoneImage.length === 0) return false;
+    return true;
   };
 
   const validationRules = {
     firstName:
-      !!targetValues.firstName && targetValues.firstName.match(/^ *$/ === null),
+      !!targetValues.firstName && targetValues.firstName.match(/^ *$/) === null,
     lastName:
-      !!targetValues.lastName && targetValues.lastName.match(/^ *$/ === null),
+      !!targetValues.lastName && targetValues.lastName.match(/^ *$/) === null,
     email: isValidEmail(targetValues.email),
     password:
-      !!targetValues.message &&
-      targetValues.password.length < 8 &&
+      !!targetValues.password &&
+      targetValues.password.length > 8 &&
       targetValues.password.match(/^ *$/) === null,
-    photo: true,
+    photo: isValidPhoto(),
     role: targetValues.role !== "0",
-    roleExperts: targetValues.roleExpert,
+    roleExperts: true,
   };
+  // console.log("🚀 - validationRules:", validationRules);
+  // console.log("🚀 - targetValues.role:", targetValues.role);
 
   const submit = (event) => {
     event.preventDefault();
@@ -153,7 +146,7 @@ export default function UserManagement() {
                 onChange={update}
                 required
               >
-                <option value="">Sélectionne votre role</option>
+                <option value="0">Sélectionne votre role</option>
                 <option value="1">Admin</option>
                 <option value="2">Utilisateur</option>
               </select>
@@ -174,7 +167,6 @@ export default function UserManagement() {
       <div className="profile-photo-container">
         <label htmlFor="profile-photo-input">
           <Dropzone
-            name="photo"
             className="dropzone"
             dropzoneImage={dropzoneImage}
             setDropzoneImage={setDropzoneImage}
