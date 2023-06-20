@@ -75,7 +75,7 @@ export default function UserManagement() {
       .get(`${import.meta.env.VITE_BACKEND_URL}/users`)
       .then((result) => setUsersData(result.data))
       .catch((err) => console.error(err));
-  }, []);
+  }, [submit]);
 
   return (
     <form className="user-management" onSubmit={submit}>
