@@ -10,6 +10,11 @@ function reducer(state, action) {
         ...state,
         [action.key]: action.value,
       };
+    case "update_hubID":
+      return {
+        ...state,
+        [action.key]: action.value,
+      };
     default:
       return state;
   }
@@ -38,15 +43,7 @@ export default function PostDecision() {
   const [experts, setExperts] = useState([]);
   const [hub, setHub] = useState([]);
   const [selectedHub, setSelectedHub] = useState();
-  const [hubId, setHubId] = useState();
 
-  const addID = () => {
-    for (let i = 0; i < hub.length; i += 1) {
-      if (hub[i].title === selectedHub) {
-        setHubId(hub[i].id);
-      }
-    }
-  };
   const initialState = {
     title: "",
     content: "",
@@ -54,12 +51,25 @@ export default function PostDecision() {
     context: "",
     benefit: "",
     disadvantages: "",
-    concerned_hub_id: hubId,
+    concerned_hub_id: 0,
     positives_votes: 0,
     negatives_votes: 0,
     status_id: 1,
   };
   const [state, dispatch] = useReducer(reducer, initialState);
+
+  /* Ajout de l'id du Hub pour envoie dans Back */
+  const addID = () => {
+    for (let i = 0; i < hub.length; i += 1) {
+      if (hub[i].title === selectedHub) {
+        dispatch({
+          type: "update_hubID",
+          value: hub[i].id,
+          key: "concerned_hub_id",
+        });
+      }
+    }
+  };
 
   /* import users & experts for select */
 
@@ -70,6 +80,7 @@ export default function PostDecision() {
         setUsers(response.data);
       });
   }, []);
+
   useEffect(() => {
     axios
       .get(`${import.meta.env.VITE_BACKEND_URL}/users/experts`)
@@ -77,6 +88,8 @@ export default function PostDecision() {
         setExpertUsers(response.data);
       });
   }, []);
+
+  /* Import concerned Hub  */
   useEffect(() => {
     axios
       .get(`${import.meta.env.VITE_BACKEND_URL}/concernedhub`)
@@ -84,29 +97,34 @@ export default function PostDecision() {
         setHub(response.data);
       });
   }, []);
+
+  /* Fonction pour select des experts et impacted */
   const filterUsers = (inputValue) => {
     return users.filter((user) =>
       user.label.toLowerCase().includes(inputValue.toLowerCase())
     );
   };
+
   const loadOptionsUsers = (inputValue, callback) => {
     setTimeout(() => {
       callback(filterUsers(inputValue));
     }, 500);
   };
+
   const filterExperts = (inputValue) => {
     return expertUsers.filter((expertUser) =>
       expertUser.label.toLowerCase().includes(inputValue.toLowerCase())
     );
   };
+
   const loadOptionExperts = (inputValue, callback) => {
     setTimeout(() => {
       callback(filterExperts(inputValue));
     }, 500);
   };
 
+  /* Mise à jour des experts et impacted sur la décision */
   const onChangeExpert = (inputValue) => {
-    console.info("input value : ", inputValue);
     setExperts(inputValue);
   };
 
