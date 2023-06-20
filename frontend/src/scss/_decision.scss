@@ -41,49 +41,22 @@
     color: #e0e4eb;
   }
 
-  .opened-section {
-    color: #9b084f;
+  details[open] {
+    summary {
+      color: #9b084f;
+    }
+    .summary-content {
+      margin: auto 2rem;
+    }
   }
-
-  .sections {
-    display: flex;
-    align-items: center;
-
-    button {
+  details {
+    margin-bottom: 2rem;
+    summary {
       cursor: pointer;
-      width: 1.5rem;
-      display: flex;
-      justify-content: center;
-      border-radius: 50%;
-      border: none;
-      background: none;
-      transition: all 0.5s;
+      font-size: 1.5rem;
+      font-weight: bold;
+      margin: 1rem, auto;
     }
-    i {
-      transform: rotate(-90deg);
-      font-size: 1.8rem;
-      color: $color-default;
-    }
-  }
-
-  .section-arrow {
-    transform: rotate(90deg);
-    transition: all 0.5s;
-  }
-
-  .sections-content {
-    margin: auto 2rem;
-    // visibility: hidden;
-    opacity: 0;
-    max-height: 0;
-    transition: all 0.5s linear;
-  }
-
-  .visible {
-    opacity: 1;
-    max-height: 200rem;
-    // visibility: visible;
-    transition: all 0.5s linear;
   }
 
   .comment-button {
@@ -101,14 +74,11 @@
 
   .comments {
     .comment {
-      margin-top: 1rem;
-      div {
+      margin-top: 2rem;
+      .comment-info {
         display: flex;
         align-items: center;
         gap: 1rem;
-        p {
-          margin: 0;
-        }
       }
     }
   }

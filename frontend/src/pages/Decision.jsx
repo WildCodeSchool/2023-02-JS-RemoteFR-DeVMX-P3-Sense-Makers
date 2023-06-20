@@ -10,52 +10,6 @@ export default function Decision() {
   const [experts, setExperts] = useState([]);
   const { id } = useParams();
 
-  const showCategoriesReducer = (state, action) => {
-    switch (action.type) {
-      case "details":
-        return {
-          ...state,
-          details: !state.details,
-        };
-      case "impact":
-        return {
-          ...state,
-          impact: !state.impact,
-        };
-      case "benefits":
-        return {
-          ...state,
-          benefits: !state.benefits,
-        };
-      case "disadvantages":
-        return {
-          ...state,
-          disadvantages: !state.disadvantages,
-        };
-      case "comments":
-        return {
-          ...state,
-          comments: !state.comments,
-        };
-
-      default:
-        return state;
-    }
-  };
-
-  const initialStates = {
-    details: false,
-    impact: false,
-    benefits: false,
-    disadvantages: false,
-    comments: false,
-  };
-
-  const [showCategories, dispatch] = useReducer(
-    showCategoriesReducer,
-    initialStates
-  );
-
   useEffect(() => {
     axios
       .get(`${import.meta.env.VITE_BACKEND_URL}/decisions/${id}`)
@@ -104,129 +58,85 @@ export default function Decision() {
             </span>
           </p>
         </div>
-        <div className="sections">
-          <button
-            type="button"
-            onClick={() => dispatch({ type: "details" })}
-            className={showCategories.details && "section-arrow"}
-          >
-            <i className="fa-sharp fa-solid fa-caret-down" />
-          </button>
-          <h2 className={showCategories.details && "opened-section"}>
+
+        <details>
+          <summary>
             Les details de la décison
-          </h2>
-        </div>
-        <hr />
+            <hr />
+          </summary>
 
-        <div
-          className={`sections-content ${showCategories.details && "visible"}`}
-        >
-          <p>
-            <span className="bold-text">Context:</span> {decision.context}
-          </p>
-          <p>{decision.content}</p>
-        </div>
+          <div className="summary-content">
+            <p>
+              <span className="bold-text">context:</span> {decision.context}
+            </p>
+            <p>{decision.content}</p>
+          </div>
+        </details>
 
-        <div className="sections">
-          <button
-            type="button"
-            onClick={() => dispatch({ type: "impact" })}
-            className={showCategories.impact && "section-arrow"}
-          >
-            <i className="fa-sharp fa-solid fa-caret-down" />
-          </button>
-          <h2 className={showCategories.impact && "opened-section"}>
+        <details>
+          <summary>
             Impact sur l'organisation
-          </h2>
-        </div>
-        <hr />
+            <hr />
+          </summary>
+          <div className="summary-content">
+            <p>{decision.usefulness}</p>
+          </div>
+        </details>
 
-        <div
-          className={`sections-content ${showCategories.impact && "visible"}`}
-        >
-          {decision.usefulness}
-        </div>
-
-        <div className="sections">
-          <button
-            type="button"
-            onClick={() => dispatch({ type: "benefits" })}
-            className={showCategories.benefits && "section-arrow"}
-          >
-            <i className="fa-sharp fa-solid fa-caret-down" />
-          </button>
-          <h2 className={showCategories.benefits && "opened-section"}>
+        <details>
+          <summary>
             Bénéfices
-          </h2>
-        </div>
-        <hr />
+            <hr />
+          </summary>
+          <div className="summary-content">
+            <p>{decision.benefit}</p>
+          </div>
+        </details>
 
-        <div
-          className={`sections-content ${showCategories.benefits && "visible"}`}
-        >
-          {decision.benefit}
-        </div>
-
-        <div className="sections">
-          <button
-            type="button"
-            onClick={() => dispatch({ type: "disadvantages" })}
-            className={showCategories.disadvantages && "section-arrow"}
-          >
-            <i className="fa-sharp fa-solid fa-caret-down" />
-          </button>
-          <h2 className={showCategories.disadvantages && "opened-section"}>
+        <details>
+          <summary>
             Risques potentiels
-          </h2>
-        </div>
-        <hr />
+            <hr />
+          </summary>
 
-        <div
-          className={`sections-content ${
-            showCategories.disadvantages && "visible"
-          }`}
-        >
-          {decision.disavantages}
-        </div>
+          <div className="summary-content">
+            <p>{decision.disavantages}</p>
+          </div>
+        </details>
 
-        <div className="sections">
-          <button
-            type="button"
-            onClick={() => dispatch({ type: "comments" })}
-            className={showCategories.comments && "section-arrow"}
-          >
-            <i className="fa-sharp fa-solid fa-caret-down" />
-          </button>
-          <h2 className={showCategories.comments && "opened-section"}>Avis</h2>
-        </div>
-        <hr />
+        <details>
+          <summary>
+            Avis
+            <hr />
+          </summary>
 
-        <div
-          className={`sections-content ${showCategories.comments && "visible"}`}
-        >
-          {comments.map((comment) => (
-            <div key={comment.id} className="comment">
-              <div>
-                {" "}
-                <img
-                  src={comment.photo}
-                  alt={`${comment.firstname} ${comment.lastname}`}
-                />{" "}
-                <div className="bold-text">
-                  {comment.firstname} {comment.lastname}{" "}
-                  {experts.some((expert) => expert.id === comment.user_id) ? (
-                    <p>expert</p>
-                  ) : (
-                    impactedUsers.some(
-                      (impactedUser) => impactedUser.id === comment.user_id
-                    ) && <p>impacté par la décision</p>
-                  )}{" "}
+          <div className="comments summary-content">
+            {comments.map((comment) => (
+              <div key={comment.id} className="comment">
+                <div className="comment-info">
+                  {" "}
+                  <img
+                    src={placeHolderPhoto}
+                    alt={`${comment.firstname} ${comment.lastname}`}
+                  />{" "}
+                  <div className="bold-text comment-info">
+                    {comment.firstname} {comment.lastname}{" "}
+                    {experts.some((expert) => expert.id === comment.user_id) ? (
+                      <p>expert</p>
+                    ) : (
+                      impactedUsers.some(
+                        (impactedUser) => impactedUser.id === comment.user_id
+                      ) && <p>impacté par la décision</p>
+                    )}{" "}
+                  </div>
+                </div>
+                <div className="comment-text">
+                  <p>{comment.comment}</p>
                 </div>
               </div>
-              <p>{comment.comment}</p>
-            </div>
-          ))}
-        </div>
+            ))}
+          </div>
+        </details>
 
         <button type="button" className="comment-button">
           Donner mon avis
