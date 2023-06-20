@@ -1,7 +1,10 @@
 const express = require("express");
+const multer = require("multer");
 
 const router = express.Router();
+const upload = multer({ dest: "./public/uploads/" });
 
+const uploadFile = require("./services/uploadFile");
 const commentsControllers = require("./controllers/commentsControllers");
 const decisionControllers = require("./controllers/decisionControllers");
 const statusControllers = require("./controllers/statusControllers");
@@ -47,5 +50,7 @@ router.get("/users/:id/decisions", usersControllers.browseAllDecisionsByUser);
 router.post("/users", usersControllers.addUser);
 router.put("/users/:id", usersControllers.editUser);
 router.delete("/users/:id", usersControllers.destroyUser);
+
+router.post("/uploads", upload.single("photo"), uploadFile.postFile);
 
 module.exports = router;
