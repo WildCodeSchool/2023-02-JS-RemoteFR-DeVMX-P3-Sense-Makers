@@ -161,6 +161,29 @@
         }
       }
     }
+    .remove-button-container {
+      display: flex;
+      justify-content: center;
+      align-items: flex-end;
+      width: 10rem;
+      height: 2rem;
+
+      button {
+        font-weight: 700;
+        font-size: $font-size-s;
+        padding: $space-xxs;
+        background-color: #E36164;
+        border-radius: $space-s;
+        border: 1px solid $color-default;
+        cursor: pointer;
+        transition: transform 350ms ease-out;
+
+        &:active {
+          border: none;
+          transform: scale(1.01);
+        }
+      }
+    }
   }
 }
 

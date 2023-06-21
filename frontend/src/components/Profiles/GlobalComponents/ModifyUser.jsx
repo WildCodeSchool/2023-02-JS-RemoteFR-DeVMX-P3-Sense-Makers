@@ -158,8 +158,11 @@ export default function ModifyUser() {
         </label>
       </div>
       <div className="input-buttons-container">
+        <div className="remove-button-container">
+          <button type="submit">Supprimer l'utilisateur</button>
+        </div>
         <div className="add-button-container">
-          <button type="submit">Ajouter l'utilisateur</button>
+          <button type="submit">Modifier l'utilisateur</button>
         </div>
       </div>
     </form>
