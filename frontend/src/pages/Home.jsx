@@ -5,9 +5,6 @@ import CardDecision from "../components/CardDecision";
 export default function Home() {
   const [allDecisions, setAllDecision] = useState([]);
   const [allStatus, setAllStatus] = useState([]);
-  const [currentStatus, setCurrentStatus] = useState();
-
-  const [showDecisions, setShowDecisions] = useState(false);
 
   useEffect(() => {
     axios
@@ -27,27 +24,16 @@ export default function Home() {
       });
   }, []);
 
-  const ShowCurrentStatus = (statut) => {
-    if (statut.id === currentStatus) {
-      setShowDecisions(!showDecisions);
-    } else {
-      setCurrentStatus(statut.id);
-    }
-  };
-
   return (
     <div className="all-decisions-container">
       <h1>Toutes les décisions</h1>
       {allStatus.map((statut) => (
-        <div className="decisions-container" key={statut.id}>
-          <div className="infos-status-container">
-            <button type="button" onClick={() => ShowCurrentStatus(statut)}>
-              <i className="fa-sharp fa-solid fa-caret-down" />
-            </button>
-            <h2>{statut.title}</h2>
-          </div>
-          <hr />
-          {showDecisions && statut.id === currentStatus && (
+        <div className="infos-status-container" key={statut.id}>
+          <details className="details-container">
+            <summary>
+              {statut.title}
+              <hr />
+            </summary>
             <div className="cards-decision-container">
               {allDecisions
                 .filter((decision) => decision.title_status === statut.title)
@@ -55,7 +41,7 @@ export default function Home() {
                   <CardDecision key={decision.id} decision={decision} />
                 ))}
             </div>
-          )}
+          </details>
         </div>
       ))}
     </div>

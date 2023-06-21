@@ -1,0 +1,108 @@
+@import "./variables.scss";
+
+.logInContainer {
+  background: #ffffff;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 5px;
+  position: relative;
+  top: 5rem;
+  left:0.5rem;
+  height: 50vh;
+  max-width: 75vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  .logIn-input {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    label {
+      position: relative;
+
+      p {
+        color: $color-default;
+        font-size: $font-size-m;
+        margin: 0;
+        font-family: $primary-font;
+        font-weight: $primary-font-weight;
+      }
+    }
+
+    input {
+      border-radius: $border-radius-s;
+      box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.25);
+      height: 2rem;
+      margin: 5% 0 15% 0;
+      font-family: $primary-font;
+      border: 1px solid $color-default;
+    }
+  }
+
+  p {
+    color: #f3976b;
+    font-size: $font-size-s;
+    font-family: $primary-font;
+    font-weight: $primary-font-weight;
+  }
+
+  :hover {
+    color: #196c84;
+    background-color: $background-color-base;
+  }
+
+  button {
+    background-color: #196c84;
+    color: $background-color-base;
+    border-radius: $border-radius-m;
+    padding: 0 10%;
+    cursor: pointer;
+
+    h2 {
+      font-size: $font-size-s;
+      margin: 0.5rem 0rem 0.5rem 0rem;
+      font-family: $primary-font;
+      font-weight: $primary-font-weight;
+    }
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .logInContainer {
+    left:25vw;
+    top:20vw;
+    max-width: 45vw;
+    input {
+      width: 25vw;
+    }
+
+    button {
+      margin: 0 0 3% 0;
+    }
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .logInContainer {
+    top:10vw;
+    .logInUsername {
+      label {
+        p {
+          font-size: $font-size-l;
+        }
+      }
+    }
+    button {
+      width: 12rem;
+      h2 {
+        font-size: $font-size-l;
+      }
+    }
+
+    p {
+      font-size: $font-size-l;
+    }
+  }
+}

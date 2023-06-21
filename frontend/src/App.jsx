@@ -17,7 +17,7 @@ function App() {
         <Header />
         <Routes>
           <Route path="/" element={<Login />} />
-          <Route path="/alldecisions" element={<Home />} />
+          <Route path="/decisions" element={<Home />} />
           <Route path="/users/:id/decisions" element={<MyDecisions />} />
           <Route path="/postdecision" element={<PostDecision />} />
           <Route path="/decisions/:id" element={<Decision />} />
