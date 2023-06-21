@@ -1,42 +1,77 @@
 import { useState } from "react";
 import axios from "axios";
 import Dropzone from "../../../services/hookDropzone";
+import isValidEmail from "../../../services/isValidEmail";
 import Avatar0 from "../../../assets/avatar0.png";
 
 export default function UserManagement() {
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
   const [dropzoneImage, setDropzoneImage] = useState([]);
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [role, setRole] = useState("");
-  const [isExpert, setIsExpert] = useState("");
+  const [newUploadedFileName, setNewUploadedFileName] = useState("");
+  const [targetValues, setTargetValues] = useState({
+    firstName: "",
+    lastName: "",
+    email: "",
+    password: "",
+    photo: "",
+    role: 0,
+    roleExpert: false,
+  });
 
-  const handleAddNewUserButton = (
-    userFirstName,
-    userLastName,
-    userPhoto,
-    userEmail,
-    userPassword,
-    userRole,
-    userIsExpert
-  ) => {
-    axios
-      .post(`${import.meta.env.VITE_BACKEND_URL}/users`, {
-        firstname: userFirstName,
-        lastname: userLastName,
-        photo: userPhoto,
-        email: userEmail,
-        password: userPassword,
-        role_id: parseInt(userRole, 10),
-        is_expert: parseInt(userIsExpert, 10),
-        creation_date: new Date().toJSON().slice(0, 10),
-      })
-      .catch((err) => console.error(err));
+  const update = (event) => {
+    const target = event.currentTarget;
+
+    setTargetValues({
+      ...targetValues,
+      [target.name]: target.type === "checkbox" ? target.checked : target.value,
+    });
+  };
+
+  const isValidPhoto = () => {
+    if (dropzoneImage.length === 0) return false;
+    return true;
+  };
+
+  const validationRules = {
+    firstName:
+      !!targetValues.firstName && targetValues.firstName.match(/^ *$/) === null,
+    lastName:
+      !!targetValues.lastName && targetValues.lastName.match(/^ *$/) === null,
+    email: isValidEmail(targetValues.email),
+    password:
+      !!targetValues.password &&
+      targetValues.password.length > 8 &&
+      targetValues.password.match(/^ *$/) === null,
+    photo: isValidPhoto(),
+    role: targetValues.role !== "0",
+    roleExperts: true,
+  };
+
+  const submit = (event) => {
+    event.preventDefault();
+
+    const isValidForm = Object.values(validationRules).every((key) => key);
+
+    if (isValidForm) {
+      axios
+        .post(`${import.meta.env.VITE_BACKEND_URL}/users`, {
+          firstname: targetValues.firstName,
+          lastname: targetValues.lastName,
+          photo: newUploadedFileName,
+          email: targetValues.email,
+          password: targetValues.password,
+          role_id: targetValues.role,
+          is_expert: targetValues.roleExpert,
+          creation_date: "2023-02-03",
+        })
+        .then((response) => console.info(response))
+        .catch((err) => console.error(err));
+    } else {
+      console.info("XXX Submitting form with state:", targetValues);
+    }
   };
 
   return (
-    <div className="user-management">
+    <form className="user-management" onSubmit={submit}>
       <div className="input-container">
         <h2 className="input-title">Ajout d'utilisateur</h2>
         <div className="input-fields">
@@ -45,9 +80,10 @@ export default function UserManagement() {
             <input
               type="text"
               id="lastName"
-              placeholder="Insérez votre nom"
               name="lastName"
-              onChange={(e) => setLastName(e.target.value)}
+              placeholder="Insérez votre nom"
+              onChange={update}
+              required
             />
           </label>
           <label htmlFor="firstName">
@@ -55,8 +91,10 @@ export default function UserManagement() {
             <input
               type="text"
               id="firstName"
+              name="firstName"
               placeholder="Insérez votre prénom"
-              onChange={(e) => setFirstName(e.target.value)}
+              onChange={update}
+              required
             />
           </label>
           <label htmlFor="email">
@@ -64,25 +102,29 @@ export default function UserManagement() {
             <input
               type="email"
               id="email"
+              name="email"
               className="input-email"
               placeholder="Insérez votre email"
-              onChange={(e) => setEmail(e.target.value)}
+              onChange={update}
+              required
             />
           </label>
           <label htmlFor="password">
             Mot de passe <br />
             <input
-              id="password"
               type="password"
+              id="password"
+              name="password"
               placeholder="Insérez votre mot de passe"
-              onChange={(e) => setPassword(e.target.value)}
+              onChange={update}
+              required
             />
           </label>
           <div className="roles-container">
             <label htmlFor="role">
               Role <br />
-              <select id="role" onChange={(e) => setRole(e.target.value)}>
-                <option value="">Sélectionne votre role</option>
+              <select id="role" name="role" onChange={update} required>
+                <option value="0">Sélectionne votre role</option>
                 <option value="1">Admin</option>
                 <option value="2">Utilisateur</option>
               </select>
@@ -92,7 +134,8 @@ export default function UserManagement() {
               <input
                 type="checkbox"
                 id="role-expert"
-                onChange={(e) => setIsExpert(e.target.value)}
+                name="roleExpert"
+                onChange={update}
               />
             </label>
           </div>
@@ -104,6 +147,7 @@ export default function UserManagement() {
             className="dropzone"
             dropzoneImage={dropzoneImage}
             setDropzoneImage={setDropzoneImage}
+            setNewUploadedFileName={setNewUploadedFileName}
           />
           <img
             src={
@@ -115,24 +159,9 @@ export default function UserManagement() {
       </div>
       <div className="input-buttons-container">
         <div className="add-button-container">
-          <button
-            type="button"
-            onClick={() => {
-              handleAddNewUserButton(
-                firstName,
-                lastName,
-                dropzoneImage[0]?.preview,
-                email,
-                password,
-                role,
-                isExpert
-              );
-            }}
-          >
-            Ajouter l'utilisateur
-          </button>
+          <button type="submit">Ajouter l'utilisateur</button>
         </div>
       </div>
-    </div>
+    </form>
   );
 }
