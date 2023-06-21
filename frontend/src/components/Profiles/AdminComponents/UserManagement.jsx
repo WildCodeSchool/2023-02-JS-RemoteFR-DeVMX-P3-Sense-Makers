@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import axios from "axios";
 import Dropzone from "../../../services/hookDropzone";
 import isValidEmail from "../../../services/isValidEmail";
@@ -6,7 +6,7 @@ import Avatar0 from "../../../assets/avatar0.png";
 
 export default function UserManagement() {
   const [dropzoneImage, setDropzoneImage] = useState([]);
-  const [usersData, setUsersData] = useState([]);
+  const [newUploadedFileName, setNewUploadedFileName] = useState("");
   const [targetValues, setTargetValues] = useState({
     firstName: "",
     lastName: "",
@@ -56,7 +56,7 @@ export default function UserManagement() {
         .post(`${import.meta.env.VITE_BACKEND_URL}/users`, {
           firstname: targetValues.firstName,
           lastname: targetValues.lastName,
-          photo: dropzoneImage[0].name,
+          photo: newUploadedFileName,
           email: targetValues.email,
           password: targetValues.password,
           role_id: targetValues.role,
@@ -69,13 +69,6 @@ export default function UserManagement() {
       console.info("XXX Submitting form with state:", targetValues);
     }
   };
-
-  useEffect(() => {
-    axios
-      .get(`${import.meta.env.VITE_BACKEND_URL}/users`)
-      .then((result) => setUsersData(result.data))
-      .catch((err) => console.error(err));
-  }, [submit]);
 
   return (
     <form className="user-management" onSubmit={submit}>
@@ -154,6 +147,7 @@ export default function UserManagement() {
             className="dropzone"
             dropzoneImage={dropzoneImage}
             setDropzoneImage={setDropzoneImage}
+            setNewUploadedFileName={setNewUploadedFileName}
           />
           <img
             src={
@@ -161,14 +155,6 @@ export default function UserManagement() {
             }
             alt="profil"
           />
-          {usersData &&
-            usersData.map((user) => (
-              <img
-                key={user.id}
-                src={`http://localhost:5000/uploads/${user.photo}`}
-                alt="profil"
-              />
-            ))}
         </label>
       </div>
       <div className="input-buttons-container">
