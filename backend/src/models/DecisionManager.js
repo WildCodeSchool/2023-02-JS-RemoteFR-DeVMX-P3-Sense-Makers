@@ -7,7 +7,9 @@ class DecisionManager extends AbstractManager {
 
   insert(decision) {
     return this.database.query(
-      `insert into ${this.table} (title, content, usefulness,context, benefit,disadvantages,concerned_hub_id,positives_votes, negatives_votes, status_id) values (?,?,?,?,?,?,?,?,?,?)`,
+      `insert into ${this.table} (title, content, usefulness,context, benefit,disadvantages,concerned_hub_id, first_take_decision, final_take_decision,positives_votes, negatives_votes, status_id) values (?,?,?,?,?,?,?,NOW()+ 
+      INTERVAL 15 DAY, NOW()+
+      INTERVAL 52 DAY,?,?,?)`,
       [
         decision.title,
         decision.content,
@@ -53,7 +55,7 @@ class DecisionManager extends AbstractManager {
 
   findDecisionWithStatusById(id) {
     return this.database.query(
-      `SELECT d.title AS title_decision, s.title AS title_status, d.content, d.context, d.usefulness, d.benefit, d.disadvantages, c.title, d.initial_date, d.deadline, u.firstname, u.lastname, u.photo FROM ${this.table} d
+      `SELECT d.title AS title_decision, s.title AS title_status, d.content, d.context, d.usefulness, d.benefit, d.disadvantages, c.title AS concerned_hub, d.initial_date, u.firstname, u.lastname, u.photo FROM ${this.table} d
       INNER JOIN status s ON s.id = d.status_id
       INNER JOIN users_decisions ud ON d.id = ud.decision_id
       INNER JOIN users u ON ud.user_id = u.id 

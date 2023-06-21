@@ -6,14 +6,18 @@ const postFile = (req, res) => {
 
   const { filename } = req.file;
 
+  const newFileName = `${uuidv4()}-${originalname}`;
   fs.rename(
     `./public/uploads/${filename}`,
-    `./public/uploads/${uuidv4()}-${originalname}`,
+    `./public/uploads/${newFileName}`,
     (err) => {
       if (err) throw err;
-      res.send("File uploaded");
     }
   );
+  res.status(201).json({
+    message: "File uploaded",
+    newUploadedFileName: newFileName,
+  });
 };
 
 module.exports = { postFile };
