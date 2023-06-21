@@ -1,0 +1,74 @@
+.card-decision-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  text-decoration: none;
+  padding: 1rem;
+  width: 20rem;
+  height: 15rem;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 5px;
+  font-family: "Raleway", Helvetica, Arial, sans-serif;
+
+  .status-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    p {
+      border: 1px solid #2088a7;
+      background: rgba(32, 136, 167, 0.25);
+      color: #2088a7;
+      font-size: 0.6rem;
+      width: 9rem;
+      border-radius: 10px;
+      padding: 0.5rem;
+      text-align: center;
+    }
+    @media screen and (min-width: 420px) {
+      p {
+        width: 10rem;
+      }
+    }
+
+    :nth-child(2) {
+      border: 1px solid #c10b63;
+      background: rgba(193, 11, 99, 0.25);
+      color: #c10b63;
+      width: 5rem;
+      text-align: center;
+    }
+  }
+  h1 {
+    width: 80%;
+    margin: 0 auto;
+    font-size: 1.625rem;
+    height: 7rem;
+    font-weight: bold;
+    color: #0c3944;
+  }
+}
+
+.card-creator-container {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+
+  img {
+    width: 3rem;
+    height: 3rem;
+    border-radius: 50%;
+    background-color: red;
+    width: 3rem;
+    height: 3rem;
+    border-radius: 50%;
+    background-color: red;
+  }
+  p {
+    color: #0c3944;
+    font-size: 1.2rem;
+    span {
+      font-weight: bold;
+    }
+  }
+}

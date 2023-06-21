@@ -1,10 +1,12 @@
 @use "./wrongPage";
 @use "./app";
+@use "./header";
 @use "./decision";
 @use "./home";
 @use "./login";
 @use "./myDecisions";
 @use "./postDecision";
+@use "./cardDecision";
 @use "./profil";
 @use "./Profils_scss/adminProfil";
 @use "./Profils_scss/userProfil";
@@ -12,3 +14,4 @@
 @use "./Profils_scss/AdminComponents_scss/decisionsManagement";
 @use "./Profils_scss/AdminComponents_scss/userManagement";
 @use "./variables";
+@use "./graphicElements/graphicElements";

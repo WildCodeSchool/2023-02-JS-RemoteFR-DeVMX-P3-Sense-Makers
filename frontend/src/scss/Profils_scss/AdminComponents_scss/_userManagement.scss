@@ -1,0 +1,193 @@
+@import "../../variables";
+
+.user-management {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  flex-wrap: wrap;
+  width: 80%;
+  margin: auto;
+  padding: $space-s 0;
+  font-family: "Raleway", Helvetica, Arial, sans-serif;
+  font-weight: 700;
+  font-size: $font-size-m;
+  line-height: $font-size-s;
+  color: $color-default;
+  background-color: #F2F2F2;
+  border-radius: $space-xs;
+  box-shadow: 5px 9px 19px 8px rgba(0, 0, 0, 0.25);
+
+  .input-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+    .input-title {
+      margin: $space-s auto;
+    }
+
+    .input-fields {
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      flex-direction: column;
+
+      >label {
+        margin-top: $space-xs;
+        font-size: $font-size-s;
+
+        >input {
+          margin-top: $space-xs;
+          padding: $space-xxs;
+          border-radius: $space-xxs;
+          border: 1px solid $border-color-base;
+        }
+
+        :focus {
+          outline: none;
+          border: 1px solid $border-color-active;
+        }
+
+        input[type=email] {
+          width: 13rem;
+        }
+      }
+    }
+
+    .roles-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-top: $space-xs;
+      font-size: $font-size-s;
+
+      :focus {
+        outline: none;
+        border: 1px solid $border-color-active;
+      }
+
+      select {
+        margin-top: $space-xs;
+        margin-right: $space-m;
+        border-radius: $space-xxs;
+        border: 1px solid $border-color-base;
+        cursor: pointer;
+      }
+
+      .role-expert {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+
+        input[type=checkbox] {
+          margin-top: $space-xs;
+          border: 1px solid $border-color-base;
+          cursor: pointer;
+
+          :checked {
+            color: yellow;
+          }
+        }
+      }
+    }
+  }
+
+  .profile-photo-container {
+    margin-top: $space-l;
+
+    label {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+
+      .dropzone {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        max-width: 5rem;
+        aspect-ratio: 2/1;
+        background-color: rgba(145, 148, 145, 0.267);
+        border-radius: $space-xxs;
+        border: 1px dashed $color-default;
+        margin: 0;
+
+        .dropzone-placeholder-text {
+          font-size: $font-size-xxs;
+          text-align: center;
+          color: $color-default;
+          margin: 0;
+          padding: $space-xxs;
+          cursor: pointer;
+        }
+      }
+
+      img {
+        width: 60px;
+        object-fit: cover;
+        aspect-ratio: 1/1;
+        margin-top: $space-s;
+        border-radius: 50%;
+      }
+    }
+  }
+
+  .input-buttons-container {
+    margin-top: $space-xs;
+
+    .add-button-container {
+      display: flex;
+      justify-content: center;
+      align-items: flex-end;
+      width: 10rem;
+      height: 2rem;
+
+      button {
+        font-weight: 700;
+        font-size: $font-size-s;
+        padding: $space-xxs;
+        background-color: #C1E94E;
+        border-radius: $space-s;
+        border: 1px solid $color-default;
+        cursor: pointer;
+        transition: transform 350ms ease-out;
+
+        &:active {
+          border: none;
+          transform: scale(1.01);
+        }
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 798px) {
+  .user-management {
+    flex-direction: row;
+    justify-content: space-around;
+
+    .profile-photo-container {
+      label {
+        .dropzone {
+          max-width: 10rem;
+          aspect-ratio: 2/1;
+        }
+
+        img {
+          margin-top: $space-l;
+          width: 125px;
+          aspect-ratio: 1 /1;
+        }
+      }
+    }
+
+    .input-buttons-container {
+      >:last-child {
+        margin-top: 150%;
+      }
+    }
+  }
+}

@@ -1,0 +1,77 @@
+.all-decisions-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+  padding: 2rem;
+  font-family: "Raleway", Helvetica, Arial, sans-serif;
+
+  h1 {
+    color: #0c3944;
+    width: 100%;
+    margin: 0;
+    text-align: start;
+    font-size: 1.8rem;
+  }
+  hr {
+    color: #e0e4eb;
+  }
+
+  .infos-status-container {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+
+    details[open] {
+      summary {
+        color: #9b084f;
+      }
+    }
+    .details-container {
+      display: flex;
+      width: 100%;
+      flex-direction: column;
+      cursor: pointer;
+
+      summary {
+        font-size: 1.3rem;
+        font-weight: bold;
+        color: #0c3944;
+      }
+    }
+  }
+
+  @media screen and (min-width: 768px) {
+    .infos-status-container {
+      .details-container {
+        summary {
+          font-size: 1.5rem;
+        }
+      }
+    }
+  }
+  .cards-decision-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+  }
+
+  @media screen and (min-width: 768px) {
+    h1 {
+      font-size: 2.5rem;
+    }
+  }
+
+  @media screen and (min-width: 1024px) {
+    h1 {
+      font-size: 2.5rem;
+    }
+
+    .cards-decision-container {
+      width: 90%;
+      margin: 0 auto;
+    }
+  }
+}

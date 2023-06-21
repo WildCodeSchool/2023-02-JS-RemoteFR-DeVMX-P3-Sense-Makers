@@ -1,8 +1,8 @@
 const models = require("../models");
 
-const browse = (req, res) => {
+const browseDecisions = (req, res) => {
   models.decision
-    .findAll()
+    .findAllDecisionsWithStatusAndNameOfCreatorForCard()
     .then(([rows]) => {
       res.send(rows);
     })
@@ -12,9 +12,9 @@ const browse = (req, res) => {
     });
 };
 
-const read = (req, res) => {
+const readDecision = (req, res) => {
   models.decision
-    .findDecision(req.params.id)
+    .findDecisionWithStatusById(req.params.id)
     .then(([rows]) => {
       if (rows[0] == null) {
         res.sendStatus(404);
@@ -28,7 +28,39 @@ const read = (req, res) => {
     });
 };
 
-const edit = (req, res) => {
+const readImpactedOnDecision = (req, res) => {
+  models.decision
+    .findImpactedOnDecisionById(req.params.id)
+    .then(([rows]) => {
+      if (rows == null) {
+        res.sendStatus(404);
+      } else {
+        res.send(rows);
+      }
+    })
+    .catch((err) => {
+      console.error(err);
+      res.sendStatus(500);
+    });
+};
+
+const readExpertOnDecision = (req, res) => {
+  models.decision
+    .findExpertOnDecisionById(req.params.id)
+    .then(([rows]) => {
+      if (rows == null) {
+        res.sendStatus(404);
+      } else {
+        res.send(rows);
+      }
+    })
+    .catch((err) => {
+      console.error(err);
+      res.sendStatus(500);
+    });
+};
+
+const editDecision = (req, res) => {
   const decision = req.body;
 
   // TODO validations (length, format...)
@@ -50,7 +82,7 @@ const edit = (req, res) => {
     });
 };
 
-const add = (req, res) => {
+const addDecision = (req, res) => {
   const decision = req.body;
 
   // TODO validations (length, format...)
@@ -58,7 +90,7 @@ const add = (req, res) => {
   models.decision
     .insert(decision)
     .then(([result]) => {
-      res.location(`/decisions/${result.insertId}`).sendStatus(201);
+      res.status(201).json([result]);
     })
     .catch((err) => {
       console.error(err);
@@ -66,7 +98,33 @@ const add = (req, res) => {
     });
 };
 
-const destroy = (req, res) => {
+const addImpacted = (req, res) => {
+  const { decisionId, impactedId } = req.body;
+  models.decision
+    .insertImpactedOnDecisionById(impactedId, decisionId)
+    .then(() => {
+      res.sendStatus(201);
+    })
+    .catch((err) => {
+      console.error(err);
+      res.sendStatus(500);
+    });
+};
+
+const addExpert = (req, res) => {
+  const { decisionId, expertId } = req.body;
+  models.decision
+    .insertExpertOnDecisionById(expertId, decisionId)
+    .then(() => {
+      res.sendStatus(201);
+    })
+    .catch((err) => {
+      console.error(err);
+      res.sendStatus(500);
+    });
+};
+
+const destroyDecision = (req, res) => {
   models.decision
     .delete(req.params.id)
     .then(([result]) => {
@@ -82,10 +140,27 @@ const destroy = (req, res) => {
     });
 };
 
+const concernedHub = (req, res) => {
+  models.decision
+    .findConcernedHub()
+    .then(([rows]) => {
+      res.send(rows);
+    })
+    .catch((err) => {
+      console.error(err);
+      res.sendStatus(500);
+    });
+};
+
 module.exports = {
-  browse,
-  read,
-  edit,
-  add,
-  destroy,
+  browseDecisions,
+  readDecision,
+  editDecision,
+  addDecision,
+  destroyDecision,
+  readImpactedOnDecision,
+  readExpertOnDecision,
+  addImpacted,
+  addExpert,
+  concernedHub,
 };
