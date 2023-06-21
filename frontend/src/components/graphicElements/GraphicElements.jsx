@@ -22,7 +22,7 @@ export default function graphicElements() {
         </div>
         <div className="little-pill" />
       </div>
-      {/* <div className="top-right-deco">
+      <div className="top-right-deco">
         <div className="small-green-rectangle" />
         <div className="small-green-circle1" />
         <div className="small-green-circle2" />
@@ -32,7 +32,7 @@ export default function graphicElements() {
         <div className="small-yellow-rectangle" />
         <div className="small-yellow-circle1" />
         <div className="small-yellow-circle2" />
-      </div> */}
+      </div>
     </>
   );
 }

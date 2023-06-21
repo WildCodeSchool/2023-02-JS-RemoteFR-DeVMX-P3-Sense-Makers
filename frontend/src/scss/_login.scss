@@ -6,7 +6,7 @@
   border-radius: 5px;
   position: relative;
   top: 5rem;
-  left:2.5rem;
+  left:0.5rem;
   height: 50vh;
   max-width: 75vw;
   display: flex;
@@ -58,6 +58,7 @@
     color: $background-color-base;
     border-radius: $border-radius-m;
     padding: 0 10%;
+    cursor: pointer;
 
     h2 {
       font-size: $font-size-s;
@@ -70,7 +71,7 @@
 
 @media screen and (min-width: 768px) {
   .logInContainer {
-    left:20vw;
+    left:25vw;
     top:20vw;
     max-width: 45vw;
     input {
