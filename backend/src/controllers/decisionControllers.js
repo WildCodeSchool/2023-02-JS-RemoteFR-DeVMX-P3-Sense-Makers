@@ -140,6 +140,18 @@ const destroyDecision = (req, res) => {
     });
 };
 
+const concernedHub = (req, res) => {
+  models.decision
+    .findConcernedHub()
+    .then(([rows]) => {
+      res.send(rows);
+    })
+    .catch((err) => {
+      console.error(err);
+      res.sendStatus(500);
+    });
+};
+
 module.exports = {
   browseDecisions,
   readDecision,
@@ -150,4 +162,5 @@ module.exports = {
   readExpertOnDecision,
   addImpacted,
   addExpert,
+  concernedHub,
 };
