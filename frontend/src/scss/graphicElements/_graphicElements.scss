@@ -1,10 +1,14 @@
 @import "../variables.scss";
-
+//traits on bottom left
+// * {
+//   outline: 1px solid red;
+// }
 .bottom-left-deco {
-  transform: rotate(30deg);
-  position: absolute;
+  transform: rotate(40deg);
+  position: relative;
   left: 1rem;
-  top: 75%;
+  top: 9rem;
+  z-index:-1;
 
   .rectangle1 {
     position: absolute;
@@ -17,7 +21,7 @@
   .circle1 {
     position: absolute;
     margin: auto;
-    top: -1rem;
+    top:-1rem;
     width: 30px;
     height: 30px;
     border-radius: 50%;
@@ -127,27 +131,136 @@
     background: $color-peach;
   }
 }
+//pill on the top left
 
-.top-left-deco {
-  .pill-border {
+// .top-left-deco {
+//   display:none;
+// }
+
+// 3 traits on top right
+.top-right-deco {
+  .small-green-rectangle {
     position: absolute;
+    clip-path: polygon(0 0, 10% 0, 10% 100%, 0% 100%);
+    height: 50px;
+    width:200px;
+    background-color: $fluo-green;
+  }
 
-    .rectangle-pill-border {
-      position: absolute;
-      clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
-      border: 2px solid $sage-green;
-      border-radius: 4rem;
-      width: 300px;
-      height: 100px;
-    }
+  .small-green-circle1 {
+    position: absolute;
+    top:31rem;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: $fluo-green;
+  }
 
-    .circle-pill-border {
-      position: absolute;
-      clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
-      background-color: $sage-green;
-      width: 80px;
-      height: 30px;
-      border-radius: 2rem;
+  .small-green-circle2 {
+    position: absolute;
+    top:34rem;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: $fluo-green;
+  }
+
+  .small-red-rectangle {
+    position: absolute;
+    clip-path: polygon(0 0, 10% 0, 10% 100%, 0% 100%);
+    left:1.8rem;
+    bottom:17rem;
+    height: 130px;
+    width:200px;
+    background-color: $color-primary;
+  }
+
+  .small-red-circle1 {
+    position: absolute;
+    left:1.8rem;
+    top:28.7rem;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: $color-primary;
+  }
+
+  .small-red-circle2 {
+    position: absolute;
+    left:1.8rem;
+    top:36.7rem;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: $color-primary;
+  }
+
+  .small-yellow-rectangle {
+    position: absolute;
+    clip-path: polygon(0 0, 10% 0, 10% 100%, 0% 100%);
+    left:3.6rem;
+    bottom:18.3rem;
+    height: 90px;
+    width:200px;
+    background-color: $light-yellow;
+  }
+
+  .small-yellow-circle1 {
+    position: absolute;
+    left:3.6rem;
+    top:29.9rem;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: $light-yellow;
+  }
+
+  .small-yellow-circle2 {
+    position: absolute;
+    left:3.6rem;
+    top:35.4rem;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: $light-yellow;
+  }
+}
+
+
+@media screen and (min-width: 768px) {
+  .bottom-left-deco {
+    top:27rem;
+    left:-2rem;
+  }
+
+  .top-left-deco {
+    transform: rotate(30deg);
+    position: absolute;
+    top:8rem;
+    left:-5rem;
+    z-index: -1;
+  
+    .pill-border {
+  
+      .rectangle-pill-border {
+        position: absolute;
+        clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+        border: 2px solid $sage-green;
+        border-radius: 4rem;
+        width: 300px;
+        height: 100px;
+      }
+  
+      .circle-pill-border {
+        position: absolute;
+        left:7rem;
+        top:-13px;
+        clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+        background-color: $sage-green;
+        width: 80px;
+        height: 30px;
+        border-radius: 2rem;
+      }
     }
   }
 }

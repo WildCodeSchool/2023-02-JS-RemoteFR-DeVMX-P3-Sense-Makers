@@ -22,6 +22,17 @@ export default function graphicElements() {
         </div>
         <div className="little-pill" />
       </div>
+      {/* <div className="top-right-deco">
+        <div className="small-green-rectangle" />
+        <div className="small-green-circle1" />
+        <div className="small-green-circle2" />
+        <div className="small-red-rectangle" />
+        <div className="small-red-circle1" />
+        <div className="small-red-circle2" />
+        <div className="small-yellow-rectangle" />
+        <div className="small-yellow-circle1" />
+        <div className="small-yellow-circle2" />
+      </div> */}
     </>
   );
 }
