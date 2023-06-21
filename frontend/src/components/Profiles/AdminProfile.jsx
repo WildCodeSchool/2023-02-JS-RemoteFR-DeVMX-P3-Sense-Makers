@@ -5,8 +5,8 @@ import AddUser from "./AdminComponents/AddUser";
 export default function AdminProfile() {
   return (
     <div className="adminProfile">
-      <DecisionsDetails />
       <AddUser />
+      <DecisionsDetails />
       <DecisionsManagement />
     </div>
   );
