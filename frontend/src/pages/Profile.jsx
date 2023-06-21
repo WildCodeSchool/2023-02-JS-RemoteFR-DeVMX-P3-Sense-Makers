@@ -1,11 +1,11 @@
-import AdminProfile from "../components/Profiles/AdminProfile";
-// import UserProfil from "../components/Profils/UserProfil";
+// import AdminProfile from "../components/Profiles/AdminProfile";
+import UserProfile from "../components/Profiles/UserProfile";
 
 export default function Profile() {
   return (
     <div className="profile">
-      <AdminProfile />
-      {/* <UserProfile /> */}
+      {/* <AdminProfile /> */}
+      <UserProfile />
     </div>
   );
 }
