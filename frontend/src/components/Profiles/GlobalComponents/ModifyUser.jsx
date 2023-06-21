@@ -73,7 +73,7 @@ export default function ModifyUser() {
   return (
     <form className="user-management" onSubmit={submit}>
       <div className="input-container">
-        <h2 className="input-title">Ajout d'utilisateur</h2>
+        <h2 className="input-title">Modification d'utilisateur</h2>
         <div className="input-fields">
           <label htmlFor="lastName">
             Nom <br />
