@@ -1,10 +1,11 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import axios from "axios";
 import Dropzone from "../../../services/hookDropzone";
 import isValidEmail from "../../../services/isValidEmail";
 import Avatar0 from "../../../assets/avatar0.png";
 
 export default function ModifyUser() {
+  const [dataUser, setDataUser] = useState([]);
   const [dropzoneImage, setDropzoneImage] = useState([]);
   const [newUploadedFileName, setNewUploadedFileName] = useState("");
   const [targetValues, setTargetValues] = useState({
@@ -53,7 +54,7 @@ export default function ModifyUser() {
 
     if (isValidForm) {
       axios
-        .post(`${import.meta.env.VITE_BACKEND_URL}/users`, {
+        .put(`${import.meta.env.VITE_BACKEND_URL}/users/${dataUser.id}`, {
           firstname: targetValues.firstName,
           lastname: targetValues.lastName,
           photo: newUploadedFileName,
@@ -70,6 +71,16 @@ export default function ModifyUser() {
     }
   };
 
+  useEffect(() => {
+    axios
+      .get(`${import.meta.env.VITE_BACKEND_URL}/users/1`)
+      .then((result) => {
+        console.info(result);
+        setDataUser(result.data);
+      })
+      .catch((err) => console.error(err));
+  }, []);
+
   return (
     <form className="user-management" onSubmit={submit}>
       <div className="input-container">
@@ -82,6 +93,7 @@ export default function ModifyUser() {
               id="lastName"
               name="lastName"
               placeholder="Insérez votre nom"
+              defaultValue={dataUser.lastname}
               onChange={update}
               required
             />
@@ -93,6 +105,7 @@ export default function ModifyUser() {
               id="firstName"
               name="firstName"
               placeholder="Insérez votre prénom"
+              defaultValue={dataUser.firstname}
               onChange={update}
               required
             />
@@ -105,6 +118,7 @@ export default function ModifyUser() {
               name="email"
               className="input-email"
               placeholder="Insérez votre email"
+              defaultValue={dataUser.email}
               onChange={update}
               required
             />
@@ -116,6 +130,7 @@ export default function ModifyUser() {
               id="password"
               name="password"
               placeholder="Insérez votre mot de passe"
+              defaultValue={dataUser.password}
               onChange={update}
               required
             />
@@ -149,12 +164,26 @@ export default function ModifyUser() {
             setDropzoneImage={setDropzoneImage}
             setNewUploadedFileName={setNewUploadedFileName}
           />
-          <img
-            src={
-              dropzoneImage[0]?.preview ? dropzoneImage[0]?.preview : Avatar0
-            }
-            alt="profil"
-          />
+
+          {dropzoneImage[0]?.preview ? (
+            <img
+              src={
+                dropzoneImage[0]?.preview ? dropzoneImage[0]?.preview : Avatar0
+              }
+              alt="profil"
+            />
+          ) : (
+            <img
+              src={
+                dataUser?.photo
+                  ? `${import.meta.env.VITE_BACKEND_URL}/uploads/${
+                      dataUser.photo
+                    }`
+                  : Avatar0
+              }
+              alt="profil"
+            />
+          )}
         </label>
       </div>
       <div className="input-buttons-container">
