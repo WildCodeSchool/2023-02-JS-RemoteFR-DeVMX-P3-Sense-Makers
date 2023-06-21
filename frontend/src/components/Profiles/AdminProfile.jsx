@@ -1,12 +1,12 @@
 import DecisionsDetails from "./AdminComponents/DecisionsDetails";
 import DecisionsManagement from "./AdminComponents/DecisionsManagement";
-import UserManagement from "./AdminComponents/UserManagement";
+import AddUser from "./AdminComponents/AddUser";
 
 export default function AdminProfile() {
   return (
     <div className="adminProfile">
       <DecisionsDetails />
-      <UserManagement />
+      <AddUser />
       <DecisionsManagement />
     </div>
   );

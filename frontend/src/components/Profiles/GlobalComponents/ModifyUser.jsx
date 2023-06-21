@@ -4,7 +4,7 @@ import Dropzone from "../../../services/hookDropzone";
 import isValidEmail from "../../../services/isValidEmail";
 import Avatar0 from "../../../assets/avatar0.png";
 
-export default function UserManagement() {
+export default function ModifyUser() {
   const [dropzoneImage, setDropzoneImage] = useState([]);
   const [newUploadedFileName, setNewUploadedFileName] = useState("");
   const [targetValues, setTargetValues] = useState({
