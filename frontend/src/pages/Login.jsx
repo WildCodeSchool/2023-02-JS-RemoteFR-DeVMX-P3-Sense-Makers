@@ -23,7 +23,7 @@ export default function Login() {
               type="password"
             />
           </div>
-          <Link to="/alldecisions">
+          <Link to="/decisions">
             <button type="submit">
               <h2>Se connecter</h2>
             </button>
