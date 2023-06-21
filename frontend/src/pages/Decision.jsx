@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom";
 import placeHolderPhoto from "../assets/Alaric.jpg";
+import PostComments from "../components/PostComments";
 
 export default function Decision() {
   const [decision, setDecison] = useState([]);
@@ -100,7 +101,7 @@ export default function Decision() {
           </summary>
 
           <div className="summary-content">
-            <p>{decision.disavantages}</p>
+            <p>{decision.disadvantages}</p>
           </div>
         </details>
 
@@ -144,6 +145,7 @@ export default function Decision() {
         <button type="button" className="comment-button">
           Donner mon avis
         </button>
+        <PostComments />
       </div>
       <div className="side-content">
         <div className="side-text">
