@@ -29,7 +29,7 @@ export default function Header() {
               className={
                 pathname === "/decisions" ? "link-style active" : "link-style"
               }
-              to="/alldecisions"
+              to="/decisions"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
