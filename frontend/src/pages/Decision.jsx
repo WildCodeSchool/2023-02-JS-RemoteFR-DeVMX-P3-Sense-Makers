@@ -119,15 +119,18 @@ export default function Decision() {
                     src={placeHolderPhoto}
                     alt={`${comment.firstname} ${comment.lastname}`}
                   />{" "}
-                  <div className="bold-text comment-info">
-                    {comment.firstname} {comment.lastname}{" "}
+                  <div className="comment-info">
+                    <p className="bold-text ">
+                      {comment.firstname} {comment.lastname}
+                    </p>
                     {experts.some((expert) => expert.id === comment.user_id) ? (
-                      <p>expert</p>
+                      <p className="bold-text">expert</p>
                     ) : (
                       impactedUsers.some(
                         (impactedUser) => impactedUser.id === comment.user_id
-                      ) && <p>impacté par la décision</p>
+                      ) && <p className="bold-text ">impacté par la décision</p>
                     )}{" "}
+                    <p>le {comment.date}</p>
                   </div>
                 </div>
                 <div className="comment-text">
