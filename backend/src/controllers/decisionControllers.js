@@ -14,12 +14,44 @@ const browseDecisions = (req, res) => {
 
 const readDecision = (req, res) => {
   models.decision
-    .findDecision(req.params.id)
+    .findDecisionWithStatusById(req.params.id)
     .then(([rows]) => {
       if (rows[0] == null) {
         res.sendStatus(404);
       } else {
         res.send(rows[0]);
+      }
+    })
+    .catch((err) => {
+      console.error(err);
+      res.sendStatus(500);
+    });
+};
+
+const readImpactedOnDecision = (req, res) => {
+  models.decision
+    .findImpactedOnDecisionById(req.params.id)
+    .then(([rows]) => {
+      if (rows == null) {
+        res.sendStatus(404);
+      } else {
+        res.send(rows);
+      }
+    })
+    .catch((err) => {
+      console.error(err);
+      res.sendStatus(500);
+    });
+};
+
+const readExpertOnDecision = (req, res) => {
+  models.decision
+    .findExpertOnDecisionById(req.params.id)
+    .then(([rows]) => {
+      if (rows == null) {
+        res.sendStatus(404);
+      } else {
+        res.send(rows);
       }
     })
     .catch((err) => {
@@ -58,7 +90,33 @@ const addDecision = (req, res) => {
   models.decision
     .insert(decision)
     .then(([result]) => {
-      res.location(`/decisions/${result.insertId}`).sendStatus(201);
+      res.status(201).json([result]);
+    })
+    .catch((err) => {
+      console.error(err);
+      res.sendStatus(500);
+    });
+};
+
+const addImpacted = (req, res) => {
+  const { decisionId, impactedId } = req.body;
+  models.decision
+    .insertImpactedOnDecisionById(impactedId, decisionId)
+    .then(() => {
+      res.sendStatus(201);
+    })
+    .catch((err) => {
+      console.error(err);
+      res.sendStatus(500);
+    });
+};
+
+const addExpert = (req, res) => {
+  const { decisionId, expertId } = req.body;
+  models.decision
+    .insertExpertOnDecisionById(expertId, decisionId)
+    .then(() => {
+      res.sendStatus(201);
     })
     .catch((err) => {
       console.error(err);
@@ -82,10 +140,27 @@ const destroyDecision = (req, res) => {
     });
 };
 
+const concernedHub = (req, res) => {
+  models.decision
+    .findConcernedHub()
+    .then(([rows]) => {
+      res.send(rows);
+    })
+    .catch((err) => {
+      console.error(err);
+      res.sendStatus(500);
+    });
+};
+
 module.exports = {
   browseDecisions,
   readDecision,
   editDecision,
   addDecision,
   destroyDecision,
+  readImpactedOnDecision,
+  readExpertOnDecision,
+  addImpacted,
+  addExpert,
+  concernedHub,
 };

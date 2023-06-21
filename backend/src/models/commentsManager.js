@@ -5,9 +5,11 @@ class CommentsManager extends AbstractManager {
     super({ table: "comments" });
   }
 
-  findAll(decisionId) {
+  findAllCommentsForOneDecision(decisionId) {
     return this.database.query(
-      `select * from ${this.table} where decision_id = ?`,
+      `select c.user_id, c.id, c.comment, c.vote, c.creation_date, u.firstname, u.lastname, u.photo from ${this.table} c
+      INNER JOIN users u ON c.user_id = u.id
+      where decision_id = ?`,
       [decisionId]
     );
   }

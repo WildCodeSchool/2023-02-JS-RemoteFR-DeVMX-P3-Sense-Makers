@@ -31,11 +31,17 @@ const models = {};
 
 const ItemManager = require("./ItemManager");
 const CommentsManager = require("./commentsManager");
+const StatusManager = require("./StatusManager");
+const UsersManager = require("./UsersManager");
 
 models.item = new ItemManager();
 models.item.setDatabase(pool);
 models.comment = new CommentsManager();
 models.comment.setDatabase(pool);
+models.status = new StatusManager();
+models.status.setDatabase(pool);
+models.users = new UsersManager();
+models.users.setDatabase(pool);
 
 const DecisionManager = require("./DecisionManager");
 

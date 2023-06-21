@@ -1,19 +1,34 @@
-import { useReducer } from "react";
+import { useEffect, useReducer, useState } from "react";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
+import AsyncSelect from "react-select/async";
 
-const initialState = {
-  title: "",
-  date: "",
-  content: "",
-  usefullness: "",
-  context: "",
-  benefit: "",
-  disavantages: "",
-  concerned_hub: "--",
+/* Style selector */
+const customStyles = {
+  placeholder: (defaultStyles) => {
+    return {
+      ...defaultStyles,
+      color: "#bdbdbd",
+    };
+  },
+  control: (base) => ({
+    ...base,
+    boxShadow: "5px 5px 8px #bdbdbd",
+    borderRadius: "10px",
+    width: "auto",
+    minWidth: "30vw",
+  }),
 };
 
+/* Reducer definition */
 function reducer(state, action) {
   switch (action.type) {
     case "update_input":
+      return {
+        ...state,
+        [action.key]: action.value,
+      };
+    case "update_hubID":
       return {
         ...state,
         [action.key]: action.value,
@@ -22,9 +37,128 @@ function reducer(state, action) {
       return state;
   }
 }
-
 export default function PostDecision() {
+  const navigate = useNavigate();
+  const [users, setUsers] = useState();
+  const [expertUsers, setExpertUsers] = useState();
+  const [impacted, setImpacted] = useState([]);
+  const [experts, setExperts] = useState([]);
+  const [hub, setHub] = useState([]);
+  const [selectedHub, setSelectedHub] = useState();
+
+  /*  reducer initialisation */
+  const initialState = {
+    title: "",
+    content: "",
+    usefulness: "",
+    context: "",
+    benefit: "",
+    disadvantages: "",
+    concerned_hub_id: 0,
+    positives_votes: 0,
+    negatives_votes: 0,
+    status_id: 1,
+  };
   const [state, dispatch] = useReducer(reducer, initialState);
+
+  /* Add the  Hub id to send in the Back */
+  const addID = () => {
+    for (let i = 0; i < hub.length; i += 1) {
+      if (hub[i].title === selectedHub) {
+        dispatch({
+          type: "update_hubID",
+          value: hub[i].id,
+          key: "concerned_hub_id",
+        });
+      }
+    }
+  };
+
+  /* import users & experts for select */
+
+  useEffect(() => {
+    axios
+      .get(`${import.meta.env.VITE_BACKEND_URL}/users/concat`)
+      .then((response) => {
+        setUsers(response.data);
+      });
+  }, []);
+
+  useEffect(() => {
+    axios
+      .get(`${import.meta.env.VITE_BACKEND_URL}/users/experts`)
+      .then((response) => {
+        setExpertUsers(response.data);
+      });
+  }, []);
+
+  /* Import concerned Hub  */
+  useEffect(() => {
+    axios
+      .get(`${import.meta.env.VITE_BACKEND_URL}/concernedhub`)
+      .then((response) => {
+        setHub(response.data);
+      });
+  }, []);
+
+  /* Fonction for experts & impacted selection */
+  const filterUsers = (inputValue) => {
+    return users.filter((user) =>
+      user.label.toLowerCase().includes(inputValue.toLowerCase())
+    );
+  };
+
+  const loadOptionsUsers = (inputValue, callback) => {
+    setTimeout(() => {
+      callback(filterUsers(inputValue));
+    }, 500);
+  };
+
+  const filterExperts = (inputValue) => {
+    return expertUsers.filter((expertUser) =>
+      expertUser.label.toLowerCase().includes(inputValue.toLowerCase())
+    );
+  };
+
+  const loadOptionExperts = (inputValue, callback) => {
+    setTimeout(() => {
+      callback(filterExperts(inputValue));
+    }, 500);
+  };
+
+  /* Update  experts & impacted on the decision */
+  const onChangeExpert = (inputValue) => {
+    setExperts(inputValue);
+  };
+
+  const onChangeImpacted = (inputValue) => {
+    setImpacted(inputValue);
+  };
+
+  /* Post decision to the back */
+  function DecisionPosted(status) {
+    axios
+      .post(`${import.meta.env.VITE_BACKEND_URL}/decisions`, status)
+      .then((response) => {
+        if (response.status === 201) {
+          experts.map((expert) => {
+            return axios.post(
+              `${import.meta.env.VITE_BACKEND_URL}/decisions/:id/expert`,
+              { expertId: expert.id, decisionId: response.data[0].insertId }
+            );
+          });
+          impacted.map((impact) => {
+            return axios.post(
+              `${import.meta.env.VITE_BACKEND_URL}/decisions/:id/impacted`,
+              { impactedId: impact.id, decisionId: response.data[0].insertId }
+            );
+          });
+          setTimeout(() => {
+            navigate(`/decisions/${response.data[0].insertId}`);
+          }, 250);
+        }
+      });
+  }
 
   return (
     <div className="post-container">
@@ -51,52 +185,53 @@ export default function PostDecision() {
           />
         </label>
 
-        <label htmlFor="deadline_decision">
-          Deadline *
-          <input
-            type="date"
-            id="deadline_decision"
-            value={state.date}
-            onChange={(e) => {
-              dispatch({
-                type: "update_input",
-                value: e.target.value,
-                key: "date",
-              });
-            }}
-          />
-        </label>
-
         <div className="hub-container">
           <label htmlFor="hub_decision">
             Pôle concerné *
             <select
               id="hub_decision"
-              value={state.concerned_hub}
+              value={selectedHub}
+              defaultValue="--"
               onChange={(e) => {
-                dispatch({
-                  type: "update_input",
-                  value: e.target.value,
-                  key: "concerned_hub",
-                });
+                setSelectedHub(e.target.value);
               }}
             >
               <option value="--">--</option>
-              <option value="Hub France">Hub France</option>
+              {hub.map((hu) => {
+                return (
+                  <option key={hu.id} value={hu.title}>
+                    {hu.title}
+                  </option>
+                );
+              })}
             </select>
           </label>
-          <div className="hub-select">{state.concerned_hub}</div>
+          {selectedHub && <div className="hub-select">{selectedHub}</div>}
         </div>
 
         <div className="impacted-people">
           <label htmlFor="concerned_decision">
             Personnes concernées *
-            <input type="text" id="concerned_decision" />
+            <AsyncSelect
+              styles={customStyles}
+              cacheOptions
+              defaultOptions={users}
+              loadOptions={loadOptionsUsers}
+              isMulti
+              onChange={onChangeImpacted}
+            />
           </label>
 
           <label htmlFor="expert_decision">
             Personnes expertes *
-            <input type="text" id="expert_decision" />
+            <AsyncSelect
+              styles={customStyles}
+              cacheOptions
+              defaultOptions={expertUsers}
+              loadOptions={loadOptionExperts}
+              isMulti
+              onChange={onChangeExpert}
+            />
           </label>
         </div>
       </div>
@@ -117,17 +252,17 @@ export default function PostDecision() {
             }}
           />
         </label>
-        <label htmlFor="usefullness_decision">
+        <label htmlFor="usefulness_decision">
           Utilité de cette décision pour l'organisation *
           <textarea
             type="text"
-            id="usefullness_decision"
-            value={state.usefullness}
+            id="usefulness_decision"
+            value={state.usefulness}
             onChange={(e) => {
               dispatch({
                 type: "update_input",
                 value: e.target.value,
-                key: "usefullness",
+                key: "usefulness",
               });
             }}
           />
@@ -162,17 +297,17 @@ export default function PostDecision() {
             }}
           />
         </label>
-        <label htmlFor="disavantages_decision">
+        <label htmlFor="disadvantages_decision">
           Inconvenients de la décision *
           <textarea
             type="text"
-            id="disavantages_decision"
-            value={state.disavantages}
+            id="disadvantages_decision"
+            value={state.disadvantages}
             onChange={(e) => {
               dispatch({
                 type: "update_input",
                 value: e.target.value,
-                key: "disavantages",
+                key: "disadvantages",
               });
             }}
           />
@@ -183,7 +318,8 @@ export default function PostDecision() {
         <button
           type="button"
           onClick={() => {
-            console.info(state);
+            DecisionPosted(state);
+            addID();
           }}
         >
           Poster cette décision
