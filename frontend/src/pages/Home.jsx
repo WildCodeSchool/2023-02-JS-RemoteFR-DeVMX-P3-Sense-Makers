@@ -38,7 +38,7 @@ export default function Home() {
               {allDecisions
                 .filter((decision) => decision.title_status === statut.title)
                 .map((decision) => (
-                  <CardDecision key={decision.id} decision={decision} />
+                  <CardDecision key={decision.d_id} decision={decision} />
                 ))}
             </div>
           </details>
