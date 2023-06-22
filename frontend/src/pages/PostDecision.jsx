@@ -10,7 +10,6 @@ const customStyles = {
     return {
       ...defaultStyles,
       color: "#bdbdbd",
-      zIndex: 5000,
     };
   },
   control: (base) => ({
@@ -19,6 +18,14 @@ const customStyles = {
     borderRadius: "10px",
     width: "auto",
     minWidth: "30vw",
+  }),
+
+  options: (base) => ({
+    ...base,
+    backgroundColor: "white",
+    border: "1px #bdbdbd solid",
+    boxShadow: "5px 5px 8px #bdbdbd ",
+    borderRadius: "10px",
   }),
 };
 
@@ -47,6 +54,7 @@ export default function PostDecision() {
   const [experts, setExperts] = useState([]);
   const [hub, setHub] = useState([]);
   const [selectedHub, setSelectedHub] = useState();
+  const context = 1;
 
   /*  reducer initialisation */
   const initialState = {
@@ -68,13 +76,16 @@ export default function PostDecision() {
     for (let i = 0; i < hub.length; i += 1) {
       if (hub[i].title === selectedHub) {
         dispatch({
-          type: "update_hubID",
+          type: "update_input",
           value: hub[i].id,
           key: "concerned_hub_id",
         });
       }
     }
   };
+  useEffect(() => {
+    addID();
+  }, [selectedHub]);
 
   /* import users & experts for select */
 
@@ -143,6 +154,12 @@ export default function PostDecision() {
       .post(`${import.meta.env.VITE_BACKEND_URL}/decisions`, status)
       .then((response) => {
         if (response.status === 201) {
+          /* post dans user_décision */
+          axios.post(`${import.meta.env.VITE_BACKEND_URL}/decisions/:id/user`, {
+            userId: context,
+            decisionId: response.data[0].insertId,
+          });
+
           experts.map((expert) => {
             return axios.post(
               `${import.meta.env.VITE_BACKEND_URL}/decisions/:id/expert`,
@@ -152,13 +169,16 @@ export default function PostDecision() {
           impacted.map((impact) => {
             return axios.post(
               `${import.meta.env.VITE_BACKEND_URL}/decisions/:id/impacted`,
-              { impactedId: impact.id, decisionId: response.data[0].insertId }
+              {
+                impactedId: impact.id,
+                decisionId: response.data[0].insertId,
+              }
             );
           });
-          setTimeout(() => {
-            navigate(`/decisions/${response.data[0].insertId}`);
-          }, 250);
         }
+        setTimeout(() => {
+          navigate(`/decisions/${response.data[0].insertId}`);
+        }, 500);
       });
   }
   /* ref for text editor */
@@ -305,6 +325,7 @@ export default function PostDecision() {
           Description de la décision *
           <Editor
             apiKey="kj8hy39rl1nje7nh6kf3etgbl37lrjlvhsxindvx30h9hskr"
+            onChange={sendContent}
             onInit={(evt, editor) => {
               contentRef.current = editor;
             }}
@@ -349,6 +370,7 @@ export default function PostDecision() {
           Utilité de cette décision pour l'organisation *
           <Editor
             apiKey="kj8hy39rl1nje7nh6kf3etgbl37lrjlvhsxindvx30h9hskr"
+            onChange={sendUsefulness}
             onInit={(evt, editor) => {
               usefulnessRef.current = editor;
             }}
@@ -393,6 +415,7 @@ export default function PostDecision() {
           Contexte autour de la décision *
           <Editor
             apiKey="kj8hy39rl1nje7nh6kf3etgbl37lrjlvhsxindvx30h9hskr"
+            onChange={sendContext}
             onInit={(evt, editor) => {
               contextRef.current = editor;
             }}
@@ -437,6 +460,7 @@ export default function PostDecision() {
           Bénéfices de la décision *
           <Editor
             apiKey="kj8hy39rl1nje7nh6kf3etgbl37lrjlvhsxindvx30h9hskr"
+            onChange={sendBenefit}
             onInit={(evt, editor) => {
               benefitRef.current = editor;
             }}
@@ -481,6 +505,7 @@ export default function PostDecision() {
           Inconvenients de la décision *
           <Editor
             apiKey="kj8hy39rl1nje7nh6kf3etgbl37lrjlvhsxindvx30h9hskr"
+            onChange={sendDisadvantages}
             onInit={(evt, editor) => {
               disadvantagesRef.current = editor;
             }}
@@ -528,13 +553,7 @@ export default function PostDecision() {
         <button
           type="button"
           onClick={() => {
-            sendContent();
-            sendUsefulness();
-            sendContext();
-            sendBenefit();
-            sendDisadvantages();
             DecisionPosted(state);
-            addID();
           }}
         >
           Poster cette décision
