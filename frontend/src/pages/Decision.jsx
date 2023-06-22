@@ -9,7 +9,14 @@ export default function Decision() {
   const [comments, setComments] = useState([]);
   const [impactedUsers, setimpactedUsers] = useState([]);
   const [experts, setExperts] = useState([]);
+  const [isCommentsOppen, setIsCommentsOpen] = useState(true);
+  const [addComment, setAddComment] = useState(false);
   const { id } = useParams();
+
+  const handleAddComment = () => {
+    setAddComment(true);
+    setIsCommentsOpen(isCommentsOppen);
+  };
 
   useEffect(() => {
     axios
@@ -142,10 +149,16 @@ export default function Decision() {
           </div>
         </details>
 
-        <button type="button" className="comment-button">
-          Donner mon avis
-        </button>
-        <PostComments />
+        {isCommentsOppen && !addComment && (
+          <button
+            type="button"
+            className="comment-button"
+            onClick={handleAddComment}
+          >
+            Donner mon avis
+          </button>
+        )}
+        {addComment && <PostComments />}
       </div>
       <div className="side-content">
         <div className="side-text">
@@ -174,9 +187,15 @@ export default function Decision() {
             ))}
           </div>
         </div>
-        <button type="button" className="comment-button">
-          Donner mon avis
-        </button>
+        {isCommentsOppen && (
+          <button
+            type="button"
+            className="comment-button"
+            onClick={handleAddComment}
+          >
+            Donner mon avis
+          </button>
+        )}
       </div>
     </div>
   );

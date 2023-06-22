@@ -10,7 +10,6 @@ export default function PostComments() {
     axios
       .post(`${import.meta.env.VITE_BACKEND_URL}/decisions/${id}/comments`, {
         comment,
-        decision_id: id,
       })
       .catch((err) => console.error(err));
   };
