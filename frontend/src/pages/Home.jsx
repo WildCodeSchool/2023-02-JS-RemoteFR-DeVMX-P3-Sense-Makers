@@ -23,7 +23,7 @@ export default function Home() {
         console.error(err);
       });
   }, []);
-  console.info(allDecisions);
+
   return (
     <div className="all-decisions-container">
       <h1>Toutes les décisions</h1>
