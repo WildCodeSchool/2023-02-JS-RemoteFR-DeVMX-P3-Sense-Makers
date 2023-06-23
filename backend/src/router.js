@@ -9,6 +9,7 @@ const commentsControllers = require("./controllers/commentsControllers");
 const decisionControllers = require("./controllers/decisionControllers");
 const statusControllers = require("./controllers/statusControllers");
 const usersControllers = require("./controllers/usersControllers");
+const mailControllers = require("./controllers/mailControllers");
 
 router.get("/decisions", decisionControllers.browseDecisions);
 router.get("/decisions/:id", decisionControllers.readDecision);
@@ -54,5 +55,7 @@ router.delete("/users/:id", usersControllers.destroyUser);
 router.post("/uploads", upload.single("photo"), uploadFile.postFile);
 
 router.get("/concernedhub", decisionControllers.concernedHub);
+
+router.get("/test", mailControllers.sendMail);
 
 module.exports = router;
