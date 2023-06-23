@@ -77,6 +77,35 @@ export default function ModifyUser() {
 
   return (
     <form className="user-management" onSubmit={submit}>
+      <div className="profile-photo-container">
+        <label htmlFor="profile-photo-input">
+          {dropzoneImage[0]?.preview ? (
+            <img
+              src={
+                dropzoneImage[0]?.preview ? dropzoneImage[0]?.preview : Avatar0
+              }
+              alt="profil"
+            />
+          ) : (
+            <img
+              src={
+                dataUser?.photo
+                  ? `${import.meta.env.VITE_BACKEND_URL}/uploads/${
+                      dataUser.photo
+                    }`
+                  : Avatar0
+              }
+              alt="profil"
+            />
+          )}
+          <Dropzone
+            className="dropzone"
+            dropzoneImage={dropzoneImage}
+            setDropzoneImage={setDropzoneImage}
+            setNewUploadedFileName={setNewUploadedFileName}
+          />
+        </label>
+      </div>
       <div className="input-container">
         <h2 className="input-title">Modification d'utilisateur</h2>
         <div className="input-fields">
@@ -124,22 +153,12 @@ export default function ModifyUser() {
           <div className="roles-container">
             <label htmlFor="role">
               Role <br />
-              {/* <select
-                id="role"
-                name="role"
-                onChange={update}
-                selected={dataUser.role_id}
-              >
-                <option value="0">Sélectionne votre role</option>
-                <option value="1">Admin</option>
-                <option value="2">Utilisateur</option>
-              </select> */}
               {parseInt(dataUser.role_id, 10) === 1 ? (
                 <select
                   id="role"
                   name="role"
                   onChange={update}
-                  defaultValue={1}
+                  // defaultValue={1}
                 >
                   <option value="0">Sélectionne votre role</option>
                   <option value="1">Admin</option>
@@ -150,7 +169,7 @@ export default function ModifyUser() {
                   id="role"
                   name="role"
                   onChange={update}
-                  defaultValue="2"
+                  // defaultValue={2}
                 >
                   <option value="0">Sélectionne votre role</option>
                   <option value="1">Admin</option>
@@ -160,7 +179,7 @@ export default function ModifyUser() {
             </label>
             <label htmlFor="role-expert" className="role-expert">
               Expert <br />
-              {dataUser.is_expert === 1 ? (
+              {parseInt(dataUser.is_expert, 10) === 1 ? (
                 <input
                   type="checkbox"
                   id="role-expert"
@@ -174,49 +193,19 @@ export default function ModifyUser() {
                   id="role-expert"
                   name="roleExpert"
                   onChange={update}
-                  checked
                 />
               )}
             </label>
           </div>
         </div>
       </div>
-      <div className="profile-photo-container">
-        <label htmlFor="profile-photo-input">
-          <Dropzone
-            className="dropzone"
-            dropzoneImage={dropzoneImage}
-            setDropzoneImage={setDropzoneImage}
-            setNewUploadedFileName={setNewUploadedFileName}
-          />
 
-          {dropzoneImage[0]?.preview ? (
-            <img
-              src={
-                dropzoneImage[0]?.preview ? dropzoneImage[0]?.preview : Avatar0
-              }
-              alt="profil"
-            />
-          ) : (
-            <img
-              src={
-                dataUser?.photo
-                  ? `${import.meta.env.VITE_BACKEND_URL}/uploads/${
-                      dataUser.photo
-                    }`
-                  : Avatar0
-              }
-              alt="profil"
-            />
-          )}
-        </label>
-      </div>
       <div className="input-buttons-container">
         <div className="remove-button-container">
-          <button type="submit">Supprimer l'utilisateur</button>
+          <button type="submit">Supprimer</button>
         </div>
         <div className="add-button-container">
-          <button type="submit">Modifier l'utilisateur</button>
+          <button type="submit">Valider les modifications</button>
         </div>
       </div>
     </form>
