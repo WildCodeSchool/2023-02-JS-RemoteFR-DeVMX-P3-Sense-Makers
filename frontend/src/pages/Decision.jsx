@@ -8,13 +8,15 @@ export default function Decision() {
   const [comments, setComments] = useState([]);
   const [impactedUsers, setimpactedUsers] = useState([]);
   const [experts, setExperts] = useState([]);
-  const [isCommentsOppen, setIsCommentsOpen] = useState(true);
   const [addComment, setAddComment] = useState(false);
   const { id } = useParams();
 
+  const today = Date.parse(new Date());
+  const initialDate = Date.parse(decision.initial_date);
+  const dayDiff = (today - initialDate) / 86400000;
+
   const handleAddComment = () => {
     setAddComment(true);
-    setIsCommentsOpen(isCommentsOppen);
   };
 
   useEffect(() => {
@@ -152,14 +154,29 @@ export default function Decision() {
           </div>
         </details>
 
-        {isCommentsOppen && !addComment && (
+        {!addComment && (
           <button
             type="button"
             className="comment-button"
             onClick={handleAddComment}
+            disabled={dayDiff > 15}
           >
             Donner mon avis
           </button>
+        )}
+        {dayDiff > 15 && (
+          <div>
+            <p>
+              {" "}
+              La période de commentaire est a present fermée! attendez la
+              première
+            </p>
+            <p>
+              {" "}
+              prise de décision de l'auteur pour a nouveau pouvoir donner votre
+              avis!
+            </p>
+          </div>
         )}
         {addComment && <PostComments />}
       </div>
@@ -194,15 +211,14 @@ export default function Decision() {
             ))}
           </div>
         </div>
-        {isCommentsOppen && (
-          <button
-            type="button"
-            className="comment-button"
-            onClick={handleAddComment}
-          >
-            Donner mon avis
-          </button>
-        )}
+        <button
+          type="button"
+          className="comment-button"
+          onClick={handleAddComment}
+          disabled={dayDiff > 15}
+        >
+          Donner mon avis
+        </button>
       </div>
     </div>
   );

@@ -71,6 +71,13 @@
     border-radius: 5px;
   }
 
+  button:disabled,
+  button[disabled] {
+    background-color: #cccccc;
+    color: #666666;
+    cursor: not-allowed;
+  }
+
   .comments {
     .comment {
       margin-top: 2rem;
