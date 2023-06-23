@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom";
-import placeHolderPhoto from "../assets/Alaric.jpg";
 import PostComments from "../components/PostComments";
 
 export default function Decision() {
@@ -56,7 +55,9 @@ export default function Decision() {
         <h1>{decision.title_decision}</h1>
         <div className="author">
           <img
-            src={placeHolderPhoto}
+            src={`${import.meta.env.VITE_BACKEND_URL}/uploads/${
+              decision.photo
+            }`}
             alt={`${decision.firstname} ${decision.lastname}`}
           />
           <p>
@@ -124,7 +125,9 @@ export default function Decision() {
                 <div className="comment-info">
                   {" "}
                   <img
-                    src={placeHolderPhoto}
+                    src={`${import.meta.env.VITE_BACKEND_URL}/uploads/${
+                      comment.photo
+                    }`}
                     alt={`${comment.firstname} ${comment.lastname}`}
                   />{" "}
                   <div className="comment-info">
@@ -169,7 +172,9 @@ export default function Decision() {
             {impactedUsers.map((impactedUser) => (
               <img
                 key={impactedUser.id}
-                src={placeHolderPhoto}
+                src={`${import.meta.env.VITE_BACKEND_URL}/uploads/${
+                  impactedUser.photo
+                }`}
                 alt={`${impactedUser.firstname} ${impactedUser.lastname}`}
                 title={`${impactedUser.firstname} ${impactedUser.lastname}`}
               />
@@ -180,7 +185,9 @@ export default function Decision() {
             {experts.map((expert) => (
               <img
                 key={expert.id}
-                src={placeHolderPhoto}
+                src={`${import.meta.env.VITE_BACKEND_URL}/uploads/${
+                  expert.photo
+                }`}
                 alt={`${expert.firstname} ${expert.lastname}`}
                 title={`${expert.firstname} ${expert.lastname}`}
               />
