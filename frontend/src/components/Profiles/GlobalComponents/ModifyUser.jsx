@@ -67,7 +67,7 @@ export default function ModifyUser() {
 
   useEffect(() => {
     axios
-      .get(`${import.meta.env.VITE_BACKEND_URL}/users/2`)
+      .get(`${import.meta.env.VITE_BACKEND_URL}/users/1`)
       .then((result) => {
         console.info("User data on DB", result.data);
         setDataUser(result.data);
@@ -124,7 +124,7 @@ export default function ModifyUser() {
           <div className="roles-container">
             <label htmlFor="role">
               Role <br />
-              <select
+              {/* <select
                 id="role"
                 name="role"
                 onChange={update}
@@ -133,16 +133,50 @@ export default function ModifyUser() {
                 <option value="0">Sélectionne votre role</option>
                 <option value="1">Admin</option>
                 <option value="2">Utilisateur</option>
-              </select>
+              </select> */}
+              {parseInt(dataUser.role_id, 10) === 1 ? (
+                <select
+                  id="role"
+                  name="role"
+                  onChange={update}
+                  defaultValue={1}
+                >
+                  <option value="0">Sélectionne votre role</option>
+                  <option value="1">Admin</option>
+                  <option value="2">Utilisateur</option>
+                </select>
+              ) : (
+                <select
+                  id="role"
+                  name="role"
+                  onChange={update}
+                  defaultValue="2"
+                >
+                  <option value="0">Sélectionne votre role</option>
+                  <option value="1">Admin</option>
+                  <option value="2">Utilisateur</option>
+                </select>
+              )}
             </label>
             <label htmlFor="role-expert" className="role-expert">
               Expert <br />
-              <input
-                type="checkbox"
-                id="role-expert"
-                name="roleExpert"
-                onChange={update}
-              />
+              {dataUser.is_expert === 1 ? (
+                <input
+                  type="checkbox"
+                  id="role-expert"
+                  name="roleExpert"
+                  onChange={update}
+                  checked
+                />
+              ) : (
+                <input
+                  type="checkbox"
+                  id="role-expert"
+                  name="roleExpert"
+                  onChange={update}
+                  checked
+                />
+              )}
             </label>
           </div>
         </div>
@@ -178,9 +212,9 @@ export default function ModifyUser() {
         </label>
       </div>
       <div className="input-buttons-container">
-        {/* <div className="remove-button-container">
+        <div className="remove-button-container">
           <button type="submit">Supprimer l'utilisateur</button>
-        </div> */}
+        </div>
         <div className="add-button-container">
           <button type="submit">Modifier l'utilisateur</button>
         </div>
