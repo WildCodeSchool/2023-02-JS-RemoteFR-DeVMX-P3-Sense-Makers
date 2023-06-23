@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import Dropzone from "../../../services/hookDropzone";
-import isValidEmail from "../../../services/isValidEmail";
 import Avatar0 from "../../../assets/avatar0.png";
 
 export default function ModifyUser() {
@@ -27,55 +26,50 @@ export default function ModifyUser() {
     });
   };
 
-  const isValidPhoto = () => {
-    if (dropzoneImage.length === 0) return false;
-    return true;
-  };
+  const subitOldAndNewValues = () => {
+    if (targetValues.firstName === "")
+      targetValues.firstName = dataUser.firstname;
 
-  const validationRules = {
-    firstName:
-      !!targetValues.firstName && targetValues.firstName.match(/^ *$/) === null,
-    lastName:
-      !!targetValues.lastName && targetValues.lastName.match(/^ *$/) === null,
-    email: isValidEmail(targetValues.email),
-    password:
-      !!targetValues.password &&
-      targetValues.password.length > 8 &&
-      targetValues.password.match(/^ *$/) === null,
-    photo: isValidPhoto(),
-    role: targetValues.role !== "0",
-    roleExperts: true,
+    if (targetValues.lastName === "") targetValues.lastName = dataUser.lastname;
+
+    if (targetValues.email === "") targetValues.email = dataUser.email;
+
+    if (targetValues.photo === "") targetValues.photo = dataUser.photo;
+
+    if (targetValues.role === "") targetValues.role = dataUser.role_id;
+
+    if (targetValues.roleExpert === "")
+      targetValues.roleExpert = dataUser.is_expert;
   };
 
   const submit = (event) => {
     event.preventDefault();
 
-    const isValidForm = Object.values(validationRules).every((key) => key);
+    subitOldAndNewValues();
 
-    if (isValidForm) {
-      axios
-        .put(`${import.meta.env.VITE_BACKEND_URL}/users/${dataUser.id}`, {
-          firstname: targetValues.firstName,
-          lastname: targetValues.lastName,
-          photo: newUploadedFileName,
-          email: targetValues.email,
-          password: targetValues.password,
-          role_id: targetValues.role,
-          is_expert: targetValues.roleExpert,
-          creation_date: "2023-02-03",
-        })
-        .then((response) => console.info(response))
-        .catch((err) => console.error(err));
-    } else {
-      console.info("XXX Submitting form with state:", targetValues);
-    }
+    axios
+      .put(`${import.meta.env.VITE_BACKEND_URL}/users/${dataUser.id}`, {
+        firstname: targetValues.firstName,
+        lastname: targetValues.lastName,
+        photo: newUploadedFileName,
+        email: targetValues.email,
+        password: targetValues.password,
+        role_id: targetValues.role,
+        is_expert: targetValues.roleExpert,
+        creation_date: "2023-02-03",
+      })
+      .then((response) =>
+        console.info({ message: "Update user done!!!", response })
+      )
+      .catch((err) => console.error(err));
+    console.info("Submited new values form with state:", targetValues);
   };
 
   useEffect(() => {
     axios
-      .get(`${import.meta.env.VITE_BACKEND_URL}/users/1`)
+      .get(`${import.meta.env.VITE_BACKEND_URL}/users/2`)
       .then((result) => {
-        console.info(result);
+        console.info("User data on DB", result.data);
         setDataUser(result.data);
       })
       .catch((err) => console.error(err));
@@ -92,10 +86,8 @@ export default function ModifyUser() {
               type="text"
               id="lastName"
               name="lastName"
-              placeholder="Insérez votre nom"
-              defaultValue={dataUser.lastname}
+              placeholder={dataUser.lastname}
               onChange={update}
-              required
             />
           </label>
           <label htmlFor="firstName">
@@ -104,10 +96,8 @@ export default function ModifyUser() {
               type="text"
               id="firstName"
               name="firstName"
-              placeholder="Insérez votre prénom"
-              defaultValue={dataUser.firstname}
+              placeholder={dataUser.firstname}
               onChange={update}
-              required
             />
           </label>
           <label htmlFor="email">
@@ -117,10 +107,8 @@ export default function ModifyUser() {
               id="email"
               name="email"
               className="input-email"
-              placeholder="Insérez votre email"
-              defaultValue={dataUser.email}
+              placeholder={dataUser.email}
               onChange={update}
-              required
             />
           </label>
           <label htmlFor="password">
@@ -129,16 +117,19 @@ export default function ModifyUser() {
               type="password"
               id="password"
               name="password"
-              placeholder="Insérez votre mot de passe"
-              defaultValue={dataUser.password}
+              placeholder={dataUser.password}
               onChange={update}
-              required
             />
           </label>
           <div className="roles-container">
             <label htmlFor="role">
               Role <br />
-              <select id="role" name="role" onChange={update} required>
+              <select
+                id="role"
+                name="role"
+                onChange={update}
+                selected={dataUser.role_id}
+              >
                 <option value="0">Sélectionne votre role</option>
                 <option value="1">Admin</option>
                 <option value="2">Utilisateur</option>
@@ -187,9 +178,9 @@ export default function ModifyUser() {
         </label>
       </div>
       <div className="input-buttons-container">
-        <div className="remove-button-container">
+        {/* <div className="remove-button-container">
           <button type="submit">Supprimer l'utilisateur</button>
-        </div>
+        </div> */}
         <div className="add-button-container">
           <button type="submit">Modifier l'utilisateur</button>
         </div>
