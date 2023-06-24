@@ -1,7 +1,7 @@
 import { useState } from "react";
 import axios from "axios";
 import Dropzone from "../../../services/hookDropzone";
-import isValidEmail from "../../../services/isValidEmail";
+import inputValidationRules from "../../../services/inputValidationRules";
 import Avatar0 from "../../../assets/avatar0.png";
 
 export default function AddUser() {
@@ -26,30 +26,12 @@ export default function AddUser() {
     });
   };
 
-  const isValidPhoto = () => {
-    if (dropzoneImage.length === 0) return false;
-    return true;
-  };
-
-  const validationRules = {
-    firstName:
-      !!targetValues.firstName && targetValues.firstName.match(/^ *$/) === null,
-    lastName:
-      !!targetValues.lastName && targetValues.lastName.match(/^ *$/) === null,
-    email: isValidEmail(targetValues.email),
-    password:
-      !!targetValues.password &&
-      targetValues.password.length > 8 &&
-      targetValues.password.match(/^ *$/) === null,
-    photo: isValidPhoto(),
-    role: targetValues.role !== "0",
-    roleExperts: true,
-  };
-
   const submit = (event) => {
     event.preventDefault();
 
-    const isValidForm = Object.values(validationRules).every((key) => key);
+    const isValidForm = Object.values(inputValidationRules()).every(
+      (key) => key
+    );
 
     if (isValidForm) {
       axios
@@ -60,7 +42,6 @@ export default function AddUser() {
           email: targetValues.email,
           password: targetValues.password,
           role_id: targetValues.role,
-          is_expert: targetValues.roleExpert,
           creation_date: "2023-02-03",
         })
         .then((response) => console.info(response))
