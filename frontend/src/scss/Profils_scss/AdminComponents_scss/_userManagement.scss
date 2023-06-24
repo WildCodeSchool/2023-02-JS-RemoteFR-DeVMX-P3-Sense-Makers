@@ -23,8 +23,6 @@
     align-items: center;
     width: 13.75rem;
 
-
-
     .add-user-title {
       font-size: $font-size-l;
       margin-bottom: $space-xxs;
@@ -65,7 +63,6 @@
       }
     }
 
-
     .roles-container-1 {
       display: flex;
       justify-content: center;
@@ -96,15 +93,10 @@
           margin-top: $space-xs;
           border: 1px solid $border-color-base;
           cursor: pointer;
-
-          :checked {
-            color: yellow;
-          }
         }
       }
     }
   }
-
 
   .profile-photo-container {
     label {
@@ -160,7 +152,6 @@
     align-items: center;
     margin-top: $space-xs;
 
-
     .roles-container-2 {
       display: none;
     }
@@ -176,7 +167,7 @@
         font-weight: 700;
         font-size: $font-size-xs;
         padding: $space-xxs;
-        background-color: #C1E94E;
+        background-color: #70AF90;
         border-radius: $space-s;
         border: 1px solid $color-default;
         cursor: pointer;
@@ -212,6 +203,39 @@
         }
       }
     }
+
+    .roles-container-2 {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: $font-size-s;
+
+      :focus {
+        outline: none;
+        border: 1px solid $border-color-active;
+      }
+
+      select {
+        margin-top: $space-xs;
+        margin-right: $space-m;
+        border-radius: $space-xxs;
+        border: 1px solid $border-color-base;
+        cursor: pointer;
+      }
+
+      .role-expert {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+
+        input[type=checkbox] {
+          margin-top: $space-xs;
+          border: 1px solid $border-color-base;
+          cursor: pointer;
+        }
+      }
+    }
   }
 }
 
@@ -230,8 +254,6 @@
       justify-content: space-around;
       align-items: flex-start;
       width: 100%;
-
-
 
       .profile-photo-container {
         order: -1;
@@ -254,11 +276,10 @@
         }
       }
 
-
-
       .input-container {
         margin-left: $space-s;
         border-right: 1px solid $color-default;
+        flex-grow: 1;
 
         .input-fields {
           >label {
@@ -274,7 +295,6 @@
             justify-content: space-around;
             align-items: center;
             flex-direction: row;
-
           }
 
           label {
@@ -299,10 +319,9 @@
         margin-left: $space-s;
 
         .add-button-container {
-         justify-content: flex-end;
+          justify-content: flex-end;
           width: 100%;
           margin-top: 4rem;
-          outline: 1px solid green;
         }
 
         .roles-container-2 {
@@ -311,15 +330,13 @@
 
           .role-expert-2 {
             margin-top: $space-m;
+            margin-right: auto;
 
             input {
               margin: 0 $space-xs 0 0;
             }
           }
         }
-
-
-
       }
     }
   }
