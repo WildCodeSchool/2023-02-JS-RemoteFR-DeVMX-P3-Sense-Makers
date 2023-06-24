@@ -13,7 +13,9 @@ export default function Decision() {
 
   const today = Date.parse(new Date());
   const initialDate = Date.parse(decision.initial_date);
-  const dayDiff = (today - initialDate) / 86400000;
+  const firstDayDiff = (today - initialDate) / 86400000;
+  const secondDate = Date.parse(decision.first_take_decision);
+  const secondDayDiff = (today - secondDate) / 86400000;
 
   const handleAddComment = () => {
     setAddComment(true);
@@ -159,23 +161,24 @@ export default function Decision() {
             type="button"
             className="comment-button"
             onClick={handleAddComment}
-            disabled={dayDiff > 15}
+            disabled={firstDayDiff > 15 || secondDayDiff > 15}
           >
             Donner mon avis
           </button>
         )}
-        {dayDiff > 15 && (
-          <div>
+        {firstDayDiff > 15 && (
+          <div className="closed-comment">
+            <p> La période de commentaire est à present terminée!</p>
             <p>
-              {" "}
-              La période de commentaire est a present fermée! attendez la
-              première
+              Attendez la première prise de décision de l'auteur pour a nouveau
+              pouvoir donner votre avis!
             </p>
-            <p>
-              {" "}
-              prise de décision de l'auteur pour a nouveau pouvoir donner votre
-              avis!
-            </p>
+          </div>
+        )}
+        {secondDayDiff > 15 && (
+          <div className="closed-comment">
+            <p> La période de commentaire est à present terminée!</p>
+            <p>Merci pour vos retours!</p>
           </div>
         )}
         {addComment && <PostComments />}
@@ -215,7 +218,7 @@ export default function Decision() {
           type="button"
           className="comment-button"
           onClick={handleAddComment}
-          disabled={dayDiff > 15}
+          disabled={firstDayDiff > 15 || secondDayDiff > 15}
         >
           Donner mon avis
         </button>
