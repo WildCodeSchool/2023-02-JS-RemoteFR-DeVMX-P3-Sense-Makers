@@ -29,7 +29,7 @@ export default function AddUser() {
   const submit = (event) => {
     event.preventDefault();
 
-    const isValidForm = Object.values(inputValidationRules()).every(
+    const isValidForm = Object.values(inputValidationRules(targetValues)).every(
       (key) => key
     );
 

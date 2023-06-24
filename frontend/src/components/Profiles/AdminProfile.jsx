@@ -7,13 +7,13 @@ export default function AdminProfile() {
     <div className="adminProfile">
       <DecisionsDetails />
       <DecisionsManagement />
-      <details>
-        <summary>
-          Gestion des utilisateurs
-          <hr />
-        </summary>
-        <AddUser />
-      </details>
+      {/* <details>
+        <summary> */}
+      {/* Gestion des utilisateurs */}
+      {/* <hr />
+        </summary> */}
+      <AddUser />
+      {/* </details> */}
     </div>
   );
 }
