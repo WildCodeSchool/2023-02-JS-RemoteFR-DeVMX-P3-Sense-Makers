@@ -10,7 +10,7 @@ const isValidPhoto = (photo) => {
   return true;
 };
 
-const validationRules = (targetValues) => {
+export default function inputValidationRules(targetValues) {
   return {
     firstName:
       !!targetValues.firstName && targetValues.firstName.match(/^ *$/) === null,
@@ -25,6 +25,4 @@ const validationRules = (targetValues) => {
     role: targetValues.role !== "0",
     roleExperts: true,
   };
-};
-
-module.exports = validationRules();
+}
