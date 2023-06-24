@@ -181,7 +181,7 @@ export default function Decision() {
             <p>Merci pour vos retours!</p>
           </div>
         )}
-        {addComment && <PostComments />}
+        {addComment && <PostComments setAddComment={setAddComment} />}
       </div>
       <div className="side-content">
         <div className="side-text">

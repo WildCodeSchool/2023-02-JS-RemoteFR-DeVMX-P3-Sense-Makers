@@ -1,15 +1,19 @@
 import { useState } from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom";
+import PropTypes from "prop-types";
 
-export default function PostComments() {
+export default function PostComments({ setAddComment }) {
   const [comment, setComment] = useState("");
-  const id = useParams();
+  const { id } = useParams();
+  const placholderUserId = Math.floor(Math.random() * 4 + 1);
 
   const postComment = () => {
+    setAddComment(false);
     axios
       .post(`${import.meta.env.VITE_BACKEND_URL}/decisions/${id}/comments`, {
         comment,
+        userId: placholderUserId,
       })
       .catch((err) => console.error(err));
   };
@@ -29,3 +33,7 @@ export default function PostComments() {
     </div>
   );
 }
+
+PostComments.propTypes = {
+  setAddComment: PropTypes.func.isRequired,
+};
