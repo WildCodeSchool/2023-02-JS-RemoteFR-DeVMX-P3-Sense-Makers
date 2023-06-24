@@ -1,20 +1,20 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import Dropzone from "../../../services/hookDropzone";
+// import inputValidationRules from "../../../services/inputValidationRules";
 import Avatar0 from "../../../assets/avatar0.png";
 
 export default function ModifyUser() {
-  const [dataUser, setDataUser] = useState([]);
+  const [userData, setUserData] = useState([]);
   const [dropzoneImage, setDropzoneImage] = useState([]);
   const [newUploadedFileName, setNewUploadedFileName] = useState("");
   const [targetValues, setTargetValues] = useState({
-    firstName: "",
-    lastName: "",
-    email: "",
-    password: "",
-    photo: "",
-    role: 0,
-    roleExpert: false,
+    firstName: userData.firstname,
+    lastName: userData.lastname,
+    email: userData.email,
+    password: userData.password,
+    photo: userData.photo,
+    role: userData.role_id,
   });
 
   const update = (event) => {
@@ -28,18 +28,18 @@ export default function ModifyUser() {
 
   const subitOldAndNewValues = () => {
     if (targetValues.firstName === "")
-      targetValues.firstName = dataUser.firstname;
+      targetValues.firstName = userData.firstname;
 
-    if (targetValues.lastName === "") targetValues.lastName = dataUser.lastname;
+    if (targetValues.lastName === "") targetValues.lastName = userData.lastname;
 
-    if (targetValues.email === "") targetValues.email = dataUser.email;
+    if (targetValues.email === "") targetValues.email = userData.email;
 
-    if (targetValues.photo === "") targetValues.photo = dataUser.photo;
+    if (targetValues.photo === "") targetValues.photo = userData.photo;
 
-    if (targetValues.role === "") targetValues.role = dataUser.role_id;
+    if (targetValues.role === "") targetValues.role = userData.role_id;
 
     if (targetValues.roleExpert === "")
-      targetValues.roleExpert = dataUser.is_expert;
+      targetValues.roleExpert = userData.is_expert;
   };
 
   const submit = (event) => {
@@ -48,7 +48,7 @@ export default function ModifyUser() {
     subitOldAndNewValues();
 
     axios
-      .put(`${import.meta.env.VITE_BACKEND_URL}/users/${dataUser.id}`, {
+      .put(`${import.meta.env.VITE_BACKEND_URL}/users/${userData.id}`, {
         firstname: targetValues.firstName,
         lastname: targetValues.lastName,
         photo: newUploadedFileName,
@@ -70,7 +70,7 @@ export default function ModifyUser() {
       .get(`${import.meta.env.VITE_BACKEND_URL}/users/1`)
       .then((result) => {
         console.info("User data on DB", result.data);
-        setDataUser(result.data);
+        setUserData(result.data);
       })
       .catch((err) => console.error(err));
   }, []);
@@ -89,9 +89,9 @@ export default function ModifyUser() {
           ) : (
             <img
               src={
-                dataUser?.photo
+                userData?.photo
                   ? `${import.meta.env.VITE_BACKEND_URL}/uploads/${
-                      dataUser.photo
+                      userData.photo
                     }`
                   : Avatar0
               }
@@ -115,7 +115,7 @@ export default function ModifyUser() {
               type="text"
               id="lastName"
               name="lastName"
-              placeholder={dataUser.lastname}
+              placeholder={userData.lastname}
               onChange={update}
             />
           </label>
@@ -125,7 +125,7 @@ export default function ModifyUser() {
               type="text"
               id="firstName"
               name="firstName"
-              placeholder={dataUser.firstname}
+              placeholder={userData.firstname}
               onChange={update}
             />
           </label>
@@ -136,7 +136,7 @@ export default function ModifyUser() {
               id="email"
               name="email"
               className="input-email"
-              placeholder={dataUser.email}
+              placeholder={userData.email}
               onChange={update}
             />
           </label>
@@ -146,14 +146,14 @@ export default function ModifyUser() {
               type="password"
               id="password"
               name="password"
-              placeholder={dataUser.password}
+              placeholder={userData.password}
               onChange={update}
             />
           </label>
           <div className="roles-container">
             <label htmlFor="role">
               Role <br />
-              {parseInt(dataUser.role_id, 10) === 1 ? (
+              {parseInt(userData.role_id, 10) === 1 ? (
                 <select
                   id="role"
                   name="role"
@@ -179,13 +179,12 @@ export default function ModifyUser() {
             </label>
             <label htmlFor="role-expert" className="role-expert">
               Expert <br />
-              {parseInt(dataUser.is_expert, 10) === 1 ? (
+              {parseInt(userData.is_expert, 10) === 1 ? (
                 <input
                   type="checkbox"
                   id="role-expert"
                   name="roleExpert"
                   onChange={update}
-                  checked
                 />
               ) : (
                 <input
