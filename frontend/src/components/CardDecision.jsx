@@ -4,7 +4,10 @@ import PropTypes from "prop-types";
 
 export default function CardDecision({ decision }) {
   return (
-    <Link className="card-decision-container" to={`/decisions/${decision.id}`}>
+    <Link
+      className="card-decision-container"
+      to={`/decisions/${decision.d_id}`}
+    >
       <div className="status-container">
         <p>{decision.title_status}</p>
         <p>{decision.title}</p>

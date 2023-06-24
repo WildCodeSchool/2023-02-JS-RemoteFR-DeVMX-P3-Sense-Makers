@@ -50,7 +50,6 @@ export default function AddUser() {
       console.info("XXX Submitting form with state:", targetValues);
     }
   };
-
   return (
     <form className="user-management" onSubmit={submit}>
       <div className="input-container">
