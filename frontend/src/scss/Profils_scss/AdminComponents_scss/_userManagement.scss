@@ -204,38 +204,7 @@
       }
     }
 
-    .roles-container-2 {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      font-size: $font-size-s;
 
-      :focus {
-        outline: none;
-        border: 1px solid $border-color-active;
-      }
-
-      select {
-        margin-top: $space-xs;
-        margin-right: $space-m;
-        border-radius: $space-xxs;
-        border: 1px solid $border-color-base;
-        cursor: pointer;
-      }
-
-      .role-expert {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        flex-direction: column;
-
-        input[type=checkbox] {
-          margin-top: $space-xs;
-          border: 1px solid $border-color-base;
-          cursor: pointer;
-        }
-      }
-    }
   }
 }
 
@@ -326,14 +295,32 @@
 
         .roles-container-2 {
           display: flex;
+          justify-content: center;
+          align-items: center;
           flex-direction: column;
+          font-size: $font-size-s;
+
+          :focus {
+            outline: none;
+            border: 1px solid $border-color-active;
+          }
+
+          select {
+            margin-top: $space-xs;
+            margin-right: $space-m;
+            border-radius: $space-xxs;
+            border: 1px solid $border-color-base;
+            cursor: pointer;
+          }
 
           .role-expert-2 {
-            margin-top: $space-m;
+             margin-top: $space-m;
             margin-right: auto;
-
-            input {
+            
+            input[type=checkbox] {
               margin: 0 $space-xs 0 0;
+              border: 1px solid $border-color-base;
+              cursor: pointer;
             }
           }
         }
