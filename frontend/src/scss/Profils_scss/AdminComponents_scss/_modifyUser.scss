@@ -303,7 +303,7 @@
 
       .input-container {
         margin-left: $space-s;
-        border-right: 1px solid $color-default;
+        
         flex-grow: 1;
 
         .input-fields {
@@ -341,8 +341,8 @@
         align-items: flex-start;
         flex-direction: column;
         flex-grow: 1;
-        margin-left: $space-s;
-
+        padding-left: $space-s;
+        border-left: 1px solid $color-default;
         >:last-child {
           width: 100%;
         }
