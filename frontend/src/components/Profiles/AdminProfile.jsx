@@ -1,6 +1,6 @@
 import DecisionsDetails from "./AdminComponents/DecisionsDetails";
 import DecisionsManagement from "./AdminComponents/DecisionsManagement";
-import AddUser from "./AdminComponents/AddUser";
+// import AddUser from "./AdminComponents/AddUser";
 import ModifyUser from "./GlobalComponents/ModifyUser";
 
 export default function AdminProfile() {
@@ -13,7 +13,7 @@ export default function AdminProfile() {
       {/* Gestion des utilisateurs */}
       {/* <hr />
         </summary> */}
-      <AddUser />
+      {/* <AddUser /> */}
       <ModifyUser />
 
       {/* </details> */}

@@ -79,6 +79,9 @@ export default function ModifyUser() {
     <form className="modify-user-management" onSubmit={submit}>
       <div className="add-user-title-container">
         <h2 className="add-user-title">Modification d'utilisateur</h2>
+        <div className="remove-button-container-2">
+          <button type="button">Supprimer</button>
+        </div>
       </div>
       <div className="user-management-container">
         <div className="input-container">
@@ -117,9 +120,11 @@ export default function ModifyUser() {
               />
             </label>
             <div className="roles-container-1">
-              <div className="role-actuel">
-                <h4 className="role-actuel-title"> Role(s) actuel(s) </h4>
-                <span className="role-actuel-data">Salarié, expert</span>
+              <div className="role-actuel-container">
+                <div className="role">
+                  <h4 className="role-actuel-title"> Role(s) actuel(s) </h4>
+                  <p className="role-actuel-data">Salarié, expert</p>
+                </div>
                 <label htmlFor="role">
                   Role <br />
                   <select name="role" onChange={update} required>
@@ -128,9 +133,9 @@ export default function ModifyUser() {
                     <option value="2">Utilisateur</option>
                   </select>
                 </label>
-                <label htmlFor="role-expert" className="role-expert">
-                  Expert <br />
+                <label htmlFor="roleExpert" className="role-expert">
                   <input type="checkbox" name="roleExpert" onChange={update} />
+                  Expert
                 </label>
               </div>
             </div>
@@ -176,11 +181,13 @@ export default function ModifyUser() {
               </label>
             </div>
           </div>
-          <div className="remove-button-container">
-            <button type="submit">Supprimer</button>
-          </div>
-          <div className="add-button-container">
-            <button type="submit">Valider les modifications</button>
+          <div className="add-remove-buttons-container-1">
+            <div className="remove-button-container-1">
+              <button type="button">Supprimer</button>
+            </div>
+            <div className="add-button-container-1">
+              <button type="submit">Valider les modifications</button>
+            </div>
           </div>
         </div>
       </div>
