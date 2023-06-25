@@ -1,7 +1,7 @@
 import DecisionsDetails from "./AdminComponents/DecisionsDetails";
 import DecisionsManagement from "./AdminComponents/DecisionsManagement";
-// import AddUser from "./AdminComponents/AddUser";
-import ModifyUser from "./GlobalComponents/ModifyUser";
+import AddUser from "./AdminComponents/AddUser";
+// import ModifyUser from "./GlobalComponents/ModifyUser";
 
 export default function AdminProfile() {
   return (
@@ -13,8 +13,8 @@ export default function AdminProfile() {
       {/* Gestion des utilisateurs */}
       {/* <hr />
         </summary> */}
-      {/* <AddUser /> */}
-      <ModifyUser />
+      <AddUser />
+      {/* <ModifyUser /> */}
 
       {/* </details> */}
     </div>
