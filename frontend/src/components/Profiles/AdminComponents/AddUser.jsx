@@ -51,7 +51,7 @@ export default function AddUser() {
     }
   };
   return (
-    <form className="user-management" onSubmit={submit}>
+    <form className="add-user-management" onSubmit={submit}>
       <div className="add-user-title-container">
         <h2 className="add-user-title">Ajout d'utilisateur</h2>
       </div>

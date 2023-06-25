@@ -76,9 +76,9 @@ export default function ModifyUser() {
   }, []);
 
   return (
-    <form className="user-management" onSubmit={submit}>
+    <form className="modify-user-management" onSubmit={submit}>
       <div className="add-user-title-container">
-        <h2 className="add-user-title">Ajout d'utilisateur</h2>
+        <h2 className="add-user-title">Modification d'utilisateur</h2>
       </div>
       <div className="user-management-container">
         <div className="input-container">
@@ -119,35 +119,28 @@ export default function ModifyUser() {
                 required
               />
             </label>
-            <label htmlFor="password">
-              Mot de passe <br />
-              <input
-                type="password"
-                id="password"
-                name="password"
-                placeholder="Insérez votre mot de passe"
-                onChange={update}
-                required
-              />
-            </label>
             <div className="roles-container-1">
-              <label htmlFor="role">
-                Role <br />
-                <select id="role" name="role" onChange={update} required>
-                  <option value="0">Sélectionne votre role</option>
-                  <option value="1">Admin</option>
-                  <option value="2">Utilisateur</option>
-                </select>
-              </label>
-              <label htmlFor="role-expert" className="role-expert">
-                Expert <br />
-                <input
-                  type="checkbox"
-                  id="role-expert"
-                  name="roleExpert"
-                  onChange={update}
-                />
-              </label>
+              <div className="role-actuel">
+                <h4 className="role-actuel-title"> Role(s) actuel(s) </h4>
+                <span className="role-actuel-data">Salarié, expert</span>
+                <label htmlFor="role">
+                  Role <br />
+                  <select id="role" name="role" onChange={update} required>
+                    <option value="0">Sélectionne votre role</option>
+                    <option value="1">Admin</option>
+                    <option value="2">Utilisateur</option>
+                  </select>
+                </label>
+                <label htmlFor="role-expert" className="role-expert">
+                  Expert <br />
+                  <input
+                    type="checkbox"
+                    id="role-expert"
+                    name="roleExpert"
+                    onChange={update}
+                  />
+                </label>
+              </div>
             </div>
           </div>
         </div>
@@ -174,26 +167,33 @@ export default function ModifyUser() {
 
         <div className="input-buttons-container">
           <div className="roles-container-2">
-            <label htmlFor="role">
-              Role <br />
-              <select id="role" name="role" onChange={update} required>
-                <option value="0">Sélectionne votre role</option>
-                <option value="1">Admin</option>
-                <option value="2">Utilisateur</option>
-              </select>
-            </label>
-            <label htmlFor="role-expert" className="role-expert-2">
-              <input
-                type="checkbox"
-                id="role-expert"
-                name="roleExpert"
-                onChange={update}
-              />
-              Expert(e)
-            </label>
+            <div className="role-actuel">
+              <h4 className="role-actuel-title"> Role(s) actuel(s) </h4>
+              <span className="role-actuel-data">Salarié, expert</span>
+              <label htmlFor="role">
+                Role <br />
+                <select id="role" name="role" onChange={update} required>
+                  <option value="0">Sélectionne votre role</option>
+                  <option value="1">Admin</option>
+                  <option value="2">Utilisateur</option>
+                </select>
+              </label>
+              <label htmlFor="role-expert" className="role-expert-2">
+                <input
+                  type="checkbox"
+                  id="role-expert"
+                  name="roleExpert"
+                  onChange={update}
+                />
+                Expert(e)
+              </label>
+            </div>
+          </div>
+          <div className="remove-button-container">
+            <button type="submit">Supprimer</button>
           </div>
           <div className="add-button-container">
-            <button type="submit">Ajouter l'utilisateur</button>
+            <button type="submit">Valider les modifications</button>
           </div>
         </div>
       </div>
