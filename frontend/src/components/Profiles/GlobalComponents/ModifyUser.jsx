@@ -77,134 +77,124 @@ export default function ModifyUser() {
 
   return (
     <form className="user-management" onSubmit={submit}>
-      <div className="profile-photo-container">
-        <label htmlFor="profile-photo-input">
-          {dropzoneImage[0]?.preview ? (
-            <img
-              src={
-                dropzoneImage[0]?.preview ? dropzoneImage[0]?.preview : Avatar0
-              }
-              alt="profil"
-            />
-          ) : (
-            <img
-              src={
-                userData?.photo
-                  ? `${import.meta.env.VITE_BACKEND_URL}/uploads/${
-                      userData.photo
-                    }`
-                  : Avatar0
-              }
-              alt="profil"
-            />
-          )}
-          <Dropzone
-            className="dropzone"
-            dropzoneImage={dropzoneImage}
-            setDropzoneImage={setDropzoneImage}
-            setNewUploadedFileName={setNewUploadedFileName}
-          />
-        </label>
+      <div className="add-user-title-container">
+        <h2 className="add-user-title">Ajout d'utilisateur</h2>
       </div>
-      <div className="input-container">
-        <h2 className="input-title">Modification d'utilisateur</h2>
-        <div className="input-fields">
-          <label htmlFor="lastName">
-            Nom <br />
-            <input
-              type="text"
-              id="lastName"
-              name="lastName"
-              placeholder={userData.lastname}
-              onChange={update}
-            />
-          </label>
-          <label htmlFor="firstName">
-            Prénom <br />
-            <input
-              type="text"
-              id="firstName"
-              name="firstName"
-              placeholder={userData.firstname}
-              onChange={update}
-            />
-          </label>
-          <label htmlFor="email">
-            Email <br />
-            <input
-              type="email"
-              id="email"
-              name="email"
-              className="input-email"
-              placeholder={userData.email}
-              onChange={update}
-            />
-          </label>
-          <label htmlFor="password">
-            Mot de passe <br />
-            <input
-              type="password"
-              id="password"
-              name="password"
-              placeholder={userData.password}
-              onChange={update}
-            />
-          </label>
-          <div className="roles-container">
-            <label htmlFor="role">
-              Role <br />
-              {parseInt(userData.role_id, 10) === 1 ? (
-                <select
-                  id="role"
-                  name="role"
+      <div className="user-management-container">
+        <div className="input-container">
+          <div className="input-fields">
+            <div className="input-fields name-inputs-container">
+              <label htmlFor="lastName" className="lastName">
+                Nom <br />
+                <input
+                  type="text"
+                  id="lastName"
+                  name="lastName"
+                  placeholder="Insérez votre nom"
                   onChange={update}
-                  // defaultValue={1}
-                >
-                  <option value="0">Sélectionne votre role</option>
-                  <option value="1">Admin</option>
-                  <option value="2">Utilisateur</option>
-                </select>
-              ) : (
-                <select
-                  id="role"
-                  name="role"
+                  required
+                />
+              </label>
+              <label htmlFor="firstName" className="firstName">
+                Prénom <br />
+                <input
+                  type="text"
+                  id="firstName"
+                  name="firstName"
+                  placeholder="Insérez votre prénom"
                   onChange={update}
-                  // defaultValue={2}
-                >
-                  <option value="0">Sélectionne votre role</option>
-                  <option value="1">Admin</option>
-                  <option value="2">Utilisateur</option>
-                </select>
-              )}
+                  required
+                />
+              </label>
+            </div>
+            <label htmlFor="email">
+              Email <br />
+              <input
+                type="email"
+                id="email"
+                name="email"
+                className="input-email"
+                placeholder="Insérez votre email"
+                onChange={update}
+                required
+              />
             </label>
-            <label htmlFor="role-expert" className="role-expert">
-              Expert <br />
-              {parseInt(userData.is_expert, 10) === 1 ? (
+            <label htmlFor="password">
+              Mot de passe <br />
+              <input
+                type="password"
+                id="password"
+                name="password"
+                placeholder="Insérez votre mot de passe"
+                onChange={update}
+                required
+              />
+            </label>
+            <div className="roles-container-1">
+              <label htmlFor="role">
+                Role <br />
+                <select id="role" name="role" onChange={update} required>
+                  <option value="0">Sélectionne votre role</option>
+                  <option value="1">Admin</option>
+                  <option value="2">Utilisateur</option>
+                </select>
+              </label>
+              <label htmlFor="role-expert" className="role-expert">
+                Expert <br />
                 <input
                   type="checkbox"
                   id="role-expert"
                   name="roleExpert"
                   onChange={update}
                 />
-              ) : (
-                <input
-                  type="checkbox"
-                  id="role-expert"
-                  name="roleExpert"
-                  onChange={update}
-                />
-              )}
-            </label>
+              </label>
+            </div>
           </div>
         </div>
-      </div>
-
-      <div className="input-buttons-container">
-        <div className="remove-button-container">
-          <button type="submit">Supprimer</button>
+        <div className="profile-photo-container">
+          <label htmlFor="profile-photo-input">
+            <div className="img-container">
+              <img
+                src={
+                  dropzoneImage[0]?.preview
+                    ? dropzoneImage[0]?.preview
+                    : Avatar0
+                }
+                alt="profil"
+              />
+            </div>
+            <Dropzone
+              className="dropzone"
+              dropzoneImage={dropzoneImage}
+              setDropzoneImage={setDropzoneImage}
+              setNewUploadedFileName={setNewUploadedFileName}
+            />
+          </label>
         </div>
-        <div className="add-button-container">
-          <button type="submit">Valider les modifications</button>
+
+        <div className="input-buttons-container">
+          <div className="roles-container-2">
+            <label htmlFor="role">
+              Role <br />
+              <select id="role" name="role" onChange={update} required>
+                <option value="0">Sélectionne votre role</option>
+                <option value="1">Admin</option>
+                <option value="2">Utilisateur</option>
+              </select>
+            </label>
+            <label htmlFor="role-expert" className="role-expert-2">
+              <input
+                type="checkbox"
+                id="role-expert"
+                name="roleExpert"
+                onChange={update}
+              />
+              Expert(e)
+            </label>
+          </div>
+          <div className="add-button-container">
+            <button type="submit">Ajouter l'utilisateur</button>
+          </div>
         </div>
       </div>
     </form>
