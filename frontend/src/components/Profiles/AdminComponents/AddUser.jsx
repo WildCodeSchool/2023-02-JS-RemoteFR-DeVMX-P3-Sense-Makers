@@ -63,7 +63,6 @@ export default function AddUser() {
                 Nom <br />
                 <input
                   type="text"
-                  id="lastName"
                   name="lastName"
                   placeholder="Insérez votre nom"
                   onChange={update}
@@ -74,7 +73,6 @@ export default function AddUser() {
                 Prénom <br />
                 <input
                   type="text"
-                  id="firstName"
                   name="firstName"
                   placeholder="Insérez votre prénom"
                   onChange={update}
@@ -86,7 +84,6 @@ export default function AddUser() {
               Email <br />
               <input
                 type="email"
-                id="email"
                 name="email"
                 className="input-email"
                 placeholder="Insérez votre email"
@@ -98,7 +95,6 @@ export default function AddUser() {
               Mot de passe <br />
               <input
                 type="password"
-                id="password"
                 name="password"
                 placeholder="Insérez votre mot de passe"
                 onChange={update}
@@ -108,7 +104,7 @@ export default function AddUser() {
             <div className="roles-container-1">
               <label htmlFor="role">
                 Role <br />
-                <select id="role" name="role" onChange={update} required>
+                <select name="role" onChange={update} required>
                   <option value="0">Sélectionne votre role</option>
                   <option value="1">Admin</option>
                   <option value="2">Utilisateur</option>
@@ -116,12 +112,7 @@ export default function AddUser() {
               </label>
               <label htmlFor="role-expert" className="role-expert">
                 Expert <br />
-                <input
-                  type="checkbox"
-                  id="role-expert"
-                  name="roleExpert"
-                  onChange={update}
-                />
+                <input type="checkbox" name="roleExpert" onChange={update} />
               </label>
             </div>
           </div>
@@ -151,19 +142,14 @@ export default function AddUser() {
           <div className="roles-container-2">
             <label htmlFor="role">
               Role <br />
-              <select id="role" name="role" onChange={update} required>
+              <select name="role" onChange={update} required>
                 <option value="0">Sélectionne votre role</option>
                 <option value="1">Admin</option>
                 <option value="2">Utilisateur</option>
               </select>
             </label>
             <label htmlFor="role-expert" className="role-expert-2">
-              <input
-                type="checkbox"
-                id="role-expert"
-                name="roleExpert"
-                onChange={update}
-              />
+              <input type="checkbox" name="roleExpert" onChange={update} />
               Expert(e)
             </label>
           </div>
