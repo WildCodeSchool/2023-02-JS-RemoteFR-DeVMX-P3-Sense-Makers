@@ -37,6 +37,13 @@ class UsersManager extends AbstractManager {
     );
   }
 
+  insertRoleIntoUser(userId, roleId) {
+    return this.database.query(
+      `insert into users_roles (user_id, role_id) values ( ?, ?)`,
+      [userId, roleId]
+    );
+  }
+
   update(user) {
     return this.database.query(
       `update ${this.table} set firstname = ?, lastname = ?, photo = ?, email = ?, password = ?, creation_date =? where id = ?`,
