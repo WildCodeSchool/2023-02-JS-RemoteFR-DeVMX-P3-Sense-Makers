@@ -7,7 +7,6 @@ function TextEditor({ name, title, dispatch }) {
 
   const functionChange = () => {
     if (refInit.current) {
-      console.info(refInit.current.getContent());
       return dispatch({
         type: "update_input",
         value: refInit.current.getContent(),
@@ -69,6 +68,10 @@ function TextEditor({ name, title, dispatch }) {
 TextEditor.propTypes = {
   name: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
-  dispatch: PropTypes.shape().isRequired,
+  dispatch: PropTypes.shape({
+    type: PropTypes.string.isRequired,
+    value: PropTypes.func.isRequired,
+    key: PropTypes.string.isRequired,
+  }).isRequired,
 };
 export default TextEditor;
