@@ -7,7 +7,8 @@
   align-items: center;
   justify-content: center;
   progress {
-    width: 100%;
+    width: 15rem;
+    height: 1rem;
     rotate: 90deg;
     vertical-align: 0rem;
     -webkit-appearance: none;
@@ -16,35 +17,50 @@
     &::-webkit-progress-bar {
       background-color: $light-yellow;
       border-radius: 15px;
-      border : 1px solid $fluo-green;
+      border: 1px solid $border-color-active;
     }
     &::-webkit-progress-value {
       border-radius: 15px;
       background: $sage-green;
+    //   box-shadow: 1px 1px 6px $color-default;
+
     }
   }
   .date-container {
     position: absolute;
     display: flex;
-    justify-content: center;
+    justify-content: space-around;
     width: 100%;
     height: auto;
     align-items: center;
 
     .date-point {
-      height: 17px;
-      width: 17px;
-      border-radius: 17px;
-      border-left : 1px solid $fluo-green;
-      border-right: 1px solid $fluo-green;
+      height: 1.3rem;
+      width: 1.3rem;
+      border-radius: 1.3rem;
+      border-left: 1px solid $border-color-active;
+      border-right: 1px solid $border-color-active;
+      background-color: $light-yellow;
+    }
+    .date-point-similar {
+      height: 1.3rem;
+      width: 1.3rem;
+      border-radius: 1.3rem;
+      border-left: 1px solid $border-color-active;
+      border-right: 1px solid $border-color-active;
+    //   box-shadow: 1px 1px 6px $color-default;
       background-color: $sage-green;
     }
     .date-text {
-    //   text-align: center;
+      height: 10px;
+      width: 100px;
+      text-align: center;
       font-size: $font-size-xs;
     }
     .date-infos {
-    //   text-align: center;
+      height: 10px;
+      width: 100px;
+      text-align: center;
       font-size: $font-size-xs;
     }
   }
