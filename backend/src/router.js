@@ -48,6 +48,7 @@ router.get("/users/experts", usersControllers.BrowseConcatExperts);
 router.get("/users/:id", usersControllers.readUser);
 router.get("/users/:id/decisions", usersControllers.browseAllDecisionsByUser);
 router.post("/users", usersControllers.addUser);
+router.post("/users/:id/role", usersControllers.addRoleToUser);
 router.put("/users/:id", usersControllers.editUser);
 router.delete("/users/:id", usersControllers.destroyUser);
 
