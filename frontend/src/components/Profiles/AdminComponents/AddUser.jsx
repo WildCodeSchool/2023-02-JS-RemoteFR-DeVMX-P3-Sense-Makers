@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
 import Dropzone from "../../../services/hookDropzone";
 import inputValidationRules from "../../../services/inputValidationRules";
@@ -28,6 +28,20 @@ export default function AddUser() {
     });
   };
 
+  useEffect(() => {
+    setTargetValues({
+      ...targetValues,
+      photo: newUploadedFileName,
+    });
+  }, [newUploadedFileName]);
+
+  useEffect(() => {
+    axios
+      .get(`${import.meta.env.VITE_BACKEND_URL}/role`)
+      .then((response) => console.info(response))
+      .catch((err) => console.error(err));
+  }, []);
+
   const submit = (event) => {
     event.preventDefault();
 
@@ -43,10 +57,22 @@ export default function AddUser() {
           photo: newUploadedFileName,
           email: targetValues.email,
           password: targetValues.password,
-          role_id: 3,
+          // role_id: 3,
           creation_date: "2023-02-03",
         })
-        .then((response) => console.info(response))
+        .then((response) => {
+          console.info(response);
+          if (response.status === 201) {
+            axios.post(
+              `${import.meta.env.VITE_BACKEND_URL}/users/${
+                response.data.insertId
+              }/role`,
+              {
+                role_id: 3,
+              }
+            );
+          }
+        })
         .catch((err) => console.error(err));
     } else {
       console.info("XXX Submitting form with state:", targetValues);
