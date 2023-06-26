@@ -7,16 +7,17 @@ class UsersManager extends AbstractManager {
 
   findAllUsersWithRoles() {
     return this.database.query(
-      `SELECT ${this.table}.id, ${this.table}.firstname, ${this.table}.lastname, ${this.table}.photo, ${this.table}.email, ${this.table}.password, ${this.table}.creation_date, r.role_name, ur.user_id, ur.role_id FROM  ${this.table}
+      `SELECT ${this.table}.id, ${this.table}.firstname, ${this.table}.lastname, ${this.table}.photo, ${this.table}.email, ${this.table}.password, ${this.table}.creation_date, GROUP_CONCAT( r.role_name SEPARATOR ", " ) roles FROM  ${this.table}
       left join users_roles ur ON ur.user_id = ${this.table}.id
-      inner join roles r ON r.id = ur.role_id;
+      inner join roles r ON r.id = ur.role_id
+      group by ${this.table}.id;
       `
     );
   }
 
   findUserWithRolesById(id) {
     return this.database.query(
-      `SELECT ${this.table}.id, ${this.table}.firstname, ${this.table}.lastname, ${this.table}.photo, ${this.table}.email, ${this.table}.password, ${this.table}.creation_date, GROUP_CONCAT (r.role_name SEPARATOR ', ') roles FROM  ${this.table}
+      `SELECT ${this.table}.id, ${this.table}.firstname, ${this.table}.lastname, ${this.table}.photo, ${this.table}.email, ${this.table}.password, ${this.table}.creation_date, GROUP_CONCAT ( r.role_name SEPARATOR ", " ) roles FROM  ${this.table}
       left join users_roles ur ON ur.user_id = ${this.table}.id
       inner join roles r ON r.id = ur.role_id
       where ${this.table}.id = ?
