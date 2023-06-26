@@ -21,8 +21,8 @@ export default function inputValidationRules(targetValues) {
       !!targetValues.password &&
       targetValues.password.length > 8 &&
       targetValues.password.match(/^ *$/) === null,
-    photo: isValidPhoto(),
-    role: targetValues.role !== "0",
+    photo: isValidPhoto(targetValues.photo),
+    role: true,
     roleExperts: true,
   };
 }

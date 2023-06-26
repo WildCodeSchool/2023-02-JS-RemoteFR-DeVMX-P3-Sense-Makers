@@ -7,12 +7,13 @@ import Avatar0 from "../../../assets/avatar0.png";
 export default function AddUser() {
   const [dropzoneImage, setDropzoneImage] = useState([]);
   const [newUploadedFileName, setNewUploadedFileName] = useState("");
+
   const [targetValues, setTargetValues] = useState({
     firstName: "",
     lastName: "",
     email: "",
     password: "",
-    photo: "",
+    photo: newUploadedFileName,
     role: 0,
     roleExpert: false,
   });
@@ -23,6 +24,7 @@ export default function AddUser() {
     setTargetValues({
       ...targetValues,
       [target.name]: target.type === "checkbox" ? target.checked : target.value,
+      photo: newUploadedFileName,
     });
   };
 
@@ -41,7 +43,7 @@ export default function AddUser() {
           photo: newUploadedFileName,
           email: targetValues.email,
           password: targetValues.password,
-          role_id: targetValues.role,
+          // role_id: targetValues.role,
           creation_date: "2023-02-03",
         })
         .then((response) => console.info(response))
@@ -137,7 +139,6 @@ export default function AddUser() {
             />
           </label>
         </div>
-
         <div className="input-buttons-container">
           <div className="roles-container-2">
             <label htmlFor="role">
