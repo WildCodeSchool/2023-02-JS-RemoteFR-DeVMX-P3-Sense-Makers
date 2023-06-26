@@ -11,6 +11,17 @@ const browseUsers = (req, res) => {
       res.sendStatus(500);
     });
 };
+const browseUsersWithRoles = (req, res) => {
+  models.users
+    .findAllUsersWithRoles()
+    .then(([rows]) => {
+      res.send(rows);
+    })
+    .catch((err) => {
+      console.error(err);
+      res.sendStatus(500);
+    });
+};
 
 const BrowseConcatUsers = (req, res) => {
   models.users
@@ -48,6 +59,21 @@ const browseAllDecisionsByUser = (req, res) => {
 };
 
 const readUser = (req, res) => {
+  models.users
+    .find(req.params.id)
+    .then(([rows]) => {
+      if (rows[0] == null) {
+        res.sendStatus(404);
+      } else {
+        res.send(rows[0]);
+      }
+    })
+    .catch((err) => {
+      console.error(err);
+      res.sendStatus(500);
+    });
+};
+const readUserWithRoles = (req, res) => {
   models.users
     .find(req.params.id)
     .then(([rows]) => {
@@ -137,8 +163,10 @@ const destroyUser = (req, res) => {
 
 module.exports = {
   browseUsers,
+  browseUsersWithRoles,
   browseAllDecisionsByUser,
   readUser,
+  readUserWithRoles,
   editUser,
   addUser,
   addRoleToUser,
