@@ -269,6 +269,10 @@
             input[type=email] {
               min-width: 180%;
             }
+
+            input[type=password]{
+              width: 10rem;
+            }
           }
 
           .roles-container-1 {
