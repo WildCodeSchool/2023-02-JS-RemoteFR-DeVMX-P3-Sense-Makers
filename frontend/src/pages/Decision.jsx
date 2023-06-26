@@ -21,6 +21,13 @@ export default function Decision() {
     setAddComment(true);
   };
 
+  const handleComment = () => {
+    axios
+      .get(`${import.meta.env.VITE_BACKEND_URL}/decisions/${id}/comments`)
+      .then((res) => setComments(res.data))
+      .catch((err) => console.error(err));
+  };
+
   useEffect(() => {
     axios
       .get(`${import.meta.env.VITE_BACKEND_URL}/decisions/${id}`)
@@ -29,10 +36,7 @@ export default function Decision() {
   }, []);
 
   useEffect(() => {
-    axios
-      .get(`${import.meta.env.VITE_BACKEND_URL}/decisions/${id}/comments`)
-      .then((res) => setComments(res.data))
-      .catch((err) => console.error(err));
+    handleComment();
   }, []);
 
   useEffect(() => {
@@ -166,7 +170,7 @@ export default function Decision() {
             Donner mon avis
           </button>
         )}
-        {firstDayDiff > 15 && (
+        {firstDayDiff > 15 && !secondDate && (
           <div className="closed-comment">
             <p> La période de commentaire est à present terminée!</p>
             <p>
@@ -181,7 +185,12 @@ export default function Decision() {
             <p>Merci pour vos retours!</p>
           </div>
         )}
-        {addComment && <PostComments setAddComment={setAddComment} />}
+        {addComment && (
+          <PostComments
+            setAddComment={setAddComment}
+            handleComment={handleComment}
+          />
+        )}
       </div>
       <div className="side-content">
         <div className="side-text">
