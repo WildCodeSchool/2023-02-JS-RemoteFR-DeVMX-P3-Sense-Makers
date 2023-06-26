@@ -55,6 +55,7 @@ const editComment = (req, res) => {
 const addComment = (req, res) => {
   const decisionId = parseInt(req.params.id, 10);
   const comment = req.body;
+  comment.user_id = req.body.userId;
 
   // TODO validations (length, format...)
 

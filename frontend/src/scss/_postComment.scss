@@ -1,0 +1,35 @@
+@import "./variables.scss";
+
+.post-comment {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 4rem;
+  textarea {
+    width: 90vw;
+    height: 10rem;
+    resize: none;
+  }
+  button {
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 1rem auto;
+    background-color: $color-default;
+    color: $background-color-base;
+    border: none;
+    padding: 0.6rem 2.6rem;
+    border-radius: 5px;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .post-comment {
+    textarea {
+      width: 50vw;
+    }
+  }
+}

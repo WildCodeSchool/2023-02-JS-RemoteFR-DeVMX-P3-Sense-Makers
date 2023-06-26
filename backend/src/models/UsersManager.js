@@ -17,38 +17,42 @@ class UsersManager extends AbstractManager {
 
   findUsersNameExpertConcat() {
     return this.database.query(
-      `SELECT id, CONCAT(firstname, ' ',lastname) AS label, firstname AS value  FROM  ${this.table}
-      WHERE is_expert=1`
+      `SELECT u.id, CONCAT(u.firstname, ' ',u.lastname) AS label, u.firstname AS value  FROM  users_roles ur
+      INNER JOIN users u ON u.id = ur.user_id
+      WHERE role_id = 3`
     );
   }
 
   insert(user) {
     return this.database.query(
-      `insert into ${this.table} (firstname, lastname, photo, email, password, role_id, is_expert, creation_date) values (?, ?, ?, ?, ?, ?, ?, ?)`,
+      `insert into ${this.table} (firstname, lastname, photo, email, password, creation_date) values (?, ?, ?, ?, ?, ?)`,
       [
         user.firstname,
         user.lastname,
         user.photo,
         user.email,
         user.password,
-        user.role_id,
-        user.is_expert,
         user.creation_date,
       ]
     );
   }
 
+  insertRoleIntoUser(userId, roleId) {
+    return this.database.query(
+      `insert into users_roles (user_id, role_id) values ( ?, ?)`,
+      [userId, roleId]
+    );
+  }
+
   update(user) {
     return this.database.query(
-      `update ${this.table} set firstname = ?, lastname = ?, photo = ?, email = ?, password = ?, role_id = ?, is_expert = ?, creation_date =? where id = ?`,
+      `update ${this.table} set firstname = ?, lastname = ?, photo = ?, email = ?, password = ?, creation_date =? where id = ?`,
       [
         user.firstname,
         user.lastname,
         user.photo,
         user.email,
         user.password,
-        user.role_id,
-        user.is_expert,
         user.creation_date,
         user.id,
       ]

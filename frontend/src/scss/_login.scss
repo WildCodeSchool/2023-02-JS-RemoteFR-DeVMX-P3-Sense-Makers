@@ -6,7 +6,7 @@
   border-radius: 5px;
   position: relative;
   top: 5rem;
-  left:0.5rem;
+  left: 0.5rem;
   height: 50vh;
   max-width: 75vw;
   display: flex;
@@ -71,8 +71,8 @@
 
 @media screen and (min-width: 768px) {
   .logInContainer {
-    left:25vw;
-    top:20vw;
+    left: 25vw;
+    top: 20vw;
     max-width: 45vw;
     input {
       width: 25vw;
@@ -86,7 +86,7 @@
 
 @media screen and (min-width: 1024px) {
   .logInContainer {
-    top:10vw;
+    top: 10vw;
     .logInUsername {
       label {
         p {
