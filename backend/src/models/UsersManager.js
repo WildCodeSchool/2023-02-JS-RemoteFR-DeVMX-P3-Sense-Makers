@@ -6,7 +6,12 @@ class UsersManager extends AbstractManager {
   }
 
   findAllUsers() {
-    return this.database.query(`SELECT * FROM  ${this.table}`);
+    return this.database.query(
+      `SELECT ${this.table}.id, ${this.table}.firstname, ${this.table}.lastname, ${this.table}.photo, ${this.table}.email, ${this.table}.password, ${this.table}.creation_date, role_name FROM  ${this.table}
+      inner join users_roles ur ON ur.id = ur.user_id
+      inner join roles r ON r.id = ur.user_id;
+      `
+    );
   }
 
   findUsersNameConcat() {
@@ -67,6 +72,17 @@ class UsersManager extends AbstractManager {
       JOIN status s ON s.id = d.status_id
       JOIN concernedhub c ON c.id = d.concerned_hub_id
       WHERE u.id = ?`,
+      [id]
+    );
+  }
+
+  findUserWithRoles(id) {
+    return this.database.query(
+      `SELECT ${this.table}.id, ${this.table}.firstname, ${this.table}.lastname, ${this.table}.photo, ${this.table}.email, ${this.table}.password, ${this.table}.creation_date, role_name FROM  ${this.table}
+      inner join users_roles ur ON ur.id = ur.user_id
+      inner join roles r ON r.id = ur.user_id
+      where ${this.table}.id = ?;
+      `,
       [id]
     );
   }
