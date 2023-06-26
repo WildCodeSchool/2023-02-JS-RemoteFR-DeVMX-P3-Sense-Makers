@@ -7,11 +7,7 @@ import Avatar0 from "../../../assets/avatar0.png";
 export default function AddUser() {
   const [dropzoneImage, setDropzoneImage] = useState([]);
   const [newUploadedFileName, setNewUploadedFileName] = useState("");
-  // const [rolesData, setRolesData] = useState([]);
-
-  // const rolelData = {
-
-  // }
+  const [rolesData, setRolesData] = useState([]);
 
   const [targetValues, setTargetValues] = useState({
     firstName: "",
@@ -40,15 +36,15 @@ export default function AddUser() {
     });
   }, [newUploadedFileName]);
 
-  // useEffect(() => {
-  //   axios
-  //     .get(`${import.meta.env.VITE_BACKEND_URL}/roles`)
-  //     .then((response) => {
-  //       console.info(response);
-  //       setRolesData(response.data);
-  //     })
-  //     .catch((err) => console.error(err));
-  // }, []);
+  useEffect(() => {
+    axios
+      .get(`${import.meta.env.VITE_BACKEND_URL}/roles`)
+      .then((response) => {
+        console.info(response);
+        setRolesData(response.data);
+      })
+      .catch((err) => console.error(err));
+  }, []);
 
   const submit = (event) => {
     event.preventDefault();
@@ -179,11 +175,18 @@ export default function AddUser() {
               Role <br />
               <select name="role" onChange={update} required>
                 <option value="0">Sélectionne votre role</option>
-                {/* {rolesData
+                {rolesData
                   .filter((roleExpert) => roleExpert.role_name !== "expert")
-                  .map((role) => (
-                    <option value={role.id}>{role.role_name}</option>
-                  ))} */}
+                  .map((role) => {
+                    const roleNameFirstLetterUpperCase =
+                      role.role_name.charAt(0).toUpperCase() +
+                      role.role_name.slice(1);
+                    return (
+                      <option key={role.id} value={role.id}>
+                        {roleNameFirstLetterUpperCase}
+                      </option>
+                    );
+                  })}
               </select>
             </label>
             <label htmlFor="role-expert" className="role-expert-2">
