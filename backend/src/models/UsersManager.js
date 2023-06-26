@@ -5,7 +5,7 @@ class UsersManager extends AbstractManager {
     super({ table: "users" });
   }
 
-  findAllUsers() {
+  findAllUsersWithRoles() {
     return this.database.query(
       `SELECT ${this.table}.id, ${this.table}.firstname, ${this.table}.lastname, ${this.table}.photo, ${this.table}.email, ${this.table}.password, ${this.table}.creation_date, role_name FROM  ${this.table}
       inner join users_roles ur ON ur.id = ur.user_id
@@ -76,7 +76,7 @@ class UsersManager extends AbstractManager {
     );
   }
 
-  findUserWithRoles(id) {
+  findUserWithRolesById(id) {
     return this.database.query(
       `SELECT ${this.table}.id, ${this.table}.firstname, ${this.table}.lastname, ${this.table}.photo, ${this.table}.email, ${this.table}.password, ${this.table}.creation_date, role_name FROM  ${this.table}
       inner join users_roles ur ON ur.id = ur.user_id
