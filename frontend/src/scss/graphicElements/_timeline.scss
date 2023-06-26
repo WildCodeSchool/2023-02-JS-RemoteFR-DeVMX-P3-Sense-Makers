@@ -1,0 +1,51 @@
+@import "../variables.scss";
+
+.timeline-container {
+  position: relative;
+  height: 15rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  progress {
+    width: 100%;
+    rotate: 90deg;
+    vertical-align: 0rem;
+    -webkit-appearance: none;
+    appearance: none;
+    border-radius: 15px;
+    &::-webkit-progress-bar {
+      background-color: $light-yellow;
+      border-radius: 15px;
+      border : 1px solid $fluo-green;
+    }
+    &::-webkit-progress-value {
+      border-radius: 15px;
+      background: $sage-green;
+    }
+  }
+  .date-container {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    height: auto;
+    align-items: center;
+
+    .date-point {
+      height: 17px;
+      width: 17px;
+      border-radius: 17px;
+      border-left : 1px solid $fluo-green;
+      border-right: 1px solid $fluo-green;
+      background-color: $sage-green;
+    }
+    .date-text {
+    //   text-align: center;
+      font-size: $font-size-xs;
+    }
+    .date-infos {
+    //   text-align: center;
+      font-size: $font-size-xs;
+    }
+  }
+}
