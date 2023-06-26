@@ -19,6 +19,7 @@ router.get(
 router.post("/decisions/:id/impacted", decisionControllers.addImpacted);
 router.get("/decisions/:id/expert", decisionControllers.readExpertOnDecision);
 router.post("/decisions/:id/expert", decisionControllers.addExpert);
+router.post("/decisions/:id/user", decisionControllers.addUserOnDecision);
 
 router.put("/decisions/:id", decisionControllers.editDecision);
 router.post("/decisions", decisionControllers.addDecision);
