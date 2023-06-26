@@ -93,7 +93,25 @@ const addUser = (req, res) => {
   models.users
     .insert(user)
     .then(([result]) => {
-      res.location(`/status/${result.insertId}`).sendStatus(201);
+      res.status(201).json(result);
+    })
+    .catch((err) => {
+      console.error(err);
+      res.sendStatus(500);
+    });
+};
+
+const addRoleToUser = (req, res) => {
+  const userId = parseInt(req.params.id, 10);
+
+  const { roleId } = req.body;
+
+  // TODO validations (length, format...)
+
+  models.users
+    .insertRoleIntoUser(userId, roleId)
+    .then(([result]) => {
+      res.status(201).json([result]);
     })
     .catch((err) => {
       console.error(err);
@@ -123,6 +141,7 @@ module.exports = {
   readUser,
   editUser,
   addUser,
+  addRoleToUser,
   destroyUser,
   BrowseConcatUsers,
   BrowseConcatExperts,

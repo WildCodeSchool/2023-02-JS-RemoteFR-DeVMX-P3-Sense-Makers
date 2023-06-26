@@ -186,7 +186,6 @@ export default function Decision() {
       <div className="side-content">
         <div className="side-text">
           <h2>Dates à retenir</h2>
-          <div> timeline</div>
           <h2>Personnes impactées</h2>
           <div className="tagged" data-count={impactedUsers.length}>
             {impactedUsers.map((impactedUser) => (
