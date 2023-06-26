@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom";
-import Timeline from "../components/graphicElements/Timeline";
 import PostComments from "../components/PostComments";
 
 export default function Decision() {
