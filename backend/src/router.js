@@ -42,11 +42,11 @@ router.delete(
 
 router.get("/status", statusControllers.browseStatus);
 
-router.get("/users", usersControllers.browseUsers);
+router.get("/users", usersControllers.browseUsersWithRoles);
 router.get("/users/concat", usersControllers.BrowseConcatUsers);
 router.get("/users/experts", usersControllers.BrowseConcatExperts);
 
-router.get("/users/:id", usersControllers.readUser);
+router.get("/users/:id", usersControllers.readUserWithRoles);
 router.get("/users/:id/decisions", usersControllers.browseAllDecisionsByUser);
 router.post("/users", usersControllers.addUser);
 router.post("/users/:id/role", usersControllers.addRoleToUser);
