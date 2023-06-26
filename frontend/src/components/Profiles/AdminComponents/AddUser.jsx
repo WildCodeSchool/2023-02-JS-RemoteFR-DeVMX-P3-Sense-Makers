@@ -7,6 +7,11 @@ import Avatar0 from "../../../assets/avatar0.png";
 export default function AddUser() {
   const [dropzoneImage, setDropzoneImage] = useState([]);
   const [newUploadedFileName, setNewUploadedFileName] = useState("");
+  // const [rolesData, setRolesData] = useState([]);
+
+  // const rolelData = {
+
+  // }
 
   const [targetValues, setTargetValues] = useState({
     firstName: "",
@@ -35,12 +40,15 @@ export default function AddUser() {
     });
   }, [newUploadedFileName]);
 
-  useEffect(() => {
-    axios
-      .get(`${import.meta.env.VITE_BACKEND_URL}/role`)
-      .then((response) => console.info(response))
-      .catch((err) => console.error(err));
-  }, []);
+  // useEffect(() => {
+  //   axios
+  //     .get(`${import.meta.env.VITE_BACKEND_URL}/roles`)
+  //     .then((response) => {
+  //       console.info(response);
+  //       setRolesData(response.data);
+  //     })
+  //     .catch((err) => console.error(err));
+  // }, []);
 
   const submit = (event) => {
     event.preventDefault();
@@ -171,8 +179,11 @@ export default function AddUser() {
               Role <br />
               <select name="role" onChange={update} required>
                 <option value="0">Sélectionne votre role</option>
-                <option value="1">Admin</option>
-                <option value="2">Utilisateur</option>
+                {/* {rolesData
+                  .filter((roleExpert) => roleExpert.role_name !== "expert")
+                  .map((role) => (
+                    <option value={role.id}>{role.role_name}</option>
+                  ))} */}
               </select>
             </label>
             <label htmlFor="role-expert" className="role-expert-2">
