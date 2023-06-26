@@ -14,9 +14,9 @@ const hashPassword = (password) => {
 
 const authSchema = () => {
   return Joi.object({
-    firstname: Joi.string(),
-    lastname: Joi.string(),
-    photo: Joi.string(),
+    // firstname: Joi.string(),
+    // lastname: Joi.string(),
+    // photo: Joi.string(),
     email: Joi.string().email().required(),
     password: Joi.string().required(),
   });
