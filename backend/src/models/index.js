@@ -33,8 +33,7 @@ const ItemManager = require("./ItemManager");
 const CommentsManager = require("./commentsManager");
 const StatusManager = require("./StatusManager");
 const UsersManager = require("./UsersManager");
-const DecisionManager = require("./DecisionManager");
-const RolesManager = require("./UsersManager");
+const RolesManager = require("./RolesManager");
 
 models.item = new ItemManager();
 models.item.setDatabase(pool);
@@ -44,8 +43,12 @@ models.status = new StatusManager();
 models.status.setDatabase(pool);
 models.users = new UsersManager();
 models.users.setDatabase(pool);
+
+const DecisionManager = require("./DecisionManager");
+
 models.decision = new DecisionManager();
 models.decision.setDatabase(pool);
+
 models.roles = new RolesManager();
 models.roles.setDatabase(pool);
 
