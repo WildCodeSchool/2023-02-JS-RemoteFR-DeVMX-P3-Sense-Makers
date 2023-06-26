@@ -9,21 +9,16 @@ class CommentsManager extends AbstractManager {
     return this.database.query(
       `select c.user_id, c.id, c.comment, c.vote, DATE_FORMAT(c.creation_date, "%d/%m/%Y") AS date , u.firstname, u.lastname, u.photo from ${this.table} c
       INNER JOIN users u ON c.user_id = u.id
-      where decision_id = ?`,
+      where decision_id = ?
+      ORDER BY c.creation_date`,
       [decisionId]
     );
   }
 
   insert(comment, decisionId) {
     return this.database.query(
-      `insert into ${this.table} (user_id, decision_id, comment, vote) values (?,?,?,?,?)`,
-      [
-        comment.user_id,
-        decisionId,
-        comment.creation_date,
-        comment.comment,
-        comment.vote,
-      ]
+      `insert into ${this.table} (user_id, decision_id, comment, vote) values (?,?,?,?)`,
+      [comment.user_id, decisionId, comment.comment, comment.vote]
     );
   }
 }
