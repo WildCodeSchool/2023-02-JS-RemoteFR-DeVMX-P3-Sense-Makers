@@ -1,8 +1,8 @@
-import { useEffect, useReducer, useRef, useState } from "react";
+import { useEffect, useReducer, useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import AsyncSelect from "react-select/async";
-import { Editor } from "@tinymce/tinymce-react";
+import TextEditor from "../components/TextEditor";
 
 /* Style selector */
 const customStyles = {
@@ -181,68 +181,14 @@ export default function PostDecision() {
         }, 500);
       });
   }
-  /* ref for text editor */
-  const contentRef = useRef(null);
-  const usefulnessRef = useRef(null);
-  const contextRef = useRef(null);
-  const benefitRef = useRef(null);
-  const disadvantagesRef = useRef(null);
 
-  const sendContent = () => {
-    if (contentRef.current) {
-      console.info(contentRef.current.getContent());
-      return dispatch({
-        type: "update_input",
-        value: contentRef.current.getContent(),
-        key: "content",
-      });
-    }
-    return console.error("Content not saved");
-  };
-  const sendUsefulness = () => {
-    if (usefulnessRef.current) {
-      console.info(usefulnessRef.current.getContent());
-      return dispatch({
-        type: "update_input",
-        value: usefulnessRef.current.getContent(),
-        key: "usefulness",
-      });
-    }
-    return console.error("Usefulness not saved");
-  };
-  const sendContext = () => {
-    if (contextRef.current) {
-      console.info(contextRef.current.getContent());
-      return dispatch({
-        type: "update_input",
-        value: contextRef.current.getContent(),
-        key: "context",
-      });
-    }
-    return console.error("Context not saved");
-  };
-  const sendBenefit = () => {
-    if (benefitRef.current) {
-      console.info(benefitRef.current.getContent());
-      return dispatch({
-        type: "update_input",
-        value: benefitRef.current.getContent(),
-        key: "benefit",
-      });
-    }
-    return console.error("Benefit not saved");
-  };
-  const sendDisadvantages = () => {
-    if (disadvantagesRef.current) {
-      console.info(disadvantagesRef.current.getContent());
-      return dispatch({
-        type: "update_input",
-        value: disadvantagesRef.current.getContent(),
-        key: "disadvantages",
-      });
-    }
-    return console.error("Sisadvantages not saved");
-  };
+  const editors = [
+    ["Description de la décision", "content"],
+    ["Utilité de cette décision pour l'organisation", "usefulness"],
+    ["Contexte autour de la décision", "context"],
+    ["Bénéfices de la décision", "benefit"],
+    ["Inconvenients de la décision", "disadvantages"],
+  ];
 
   return (
     <div className="post-container">
@@ -297,6 +243,7 @@ export default function PostDecision() {
           <label htmlFor="concerned_decision">
             Personnes concernées *
             <AsyncSelect
+              id="concerned_decision"
               styles={customStyles}
               cacheOptions
               defaultOptions={users}
@@ -309,6 +256,7 @@ export default function PostDecision() {
           <label htmlFor="expert_decision">
             Personnes expertes *
             <AsyncSelect
+              id="expert_decision"
               styles={customStyles}
               cacheOptions
               defaultOptions={expertUsers}
@@ -321,232 +269,17 @@ export default function PostDecision() {
       </div>
 
       <div className="decision-write">
-        <label htmlFor="description_decision">
-          Description de la décision *
-          <Editor
-            apiKey="kj8hy39rl1nje7nh6kf3etgbl37lrjlvhsxindvx30h9hskr"
-            onChange={sendContent}
-            onInit={(evt, editor) => {
-              contentRef.current = editor;
-            }}
-            initialValue="<p>Description.</p>"
-            init={{
-              statusbar: false,
-              toolbar_location: "bottom",
-              branding: false,
-              height: 500,
-              menubar: false,
-              plugins: [
-                "advlist",
-                "autolink",
-                "lists",
-                "link",
-                "image",
-                "charmap",
-                "preview",
-                "anchor",
-                "searchreplace",
-                "visualblocks",
-                "code",
-                "fullscreen",
-                "insertdatetime",
-                "media",
-                "table",
-                "code",
-                "help",
-                "wordcount",
-              ],
-              toolbar:
-                "undo redo | blocks | " +
-                "bold italic forecolor | alignleft aligncenter " +
-                "alignright alignjustify | bullist numlist outdent indent | " +
-                "removeformat | help",
-              content_style:
-                "body { font-family:Helvetica,Arial,sans-serif; font-size:14px }",
-            }}
-          />
-        </label>
-        <label htmlFor="usefulness_decision">
-          Utilité de cette décision pour l'organisation *
-          <Editor
-            apiKey="kj8hy39rl1nje7nh6kf3etgbl37lrjlvhsxindvx30h9hskr"
-            onChange={sendUsefulness}
-            onInit={(evt, editor) => {
-              usefulnessRef.current = editor;
-            }}
-            initialValue="<p>Usefulness.</p>"
-            init={{
-              statusbar: false,
-              toolbar_location: "bottom",
-              branding: false,
-              height: 500,
-              menubar: false,
-              plugins: [
-                "advlist",
-                "autolink",
-                "lists",
-                "link",
-                "image",
-                "charmap",
-                "preview",
-                "anchor",
-                "searchreplace",
-                "visualblocks",
-                "code",
-                "fullscreen",
-                "insertdatetime",
-                "media",
-                "table",
-                "code",
-                "help",
-                "wordcount",
-              ],
-              toolbar:
-                "undo redo | blocks | " +
-                "bold italic forecolor | alignleft aligncenter " +
-                "alignright alignjustify | bullist numlist outdent indent | " +
-                "removeformat | help",
-              content_style:
-                "body { font-family:Helvetica,Arial,sans-serif; font-size:14px }",
-            }}
-          />
-        </label>
-        <label htmlFor="context_decision">
-          Contexte autour de la décision *
-          <Editor
-            apiKey="kj8hy39rl1nje7nh6kf3etgbl37lrjlvhsxindvx30h9hskr"
-            onChange={sendContext}
-            onInit={(evt, editor) => {
-              contextRef.current = editor;
-            }}
-            initialValue="<p>Context.</p>"
-            init={{
-              statusbar: false,
-              toolbar_location: "bottom",
-              branding: false,
-              height: 500,
-              menubar: false,
-              plugins: [
-                "advlist",
-                "autolink",
-                "lists",
-                "link",
-                "image",
-                "charmap",
-                "preview",
-                "anchor",
-                "searchreplace",
-                "visualblocks",
-                "code",
-                "fullscreen",
-                "insertdatetime",
-                "media",
-                "table",
-                "code",
-                "help",
-                "wordcount",
-              ],
-              toolbar:
-                "undo redo | blocks | " +
-                "bold italic forecolor | alignleft aligncenter " +
-                "alignright alignjustify | bullist numlist outdent indent | " +
-                "removeformat | help",
-              content_style:
-                "body { font-family:Helvetica,Arial,sans-serif; font-size:14px }",
-            }}
-          />
-        </label>
-        <label htmlFor="benefit_decision">
-          Bénéfices de la décision *
-          <Editor
-            apiKey="kj8hy39rl1nje7nh6kf3etgbl37lrjlvhsxindvx30h9hskr"
-            onChange={sendBenefit}
-            onInit={(evt, editor) => {
-              benefitRef.current = editor;
-            }}
-            initialValue="<p>Benefit.</p>"
-            init={{
-              statusbar: false,
-              toolbar_location: "bottom",
-              branding: false,
-              height: 500,
-              menubar: false,
-              plugins: [
-                "advlist",
-                "autolink",
-                "lists",
-                "link",
-                "image",
-                "charmap",
-                "preview",
-                "anchor",
-                "searchreplace",
-                "visualblocks",
-                "code",
-                "fullscreen",
-                "insertdatetime",
-                "media",
-                "table",
-                "code",
-                "help",
-                "wordcount",
-              ],
-              toolbar:
-                "undo redo | blocks | " +
-                "bold italic forecolor | alignleft aligncenter " +
-                "alignright alignjustify | bullist numlist outdent indent | " +
-                "removeformat | help",
-              content_style:
-                "body { font-family:Helvetica,Arial,sans-serif; font-size:14px }",
-            }}
-          />
-        </label>
-        <label htmlFor="disadvantages_decision">
-          Inconvenients de la décision *
-          <Editor
-            apiKey="kj8hy39rl1nje7nh6kf3etgbl37lrjlvhsxindvx30h9hskr"
-            onChange={sendDisadvantages}
-            onInit={(evt, editor) => {
-              disadvantagesRef.current = editor;
-            }}
-            initialValue="<p>Disadvantages.</p>"
-            init={{
-              statusbar: false,
-              toolbar_location: "bottom",
-              branding: false,
-              height: 500,
-              menubar: false,
-              zIndex: -1,
-              plugins: [
-                "advlist",
-                "autolink",
-                "lists",
-                "link",
-                "image",
-                "charmap",
-                "preview",
-                "anchor",
-                "searchreplace",
-                "visualblocks",
-                "code",
-                "fullscreen",
-                "insertdatetime",
-                "media",
-                "table",
-                "code",
-                "help",
-                "wordcount",
-              ],
-              toolbar:
-                "undo redo | blocks | " +
-                "bold italic forecolor | alignleft aligncenter " +
-                "alignright alignjustify | bullist numlist outdent indent | " +
-                "removeformat | help",
-              content_style:
-                "body { font-family:Helvetica,Arial,sans-serif; font-size:14px }",
-            }}
-          />
-        </label>
+        {editors.map((edit) => {
+          return (
+            <TextEditor
+              key={edit[1]}
+              name={edit[1]}
+              title={edit[0]}
+              refInit={edit[3]}
+              dispatch={dispatch}
+            />
+          );
+        })}
       </div>
 
       <div className="button-container">
