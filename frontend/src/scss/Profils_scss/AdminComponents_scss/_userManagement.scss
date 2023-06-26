@@ -14,7 +14,7 @@
   font-size: $font-size-m;
   line-height: $font-size-s;
   color: $color-default;
-  background-color: #F2F2F2;
+  background-color: #f2f2f2;
   border-radius: $space-xs;
   box-shadow: 5px 9px 19px 8px rgba(0, 0, 0, 0.25);
 
@@ -34,11 +34,11 @@
       align-items: flex-start;
       flex-direction: column;
 
-      >label {
+      > label {
         margin-top: $space-xs;
         font-size: $font-size-s;
 
-        >input {
+        > input {
           margin-top: $space-xs;
           padding: $space-xxs;
           border-radius: $space-xxs;
@@ -50,7 +50,7 @@
           border: 1px solid $border-color-active;
         }
 
-        input[type=email] {
+        input[type="email"] {
           width: 13rem;
         }
       }
@@ -82,7 +82,7 @@
         align-items: center;
         flex-direction: column;
 
-        input[type=checkbox] {
+        input[type="checkbox"] {
           margin-top: $space-xs;
           border: 1px solid $border-color-base;
           cursor: pointer;
@@ -149,7 +149,7 @@
         font-weight: 700;
         font-size: $font-size-s;
         padding: $space-xxs;
-        background-color: #C1E94E;
+        background-color: #c1e94e;
         border-radius: $space-s;
         border: 1px solid $color-default;
         cursor: pointer;
@@ -185,7 +185,7 @@
     }
 
     .input-buttons-container {
-      >:last-child {
+      > :last-child {
         margin-top: 150%;
       }
     }

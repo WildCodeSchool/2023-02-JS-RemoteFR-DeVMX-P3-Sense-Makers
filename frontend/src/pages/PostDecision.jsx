@@ -2,6 +2,7 @@ import { useEffect, useReducer, useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import AsyncSelect from "react-select/async";
+import TextEditor from "../components/TextEditor";
 
 /* Style selector */
 const customStyles = {
@@ -17,6 +18,14 @@ const customStyles = {
     borderRadius: "10px",
     width: "auto",
     minWidth: "30vw",
+  }),
+
+  options: (base) => ({
+    ...base,
+    backgroundColor: "white",
+    border: "1px #bdbdbd solid",
+    boxShadow: "5px 5px 8px #bdbdbd ",
+    borderRadius: "10px",
   }),
 };
 
@@ -45,6 +54,7 @@ export default function PostDecision() {
   const [experts, setExperts] = useState([]);
   const [hub, setHub] = useState([]);
   const [selectedHub, setSelectedHub] = useState();
+  const context = 1;
 
   /*  reducer initialisation */
   const initialState = {
@@ -66,13 +76,16 @@ export default function PostDecision() {
     for (let i = 0; i < hub.length; i += 1) {
       if (hub[i].title === selectedHub) {
         dispatch({
-          type: "update_hubID",
+          type: "update_input",
           value: hub[i].id,
           key: "concerned_hub_id",
         });
       }
     }
   };
+  useEffect(() => {
+    addID();
+  }, [selectedHub]);
 
   /* import users & experts for select */
 
@@ -141,6 +154,12 @@ export default function PostDecision() {
       .post(`${import.meta.env.VITE_BACKEND_URL}/decisions`, status)
       .then((response) => {
         if (response.status === 201) {
+          /* post dans user_décision */
+          axios.post(`${import.meta.env.VITE_BACKEND_URL}/decisions/:id/user`, {
+            userId: context,
+            decisionId: response.data[0].insertId,
+          });
+
           experts.map((expert) => {
             return axios.post(
               `${import.meta.env.VITE_BACKEND_URL}/decisions/:id/expert`,
@@ -150,15 +169,26 @@ export default function PostDecision() {
           impacted.map((impact) => {
             return axios.post(
               `${import.meta.env.VITE_BACKEND_URL}/decisions/:id/impacted`,
-              { impactedId: impact.id, decisionId: response.data[0].insertId }
+              {
+                impactedId: impact.id,
+                decisionId: response.data[0].insertId,
+              }
             );
           });
-          setTimeout(() => {
-            navigate(`/decisions/${response.data[0].insertId}`);
-          }, 250);
         }
+        setTimeout(() => {
+          navigate(`/decisions/${response.data[0].insertId}`);
+        }, 500);
       });
   }
+
+  const editors = [
+    ["Description de la décision", "content"],
+    ["Utilité de cette décision pour l'organisation", "usefulness"],
+    ["Contexte autour de la décision", "context"],
+    ["Bénéfices de la décision", "benefit"],
+    ["Inconvenients de la décision", "disadvantages"],
+  ];
 
   return (
     <div className="post-container">
@@ -213,6 +243,7 @@ export default function PostDecision() {
           <label htmlFor="concerned_decision">
             Personnes concernées *
             <AsyncSelect
+              id="concerned_decision"
               styles={customStyles}
               cacheOptions
               defaultOptions={users}
@@ -225,6 +256,7 @@ export default function PostDecision() {
           <label htmlFor="expert_decision">
             Personnes expertes *
             <AsyncSelect
+              id="expert_decision"
               styles={customStyles}
               cacheOptions
               defaultOptions={expertUsers}
@@ -237,81 +269,17 @@ export default function PostDecision() {
       </div>
 
       <div className="decision-write">
-        <label htmlFor="description_decision">
-          Description de la décision *
-          <textarea
-            type="text"
-            id="description_decision"
-            value={state.content}
-            onChange={(e) => {
-              dispatch({
-                type: "update_input",
-                value: e.target.value,
-                key: "content",
-              });
-            }}
-          />
-        </label>
-        <label htmlFor="usefulness_decision">
-          Utilité de cette décision pour l'organisation *
-          <textarea
-            type="text"
-            id="usefulness_decision"
-            value={state.usefulness}
-            onChange={(e) => {
-              dispatch({
-                type: "update_input",
-                value: e.target.value,
-                key: "usefulness",
-              });
-            }}
-          />
-        </label>
-        <label htmlFor="context_decision">
-          Contexte autour de la décision *
-          <textarea
-            type="text"
-            id="context_decision"
-            value={state.context}
-            onChange={(e) => {
-              dispatch({
-                type: "update_input",
-                value: e.target.value,
-                key: "context",
-              });
-            }}
-          />
-        </label>
-        <label htmlFor="benefit_decision">
-          Bénéfices de la décision *
-          <textarea
-            type="text"
-            id="benefit_decision"
-            value={state.benefit}
-            onChange={(e) => {
-              dispatch({
-                type: "update_input",
-                value: e.target.value,
-                key: "benefit",
-              });
-            }}
-          />
-        </label>
-        <label htmlFor="disadvantages_decision">
-          Inconvenients de la décision *
-          <textarea
-            type="text"
-            id="disadvantages_decision"
-            value={state.disadvantages}
-            onChange={(e) => {
-              dispatch({
-                type: "update_input",
-                value: e.target.value,
-                key: "disadvantages",
-              });
-            }}
-          />
-        </label>
+        {editors.map((edit) => {
+          return (
+            <TextEditor
+              key={edit[1]}
+              name={edit[1]}
+              title={edit[0]}
+              refInit={edit[3]}
+              dispatch={dispatch}
+            />
+          );
+        })}
       </div>
 
       <div className="button-container">
@@ -319,7 +287,6 @@ export default function PostDecision() {
           type="button"
           onClick={() => {
             DecisionPosted(state);
-            addID();
           }}
         >
           Poster cette décision
