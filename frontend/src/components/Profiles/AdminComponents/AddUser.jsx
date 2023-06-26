@@ -14,7 +14,7 @@ export default function AddUser() {
     email: "",
     password: "",
     photo: newUploadedFileName,
-    role: 0,
+    role: 1,
     roleExpert: false,
   });
 
@@ -43,7 +43,7 @@ export default function AddUser() {
           photo: newUploadedFileName,
           email: targetValues.email,
           password: targetValues.password,
-          // role_id: targetValues.role,
+          role_id: 3,
           creation_date: "2023-02-03",
         })
         .then((response) => console.info(response))
