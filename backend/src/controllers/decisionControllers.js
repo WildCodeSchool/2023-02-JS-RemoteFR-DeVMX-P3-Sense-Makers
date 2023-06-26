@@ -124,6 +124,19 @@ const addExpert = (req, res) => {
     });
 };
 
+const addUserOnDecision = (req, res) => {
+  const { userId, decisionId } = req.body;
+  models.decision
+    .insertUserOnDecisionById(userId, decisionId)
+    .then(() => {
+      res.sendStatus(201);
+    })
+    .catch((err) => {
+      console.error(err);
+      res.sendStatus(500);
+    });
+};
+
 const destroyDecision = (req, res) => {
   models.decision
     .delete(req.params.id)
@@ -163,4 +176,5 @@ module.exports = {
   addImpacted,
   addExpert,
   concernedHub,
+  addUserOnDecision,
 };
