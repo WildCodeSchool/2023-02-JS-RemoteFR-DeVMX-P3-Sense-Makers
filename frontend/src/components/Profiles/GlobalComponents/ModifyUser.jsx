@@ -28,26 +28,26 @@ export default function ModifyUser() {
     });
   };
 
-  const subitOldAndNewValues = () => {
-    if (targetValues.firstName === "")
-      targetValues.firstName = userData.firstname;
+  // const subitOldAndNewValues = () => {
+  //   if (targetValues.firstName === "")
+  //     targetValues.firstName = userData.firstname;
 
-    if (targetValues.lastName === "") targetValues.lastName = userData.lastname;
+  //   if (targetValues.lastName === "") targetValues.lastName = userData.lastname;
 
-    if (targetValues.email === "") targetValues.email = userData.email;
+  //   if (targetValues.email === "") targetValues.email = userData.email;
 
-    if (targetValues.photo === "") targetValues.photo = userData.photo;
+  //   if (targetValues.photo === "") targetValues.photo = userData.photo;
 
-    if (targetValues.role === "") targetValues.role = userData.role_id;
+  //   if (targetValues.role === "") targetValues.role = userData.role_id;
 
-    if (targetValues.roleExpert === "")
-      targetValues.roleExpert = userData.is_expert;
-  };
+  //   if (targetValues.roleExpert === "")
+  //     targetValues.roleExpert = userData.is_expert;
+  // };
 
   const submit = (event) => {
     event.preventDefault();
 
-    subitOldAndNewValues();
+    // subitOldAndNewValues();
 
     axios
       .put(`${import.meta.env.VITE_BACKEND_URL}/users/${userData.id}`, {
@@ -132,7 +132,7 @@ export default function ModifyUser() {
               <div className="role-actuel-container">
                 <div className="role">
                   <h4 className="role-actuel-title"> Role(s) actuel(s) </h4>
-                  <p className="role-actuel-data">Salarié, expert</p>
+                  <p className="role-actuel-data">{userData[0].roles}</p>
                 </div>
                 <label htmlFor="role">
                   Role <br />
@@ -180,7 +180,7 @@ export default function ModifyUser() {
           <div className="roles-container-2">
             <div className="role-actuel">
               <h4 className="role-actuel-title"> Role(s) actuel(s) </h4>
-              <span className="role-actuel-data">Salarié, expert</span>
+              <span className="role-actuel-data">{userData[0].roles}</span>
               <label htmlFor="role">
                 Role <br />
                 <select name="role" onChange={update} required>
