@@ -1,3 +1,6 @@
+const jwt = require("jsonwebtoken");
+
+const secret = "letrucdefouatrouver";
 const models = require("../models");
 
 const browseUsers = (req, res) => {
@@ -84,7 +87,31 @@ const editUser = (req, res) => {
       res.sendStatus(500);
     });
 };
+/// /// test////
 
+const editUserPassword = (req, res) => {
+  const { user } = req.body;
+  // TODO validations (length, format...)
+  jwt.verify(user.tok, secret, { expiresIn: "1h" }, (err) => {
+    if (err) {
+      console.info(err.message);
+    } else
+      models.users
+        .updateUserPassword(user)
+        .then(([result]) => {
+          if (result.affectedRows === 0) {
+            res.sendStatus(404);
+          } else {
+            res.sendStatus(204);
+          }
+        })
+        .catch((error) => {
+          console.error(error);
+          res.sendStatus(500);
+        });
+  });
+};
+/// /// fin du test ////
 const addUser = (req, res) => {
   const user = req.body;
 
@@ -93,7 +120,7 @@ const addUser = (req, res) => {
   models.users
     .insert(user)
     .then(([result]) => {
-      res.location(`/status/${result.insertId}`).sendStatus(201);
+      res.location(`/users/${result.insertId}`).sendStatus(201);
     })
     .catch((err) => {
       console.error(err);
@@ -126,4 +153,5 @@ module.exports = {
   destroyUser,
   BrowseConcatUsers,
   BrowseConcatExperts,
+  editUserPassword,
 };

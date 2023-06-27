@@ -55,6 +55,15 @@ class UsersManager extends AbstractManager {
     );
   }
 
+  /// /  test /////
+
+  updateUserPassword(user) {
+    return this.database.query(
+      `update ${this.table} set password = ? where email = ?`,
+      [user.password, user.email]
+    );
+  }
+
   findAllDecisionsByUserId(id) {
     return this.database.query(
       `SELECT d.id d_id, d.title AS title_decision, d.status_id, c.title, u.firstname, u.lastname, u.photo, u.id u_id, s.title title_status FROM decisions d

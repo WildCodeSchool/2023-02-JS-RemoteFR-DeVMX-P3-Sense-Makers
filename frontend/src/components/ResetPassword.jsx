@@ -2,15 +2,20 @@ import axios from "axios";
 import { useState } from "react";
 
 export default function resetPassword() {
-  const [password, setPassword] = useState();
+  const [newPassword, setNewPassword] = useState();
   const [verifPassword, setVerifPassword] = useState();
+  const params = new URLSearchParams(window.location.search);
+  const userEmail = params.get("email");
+  const token = params.get("token");
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (password === verifPassword) {
+    if (newPassword === verifPassword) {
       console.info("ok");
       axios
-        .post(`${import.meta.env.VITE_BACKEND_URL}/users`, password)
+        .put(`${import.meta.env.VITE_BACKEND_URL}/resetpassword`, {
+          user: { password: newPassword, email: userEmail, tok: token },
+        })
         .then((response) => console.info(response))
         .catch((err) => console.error(err));
     } else {
@@ -28,7 +33,7 @@ export default function resetPassword() {
             id="newpassword"
             name="newpassword"
             placeholder="Insérez votre mot de passe"
-            onChange={(e) => setPassword(e.target.value)}
+            onChange={(e) => setNewPassword(e.target.value)}
             required
           />
         </label>

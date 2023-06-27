@@ -1,5 +1,11 @@
 const nodemailer = require("nodemailer");
 const { google } = require("googleapis");
+const jwt = require("jsonwebtoken");
+
+const email = "jean.mich@michel.com";
+const secret = "letrucdefouatrouver";
+const payload = { sub: "okkkk" }; // recup data from user where email = email saisie sur la demande
+const token = jwt.sign(payload, secret, { expiresIn: "1h" });
 
 const oAuth2Client = new google.auth.OAuth2(
   process.env.CLIENT_ID,
@@ -26,10 +32,10 @@ async function sendMail() {
 
     const mailOptions = {
       from: "NICOLAS <nlopes93600@gmail.com>",
-      to: "lopes_nico@yahoo.fr",
+      to: "lopes_nico@yahoo.fr", // put the email of user depuis le payload//
       subject: "password test reset",
       text: "Try to reset your password",
-      html: "<h1>Try to reset your password</h1>",
+      html: `<h1>Try to reset your password</h1> ${token} click here : http://localhost:3000/resetpassword?token=${token}&email=${email}`,
     };
 
     const result = await transport.sendMail(mailOptions);

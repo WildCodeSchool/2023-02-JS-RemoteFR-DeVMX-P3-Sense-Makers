@@ -56,6 +56,8 @@ router.post("/uploads", upload.single("photo"), uploadFile.postFile);
 
 router.get("/concernedhub", decisionControllers.concernedHub);
 
+/// / test ///
 router.get("/test", mailControllers.sendMail);
-
+router.put("/resetpassword", usersControllers.editUserPassword);
+/// test ///
 module.exports = router;
