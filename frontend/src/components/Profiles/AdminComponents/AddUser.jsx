@@ -176,16 +176,11 @@ export default function AddUser() {
                 <option value="0">Sélectionne votre role</option>
                 {rolesData
                   .filter((roleExpert) => roleExpert.role_name !== "expert")
-                  .map((role) => {
-                    const roleNameFirstLetterUpperCase =
-                      role.role_name.charAt(0).toUpperCase() +
-                      role.role_name.slice(1);
-                    return (
-                      <option key={role.id} value={role.id}>
-                        {roleNameFirstLetterUpperCase}
-                      </option>
-                    );
-                  })}
+                  .map((role) => (
+                    <option key={role.id} value={role.id}>
+                      {role.role_name}
+                    </option>
+                  ))}
               </select>
             </label>
             <label htmlFor="role-expert" className="role-expert-2">
