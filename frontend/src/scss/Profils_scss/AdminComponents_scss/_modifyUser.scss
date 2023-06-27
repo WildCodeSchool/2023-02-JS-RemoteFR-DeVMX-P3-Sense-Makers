@@ -145,6 +145,7 @@
         }
       }
 
+   
       .dropzone {
         display: flex;
         justify-content: center;
@@ -156,6 +157,10 @@
         border: 1px dashed $color-default;
         margin-top: $space-m;
 
+        :hover {
+          background-color: rgb(203, 168, 168);
+        }
+
         .dropzone-placeholder-text {
           font-size: $font-size-xxs;
           text-align: center;
@@ -163,6 +168,10 @@
           margin: 0;
           padding: $space-xxs;
           cursor: pointer;
+        }
+
+        .dropzone-active {
+          background-color: greenyellow;
         }
       }
     }
