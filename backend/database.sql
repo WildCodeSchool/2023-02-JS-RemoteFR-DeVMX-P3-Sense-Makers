@@ -44,7 +44,9 @@ CREATE TABLE decisions (
   first_decision_content TEXT,
   concerned_hub_id INT NOT NULL,
   initial_date DATE DEFAULT (CURRENT_DATE) NOT NULL,
+  deadline_comment DATE,
   first_take_decision DATE,
+  deadline_conflict DATE,
   final_take_decision DATE,
   positives_votes INT,
   negatives_votes INT,
@@ -95,9 +97,9 @@ CREATE TABLE comments (
 );
 
 INSERT INTO roles (role_name) VALUES
-("administrator"),
-("employee"),
-("expert");
+("Administrateur"),
+("Salarié"),
+("Expert");
 
 INSERT INTO `status` (title) VALUES
 ("Prise de décision débutée"),
