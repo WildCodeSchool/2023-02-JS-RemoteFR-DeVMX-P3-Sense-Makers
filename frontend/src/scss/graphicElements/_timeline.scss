@@ -27,7 +27,7 @@
     position: absolute;
     display: flex;
     justify-content: space-around;
-    width: 75%;
+    width: 90%;
     height: auto;
     align-items: center;
 
@@ -45,35 +45,39 @@
     }
     .date-text {
       color: $color-default;
-      font-weight: 600;
+      font-family: $primary-font;
+      font-weight: $primary-font-weight;
       height: 10px;
-      width: 100px;
+      width: 160px;
       text-align: center;
-      font-size: $font-size-xs;
+      font-size: $font-size-s;
     }
     .date-infos {
       color: $color-default;
-      font-weight: 600;
+      font-family: $primary-font;
+      font-weight: $primary-font-weight;
       height: 10px;
-      width: 100px;
+      width: 160px;
       text-align: center;
-      font-size: $font-size-xs;
+      font-size: $font-size-s;
     }
     .date-text-similar {
       color: rgb(200, 200, 200);
-      font-weight: 600;
+      font-family: $primary-font;
+      font-weight: $primary-font-weight;
       height: 10px;
-      width: 100px;
+      width: 160px;
       text-align: center;
-      font-size: $font-size-xs;
+      font-size: $font-size-s;
     }
     .date-infos-similar {
       color: rgb(200, 200, 200);
-      font-weight: 600;
+      font-family: $primary-font;
+      font-weight: $primary-font-weight;
       height: 10px;
-      width: 100px;
+      width: 160px;
       text-align: center;
-      font-size: $font-size-xs;
+      font-size: $font-size-s;
     }
   }
 }
