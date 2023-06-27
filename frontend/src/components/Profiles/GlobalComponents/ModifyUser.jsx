@@ -140,7 +140,7 @@ export default function ModifyUser() {
         <div className="profile-photo-container">
           <label htmlFor="profile-photo-input">
             <div className="img-container">
-              {userData ? (
+              {userData[0]?.photo ? (
                 <img
                   src={
                     userData
