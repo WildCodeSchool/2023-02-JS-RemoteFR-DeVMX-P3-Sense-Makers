@@ -49,7 +49,7 @@ class UsersManager extends AbstractManager {
         user.photo,
         user.email,
         user.hash,
-        user.creation_date,
+        user.creationDate,
       ]
     );
   }
