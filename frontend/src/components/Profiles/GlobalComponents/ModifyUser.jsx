@@ -76,7 +76,7 @@ export default function ModifyUser() {
 
   useEffect(() => {
     axios
-      .get(`${import.meta.env.VITE_BACKEND_URL}/users/1`)
+      .get(`${import.meta.env.VITE_BACKEND_URL}/users/4`)
       .then((result) => {
         console.info("User data on DB", result.data);
         setUserData(result.data);
@@ -132,7 +132,7 @@ export default function ModifyUser() {
               <div className="role-actuel-container">
                 <div className="role">
                   <h4 className="role-actuel-title"> Rôle(s) actuel(s) </h4>
-                  <p className="role-actuel-data">{userData[0].roles}</p>
+                  <p className="role-actuel-data">{userData[0]?.roles}</p>
                 </div>
                 <label htmlFor="role">
                   Rôle <br />
@@ -158,14 +158,27 @@ export default function ModifyUser() {
         <div className="profile-photo-container">
           <label htmlFor="profile-photo-input">
             <div className="img-container">
-              <img
-                src={
-                  dropzoneImage[0]?.preview
-                    ? dropzoneImage[0]?.preview
-                    : Avatar0
-                }
-                alt="profil"
-              />
+              {userData ? (
+                <img
+                  src={
+                    userData
+                      ? `${import.meta.env.VITE_BACKEND_URL}/uploads/${
+                          userData[0]?.photo
+                        }`
+                      : Avatar0
+                  }
+                  alt="profil"
+                />
+              ) : (
+                <img
+                  src={
+                    dropzoneImage[0]?.preview
+                      ? dropzoneImage[0]?.preview
+                      : Avatar0
+                  }
+                  alt="profil"
+                />
+              )}
             </div>
             <Dropzone
               className="dropzone"
@@ -180,7 +193,7 @@ export default function ModifyUser() {
           <div className="roles-container-2">
             <div className="role-actuel">
               <h4 className="role-actuel-title"> Rôle(s) actuel(s) </h4>
-              <span className="role-actuel-data">{userData[0].roles}</span>
+              <span className="role-actuel-data">{userData[0]?.roles}</span>
               <label htmlFor="role">
                 Rôle <br />
                 <select name="role" onChange={update} required>
