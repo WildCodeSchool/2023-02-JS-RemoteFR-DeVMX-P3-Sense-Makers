@@ -33,6 +33,7 @@ const ItemManager = require("./ItemManager");
 const CommentsManager = require("./commentsManager");
 const StatusManager = require("./StatusManager");
 const UsersManager = require("./UsersManager");
+const RolesManager = require("./RolesManager");
 
 models.item = new ItemManager();
 models.item.setDatabase(pool);
@@ -47,6 +48,9 @@ const DecisionManager = require("./DecisionManager");
 
 models.decision = new DecisionManager();
 models.decision.setDatabase(pool);
+
+models.roles = new RolesManager();
+models.roles.setDatabase(pool);
 
 // bonus: use a proxy to personalize error message,
 // when asking for a non existing model
