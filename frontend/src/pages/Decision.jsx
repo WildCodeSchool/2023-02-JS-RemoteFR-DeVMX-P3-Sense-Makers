@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom";
 import PostComments from "../components/PostComments";
+import Timeline from "../components/graphicElements/Timeline";
 
 export default function Decision() {
   const [decision, setDecison] = useState([]);
@@ -186,6 +187,7 @@ export default function Decision() {
       <div className="side-content">
         <div className="side-text">
           <h2>Dates à retenir</h2>
+          <Timeline decision={decision} />
           <h2>Personnes impactées</h2>
           <div className="tagged" data-count={impactedUsers.length}>
             {impactedUsers.map((impactedUser) => (
