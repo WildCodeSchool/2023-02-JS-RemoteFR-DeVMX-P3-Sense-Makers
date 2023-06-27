@@ -35,13 +35,13 @@ function Timeline({ decision }) {
   const progressBar = Math.round((situationDayDate / totalTime) * 100);
 
   const firstDateProgress =
-    Math.round((situationFirstDate / totalTime) * 100) - 5;
+    Math.round((situationFirstDate / totalTime) * 100) - 3;
   const deadlineCommentProgress =
-    Math.round((situationDeadlineComment / totalTime) * 100) - 5;
+    Math.round((situationDeadlineComment / totalTime) * 100) - 3;
   const deadlineConflictProgress =
-    Math.round((situationDeadlineConflict / totalTime) * 100) - 5;
+    Math.round((situationDeadlineConflict / totalTime) * 100) - 3;
   const finalDateProgress =
-    Math.round((situationFinalDate / totalTime) * 100) - 5;
+    Math.round((situationFinalDate / totalTime) * 100) - 3;
 
   const finalDateProgressLimited = Math.min(
     Math.max(finalDateProgress, 0),

@@ -2,12 +2,12 @@
 
 .timeline-container {
   position: relative;
-  height: 15rem;
+  height: 30rem;
   display: flex;
   align-items: center;
   justify-content: center;
   progress {
-    width: 15rem;
+    width: 30rem;
     height: 0.6rem;
     rotate: 90deg;
     vertical-align: 0rem;
@@ -29,7 +29,7 @@
     position: absolute;
     display: flex;
     justify-content: space-around;
-    width: 100%;
+    width: 75%;
     height: auto;
     align-items: center;
 
