@@ -1,0 +1,421 @@
+@import "../../variables";
+
+.modify-user-management {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 85%;
+  margin: auto;
+  padding: $space-s 0;
+  font-family: "Raleway", Helvetica, Arial, sans-serif;
+  font-weight: 700;
+  font-size: $font-size-s;
+  line-height: $font-size-s;
+  color: $color-default;
+  background-color: #F2F2F2;
+  border-radius: $space-xs;
+  box-shadow: 5px 9px 19px 8px rgba(0, 0, 0, 0.25);
+
+  .add-user-title-container {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    width: 13.75rem;
+
+    .add-user-title {
+      font-size: $font-size-m;
+      margin-bottom: $space-xxs;
+    }
+  }
+
+  .input-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+    .input-fields {
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      flex-direction: column;
+
+      >label {
+        margin-top: $space-xs;
+        font-size: $font-size-s;
+
+        >input {
+          margin-top: $space-xs;
+          padding: $space-xxs;
+          border-radius: $space-xxs;
+          border: 1px solid $border-color-base;
+        }
+
+        :focus {
+          outline: none;
+          border: 1px solid $border-color-active;
+        }
+
+        input[type=email] {
+          width: 13rem;
+        }
+      }
+    }
+
+    .roles-container-1 {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-top: $space-xs;
+      font-size: $font-size-s;
+
+      :focus {
+        outline: none;
+        border: 1px solid $border-color-active;
+      }
+
+      .role-actuel-container {
+        .role {
+          display: flex;
+          justify-content: center;
+          align-items: flex-start;
+          flex-direction: column;
+
+          .role-actuel-title {
+            margin: 0;
+          }
+
+          .role-actuel-data {
+            margin: $space-xs, auto, 0, 0;
+            padding: $space-xxs;
+            font-weight: 400;
+            font-size: $font-size-xs;
+            border: 1px solid $color-default;
+            border-radius: $space-xxs;
+          }
+        }
+
+        select {
+          margin-top: $space-xs;
+          margin-right: $space-m;
+          border-radius: $space-xxs;
+          border: 1px solid $border-color-base;
+          cursor: pointer;
+        }
+
+        .role-expert {
+          display: flex;
+          justify-content: flex-start;
+          align-items: center;
+          margin-top: $space-xs;
+
+          input[type=checkbox] {
+            margin: 0, $space-s, 0, 0;
+            border: 1px solid $border-color-base;
+            cursor: pointer;
+          }
+        }
+      }
+    }
+  }
+
+  .profile-photo-container {
+    label {
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      flex-direction: column;
+      margin-top: $space-m;
+
+      .img-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 5rem;
+        aspect-ratio: 1 / 1;
+        border: 1px solid $color-default;
+        border-radius: $space-xs;
+
+        img {
+          width: 80px;
+          object-fit: cover;
+          aspect-ratio: 1/1;
+          border-radius: 50%;
+        }
+      }
+
+      .dropzone {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 5rem;
+        aspect-ratio: 3/1;
+        background-color: rgba(145, 148, 145, 0.267);
+        border-radius: $space-xxs;
+        border: 1px dashed $color-default;
+        margin-top: $space-m;
+
+        .dropzone-placeholder-text {
+          font-size: $font-size-xxs;
+          text-align: center;
+          color: $color-default;
+          margin: 0;
+          padding: $space-xxs;
+          cursor: pointer;
+        }
+      }
+    }
+  }
+
+  .input-buttons-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: $space-xs;
+
+    .roles-container-2 {
+      display: none;
+    }
+
+    .add-remove-buttons-container-1 {
+
+      .add-button-container-1 {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 10rem;
+        height: 2rem;
+        flex-grow: 1;
+
+        button {
+          font-weight: 700;
+          font-size: $font-size-xs;
+          padding: $space-xxs;
+          background-color: #70AF90;
+          border-radius: $space-s;
+          border: 1px solid $color-default;
+          cursor: pointer;
+          transition: transform 350ms ease-out;
+
+          &:active {
+            border: none;
+            transform: scale(1.01);
+          }
+        }
+      }
+
+      .remove-button-container-1 {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 10rem;
+        height: 2rem;
+
+        button {
+          font-weight: 700;
+          font-size: $font-size-xs;
+          padding: $space-xxs;
+          background-color: #E36164;
+          border-radius: $space-s;
+          border: 1px solid $color-default;
+          cursor: pointer;
+          transition: transform 350ms ease-out;
+
+          &:active {
+            border: none;
+            transform: scale(1.01);
+          }
+        }
+      }
+    }
+  }
+
+  .remove-button-container-2 {
+    display: none;
+  }
+}
+
+@media screen and (min-width: 768px) {
+
+  .modify-user-management {
+    padding: 0 $space-s $space-s $space-s;
+
+    .add-user-title-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-left: 0;
+      width: 100%;
+
+      .add-user-title {
+        font-size: $font-size-l;
+      }
+
+      .remove-button-container-2 {
+        display: inline-block;
+        margin-top: $space-xs;
+
+        button {
+          font-weight: 700;
+          font-size: $font-size-xs;
+          padding: $space-xxs;
+          background-color: #E36164;
+          border-radius: $space-s;
+          border: 1px solid $color-default;
+          cursor: pointer;
+          transition: transform 350ms ease-out;
+
+          &:active {
+            border: none;
+            transform: scale(1.01);
+          }
+        }
+      }
+    }
+
+    .user-management-container {
+      display: flex;
+      justify-content: space-around;
+      align-items: flex-start;
+      width: 100%;
+
+      .profile-photo-container {
+        order: -1;
+        flex-grow: 1;
+
+        label {
+          margin-top: $space-xs;
+
+          .img-container {
+            width: 7rem;
+
+            img {
+              width: 150px;
+            }
+          }
+
+          .dropzone {
+            width: 7rem;
+          }
+        }
+      }
+
+      .input-container {
+        margin-left: $space-s;
+        
+        flex-grow: 1;
+
+        .input-fields {
+          >label {
+            width: 10rem;
+
+            >input {
+              width: 80%;
+            }
+          }
+
+          .name-inputs-container {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            flex-direction: row;
+          }
+
+          label {
+
+            input[type=email] {
+              min-width: 180%;
+            }
+          }
+
+          .roles-container-1 {
+            display: none;
+          }
+        }
+      }
+
+      .input-buttons-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        flex-direction: column;
+        flex-grow: 1;
+        padding-left: $space-s;
+        border-left: 1px solid $color-default;
+        >:last-child {
+          width: 100%;
+        }
+
+        .remove-button-container-1 {
+          display: none;
+        }
+
+        .add-button-container-1 {
+          display: flex;
+          justify-content: flex-end;
+          align-items: center;
+          margin-top: 1rem;
+          width: 100%;
+        }
+
+        .roles-container-2 {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          flex-direction: column;
+          font-size: $font-size-s;
+
+          .role-actuel {
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            flex-direction: column;
+
+            .role-actuel-title {
+              margin: 0;
+              margin-bottom: $space-xs;
+            }
+
+            .role-actuel-data {
+              margin-bottom: $space-s;
+              padding-top: $space-xxxs;
+              padding-right:$space-xxs;
+              padding-bottom: $space-xxxs;
+              padding-left: $space-xxs;
+              font-weight: 400;
+              font-size: $font-size-xs;
+              border: 1px solid $color-default;
+              border-radius: $space-xxs;
+            }
+          }
+
+          :focus {
+            outline: none;
+            border: 1px solid $border-color-active;
+          }
+
+          select {
+            margin-top: $space-xs;
+            margin-right: $space-m;
+            border-radius: $space-xxs;
+            border: 1px solid $border-color-base;
+            cursor: pointer;
+          }
+
+          .role-expert-2 {
+            display: block;
+            margin-top: $space-xs;
+            margin-right: auto;
+
+            input[type=checkbox] {
+              margin: 0 $space-xs 0 0;
+              border: 1px solid $border-color-base;
+              cursor: pointer;
+            }
+          }
+        }
+      }
+    }
+  }
+}
