@@ -255,6 +255,8 @@
       .remove-button-container-2 {
         display: inline-block;
         margin-top: $space-xs;
+        width: 5rem;
+        height: 2rem;
 
         button {
           font-weight: 700;
@@ -303,7 +305,7 @@
 
       .input-container {
         margin-left: $space-s;
-        
+
         flex-grow: 1;
 
         .input-fields {
@@ -343,6 +345,7 @@
         flex-grow: 1;
         padding-left: $space-s;
         border-left: 1px solid $color-default;
+
         >:last-child {
           width: 100%;
         }
@@ -380,7 +383,7 @@
             .role-actuel-data {
               margin-bottom: $space-s;
               padding-top: $space-xxxs;
-              padding-right:$space-xxs;
+              padding-right: $space-xxs;
               padding-bottom: $space-xxxs;
               padding-left: $space-xxs;
               font-weight: 400;
