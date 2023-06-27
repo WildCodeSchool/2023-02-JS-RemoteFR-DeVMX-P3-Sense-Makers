@@ -24,9 +24,9 @@ function Timeline({ decision }) {
   const progressBar = Math.round((situationDayDate / totalTime) * 100);
 
   const firstDateProgress =
-    Math.round((situationFirstDate / totalTime) * 100) - 9;
+    Math.round((situationFirstDate / totalTime) * 100) - 5;
   const finalDateProgress =
-    Math.round((situationFinalDate / totalTime) * 100) - 9;
+    Math.round((situationFinalDate / totalTime) * 100) - 5;
 
   const finalDateProgressLimited = Math.min(
     Math.max(finalDateProgress, 0),
@@ -50,22 +50,32 @@ function Timeline({ decision }) {
     <div className="timeline-container">
       <progress id="file" max="100" value={progressBar} />
       <div className="date-container" style={{ top: "0%" }}>
-        <div className="date-infos">{initialDate.toLocaleDateString("fr")}</div>
+        <div className="date-infos-similar">
+          {initialDate.toLocaleDateString("fr")}
+        </div>
         <div className="date-point-similar" />
-        <div className="date-text">Prise de décision commencée</div>
+        <div className="date-text-similar">Prise de décision commencée</div>
       </div>
       <div className="date-container" style={{ top: `${firstDateProgress}%` }}>
-        <div className="date-infos">{firstDate.toLocaleDateString("fr")}</div>
+        <div className={`date-infos${firstSameInitiale}`}>
+          {firstDate.toLocaleDateString("fr")}
+        </div>
         <div className={`date-point${firstSameInitiale}`} />
-        <div className="date-text">Deadline pour donner son avis</div>
+        <div className={`date-text${firstSameInitiale}`}>
+          Deadline pour donner son avis
+        </div>
       </div>
       <div
         className="date-container"
         style={{ top: `${finalDateProgressLimited}%` }}
       >
-        <div className="date-infos">{finalDate.toLocaleDateString("fr")}</div>
+        <div className={`date-infos${finalSameInitiale}`}>
+          {finalDate.toLocaleDateString("fr")}
+        </div>
         <div className={`date-point${finalSameInitiale}`} />
-        <div className="date-text">Décision définitive</div>
+        <div className={`date-text${finalSameInitiale}`}>
+          Décision définitive
+        </div>
       </div>
     </div>
   );

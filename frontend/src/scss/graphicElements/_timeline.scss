@@ -8,22 +8,21 @@
   justify-content: center;
   progress {
     width: 15rem;
-    height: 1rem;
+    height: 0.6rem;
     rotate: 90deg;
     vertical-align: 0rem;
     -webkit-appearance: none;
     appearance: none;
     border-radius: 15px;
     &::-webkit-progress-bar {
-      background-color: $light-yellow;
+      background-color: $border-color-base;
       border-radius: 15px;
-      border: 1px solid $border-color-active;
+      // border: 1px solid $border-color-active;
     }
     &::-webkit-progress-value {
       border-radius: 15px;
-      background: $sage-green;
-    //   box-shadow: 1px 1px 6px $color-default;
-
+      background: $fluo-green;
+      //   box-shadow: 1px 1px 6px $color-default;
     }
   }
   .date-container {
@@ -35,29 +34,44 @@
     align-items: center;
 
     .date-point {
-      height: 1.3rem;
-      width: 1.3rem;
-      border-radius: 1.3rem;
-      border-left: 1px solid $border-color-active;
-      border-right: 1px solid $border-color-active;
-      background-color: $light-yellow;
+      height: 1.1rem;
+      width: 1.1rem;
+      border-radius: 1.1rem;
+      background-color: $border-color-base;
     }
     .date-point-similar {
-      height: 1.3rem;
-      width: 1.3rem;
-      border-radius: 1.3rem;
-      border-left: 1px solid $border-color-active;
-      border-right: 1px solid $border-color-active;
-    //   box-shadow: 1px 1px 6px $color-default;
-      background-color: $sage-green;
+      height: 1.1rem;
+      width: 1.1rem;
+      border-radius: 1.1rem;
+      background-color: $fluo-green;
     }
     .date-text {
+      color: $color-default;
+      font-weight: 600;
       height: 10px;
       width: 100px;
       text-align: center;
       font-size: $font-size-xs;
     }
     .date-infos {
+      color: $color-default;
+      font-weight: 600;
+      height: 10px;
+      width: 100px;
+      text-align: center;
+      font-size: $font-size-xs;
+    }
+    .date-text-similar {
+      color: rgb(200, 200, 200);
+      font-weight: 600;
+      height: 10px;
+      width: 100px;
+      text-align: center;
+      font-size: $font-size-xs;
+    }
+    .date-infos-similar {
+      color: rgb(200, 200, 200);
+      font-weight: 600;
       height: 10px;
       width: 100px;
       text-align: center;
