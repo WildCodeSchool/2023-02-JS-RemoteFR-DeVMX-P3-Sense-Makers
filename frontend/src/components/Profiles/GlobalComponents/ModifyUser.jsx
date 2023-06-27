@@ -28,26 +28,8 @@ export default function ModifyUser() {
     });
   };
 
-  // const subitOldAndNewValues = () => {
-  //   if (targetValues.firstName === "")
-  //     targetValues.firstName = userData.firstname;
-
-  //   if (targetValues.lastName === "") targetValues.lastName = userData.lastname;
-
-  //   if (targetValues.email === "") targetValues.email = userData.email;
-
-  //   if (targetValues.photo === "") targetValues.photo = userData.photo;
-
-  //   if (targetValues.role === "") targetValues.role = userData.role_id;
-
-  //   if (targetValues.roleExpert === "")
-  //     targetValues.roleExpert = userData.is_expert;
-  // };
-
   const submit = (event) => {
     event.preventDefault();
-
-    // subitOldAndNewValues();
 
     axios
       .put(`${import.meta.env.VITE_BACKEND_URL}/users/${userData.id}`, {
@@ -64,7 +46,7 @@ export default function ModifyUser() {
         console.info({ message: "Update user done!!!", response })
       )
       .catch((err) => console.error(err));
-    console.info("Submited new values form with state:", targetValues);
+    console.info("Submitted new values form with state:", targetValues);
   };
 
   useEffect(() => {
@@ -139,7 +121,7 @@ export default function ModifyUser() {
                   <select name="role" onChange={update} required>
                     <option value="0">Sélectionne votre rôle</option>
                     {rolesData
-                      .filter((roleExpert) => roleExpert.role_name !== "expert")
+                      .filter((roleExpert) => roleExpert.role_name !== "Expert")
                       .map((role) => (
                         <option key={role.id} value={role.id}>
                           {role.role_name}
@@ -199,7 +181,7 @@ export default function ModifyUser() {
                 <select name="role" onChange={update} required>
                   <option value="0">Sélectionne votre rôle</option>
                   {rolesData
-                    .filter((roleExpert) => roleExpert.role_name !== "expert")
+                    .filter((roleExpert) => roleExpert.role_name !== "Expert")
                     .map((role) => (
                       <option key={role.id} value={role.id}>
                         {role.role_name}

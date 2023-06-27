@@ -152,7 +152,7 @@ export default function AddUser() {
                 <select name="role" onChange={update} required>
                   <option value="0">Sélectionne votre rôle</option>
                   {rolesData
-                    .filter((roleExpert) => roleExpert.role_name !== "expert")
+                    .filter((roleExpert) => roleExpert.role_name !== "Expert")
                     .map((role) => (
                       <option key={role.id} value={role.id}>
                         {role.role_name}
@@ -194,7 +194,7 @@ export default function AddUser() {
               <select name="role" onChange={update} required>
                 <option value="0">Sélectionne votre rôle</option>
                 {rolesData
-                  .filter((roleExpert) => roleExpert.role_name !== "expert")
+                  .filter((roleExpert) => roleExpert.role_name !== "Expert")
                   .map((role) => (
                     <option key={role.id} value={role.id}>
                       {role.role_name}
