@@ -8,6 +8,8 @@ export default function ModifyUser() {
   const [userData, setUserData] = useState([]);
   const [dropzoneImage, setDropzoneImage] = useState([]);
   const [newUploadedFileName, setNewUploadedFileName] = useState("");
+  const [rolesData, setRolesData] = useState([]);
+
   const [targetValues, setTargetValues] = useState({
     firstName: userData.firstname,
     lastName: userData.lastname,
@@ -64,6 +66,13 @@ export default function ModifyUser() {
       .catch((err) => console.error(err));
     console.info("Submited new values form with state:", targetValues);
   };
+
+  useEffect(() => {
+    axios
+      .get(`${import.meta.env.VITE_BACKEND_URL}/roles`)
+      .then((response) => setRolesData(response.data))
+      .catch((err) => console.error(err));
+  }, []);
 
   useEffect(() => {
     axios
@@ -129,8 +138,13 @@ export default function ModifyUser() {
                   Role <br />
                   <select name="role" onChange={update} required>
                     <option value="0">Sélectionne votre role</option>
-                    <option value="1">Admin</option>
-                    <option value="2">Utilisateur</option>
+                    {rolesData
+                      .filter((roleExpert) => roleExpert.role_name !== "expert")
+                      .map((role) => (
+                        <option key={role.id} value={role.id}>
+                          {role.role_name}
+                        </option>
+                      ))}
                   </select>
                 </label>
                 <label htmlFor="roleExpert" className="role-expert">
@@ -171,8 +185,13 @@ export default function ModifyUser() {
                 Role <br />
                 <select name="role" onChange={update} required>
                   <option value="0">Sélectionne votre role</option>
-                  <option value="1">Admin</option>
-                  <option value="2">Utilisateur</option>
+                  {rolesData
+                    .filter((roleExpert) => roleExpert.role_name !== "expert")
+                    .map((role) => (
+                      <option key={role.id} value={role.id}>
+                        {role.role_name}
+                      </option>
+                    ))}
                 </select>
               </label>
               <label htmlFor="role-expert" className="role-expert-2">
