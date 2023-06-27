@@ -61,7 +61,6 @@ export default function AddUser() {
           photo: newUploadedFileName,
           email: targetValues.email,
           password: targetValues.password,
-          // role_id: 3,
           creation_date: "2023-02-03",
         })
         .then((response) => {
