@@ -165,7 +165,9 @@ export default function Decision() {
             type="button"
             className="comment-button"
             onClick={handleAddComment}
-            disabled={(firstDayDiff > 15 && !secondDate) || secondDayDiff > 15}
+            disabled={
+              (firstDayDiff > 15 && secondDayDiff > 0) || secondDayDiff > 15
+            }
           >
             Donner mon avis
           </button>
@@ -227,7 +229,9 @@ export default function Decision() {
           type="button"
           className="comment-button"
           onClick={handleAddComment}
-          disabled={(firstDayDiff > 15 && !secondDate) || secondDayDiff > 15}
+          disabled={
+            (firstDayDiff > 15 && secondDayDiff > 0) || secondDayDiff > 15
+          }
         >
           Donner mon avis
         </button>

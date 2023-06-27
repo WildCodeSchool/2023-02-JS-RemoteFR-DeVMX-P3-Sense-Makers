@@ -96,6 +96,12 @@
   }
 
   .side-content {
+    align-self: flex-start;
+    position: -webkit-sticky;
+    position: sticky;
+    height: 100vh;
+    top: 0;
+
     .tagged {
       display: grid;
       grid-template-columns: repeat(5, 1fr);
