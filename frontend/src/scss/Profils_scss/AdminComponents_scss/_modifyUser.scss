@@ -138,10 +138,10 @@
         border-radius: $space-xs;
 
         img {
-          width: 80px;
+          width: 100%;
           object-fit: cover;
           aspect-ratio: 1/1;
-          border-radius: 50%;
+          border-radius: $space-xs;
         }
       }
 
@@ -293,7 +293,7 @@
             width: 7rem;
 
             img {
-              width: 150px;
+              width: 100%;
             }
           }
 
