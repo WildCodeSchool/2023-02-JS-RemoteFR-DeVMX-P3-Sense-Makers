@@ -49,7 +49,9 @@ export default function Dropzone({
         })}
       >
         <input {...getInputProps()} />
-        <p className="dropzone-placeholder-text">Drop the image here </p>
+        <p className="dropzone-placeholder-text">
+          Déposer un fichier de image ici
+        </p>
       </div>
       {fileRejections && <span>{fileRejections[0]?.errors[0].message}</span>}
     </>
