@@ -1,13 +1,23 @@
-// const models = require("../models");
+const argon2 = require("argon2");
+const models = require("../models");
 
-// const login = (req, res) => {
-//   if (req.body.email === user.email && req.body.password === user.password) {
-//     res.status(200).json({ msg: "Access granted" });
-//   } else {
-//     res.status(401).json({ msg: "Access denied" });
-//   }
-// };
+const login = async (req, res) => {
+  const [user] = await models.users.findOneByEmail(req.body.email);
+  // console.log(user[0]);
 
-// module.exports = {
-//   login,
-// };
+  if (user[0]) {
+    const check = await argon2.verify(user[0].password, req.body.password);
+
+    if (check) {
+      res.status(200).json({ msg: "connected" });
+    } else {
+      res.status(401).json({ msg: "not connected" });
+    }
+  } else {
+    res.status(401).json({ msg: "not connected" });
+  }
+};
+
+module.exports = {
+  login,
+};
