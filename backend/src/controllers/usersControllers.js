@@ -1,4 +1,5 @@
 const models = require("../models");
+const { hashPassword } = require("../services/checkAuth");
 
 const browseUsers = (req, res) => {
   models.users
@@ -111,13 +112,14 @@ const editUser = (req, res) => {
     });
 };
 
-const addUser = (req, res) => {
-  const user = req.body;
-
+const addUser = async (req, res) => {
+  const { firstname, lastname, photo, email, password, creationDate } =
+    req.body;
+  const hash = await hashPassword(password);
   // TODO validations (length, format...)
 
   models.users
-    .insert(user)
+    .insert({ firstname, lastname, photo, email, hash, creationDate })
     .then(([result]) => {
       res.status(201).json(result);
     })
