@@ -113,8 +113,8 @@ const editUser = (req, res) => {
 };
 
 const addUser = async (req, res) => {
-  const { firstname, lastname, photo, email, password, creationDate } =
-    req.body;
+  const { firstname, lastname, photo, email, password } = req.body;
+  const { creationDate } = req.body.creation_date;
   const hash = await hashPassword(password);
   // TODO validations (length, format...)
 
