@@ -214,11 +214,11 @@ export default function ModifyUser() {
             </div>
           </div>
           <div className="add-remove-buttons-container-1">
-            <div className="remove-button-container-1">
-              <button type="button">Supprimer</button>
-            </div>
             <div className="add-button-container-1">
               <button type="submit">Valider les modifications</button>
+            </div>
+            <div className="remove-button-container-1">
+              <button type="button">Supprimer</button>
             </div>
           </div>
         </div>
