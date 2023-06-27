@@ -138,13 +138,14 @@
         border-radius: $space-xs;
 
         img {
-          width: 80px;
+          width: 100%;
           object-fit: cover;
           aspect-ratio: 1/1;
-          border-radius: 50%;
+          border-radius: $space-xs;
         }
       }
 
+   
       .dropzone {
         display: flex;
         justify-content: center;
@@ -156,6 +157,10 @@
         border: 1px dashed $color-default;
         margin-top: $space-m;
 
+        :hover {
+          background-color: rgb(203, 168, 168);
+        }
+
         .dropzone-placeholder-text {
           font-size: $font-size-xxs;
           text-align: center;
@@ -163,6 +168,10 @@
           margin: 0;
           padding: $space-xxs;
           cursor: pointer;
+        }
+
+        .dropzone-active {
+          background-color: greenyellow;
         }
       }
     }
@@ -255,6 +264,8 @@
       .remove-button-container-2 {
         display: inline-block;
         margin-top: $space-xs;
+        width: 5rem;
+        height: 2rem;
 
         button {
           font-weight: 700;
@@ -291,7 +302,7 @@
             width: 7rem;
 
             img {
-              width: 150px;
+              width: 100%;
             }
           }
 
@@ -303,7 +314,7 @@
 
       .input-container {
         margin-left: $space-s;
-        
+
         flex-grow: 1;
 
         .input-fields {
@@ -343,6 +354,7 @@
         flex-grow: 1;
         padding-left: $space-s;
         border-left: 1px solid $color-default;
+
         >:last-child {
           width: 100%;
         }
@@ -380,7 +392,7 @@
             .role-actuel-data {
               margin-bottom: $space-s;
               padding-top: $space-xxxs;
-              padding-right:$space-xxs;
+              padding-right: $space-xxs;
               padding-bottom: $space-xxxs;
               padding-left: $space-xxs;
               font-weight: 400;

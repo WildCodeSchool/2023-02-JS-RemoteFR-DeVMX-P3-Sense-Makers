@@ -8,6 +8,8 @@ export default function ModifyUser() {
   const [userData, setUserData] = useState([]);
   const [dropzoneImage, setDropzoneImage] = useState([]);
   const [newUploadedFileName, setNewUploadedFileName] = useState("");
+  const [rolesData, setRolesData] = useState([]);
+
   const [targetValues, setTargetValues] = useState({
     firstName: userData.firstname,
     lastName: userData.lastname,
@@ -26,26 +28,8 @@ export default function ModifyUser() {
     });
   };
 
-  const subitOldAndNewValues = () => {
-    if (targetValues.firstName === "")
-      targetValues.firstName = userData.firstname;
-
-    if (targetValues.lastName === "") targetValues.lastName = userData.lastname;
-
-    if (targetValues.email === "") targetValues.email = userData.email;
-
-    if (targetValues.photo === "") targetValues.photo = userData.photo;
-
-    if (targetValues.role === "") targetValues.role = userData.role_id;
-
-    if (targetValues.roleExpert === "")
-      targetValues.roleExpert = userData.is_expert;
-  };
-
   const submit = (event) => {
     event.preventDefault();
-
-    subitOldAndNewValues();
 
     axios
       .put(`${import.meta.env.VITE_BACKEND_URL}/users/${userData.id}`, {
@@ -62,12 +46,19 @@ export default function ModifyUser() {
         console.info({ message: "Update user done!!!", response })
       )
       .catch((err) => console.error(err));
-    console.info("Submited new values form with state:", targetValues);
+    console.info("Submitted new values form with state:", targetValues);
   };
 
   useEffect(() => {
     axios
-      .get(`${import.meta.env.VITE_BACKEND_URL}/users/1`)
+      .get(`${import.meta.env.VITE_BACKEND_URL}/roles`)
+      .then((response) => setRolesData(response.data))
+      .catch((err) => console.error(err));
+  }, []);
+
+  useEffect(() => {
+    axios
+      .get(`${import.meta.env.VITE_BACKEND_URL}/users/4`)
       .then((result) => {
         console.info("User data on DB", result.data);
         setUserData(result.data);
@@ -122,20 +113,25 @@ export default function ModifyUser() {
             <div className="roles-container-1">
               <div className="role-actuel-container">
                 <div className="role">
-                  <h4 className="role-actuel-title"> Role(s) actuel(s) </h4>
-                  <p className="role-actuel-data">Salarié, expert</p>
+                  <h4 className="role-actuel-title"> Rôle(s) actuel(s) </h4>
+                  <p className="role-actuel-data">{userData[0]?.roles}</p>
                 </div>
                 <label htmlFor="role">
-                  Role <br />
+                  Rôle <br />
                   <select name="role" onChange={update} required>
-                    <option value="0">Sélectionne votre role</option>
-                    <option value="1">Admin</option>
-                    <option value="2">Utilisateur</option>
+                    <option value="0">Sélectionne votre rôle</option>
+                    {rolesData
+                      .filter((roleExpert) => roleExpert.role_name !== "Expert")
+                      .map((role) => (
+                        <option key={role.id} value={role.id}>
+                          {role.role_name}
+                        </option>
+                      ))}
                   </select>
                 </label>
                 <label htmlFor="roleExpert" className="role-expert">
                   <input type="checkbox" name="roleExpert" onChange={update} />
-                  Expert
+                  Expert(e)
                 </label>
               </div>
             </div>
@@ -144,14 +140,27 @@ export default function ModifyUser() {
         <div className="profile-photo-container">
           <label htmlFor="profile-photo-input">
             <div className="img-container">
-              <img
-                src={
-                  dropzoneImage[0]?.preview
-                    ? dropzoneImage[0]?.preview
-                    : Avatar0
-                }
-                alt="profil"
-              />
+              {userData[0]?.photo ? (
+                <img
+                  src={
+                    userData
+                      ? `${import.meta.env.VITE_BACKEND_URL}/uploads/${
+                          userData[0]?.photo
+                        }`
+                      : Avatar0
+                  }
+                  alt="profil"
+                />
+              ) : (
+                <img
+                  src={
+                    dropzoneImage[0]?.preview
+                      ? dropzoneImage[0]?.preview
+                      : Avatar0
+                  }
+                  alt="profil"
+                />
+              )}
             </div>
             <Dropzone
               className="dropzone"
@@ -165,14 +174,19 @@ export default function ModifyUser() {
         <div className="input-buttons-container">
           <div className="roles-container-2">
             <div className="role-actuel">
-              <h4 className="role-actuel-title"> Role(s) actuel(s) </h4>
-              <span className="role-actuel-data">Salarié, expert</span>
+              <h4 className="role-actuel-title"> Rôle(s) actuel(s) </h4>
+              <span className="role-actuel-data">{userData[0]?.roles}</span>
               <label htmlFor="role">
-                Role <br />
+                Rôle <br />
                 <select name="role" onChange={update} required>
-                  <option value="0">Sélectionne votre role</option>
-                  <option value="1">Admin</option>
-                  <option value="2">Utilisateur</option>
+                  <option value="0">Sélectionne votre rôle</option>
+                  {rolesData
+                    .filter((roleExpert) => roleExpert.role_name !== "Expert")
+                    .map((role) => (
+                      <option key={role.id} value={role.id}>
+                        {role.role_name}
+                      </option>
+                    ))}
                 </select>
               </label>
               <label htmlFor="role-expert" className="role-expert-2">
@@ -182,11 +196,11 @@ export default function ModifyUser() {
             </div>
           </div>
           <div className="add-remove-buttons-container-1">
-            <div className="remove-button-container-1">
-              <button type="button">Supprimer</button>
-            </div>
             <div className="add-button-container-1">
               <button type="submit">Valider les modifications</button>
+            </div>
+            <div className="remove-button-container-1">
+              <button type="button">Supprimer</button>
             </div>
           </div>
         </div>
