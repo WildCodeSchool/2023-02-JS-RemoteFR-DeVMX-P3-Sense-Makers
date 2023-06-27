@@ -39,10 +39,7 @@ export default function AddUser() {
   useEffect(() => {
     axios
       .get(`${import.meta.env.VITE_BACKEND_URL}/roles`)
-      .then((response) => {
-        console.info(response);
-        setRolesData(response.data);
-      })
+      .then((response) => setRolesData(response.data))
       .catch((err) => console.error(err));
   }, []);
 
@@ -134,11 +131,16 @@ export default function AddUser() {
             </label>
             <div className="roles-container-1">
               <label htmlFor="role">
-                Role <br />
+                Rôle <br />
                 <select name="role" onChange={update} required>
-                  <option value="0">Sélectionne votre role</option>
-                  <option value="1">Admin</option>
-                  <option value="2">Utilisateur</option>
+                  <option value="0">Sélectionne votre rôle</option>
+                  {rolesData
+                    .filter((roleExpert) => roleExpert.role_name !== "expert")
+                    .map((role) => (
+                      <option key={role.id} value={role.id}>
+                        {role.role_name}
+                      </option>
+                    ))}
                 </select>
               </label>
               <label htmlFor="role-expert" className="role-expert">
@@ -171,9 +173,9 @@ export default function AddUser() {
         <div className="input-buttons-container">
           <div className="roles-container-2">
             <label htmlFor="role">
-              Role <br />
+              Rôle <br />
               <select name="role" onChange={update} required>
-                <option value="0">Sélectionne votre role</option>
+                <option value="0">Sélectionne votre rôle</option>
                 {rolesData
                   .filter((roleExpert) => roleExpert.role_name !== "expert")
                   .map((role) => (
