@@ -17,12 +17,10 @@
     &::-webkit-progress-bar {
       background-color: $border-color-base;
       border-radius: 15px;
-      // border: 1px solid $border-color-active;
     }
     &::-webkit-progress-value {
       border-radius: 15px;
       background: $fluo-green;
-      //   box-shadow: 1px 1px 6px $color-default;
     }
   }
   .date-container {
