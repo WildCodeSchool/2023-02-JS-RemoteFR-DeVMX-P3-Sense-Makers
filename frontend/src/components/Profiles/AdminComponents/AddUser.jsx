@@ -15,7 +15,7 @@ export default function AddUser() {
     email: "",
     password: "",
     photo: newUploadedFileName,
-    role: 1,
+    role: "",
     roleExpert: false,
   });
 
@@ -62,13 +62,30 @@ export default function AddUser() {
         })
         .then((response) => {
           console.info(response);
-          if (response.status === 201) {
+          if (response.status === 201 && !targetValues.roleExpert) {
             axios.post(
               `${import.meta.env.VITE_BACKEND_URL}/users/${
                 response.data.insertId
               }/role`,
               {
-                role_id: 3,
+                roleId: parseInt(targetValues.role, 10),
+              }
+            );
+          } else if (response.status === 201 && targetValues.roleExpert) {
+            axios.post(
+              `${import.meta.env.VITE_BACKEND_URL}/users/${
+                response.data.insertId
+              }/role`,
+              {
+                roleId: parseInt(targetValues.role, 10),
+              }
+            );
+            axios.post(
+              `${import.meta.env.VITE_BACKEND_URL}/users/${
+                response.data.insertId
+              }/role`,
+              {
+                roleId: 3,
               }
             );
           }
