@@ -131,13 +131,13 @@ export default function ModifyUser() {
             <div className="roles-container-1">
               <div className="role-actuel-container">
                 <div className="role">
-                  <h4 className="role-actuel-title"> Role(s) actuel(s) </h4>
+                  <h4 className="role-actuel-title"> Rôle(s) actuel(s) </h4>
                   <p className="role-actuel-data">{userData[0].roles}</p>
                 </div>
                 <label htmlFor="role">
-                  Role <br />
+                  Rôle <br />
                   <select name="role" onChange={update} required>
-                    <option value="0">Sélectionne votre role</option>
+                    <option value="0">Sélectionne votre rôle</option>
                     {rolesData
                       .filter((roleExpert) => roleExpert.role_name !== "expert")
                       .map((role) => (
@@ -149,7 +149,7 @@ export default function ModifyUser() {
                 </label>
                 <label htmlFor="roleExpert" className="role-expert">
                   <input type="checkbox" name="roleExpert" onChange={update} />
-                  Expert
+                  Expert(e)
                 </label>
               </div>
             </div>
@@ -179,12 +179,12 @@ export default function ModifyUser() {
         <div className="input-buttons-container">
           <div className="roles-container-2">
             <div className="role-actuel">
-              <h4 className="role-actuel-title"> Role(s) actuel(s) </h4>
+              <h4 className="role-actuel-title"> Rôle(s) actuel(s) </h4>
               <span className="role-actuel-data">{userData[0].roles}</span>
               <label htmlFor="role">
-                Role <br />
+                Rôle <br />
                 <select name="role" onChange={update} required>
-                  <option value="0">Sélectionne votre role</option>
+                  <option value="0">Sélectionne votre rôle</option>
                   {rolesData
                     .filter((roleExpert) => roleExpert.role_name !== "expert")
                     .map((role) => (
