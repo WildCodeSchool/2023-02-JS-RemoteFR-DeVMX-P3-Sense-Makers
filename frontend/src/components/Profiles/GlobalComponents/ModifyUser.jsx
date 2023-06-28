@@ -85,7 +85,6 @@ export default function ModifyUser() {
                   name="lastName"
                   placeholder="Insérez votre nom"
                   onChange={update}
-                  required
                 />
               </label>
               <label htmlFor="firstName" className="firstName">
@@ -95,7 +94,6 @@ export default function ModifyUser() {
                   name="firstName"
                   placeholder="Insérez votre prénom"
                   onChange={update}
-                  required
                 />
               </label>
             </div>
@@ -107,7 +105,6 @@ export default function ModifyUser() {
                 className="input-email"
                 placeholder="Insérez votre email"
                 onChange={update}
-                required
               />
             </label>
             <div className="roles-container-1">
@@ -118,7 +115,7 @@ export default function ModifyUser() {
                 </div>
                 <label htmlFor="role">
                   Rôle <br />
-                  <select name="role" onChange={update} required>
+                  <select name="role" onChange={update}>
                     <option value="0">Sélectionne votre rôle</option>
                     {rolesData
                       .filter((roleExpert) => roleExpert.role_name !== "Expert")
@@ -178,7 +175,7 @@ export default function ModifyUser() {
               <span className="role-actuel-data">{userData[0]?.roles}</span>
               <label htmlFor="role">
                 Rôle <br />
-                <select name="role" onChange={update} required>
+                <select name="role" onChange={update}>
                   <option value="0">Sélectionne votre rôle</option>
                   {rolesData
                     .filter((roleExpert) => roleExpert.role_name !== "Expert")
