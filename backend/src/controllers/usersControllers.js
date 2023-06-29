@@ -14,6 +14,17 @@ const browseUsers = (req, res) => {
       res.sendStatus(500);
     });
 };
+const browseUsersWithRoles = (req, res) => {
+  models.users
+    .findAllUsersWithRoles()
+    .then(([rows]) => {
+      res.send(rows);
+    })
+    .catch((err) => {
+      console.error(err);
+      res.sendStatus(500);
+    });
+};
 
 const BrowseConcatUsers = (req, res) => {
   models.users
@@ -58,6 +69,21 @@ const readUser = (req, res) => {
         res.sendStatus(404);
       } else {
         res.send(rows[0]);
+      }
+    })
+    .catch((err) => {
+      console.error(err);
+      res.sendStatus(500);
+    });
+};
+const readUserWithRoles = (req, res) => {
+  models.users
+    .findUserWithRolesById(req.params.id)
+    .then(([rows]) => {
+      if (rows[0] == null) {
+        res.sendStatus(404);
+      } else {
+        res.send(rows);
       }
     })
     .catch((err) => {
@@ -120,7 +146,25 @@ const addUser = (req, res) => {
   models.users
     .insert(user)
     .then(([result]) => {
-      res.location(`/users/${result.insertId}`).sendStatus(201);
+      res.status(201).json(result);
+    })
+    .catch((err) => {
+      console.error(err);
+      res.sendStatus(500);
+    });
+};
+
+const addRoleToUser = (req, res) => {
+  const userId = parseInt(req.params.id, 10);
+
+  const { roleId } = req.body;
+
+  // TODO validations (length, format...)
+
+  models.users
+    .insertRoleIntoUser(userId, roleId)
+    .then(([result]) => {
+      res.status(201).json([result]);
     })
     .catch((err) => {
       console.error(err);
@@ -146,10 +190,13 @@ const destroyUser = (req, res) => {
 
 module.exports = {
   browseUsers,
+  browseUsersWithRoles,
   browseAllDecisionsByUser,
   readUser,
+  readUserWithRoles,
   editUser,
   addUser,
+  addRoleToUser,
   destroyUser,
   BrowseConcatUsers,
   BrowseConcatExperts,
