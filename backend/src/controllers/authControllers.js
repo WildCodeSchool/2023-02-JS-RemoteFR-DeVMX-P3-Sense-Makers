@@ -3,7 +3,6 @@ const models = require("../models");
 
 const login = async (req, res) => {
   const [user] = await models.users.findOneByEmail(req.body.email);
-  // console.log(user[0]);
 
   if (user[0]) {
     const check = await argon2.verify(user[0].password, req.body.password);
