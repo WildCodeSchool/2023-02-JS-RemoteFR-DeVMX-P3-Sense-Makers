@@ -11,7 +11,7 @@ CREATE TABLE users (
   photo VARCHAR(254),
   email VARCHAR(100) NOT NULL UNIQUE,
   password VARCHAR(254) NOT NULL,
-  creation_date DATE
+  creation_date DATE DEFAULT (CURRENT_DATE) 
 );
 
 CREATE TABLE users_roles (

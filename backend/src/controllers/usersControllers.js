@@ -115,6 +115,28 @@ const editUser = (req, res) => {
     });
 };
 
+const editUserRole = (req, res) => {
+  const userId = parseInt(req.params.id, 10);
+
+  const roleId = req.body.role_id;
+
+  // TODO validations (length, format...)
+
+  models.users
+    .updateUserRole(userId, roleId)
+    .then(([result]) => {
+      if (result.affectedRows === 0) {
+        res.sendStatus(404);
+      } else {
+        res.sendStatus(204);
+      }
+    })
+    .catch((err) => {
+      console.error(err);
+      res.sendStatus(500);
+    });
+};
+
 const editUserPassword = (req, res) => {
   const { user } = req.body;
   console.info(req.body);
@@ -197,6 +219,7 @@ module.exports = {
   readUser,
   readUserWithRoles,
   editUser,
+  editUserRole,
   addUser,
   addRoleToUser,
   destroyUser,
