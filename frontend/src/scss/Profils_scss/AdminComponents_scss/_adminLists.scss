@@ -1,0 +1,116 @@
+@import "../../variables";
+.display {
+  font-family: $primary-font;
+  .addBtn,
+  .deleteBtn {
+    cursor: pointer;
+    background-color: $color-default;
+    color: white;
+    border-radius: 40px;
+    padding: 10px 13px;
+    margin: 15px;
+    border: 1px solid var(--lightBleuColor);
+    transition: 0.3s ease-in-out;
+    width: 160px;
+
+    .calculatorLink {
+      text-decoration: none;
+      color: var(--lightBleuColor);
+      width: 100%;
+    }
+    &:hover {
+      transform: scale(1.1);
+      background: var(--lightBleuColor);
+      color: white;
+
+      .calculatorLink {
+        color: white;
+      }
+    }
+  }
+  table {
+    width: 90%;
+    max-width: 800px;
+    height: fit-content;
+    thead {
+      tr {
+        th {
+          padding: 5px 0 5px 20px;
+          text-align: left;
+          font-size: 1rem;
+        }
+      }
+    }
+    tbody {
+      .picture-container{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 5rem;
+        width: 5rem;
+
+        img{
+          object-fit: contain;
+          height: 60%;
+          width: 60%;
+          border-radius: 50%;
+            }
+      }
+      tr {
+        height: 70px;
+        border: 1px solid var(--bleuColor);
+        box-shadow: 0px 15px 20px -10px #d8d8d8;
+        padding-left: 10px;
+        color: #4249af;
+        backdrop-filter: blur(3px);
+
+        td {
+          padding: 5px 0 5px 20px;
+          font-size: 1rem;
+
+          .viewBtn {
+            cursor: pointer;
+            background-color: white;
+            color: var(--lightBleuColor);
+            border-radius: 40px;
+            padding: 10px 13px;
+            margin: 15px;
+            border: 1px solid var(--lightBleuColor);
+            transition: 0.3s ease-in-out;
+          }
+          .viewBtn:hover {
+            transform: scale(1.1);
+            background: var(--lightBleuColor);
+            color: white;
+          }
+        }
+      }
+      .open {
+        td {
+          width: 100%;
+          .wrapper {
+            display: flex;
+            margin-top: 10px;
+            img {
+              object-fit: contain;
+            }
+            .moreInfo {
+              h3,
+              p {
+                margin: 0 20px;
+              }
+            }
+            .deleteBtn {
+              margin-left: auto;
+              height: 38px;
+              align-self: flex-end;
+            }
+          }
+        }
+      }
+      .fold {
+        display: none;
+      }
+    }
+  }
+}
