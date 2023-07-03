@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom";
 import PostComments from "../components/PostComments";
@@ -10,6 +10,7 @@ export default function Decision() {
   const [experts, setExperts] = useState([]);
   const [addComment, setAddComment] = useState(false);
   const { id } = useParams();
+  const ref = useRef(null);
 
   const today = Date.parse(new Date());
   const initialDate = Date.parse(decision.initial_date);
@@ -18,8 +19,13 @@ export default function Decision() {
   const secondDayDiff = (today - secondDate) / 86400000;
 
   const handleAddComment = () => {
-    setAddComment(true);
+    setAddComment((state) => !state);
   };
+  useEffect(() => {
+    if (addComment && ref.current) {
+      ref.current?.scrollIntoView({ behavior: "smooth" });
+    }
+  }, [addComment, ref]);
 
   const handleComment = () => {
     axios
@@ -188,10 +194,12 @@ export default function Decision() {
           </div>
         )}
         {addComment && (
-          <PostComments
-            setAddComment={setAddComment}
-            handleComment={handleComment}
-          />
+          <div ref={ref}>
+            <PostComments
+              setAddComment={setAddComment}
+              handleComment={handleComment}
+            />
+          </div>
         )}
       </div>
       <div className="side-content">

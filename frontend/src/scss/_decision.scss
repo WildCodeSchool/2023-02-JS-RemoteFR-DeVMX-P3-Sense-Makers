@@ -81,6 +81,7 @@
   .comments {
     .comment {
       margin-top: 2rem;
+      overflow-wrap: break-word;
       .comment-info {
         display: flex;
         align-items: center;
@@ -96,12 +97,6 @@
   }
 
   .side-content {
-    align-self: flex-start;
-    position: -webkit-sticky;
-    position: sticky;
-    height: 100vh;
-    top: 0;
-
     .tagged {
       display: grid;
       grid-template-columns: repeat(5, 1fr);
@@ -132,9 +127,13 @@
 @media screen and (min-width: 1024px) {
   .decision {
     padding-left: 10%;
-
     .side-content {
       flex: 0 0 20vw;
+      align-self: flex-start;
+      position: -webkit-sticky;
+      position: sticky;
+      height: 100vh;
+      top: 0;
       .side-text {
         margin-left: 2rem;
       }
