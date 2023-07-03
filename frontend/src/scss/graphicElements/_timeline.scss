@@ -33,7 +33,6 @@
       height: 0.3rem;
       width: 15rem;
     }
-
     @media screen and (min-width: 1024px) {
       width: 15rem;
     }
@@ -52,11 +51,9 @@
     color: $color-default;
     @media screen and (min-width: 768px) {
       font-size: $font-size-xxs;
-      width: 110%;
     }
     @media screen and (min-width: 1024px) {
       font-size: $font-size-xxs;
-      width: 110%;
     }
 
     .date-point {
@@ -68,7 +65,7 @@
         height: 0.7rem;
       }
       @media screen and (min-width: 1024px) {
-    
+        height: 0.7rem;
       }
     }
     .date-point-similar {
