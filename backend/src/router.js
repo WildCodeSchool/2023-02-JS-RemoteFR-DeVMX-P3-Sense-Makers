@@ -11,6 +11,9 @@ const statusControllers = require("./controllers/statusControllers");
 const usersControllers = require("./controllers/usersControllers");
 const mailControllers = require("./controllers/mailControllers");
 const rolesControllers = require("./controllers/rolesControllers");
+const authControllers = require("./controllers/authControllers");
+
+router.post("/login", authControllers.login);
 
 router.get("/decisions", decisionControllers.browseDecisions);
 router.get("/decisions/:id", decisionControllers.readDecision);
