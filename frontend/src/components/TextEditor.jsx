@@ -20,7 +20,7 @@ function TextEditor({ name, title, dispatch }) {
       {title} *
       <Editor
         id={`${name}_decision`}
-        apiKey="kj8hy39rl1nje7nh6kf3etgbl37lrjlvhsxindvx30h9hskr"
+        apiKey={`${import.meta.env.API_KEY}`}
         onChange={functionChange}
         onInit={(evt, editor) => {
           refInit.current = editor;

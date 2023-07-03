@@ -1,29 +1,43 @@
 import PropTypes from "prop-types";
 import { useEffect, useState } from "react";
+import TimelineDate from "./TimelineDate";
 
 function Timeline({ decision }) {
-  const [firstSameInitial, setFirstSameInitial] = useState("");
-  const [finalSameInitial, setFinaleSameInitial] = useState("");
-  const [deadlineCommentInitial, setDeadlineCommentInitial] = useState("");
-  const [deadlineConflictInitial, setDeadlineConflictInitial] = useState("");
+  const status = [
+    { id: 1, title: "Prise de décision débutée" },
+    { id: 2, title: "Deadline pour donner son avis" },
+    { id: 3, title: "Première décision prise" },
+    { id: 4, title: "Deadline pour entrer en conflit" },
+    { id: 5, title: "Décision définitive" },
+    { id: 6, title: "Décision non aboutie" },
+    { id: 7, title: "Décision terminée" },
+  ];
 
-  const firstDate = new Date(decision.first_take_decision);
-  const deadlineComment = new Date(decision.deadline_comment);
-  const deadlineConflict = new Date(decision.deadline_conflict);
+  const dates = [
+    {
+      id: 1,
+      date: decision.deadline_comment,
+      title: status[1].title,
+    },
+    {
+      id: 2,
+      date: decision.first_take_decision,
+      title: status[2].title,
+    },
+    {
+      id: 3,
+      date: decision.deadline_conflict,
+      title: status[3].title,
+    },
+  ];
+  console.info(decision);
+  const [finalSameInitial, setFinaleSameInitial] = useState("");
+
   const finalDate = new Date(decision.final_take_decision);
   const DayDate = new Date();
   const initialDate = new Date(decision.initial_date);
 
   const parseInitialDate = Date.parse(decision.initial_date);
-
-  const parseFirstDate = Date.parse(decision.first_take_decision);
-  const situationFirstDate = parseFirstDate - parseInitialDate;
-
-  const parseDeadlineComment = Date.parse(decision.deadline_comment);
-  const situationDeadlineComment = parseDeadlineComment - parseInitialDate;
-
-  const parseDeadlineConflict = Date.parse(decision.deadline_conflict);
-  const situationDeadlineConflict = parseDeadlineConflict - parseInitialDate;
 
   const parseFinalDate = Date.parse(decision.final_take_decision);
   const situationFinalDate = parseFinalDate - parseInitialDate;
@@ -34,12 +48,6 @@ function Timeline({ decision }) {
   const situationDayDate = parseDayDate - parseInitialDate;
   const progressBar = Math.round((situationDayDate / totalTime) * 100);
 
-  const firstDateProgress =
-    Math.round((situationFirstDate / totalTime) * 100) - 3;
-  const deadlineCommentProgress =
-    Math.round((situationDeadlineComment / totalTime) * 100) - 3;
-  const deadlineConflictProgress =
-    Math.round((situationDeadlineConflict / totalTime) * 100) - 3;
   const finalDateProgress =
     Math.round((situationFinalDate / totalTime) * 100) - 3;
 
@@ -49,17 +57,8 @@ function Timeline({ decision }) {
   );
 
   const verificationDate = () => {
-    if (parseDayDate >= parseFirstDate) {
-      setFirstSameInitial("-similar");
-    }
     if (parseDayDate >= parseFinalDate) {
       setFinaleSameInitial("-similar");
-    }
-    if (parseDayDate >= parseDeadlineComment) {
-      setDeadlineCommentInitial("-similar");
-    }
-    if (parseDayDate >= parseDeadlineConflict) {
-      setDeadlineConflictInitial("-similar");
     }
   };
 
@@ -77,39 +76,16 @@ function Timeline({ decision }) {
         <div className="date-point-similar" />
         <div className="date-text-similar">Prise de décision commencée</div>
       </div>
-      <div
-        className="date-container"
-        style={{ top: `${deadlineCommentProgress}%` }}
-      >
-        <div className={`date-infos${deadlineCommentInitial}`}>
-          {deadlineComment.toLocaleDateString("fr")}
-        </div>
-        <div className={`date-point${deadlineCommentInitial}`} />
-        <div className={`date-text${deadlineCommentInitial}`}>
-          Deadline pour donner son avis
-        </div>
-      </div>
-      <div className="date-container" style={{ top: `${firstDateProgress}%` }}>
-        <div className={`date-infos${firstSameInitial}`}>
-          {firstDate.toLocaleDateString("fr")}
-        </div>
-        <div className={`date-point${firstSameInitial}`} />
-        <div className={`date-text${firstSameInitial}`}>
-          Prise de décision prise
-        </div>
-      </div>
-      <div
-        className="date-container"
-        style={{ top: `${deadlineConflictProgress}%` }}
-      >
-        <div className={`date-infos${deadlineConflictInitial}`}>
-          {deadlineConflict.toLocaleDateString("fr")}
-        </div>
-        <div className={`date-point${deadlineConflictInitial}`} />
-        <div className={`date-text${deadlineConflictInitial}`}>
-          Deadline pour rentrer en conflit
-        </div>
-      </div>
+      {dates &&
+        dates.map((date) => (
+          <TimelineDate
+            date={date}
+            initialDate={decision.initial_date}
+            parseInitialDate={parseFinalDate}
+            parseFinalDate={parseInitialDate}
+            parseDayDate={parseDayDate}
+          />
+        ))}
       <div
         className="date-container"
         style={{ top: `${finalDateProgressLimited}%` }}
