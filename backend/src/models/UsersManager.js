@@ -42,14 +42,14 @@ class UsersManager extends AbstractManager {
 
   insert(user) {
     return this.database.query(
-      `insert into ${this.table} (firstname, lastname, photo, email, password, creation_date) values (?, ?, ?, ?, ?, ?)`,
+      `insert into ${this.table} (firstname, lastname, photo, email, password, creation_Date) values (?, ?, ?, ?, ?, ?)`,
       [
         user.firstname,
         user.lastname,
         user.photo,
         user.email,
-        user.password,
-        user.creation_date,
+        user.hash,
+        user.creationDate,
       ]
     );
   }
@@ -95,6 +95,12 @@ class UsersManager extends AbstractManager {
       WHERE u.id = ?`,
       [id]
     );
+  }
+
+  findOneByEmail(email) {
+    return this.database.query(`SELECT * FROM ${this.table} WHERE email = ?`, [
+      email,
+    ]);
   }
 }
 

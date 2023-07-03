@@ -2,12 +2,12 @@
 
 .timeline-container {
   position: relative;
-  height: 15rem;
+  height: 30rem;
   display: flex;
   align-items: center;
   justify-content: center;
   progress {
-    width: 15rem;
+    width: 30rem;
     height: 0.6rem;
     rotate: 90deg;
     vertical-align: 0rem;
@@ -17,19 +17,17 @@
     &::-webkit-progress-bar {
       background-color: $border-color-base;
       border-radius: 15px;
-      // border: 1px solid $border-color-active;
     }
     &::-webkit-progress-value {
       border-radius: 15px;
       background: $fluo-green;
-      //   box-shadow: 1px 1px 6px $color-default;
     }
   }
   .date-container {
     position: absolute;
     display: flex;
     justify-content: space-around;
-    width: 100%;
+    width: 90%;
     height: auto;
     align-items: center;
 
@@ -47,35 +45,39 @@
     }
     .date-text {
       color: $color-default;
-      font-weight: 600;
+      font-family: $primary-font;
+      font-weight: $primary-font-weight;
       height: 10px;
-      width: 100px;
+      width: 160px;
       text-align: center;
-      font-size: $font-size-xs;
+      font-size: $font-size-s;
     }
     .date-infos {
       color: $color-default;
-      font-weight: 600;
+      font-family: $primary-font;
+      font-weight: $primary-font-weight;
       height: 10px;
-      width: 100px;
+      width: 160px;
       text-align: center;
-      font-size: $font-size-xs;
+      font-size: $font-size-s;
     }
     .date-text-similar {
       color: rgb(200, 200, 200);
-      font-weight: 600;
+      font-family: $primary-font;
+      font-weight: $primary-font-weight;
       height: 10px;
-      width: 100px;
+      width: 160px;
       text-align: center;
-      font-size: $font-size-xs;
+      font-size: $font-size-s;
     }
     .date-infos-similar {
       color: rgb(200, 200, 200);
-      font-weight: 600;
+      font-family: $primary-font;
+      font-weight: $primary-font-weight;
       height: 10px;
-      width: 100px;
+      width: 160px;
       text-align: center;
-      font-size: $font-size-xs;
+      font-size: $font-size-s;
     }
   }
 }

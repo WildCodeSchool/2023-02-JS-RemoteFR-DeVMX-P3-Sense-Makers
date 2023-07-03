@@ -2,6 +2,7 @@ const jwt = require("jsonwebtoken");
 
 const secret = process.env.SECRET_MAIL;
 const models = require("../models");
+const { hashPassword } = require("../services/checkAuth");
 
 const browseUsers = (req, res) => {
   models.users
@@ -113,7 +114,6 @@ const editUser = (req, res) => {
       res.sendStatus(500);
     });
 };
-/// /// test////
 
 const editUserPassword = (req, res) => {
   const { user } = req.body;
@@ -138,14 +138,16 @@ const editUserPassword = (req, res) => {
         });
   });
 };
-/// /// fin du test ////
-const addUser = (req, res) => {
-  const user = req.body;
 
+
+const addUser = async (req, res) => {
+  const { firstname, lastname, photo, email, password } = req.body;
+  const { creationDate } = req.body.creation_date;
+  const hash = await hashPassword(password);
   // TODO validations (length, format...)
 
   models.users
-    .insert(user)
+    .insert({ firstname, lastname, photo, email, hash, creationDate })
     .then(([result]) => {
       res.status(201).json(result);
     })
