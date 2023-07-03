@@ -76,6 +76,12 @@ class UsersManager extends AbstractManager {
     );
   }
 
+  updateUserRole(userId, roleId) {
+    return this.database.query(
+      `update users_roles set user_id = ?, role_id = ? where user_id = ?`,
+      [userId, roleId, userId]
+    );
+  }
   /// /  test /////
 
   updateUserPassword(user) {
