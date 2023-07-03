@@ -1,10 +1,8 @@
 const models = require("../models");
 
-const browseComments = (req, res) => {
-  const decisionId = parseInt(req.params.id, 10);
-
-  models.comment
-    .findAllCommentsForOneDecision(decisionId)
+const browseRoles = (req, res) => {
+  models.roles
+    .findAll()
     .then(([rows]) => {
       res.send(rows);
     })
@@ -14,9 +12,9 @@ const browseComments = (req, res) => {
     });
 };
 
-const readComment = (req, res) => {
-  models.comment
-    .find(req.params.commentid)
+const readRole = (req, res) => {
+  models.roles
+    .find(req.params.id)
     .then(([rows]) => {
       if (rows[0] == null) {
         res.sendStatus(404);
@@ -30,15 +28,15 @@ const readComment = (req, res) => {
     });
 };
 
-const editComment = (req, res) => {
-  const comment = req.body;
+const editRole = (req, res) => {
+  const role = req.body;
 
   // TODO validations (length, format...)
 
-  comment.id = parseInt(req.params.commentid, 10);
+  role.id = parseInt(req.params.id, 10);
 
-  models.comment
-    .update(comment)
+  models.roles
+    .update(role)
     .then(([result]) => {
       if (result.affectedRows === 0) {
         res.sendStatus(404);
@@ -52,17 +50,16 @@ const editComment = (req, res) => {
     });
 };
 
-const addComment = (req, res) => {
-  const decisionId = parseInt(req.params.id, 10);
-  const comment = req.body;
-  comment.user_id = req.body.userId;
+const addRole = (req, res) => {
+  const role = req.body;
 
   // TODO validations (length, format...)
 
-  models.comment
-    .insert(comment, decisionId)
+  models.roles
+    .insert(role)
     .then(([result]) => {
-      res.location(`/comments/${result.insertId}`).sendStatus(201);
+      console.info(result);
+      res.sendStatus(201);
     })
     .catch((err) => {
       console.error(err);
@@ -70,9 +67,9 @@ const addComment = (req, res) => {
     });
 };
 
-const destroyComment = (req, res) => {
-  models.comment
-    .delete(req.params.commentid)
+const destroyRole = (req, res) => {
+  models.roles
+    .delete(req.params.id)
     .then(([result]) => {
       if (result.affectedRows === 0) {
         res.sendStatus(404);
@@ -87,9 +84,9 @@ const destroyComment = (req, res) => {
 };
 
 module.exports = {
-  browseComments,
-  readComment,
-  editComment,
-  addComment,
-  destroyComment,
+  browseRoles,
+  readRole,
+  editRole,
+  addRole,
+  destroyRole,
 };

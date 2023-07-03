@@ -1,14 +1,26 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom";
-import placeHolderPhoto from "../assets/Alaric.jpg";
+import PostComments from "../components/PostComments";
+import Timeline from "../components/graphicElements/Timeline";
 
 export default function Decision() {
   const [decision, setDecison] = useState([]);
   const [comments, setComments] = useState([]);
   const [impactedUsers, setimpactedUsers] = useState([]);
   const [experts, setExperts] = useState([]);
+  const [addComment, setAddComment] = useState(false);
   const { id } = useParams();
+
+  const today = Date.parse(new Date());
+  const initialDate = Date.parse(decision.initial_date);
+  const firstDayDiff = (today - initialDate) / 86400000;
+  const secondDate = Date.parse(decision.first_take_decision);
+  const secondDayDiff = (today - secondDate) / 86400000;
+
+  const handleAddComment = () => {
+    setAddComment(true);
+  };
 
   useEffect(() => {
     axios
@@ -48,7 +60,9 @@ export default function Decision() {
         <h1>{decision.title_decision}</h1>
         <div className="author">
           <img
-            src={placeHolderPhoto}
+            src={`${import.meta.env.VITE_BACKEND_URL}/uploads/${
+              decision.photo
+            }`}
             alt={`${decision.firstname} ${decision.lastname}`}
           />
           <p>
@@ -100,7 +114,7 @@ export default function Decision() {
           </summary>
 
           <div className="summary-content">
-            <p>{decision.disavantages}</p>
+            <p>{decision.disadvantages}</p>
           </div>
         </details>
 
@@ -116,7 +130,9 @@ export default function Decision() {
                 <div className="comment-info">
                   {" "}
                   <img
-                    src={placeHolderPhoto}
+                    src={`${import.meta.env.VITE_BACKEND_URL}/uploads/${
+                      comment.photo
+                    }`}
                     alt={`${comment.firstname} ${comment.lastname}`}
                   />{" "}
                   <div className="comment-info">
@@ -141,20 +157,45 @@ export default function Decision() {
           </div>
         </details>
 
-        <button type="button" className="comment-button">
-          Donner mon avis
-        </button>
+        {!addComment && (
+          <button
+            type="button"
+            className="comment-button"
+            onClick={handleAddComment}
+            disabled={(firstDayDiff > 15 && !secondDate) || secondDayDiff > 15}
+          >
+            Donner mon avis
+          </button>
+        )}
+        {firstDayDiff > 15 && (
+          <div className="closed-comment">
+            <p> La période de commentaire est à present terminée!</p>
+            <p>
+              Attendez la première prise de décision de l'auteur pour a nouveau
+              pouvoir donner votre avis!
+            </p>
+          </div>
+        )}
+        {secondDayDiff > 15 && (
+          <div className="closed-comment">
+            <p> La période de commentaire est à present terminée!</p>
+            <p>Merci pour vos retours!</p>
+          </div>
+        )}
+        {addComment && <PostComments setAddComment={setAddComment} />}
       </div>
       <div className="side-content">
         <div className="side-text">
           <h2>Dates à retenir</h2>
-          <div> timeline</div>
+          <Timeline decision={decision} />
           <h2>Personnes impactées</h2>
           <div className="tagged" data-count={impactedUsers.length}>
             {impactedUsers.map((impactedUser) => (
               <img
                 key={impactedUser.id}
-                src={placeHolderPhoto}
+                src={`${import.meta.env.VITE_BACKEND_URL}/uploads/${
+                  impactedUser.photo
+                }`}
                 alt={`${impactedUser.firstname} ${impactedUser.lastname}`}
                 title={`${impactedUser.firstname} ${impactedUser.lastname}`}
               />
@@ -165,14 +206,21 @@ export default function Decision() {
             {experts.map((expert) => (
               <img
                 key={expert.id}
-                src={placeHolderPhoto}
+                src={`${import.meta.env.VITE_BACKEND_URL}/uploads/${
+                  expert.photo
+                }`}
                 alt={`${expert.firstname} ${expert.lastname}`}
                 title={`${expert.firstname} ${expert.lastname}`}
               />
             ))}
           </div>
         </div>
-        <button type="button" className="comment-button">
+        <button
+          type="button"
+          className="comment-button"
+          onClick={handleAddComment}
+          disabled={(firstDayDiff > 15 && !secondDate) || secondDayDiff > 15}
+        >
           Donner mon avis
         </button>
       </div>

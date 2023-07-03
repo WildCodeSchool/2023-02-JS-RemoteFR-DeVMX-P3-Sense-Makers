@@ -9,6 +9,7 @@ const commentsControllers = require("./controllers/commentsControllers");
 const decisionControllers = require("./controllers/decisionControllers");
 const statusControllers = require("./controllers/statusControllers");
 const usersControllers = require("./controllers/usersControllers");
+const rolesControllers = require("./controllers/rolesControllers");
 
 router.get("/decisions", decisionControllers.browseDecisions);
 router.get("/decisions/:id", decisionControllers.readDecision);
@@ -19,6 +20,7 @@ router.get(
 router.post("/decisions/:id/impacted", decisionControllers.addImpacted);
 router.get("/decisions/:id/expert", decisionControllers.readExpertOnDecision);
 router.post("/decisions/:id/expert", decisionControllers.addExpert);
+router.post("/decisions/:id/user", decisionControllers.addUserOnDecision);
 
 router.put("/decisions/:id", decisionControllers.editDecision);
 router.post("/decisions", decisionControllers.addDecision);
@@ -41,18 +43,25 @@ router.delete(
 
 router.get("/status", statusControllers.browseStatus);
 
-router.get("/users", usersControllers.browseUsers);
+router.get("/users", usersControllers.browseUsersWithRoles);
 router.get("/users/concat", usersControllers.BrowseConcatUsers);
 router.get("/users/experts", usersControllers.BrowseConcatExperts);
 
-router.get("/users/:id", usersControllers.readUser);
+router.get("/users/:id", usersControllers.readUserWithRoles);
 router.get("/users/:id/decisions", usersControllers.browseAllDecisionsByUser);
 router.post("/users", usersControllers.addUser);
+router.post("/users/:id/role", usersControllers.addRoleToUser);
 router.put("/users/:id", usersControllers.editUser);
 router.delete("/users/:id", usersControllers.destroyUser);
 
 router.post("/uploads", upload.single("photo"), uploadFile.postFile);
 
 router.get("/concernedhub", decisionControllers.concernedHub);
+
+router.get("/roles", rolesControllers.browseRoles);
+router.get("/roles/:id", rolesControllers.readRole);
+router.post("/roles", rolesControllers.addRole);
+router.put("/roles/:id", rolesControllers.editRole);
+router.delete("/roles/:id", rolesControllers.destroyRole);
 
 module.exports = router;

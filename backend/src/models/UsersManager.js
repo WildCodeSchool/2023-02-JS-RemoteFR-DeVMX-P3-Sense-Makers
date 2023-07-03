@@ -5,8 +5,25 @@ class UsersManager extends AbstractManager {
     super({ table: "users" });
   }
 
-  findAllUsers() {
-    return this.database.query(`SELECT * FROM  ${this.table}`);
+  findAllUsersWithRoles() {
+    return this.database.query(
+      `SELECT ${this.table}.id, ${this.table}.firstname, ${this.table}.lastname, ${this.table}.photo, ${this.table}.email, ${this.table}.password, ${this.table}.creation_date, GROUP_CONCAT( r.role_name SEPARATOR ", " ) roles FROM  ${this.table}
+      left join users_roles ur ON ur.user_id = ${this.table}.id
+      inner join roles r ON r.id = ur.role_id
+      group by ${this.table}.id;
+      `
+    );
+  }
+
+  findUserWithRolesById(id) {
+    return this.database.query(
+      `SELECT ${this.table}.id, ${this.table}.firstname, ${this.table}.lastname, ${this.table}.photo, ${this.table}.email, ${this.table}.password, ${this.table}.creation_date, GROUP_CONCAT ( r.role_name SEPARATOR ", " ) roles FROM  ${this.table}
+      left join users_roles ur ON ur.user_id = ${this.table}.id
+      inner join roles r ON r.id = ur.role_id
+      where ${this.table}.id = ?
+      group by ${this.table}.id;`,
+      [id]
+    );
   }
 
   findUsersNameConcat() {
@@ -25,29 +42,34 @@ class UsersManager extends AbstractManager {
 
   insert(user) {
     return this.database.query(
-      `insert into ${this.table} (firstname, lastname, photo, email, password, role_id, creation_date) values (?, ?, ?, ?, ?, ?, ?, ?)`,
+      `insert into ${this.table} (firstname, lastname, photo, email, password, creation_date) values (?, ?, ?, ?, ?, ?)`,
       [
         user.firstname,
         user.lastname,
         user.photo,
         user.email,
         user.password,
-        user.role_id,
         user.creation_date,
       ]
     );
   }
 
+  insertRoleIntoUser(userId, roleId) {
+    return this.database.query(
+      `insert into users_roles (user_id, role_id) values ( ?, ?)`,
+      [userId, roleId]
+    );
+  }
+
   update(user) {
     return this.database.query(
-      `update ${this.table} set firstname = ?, lastname = ?, photo = ?, email = ?, password = ?, role_id = ?, creation_date =? where id = ?`,
+      `update ${this.table} set firstname = ?, lastname = ?, photo = ?, email = ?, password = ?, creation_date =? where id = ?`,
       [
         user.firstname,
         user.lastname,
         user.photo,
         user.email,
         user.password,
-        user.role_id,
         user.creation_date,
         user.id,
       ]
