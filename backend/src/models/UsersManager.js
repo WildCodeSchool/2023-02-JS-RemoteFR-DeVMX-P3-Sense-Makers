@@ -82,6 +82,14 @@ class UsersManager extends AbstractManager {
       [userId, roleId, userId]
     );
   }
+  /// /  test /////
+
+  updateUserPassword(user) {
+    return this.database.query(
+      `update ${this.table} set password = ? where id = ?`,
+      [user.password, user.id]
+    );
+  }
 
   findAllDecisionsByUserId(id) {
     return this.database.query(

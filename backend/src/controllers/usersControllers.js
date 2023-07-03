@@ -1,3 +1,6 @@
+const jwt = require("jsonwebtoken");
+
+const secret = process.env.SECRET_MAIL;
 const models = require("../models");
 const { hashPassword } = require("../services/checkAuth");
 
@@ -132,6 +135,29 @@ const editUserRole = (req, res) => {
       console.error(err);
       res.sendStatus(500);
     });
+  
+const editUserPassword = (req, res) => {
+  const { user } = req.body;
+  console.info(req.body);
+  // TODO validations (length, format...)
+  jwt.verify(user.token, secret, { expiresIn: "1h" }, (err) => {
+    if (err) {
+      console.info(err.message);
+    } else
+      models.users
+        .updateUserPassword(user)
+        .then(([result]) => {
+          if (result.affectedRows === 0) {
+            res.sendStatus(404);
+          } else {
+            res.sendStatus(204);
+          }
+        })
+        .catch((error) => {
+          console.error(error);
+          res.sendStatus(500);
+        });
+  });
 };
 
 const addUser = async (req, res) => {
@@ -198,4 +224,5 @@ module.exports = {
   destroyUser,
   BrowseConcatUsers,
   BrowseConcatExperts,
+  editUserPassword,
 };
