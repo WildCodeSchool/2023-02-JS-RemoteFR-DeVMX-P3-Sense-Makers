@@ -89,9 +89,10 @@ class UsersManager extends AbstractManager {
   }
 
   findOneByEmail(email) {
-    return this.database.query(`SELECT * FROM ${this.table} WHERE email = ?`, [
-      email,
-    ]);
+    return this.database.query(
+      `SELECT email, password FROM ${this.table} WHERE email = ?`,
+      [email]
+    );
   }
 }
 
