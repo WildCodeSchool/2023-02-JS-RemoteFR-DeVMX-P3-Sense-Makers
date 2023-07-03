@@ -57,7 +57,6 @@ export default function ModifyUser() {
         is_expert: targetValues.roleExpert
           ? targetValues.roleExpert
           : userData.roleExpert,
-        creation_date: "2023-02-03",
       })
       .then((response) => {
         if (targetValues.role !== "" && targetValues.roleExpert !== "") {

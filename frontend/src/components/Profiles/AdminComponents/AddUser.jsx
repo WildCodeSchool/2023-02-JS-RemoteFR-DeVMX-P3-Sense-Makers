@@ -58,7 +58,7 @@ export default function AddUser() {
           photo: newUploadedFileName,
           email: targetValues.email,
           password: targetValues.password,
-          creation_date: "2023-02-03",
+          creation_date: "2023-23-32",
         })
         .then((response) => {
           console.info(response);
@@ -89,8 +89,16 @@ export default function AddUser() {
               }
             );
           }
-        })
-        .catch((err) => console.error(err));
+          if (response.status === 201) {
+            axios
+              .post(`${import.meta.env.VITE_BACKEND_URL}/sendmail`, {
+                id: response.data.insertId,
+                email: targetValues.email,
+              })
+              .then((result) => console.info(result))
+              .catch((err) => console.error(err));
+          }
+        });
     } else {
       console.info("XXX Submitting form with state:", targetValues);
     }
