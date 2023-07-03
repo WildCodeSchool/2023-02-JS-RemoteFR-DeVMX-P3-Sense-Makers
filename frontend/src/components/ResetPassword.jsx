@@ -2,7 +2,7 @@ import axios from "axios";
 import { useState } from "react";
 
 export default function resetPassword() {
-  const [password, setNewPassword] = useState();
+  const [password, setPassword] = useState();
   const [verifPassword, setVerifPassword] = useState();
   const params = new URLSearchParams(window.location.search);
   const id = params.get("id");
@@ -33,7 +33,7 @@ export default function resetPassword() {
             id="newpassword"
             name="newpassword"
             placeholder="Insérez votre mot de passe"
-            onChange={(e) => setNewPassword(e.target.value)}
+            onChange={(e) => setPassword(e.target.value)}
             required
           />
         </label>
