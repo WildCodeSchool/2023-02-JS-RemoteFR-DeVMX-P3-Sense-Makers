@@ -6,18 +6,24 @@ import Avatar0 from "../../../assets/avatar0.png";
 
 export default function ModifyUser() {
   const [userData, setUserData] = useState([]);
+  // console.log("🚀 - userData:", userData.roles);
+
   const [dropzoneImage, setDropzoneImage] = useState([]);
   const [newUploadedFileName, setNewUploadedFileName] = useState("");
+
   const [rolesData, setRolesData] = useState([]);
 
   const [targetValues, setTargetValues] = useState({
-    firstName: userData.firstname,
-    lastName: userData.lastname,
-    email: userData.email,
-    password: userData.password,
-    photo: userData.photo,
-    role: userData.role_id,
+    firstname: "",
+    lastname: "",
+    email: "",
+    password: "",
+    photo: "",
+    role: "",
+    roleExpert: "",
   });
+
+  // console.log("🚀 - targetValues:", targetValues);
 
   const update = (event) => {
     const target = event.currentTarget;
@@ -33,18 +39,36 @@ export default function ModifyUser() {
 
     axios
       .put(`${import.meta.env.VITE_BACKEND_URL}/users/${userData.id}`, {
-        firstname: targetValues.firstName,
-        lastname: targetValues.lastName,
-        photo: newUploadedFileName,
-        email: targetValues.email,
-        password: targetValues.password,
-        role_id: targetValues.role,
-        is_expert: targetValues.roleExpert,
-        creation_date: "2023-02-03",
+        firstname:
+          targetValues.firstname !== ""
+            ? targetValues.firstname
+            : userData.firstname,
+        lastname:
+          targetValues.lastname !== ""
+            ? targetValues.lastname
+            : userData.lastname,
+        photo: !newUploadedFileName && userData.photo,
+        email: targetValues.email !== "" ? targetValues.email : userData.email,
+        password:
+          targetValues.password !== ""
+            ? targetValues.password
+            : userData.password,
+        role_id: targetValues.role !== "" ? targetValues.role : userData.role,
+        is_expert: targetValues.roleExpert
+          ? targetValues.roleExpert
+          : userData.roleExpert,
       })
-      .then((response) =>
-        console.info({ message: "Update user done!!!", response })
-      )
+      .then((response) => {
+        if (targetValues.role !== "" && targetValues.roleExpert !== "") {
+          axios
+            .put(
+              `${import.meta.env.VITE_BACKEND_URL}/users/${userData.id}/roles`
+            )
+            .then((res) => console.info(res))
+            .catch((err) => console.error(err));
+        }
+        console.info({ message: "Update user done!!!", response });
+      })
       .catch((err) => console.error(err));
     console.info("Submitted new values form with state:", targetValues);
   };
@@ -58,10 +82,9 @@ export default function ModifyUser() {
 
   useEffect(() => {
     axios
-      .get(`${import.meta.env.VITE_BACKEND_URL}/users/4`)
+      .get(`${import.meta.env.VITE_BACKEND_URL}/users/10`)
       .then((result) => {
-        console.info("User data on DB", result.data);
-        setUserData(result.data);
+        setUserData(result.data[0]);
       })
       .catch((err) => console.error(err));
   }, []);
@@ -82,20 +105,18 @@ export default function ModifyUser() {
                 Nom <br />
                 <input
                   type="text"
-                  name="lastName"
-                  placeholder="Insérez votre nom"
+                  name="lastname"
+                  placeholder={userData.lastname}
                   onChange={update}
-                  required
                 />
               </label>
               <label htmlFor="firstName" className="firstName">
                 Prénom <br />
                 <input
                   type="text"
-                  name="firstName"
-                  placeholder="Insérez votre prénom"
+                  name="firstname"
+                  placeholder={userData.firstname}
                   onChange={update}
-                  required
                 />
               </label>
             </div>
@@ -105,20 +126,19 @@ export default function ModifyUser() {
                 type="email"
                 name="email"
                 className="input-email"
-                placeholder="Insérez votre email"
+                placeholder={userData.email}
                 onChange={update}
-                required
               />
             </label>
             <div className="roles-container-1">
               <div className="role-actuel-container">
                 <div className="role">
                   <h4 className="role-actuel-title"> Rôle(s) actuel(s) </h4>
-                  <p className="role-actuel-data">{userData[0]?.roles}</p>
+                  <p className="role-actuel-data">{userData?.roles}</p>
                 </div>
                 <label htmlFor="role">
                   Rôle <br />
-                  <select name="role" onChange={update} required>
+                  <select name="role" onChange={update}>
                     <option value="0">Sélectionne votre rôle</option>
                     {rolesData
                       .filter((roleExpert) => roleExpert.role_name !== "Expert")
@@ -129,7 +149,7 @@ export default function ModifyUser() {
                       ))}
                   </select>
                 </label>
-                <label htmlFor="roleExpert" className="role-expert">
+                <label htmlFor="roleexpert" className="role-expert">
                   <input type="checkbox" name="roleExpert" onChange={update} />
                   Expert(e)
                 </label>
@@ -140,12 +160,12 @@ export default function ModifyUser() {
         <div className="profile-photo-container">
           <label htmlFor="profile-photo-input">
             <div className="img-container">
-              {userData[0]?.photo ? (
+              {userData?.photo ? (
                 <img
                   src={
                     userData
                       ? `${import.meta.env.VITE_BACKEND_URL}/uploads/${
-                          userData[0]?.photo
+                          userData?.photo
                         }`
                       : Avatar0
                   }
@@ -175,10 +195,10 @@ export default function ModifyUser() {
           <div className="roles-container-2">
             <div className="role-actuel">
               <h4 className="role-actuel-title"> Rôle(s) actuel(s) </h4>
-              <span className="role-actuel-data">{userData[0]?.roles}</span>
+              <span className="role-actuel-data">{userData?.roles}</span>
               <label htmlFor="role">
                 Rôle <br />
-                <select name="role" onChange={update} required>
+                <select name="role_id" onChange={update}>
                   <option value="0">Sélectionne votre rôle</option>
                   {rolesData
                     .filter((roleExpert) => roleExpert.role_name !== "Expert")
@@ -190,7 +210,7 @@ export default function ModifyUser() {
                 </select>
               </label>
               <label htmlFor="role-expert" className="role-expert-2">
-                <input type="checkbox" name="roleExpert" onChange={update} />
+                <input type="checkbox" name="is_expert" onChange={update} />
                 Expert(e)
               </label>
             </div>
