@@ -9,7 +9,11 @@ const commentsControllers = require("./controllers/commentsControllers");
 const decisionControllers = require("./controllers/decisionControllers");
 const statusControllers = require("./controllers/statusControllers");
 const usersControllers = require("./controllers/usersControllers");
+const mailControllers = require("./controllers/mailControllers");
 const rolesControllers = require("./controllers/rolesControllers");
+const authControllers = require("./controllers/authControllers");
+
+router.post("/login", authControllers.login);
 
 router.get("/decisions", decisionControllers.browseDecisions);
 router.get("/decisions/:id", decisionControllers.readDecision);
@@ -57,6 +61,9 @@ router.delete("/users/:id", usersControllers.destroyUser);
 router.post("/uploads", upload.single("photo"), uploadFile.postFile);
 
 router.get("/concernedhub", decisionControllers.concernedHub);
+
+router.post("/sendmail", mailControllers.sendMailById);
+router.put("/resetpassword", usersControllers.editUserPassword);
 
 router.get("/roles", rolesControllers.browseRoles);
 router.get("/roles/:id", rolesControllers.readRole);
