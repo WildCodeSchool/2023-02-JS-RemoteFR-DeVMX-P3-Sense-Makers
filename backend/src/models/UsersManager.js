@@ -80,8 +80,8 @@ class UsersManager extends AbstractManager {
 
   updateUserPassword(user) {
     return this.database.query(
-      `update ${this.table} set password = ? where email = ?`,
-      [user.password, user.email]
+      `update ${this.table} set password = ? where id = ?`,
+      [user.password, user.id]
     );
   }
 

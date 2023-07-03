@@ -59,7 +59,7 @@ router.post("/uploads", upload.single("photo"), uploadFile.postFile);
 
 router.get("/concernedhub", decisionControllers.concernedHub);
 
-router.get("/sendmail", mailControllers.sendMailById);
+router.post("/sendmail", mailControllers.sendMailById);
 router.put("/resetpassword", usersControllers.editUserPassword);
 
 router.get("/roles", rolesControllers.browseRoles);

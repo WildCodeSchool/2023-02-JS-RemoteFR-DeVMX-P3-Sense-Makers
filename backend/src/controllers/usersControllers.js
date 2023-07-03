@@ -1,6 +1,6 @@
 const jwt = require("jsonwebtoken");
 
-const secret = "letrucdefouatrouver";
+const secret = process.env.SECRET_MAIL;
 const models = require("../models");
 
 const browseUsers = (req, res) => {
@@ -117,8 +117,9 @@ const editUser = (req, res) => {
 
 const editUserPassword = (req, res) => {
   const { user } = req.body;
+  console.info(req.body);
   // TODO validations (length, format...)
-  jwt.verify(user.tok, secret, { expiresIn: "1h" }, (err) => {
+  jwt.verify(user.token, secret, { expiresIn: "1h" }, (err) => {
     if (err) {
       console.info(err.message);
     } else

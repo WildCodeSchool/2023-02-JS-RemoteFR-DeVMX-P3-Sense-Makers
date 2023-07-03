@@ -30,7 +30,7 @@ const sendMailById = (req) => {
     {
       from: "NICOLAS <nlopes93600@gmail.com>",
       to: `${req.body.email}`, // put the email of user depuis le payload//
-      subject: "password reset",
+      subject: "password test reset",
       text: "Vous souhaitez réinitialiser votre mot de passe ?",
       html: `<a href="http://localhost:3000/resetpassword?token=${token}&id=${req.body.id}">Cliquez ici</a>`,
     },

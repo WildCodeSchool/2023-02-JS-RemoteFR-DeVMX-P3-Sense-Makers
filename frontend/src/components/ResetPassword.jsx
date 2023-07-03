@@ -2,19 +2,19 @@ import axios from "axios";
 import { useState } from "react";
 
 export default function resetPassword() {
-  const [newPassword, setNewPassword] = useState();
+  const [password, setNewPassword] = useState();
   const [verifPassword, setVerifPassword] = useState();
   const params = new URLSearchParams(window.location.search);
-  const userEmail = params.get("email");
+  const id = params.get("id");
   const token = params.get("token");
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (newPassword === verifPassword) {
+    if (password === verifPassword) {
       console.info("ok");
       axios
         .put(`${import.meta.env.VITE_BACKEND_URL}/resetpassword`, {
-          user: { password: newPassword, email: userEmail, tok: token },
+          user: { password, id, token },
         })
         .then((response) => console.info(response))
         .catch((err) => console.error(err));
