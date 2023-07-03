@@ -46,7 +46,7 @@ function Timeline({ decision }) {
 
   const parseDayDate = Date.parse(DayDate);
   const situationDayDate = parseDayDate - parseInitialDate;
-  const progressBar = Math.round((situationDayDate / totalTime) * 100);
+  const progressBar = Math.round((situationDayDate / totalTime) * 100) - 3;
 
   const finalDateProgress =
     Math.round((situationFinalDate / totalTime) * 100) - 3;
