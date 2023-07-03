@@ -135,6 +135,7 @@ const editUserRole = (req, res) => {
       console.error(err);
       res.sendStatus(500);
     });
+};
   
 const editUserPassword = (req, res) => {
   const { user } = req.body;
