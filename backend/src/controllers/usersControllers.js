@@ -136,7 +136,7 @@ const editUserRole = (req, res) => {
       res.sendStatus(500);
     });
 };
-  
+
 const editUserPassword = (req, res) => {
   const { user } = req.body;
   console.info(req.body);
@@ -227,5 +227,3 @@ module.exports = {
   BrowseConcatExperts,
   editUserPassword,
 };
-
-  
