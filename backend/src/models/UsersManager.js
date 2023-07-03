@@ -42,14 +42,14 @@ class UsersManager extends AbstractManager {
 
   insert(user) {
     return this.database.query(
-      `insert into ${this.table} (firstname, lastname, photo, email, password, creation_date) values (?, ?, ?, ?, ?, ?)`,
+      `insert into ${this.table} (firstname, lastname, photo, email, password, creation_Date) values (?, ?, ?, ?, ?, ?)`,
       [
         user.firstname,
         user.lastname,
         user.photo,
         user.email,
-        user.password,
-        user.creation_date,
+        user.hash,
+        user.creationDate,
       ]
     );
   }
@@ -76,6 +76,15 @@ class UsersManager extends AbstractManager {
     );
   }
 
+  /// /  test /////
+
+  updateUserPassword(user) {
+    return this.database.query(
+      `update ${this.table} set password = ? where id = ?`,
+      [user.password, user.id]
+    );
+  }
+
   findAllDecisionsByUserId(id) {
     return this.database.query(
       `SELECT d.id d_id, d.title AS title_decision, d.status_id, c.title, u.firstname, u.lastname, u.photo, u.id u_id, s.title title_status FROM decisions d
@@ -86,6 +95,12 @@ class UsersManager extends AbstractManager {
       WHERE u.id = ?`,
       [id]
     );
+  }
+
+  findOneByEmail(email) {
+    return this.database.query(`SELECT * FROM ${this.table} WHERE email = ?`, [
+      email,
+    ]);
   }
 }
 

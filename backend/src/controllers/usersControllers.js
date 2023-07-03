@@ -1,4 +1,8 @@
+const jwt = require("jsonwebtoken");
+
+const secret = process.env.SECRET_MAIL;
 const models = require("../models");
+const { hashPassword } = require("../services/checkAuth");
 
 const browseUsers = (req, res) => {
   models.users
@@ -111,13 +115,38 @@ const editUser = (req, res) => {
     });
 };
 
-const addUser = (req, res) => {
-  const user = req.body;
+const editUserPassword = (req, res) => {
+  const { user } = req.body;
+  console.info(req.body);
+  // TODO validations (length, format...)
+  jwt.verify(user.token, secret, { expiresIn: "1h" }, (err) => {
+    if (err) {
+      console.info(err.message);
+    } else
+      models.users
+        .updateUserPassword(user)
+        .then(([result]) => {
+          if (result.affectedRows === 0) {
+            res.sendStatus(404);
+          } else {
+            res.sendStatus(204);
+          }
+        })
+        .catch((error) => {
+          console.error(error);
+          res.sendStatus(500);
+        });
+  });
+};
 
+const addUser = async (req, res) => {
+  const { firstname, lastname, photo, email, password } = req.body;
+  const { creationDate } = req.body.creation_date;
+  const hash = await hashPassword(password);
   // TODO validations (length, format...)
 
   models.users
-    .insert(user)
+    .insert({ firstname, lastname, photo, email, hash, creationDate })
     .then(([result]) => {
       res.status(201).json(result);
     })
@@ -173,4 +202,5 @@ module.exports = {
   destroyUser,
   BrowseConcatUsers,
   BrowseConcatExperts,
+  editUserPassword,
 };
