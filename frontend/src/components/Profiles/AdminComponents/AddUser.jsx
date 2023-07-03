@@ -71,7 +71,7 @@ export default function AddUser() {
                 roleId: parseInt(targetValues.role, 10),
               }
             );
-          } else if (response.status === 201 && targetValues.roleExpert) {
+          } else {
             axios.post(
               `${import.meta.env.VITE_BACKEND_URL}/users/${
                 response.data.insertId

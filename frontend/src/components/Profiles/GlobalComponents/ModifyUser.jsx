@@ -10,6 +10,7 @@ export default function ModifyUser() {
 
   const [dropzoneImage, setDropzoneImage] = useState([]);
   const [newUploadedFileName, setNewUploadedFileName] = useState("");
+
   const [rolesData, setRolesData] = useState([]);
 
   const [targetValues, setTargetValues] = useState({
@@ -19,7 +20,9 @@ export default function ModifyUser() {
     password: "",
     photo: "",
     role: "",
+    roleExpert: "",
   });
+
   // console.log("🚀 - targetValues:", targetValues);
 
   const update = (event) => {
@@ -36,18 +39,37 @@ export default function ModifyUser() {
 
     axios
       .put(`${import.meta.env.VITE_BACKEND_URL}/users/${userData.id}`, {
-        firstname: targetValues.firstName,
-        lastname: targetValues.lastName,
-        photo: newUploadedFileName,
-        email: targetValues.email,
-        password: targetValues.password,
-        role_id: targetValues.role,
-        is_expert: targetValues.roleExpert,
+        firstname:
+          targetValues.firstname !== ""
+            ? targetValues.firstname
+            : userData.firstname,
+        lastname:
+          targetValues.lastname !== ""
+            ? targetValues.lastname
+            : userData.lastname,
+        photo: !newUploadedFileName && userData.photo,
+        email: targetValues.email !== "" ? targetValues.email : userData.email,
+        password:
+          targetValues.password !== ""
+            ? targetValues.password
+            : userData.password,
+        role_id: targetValues.role !== "" ? targetValues.role : userData.role,
+        is_expert: targetValues.roleExpert
+          ? targetValues.roleExpert
+          : userData.roleExpert,
         creation_date: "2023-02-03",
       })
-      .then((response) =>
-        console.info({ message: "Update user done!!!", response })
-      )
+      .then((response) => {
+        if (targetValues.role !== "" && targetValues.roleExpert !== "") {
+          axios
+            .put(
+              `${import.meta.env.VITE_BACKEND_URL}/users/${userData.id}/roles`
+            )
+            .then((res) => console.info(res))
+            .catch((err) => console.error(err));
+        }
+        console.info({ message: "Update user done!!!", response });
+      })
       .catch((err) => console.error(err));
     console.info("Submitted new values form with state:", targetValues);
   };
@@ -61,7 +83,7 @@ export default function ModifyUser() {
 
   useEffect(() => {
     axios
-      .get(`${import.meta.env.VITE_BACKEND_URL}/users/4`)
+      .get(`${import.meta.env.VITE_BACKEND_URL}/users/10`)
       .then((result) => {
         setUserData(result.data[0]);
       })
@@ -177,7 +199,7 @@ export default function ModifyUser() {
               <span className="role-actuel-data">{userData?.roles}</span>
               <label htmlFor="role">
                 Rôle <br />
-                <select name="role" onChange={update}>
+                <select name="role_id" onChange={update}>
                   <option value="0">Sélectionne votre rôle</option>
                   {rolesData
                     .filter((roleExpert) => roleExpert.role_name !== "Expert")
@@ -189,7 +211,7 @@ export default function ModifyUser() {
                 </select>
               </label>
               <label htmlFor="role-expert" className="role-expert-2">
-                <input type="checkbox" name="roleExpert" onChange={update} />
+                <input type="checkbox" name="is_expert" onChange={update} />
                 Expert(e)
               </label>
             </div>
