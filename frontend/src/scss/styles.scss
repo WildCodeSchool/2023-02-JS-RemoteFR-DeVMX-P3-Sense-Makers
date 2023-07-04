@@ -15,5 +15,8 @@
 @use "./Profils_scss/AdminComponents_scss/addUser";
 @use "./variables";
 @use "./graphicElements/graphicElements";
+@use "./resetPassword";
 @use "./Profils_scss/AdminComponents_scss/modifyUser";
 @use "./postComment";
+@use "./graphicElements/timeline"
+

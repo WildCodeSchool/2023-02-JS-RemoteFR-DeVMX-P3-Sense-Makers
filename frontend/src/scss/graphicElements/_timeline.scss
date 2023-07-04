@@ -1,0 +1,107 @@
+@import "../variables.scss";
+
+.timeline-container {
+  position: relative;
+  height: 20rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  @media screen and (min-width: 768px) {
+    height: 15rem;
+  }
+  @media screen and (min-width: 1024px) {
+    height: 15rem;
+  }
+
+  progress {
+    width: 20rem;
+    height: 0.6rem;
+    rotate: 90deg;
+    vertical-align: 0rem;
+    -webkit-appearance: none;
+    appearance: none;
+    border-radius: 15px;
+    &::-webkit-progress-bar {
+      background-color: $border-color-base;
+      border-radius: 15px;
+    }
+    &::-webkit-progress-value {
+      border-radius: 15px;
+      background: $fluo-green;
+    }
+    @media screen and (min-width: 768px) {
+      height: 0.3rem;
+      width: 15rem;
+    }
+    @media screen and (min-width: 1024px) {
+      width: 15rem;
+    }
+  }
+  .date-container {
+    position: absolute;
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+    height: auto;
+    gap:2rem;
+    align-items: center;
+    font-size: $font-size-xs;
+    font-family: $primary-font;
+    font-weight: $primary-font-weight;
+    color: $color-default;
+    @media screen and (min-width: 768px) {
+      font-size: $font-size-xxs;
+    }
+    @media screen and (min-width: 1024px) {
+      font-size: $font-size-xxs;
+    }
+
+    .date-point {
+      height: 1rem;
+      width: 1.3rem;
+      border-radius: 1.3rem;
+      background-color: $border-color-base;
+      @media screen and (min-width: 768px) {
+        height: 0.7rem;
+      }
+      @media screen and (min-width: 1024px) {
+        height: 0.7rem;
+      }
+    }
+    .date-point-similar {
+      height: 1rem;
+      width: 1.3rem;
+      border-radius: 1.3rem;
+      background-color: $fluo-green;
+      @media screen and (min-width: 768px) {
+        height: 0.7rem;
+      }
+      @media screen and (min-width: 1024px) {
+    
+      }
+    }
+    .date-text {
+      height: 10px;
+      width: 160px;
+      text-align: center;
+      align-items: center;
+    }
+    .date-infos {
+      height: 10px;
+      width: 160px;
+      text-align: center;
+    }
+    .date-text-similar {
+      color: rgb(200, 200, 200);
+      height: 10px;
+      width: 160px;
+      text-align: center;
+    }
+    .date-infos-similar {
+      color: rgb(200, 200, 200);
+      height: 10px;
+      width: 160px;
+      text-align: center;
+    }
+  }
+}

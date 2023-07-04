@@ -3,12 +3,12 @@ import axios from "axios";
 import { useParams } from "react-router-dom";
 import PropTypes from "prop-types";
 
-export default function PostComments({ setAddComment }) {
+export default function PostComments({ setAddComment, handleComment }) {
   const [comment, setComment] = useState("");
   const { id } = useParams();
   const placholderUserId = Math.floor(Math.random() * 4 + 1);
 
-  const postComment = () => {
+  function postComment() {
     setAddComment(false);
     axios
       .post(`${import.meta.env.VITE_BACKEND_URL}/decisions/${id}/comments`, {
@@ -16,6 +16,11 @@ export default function PostComments({ setAddComment }) {
         userId: placholderUserId,
       })
       .catch((err) => console.error(err));
+  }
+
+  const handleClick = () => {
+    postComment();
+    setTimeout(handleComment, 500);
   };
 
   return (
@@ -27,7 +32,7 @@ export default function PostComments({ setAddComment }) {
         onChange={(e) => setComment(e.target.value)}
       />
 
-      <button type="button" onClick={postComment}>
+      <button type="button" onClick={handleClick}>
         Poster mon commentaire
       </button>
     </div>
@@ -36,4 +41,5 @@ export default function PostComments({ setAddComment }) {
 
 PostComments.propTypes = {
   setAddComment: PropTypes.func.isRequired,
+  handleComment: PropTypes.func.isRequired,
 };

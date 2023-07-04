@@ -1,7 +1,8 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom";
 import PostComments from "../components/PostComments";
+import Timeline from "../components/graphicElements/Timeline";
 
 export default function Decision() {
   const [decision, setDecison] = useState([]);
@@ -10,6 +11,7 @@ export default function Decision() {
   const [experts, setExperts] = useState([]);
   const [addComment, setAddComment] = useState(false);
   const { id } = useParams();
+  const ref = useRef(null);
 
   const today = Date.parse(new Date());
   const initialDate = Date.parse(decision.initial_date);
@@ -18,7 +20,19 @@ export default function Decision() {
   const secondDayDiff = (today - secondDate) / 86400000;
 
   const handleAddComment = () => {
-    setAddComment(true);
+    setAddComment((state) => !state);
+  };
+  useEffect(() => {
+    if (addComment && ref.current) {
+      ref.current?.scrollIntoView({ behavior: "smooth" });
+    }
+  }, [addComment, ref]);
+
+  const handleComment = () => {
+    axios
+      .get(`${import.meta.env.VITE_BACKEND_URL}/decisions/${id}/comments`)
+      .then((res) => setComments(res.data))
+      .catch((err) => console.error(err));
   };
 
   useEffect(() => {
@@ -29,10 +43,7 @@ export default function Decision() {
   }, []);
 
   useEffect(() => {
-    axios
-      .get(`${import.meta.env.VITE_BACKEND_URL}/decisions/${id}/comments`)
-      .then((res) => setComments(res.data))
-      .catch((err) => console.error(err));
+    handleComment();
   }, []);
 
   useEffect(() => {
@@ -161,12 +172,14 @@ export default function Decision() {
             type="button"
             className="comment-button"
             onClick={handleAddComment}
-            disabled={(firstDayDiff > 15 && !secondDate) || secondDayDiff > 15}
+            disabled={
+              (firstDayDiff > 15 && secondDayDiff > 0) || secondDayDiff > 15
+            }
           >
             Donner mon avis
           </button>
         )}
-        {firstDayDiff > 15 && (
+        {firstDayDiff > 15 && !secondDate && (
           <div className="closed-comment">
             <p> La période de commentaire est à present terminée!</p>
             <p>
@@ -181,11 +194,19 @@ export default function Decision() {
             <p>Merci pour vos retours!</p>
           </div>
         )}
-        {addComment && <PostComments setAddComment={setAddComment} />}
+        {addComment && (
+          <div ref={ref}>
+            <PostComments
+              setAddComment={setAddComment}
+              handleComment={handleComment}
+            />
+          </div>
+        )}
       </div>
       <div className="side-content">
         <div className="side-text">
           <h2>Dates à retenir</h2>
+          <Timeline decision={decision} />
           <h2>Personnes impactées</h2>
           <div className="tagged" data-count={impactedUsers.length}>
             {impactedUsers.map((impactedUser) => (
@@ -217,7 +238,9 @@ export default function Decision() {
           type="button"
           className="comment-button"
           onClick={handleAddComment}
-          disabled={(firstDayDiff > 15 && !secondDate) || secondDayDiff > 15}
+          disabled={
+            (firstDayDiff > 15 && secondDayDiff > 0) || secondDayDiff > 15
+          }
         >
           Donner mon avis
         </button>

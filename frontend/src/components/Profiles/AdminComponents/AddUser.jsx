@@ -15,7 +15,7 @@ export default function AddUser() {
     email: "",
     password: "",
     photo: newUploadedFileName,
-    role: 1,
+    role: "",
     roleExpert: false,
   });
 
@@ -39,10 +39,7 @@ export default function AddUser() {
   useEffect(() => {
     axios
       .get(`${import.meta.env.VITE_BACKEND_URL}/roles`)
-      .then((response) => {
-        console.info(response);
-        setRolesData(response.data);
-      })
+      .then((response) => setRolesData(response.data))
       .catch((err) => console.error(err));
   }, []);
 
@@ -61,22 +58,47 @@ export default function AddUser() {
           photo: newUploadedFileName,
           email: targetValues.email,
           password: targetValues.password,
-          creation_date: "2023-02-03",
+          creation_date: "2023-23-32",
         })
         .then((response) => {
           console.info(response);
-          if (response.status === 201) {
+          if (response.status === 201 && !targetValues.roleExpert) {
             axios.post(
               `${import.meta.env.VITE_BACKEND_URL}/users/${
                 response.data.insertId
               }/role`,
               {
-                role_id: 3,
+                roleId: parseInt(targetValues.role, 10),
+              }
+            );
+          } else {
+            axios.post(
+              `${import.meta.env.VITE_BACKEND_URL}/users/${
+                response.data.insertId
+              }/role`,
+              {
+                roleId: parseInt(targetValues.role, 10),
+              }
+            );
+            axios.post(
+              `${import.meta.env.VITE_BACKEND_URL}/users/${
+                response.data.insertId
+              }/role`,
+              {
+                roleId: 3,
               }
             );
           }
-        })
-        .catch((err) => console.error(err));
+          if (response.status === 201) {
+            axios
+              .post(`${import.meta.env.VITE_BACKEND_URL}/sendmail`, {
+                id: response.data.insertId,
+                email: targetValues.email,
+              })
+              .then((result) => console.info(result))
+              .catch((err) => console.error(err));
+          }
+        });
     } else {
       console.info("XXX Submitting form with state:", targetValues);
     }
@@ -134,11 +156,16 @@ export default function AddUser() {
             </label>
             <div className="roles-container-1">
               <label htmlFor="role">
-                Role <br />
+                Rôle <br />
                 <select name="role" onChange={update} required>
-                  <option value="0">Sélectionne votre role</option>
-                  <option value="1">Admin</option>
-                  <option value="2">Utilisateur</option>
+                  <option value="0">Sélectionne votre rôle</option>
+                  {rolesData
+                    .filter((roleExpert) => roleExpert.role_name !== "Expert")
+                    .map((role) => (
+                      <option key={role.id} value={role.id}>
+                        {role.role_name}
+                      </option>
+                    ))}
                 </select>
               </label>
               <label htmlFor="role-expert" className="role-expert">
@@ -171,21 +198,16 @@ export default function AddUser() {
         <div className="input-buttons-container">
           <div className="roles-container-2">
             <label htmlFor="role">
-              Role <br />
+              Rôle <br />
               <select name="role" onChange={update} required>
-                <option value="0">Sélectionne votre role</option>
+                <option value="0">Sélectionne votre rôle</option>
                 {rolesData
-                  .filter((roleExpert) => roleExpert.role_name !== "expert")
-                  .map((role) => {
-                    const roleNameFirstLetterUpperCase =
-                      role.role_name.charAt(0).toUpperCase() +
-                      role.role_name.slice(1);
-                    return (
-                      <option key={role.id} value={role.id}>
-                        {roleNameFirstLetterUpperCase}
-                      </option>
-                    );
-                  })}
+                  .filter((roleExpert) => roleExpert.role_name !== "Expert")
+                  .map((role) => (
+                    <option key={role.id} value={role.id}>
+                      {role.role_name}
+                    </option>
+                  ))}
               </select>
             </label>
             <label htmlFor="role-expert" className="role-expert-2">

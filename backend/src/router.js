@@ -9,7 +9,13 @@ const commentsControllers = require("./controllers/commentsControllers");
 const decisionControllers = require("./controllers/decisionControllers");
 const statusControllers = require("./controllers/statusControllers");
 const usersControllers = require("./controllers/usersControllers");
+const mailControllers = require("./controllers/mailControllers");
 const rolesControllers = require("./controllers/rolesControllers");
+const authControllers = require("./controllers/authControllers");
+
+const { hashPassword } = require("./services/checkAuth");
+
+router.post("/login", authControllers.login);
 
 router.get("/decisions", decisionControllers.browseDecisions);
 router.get("/decisions/:id", decisionControllers.readDecision);
@@ -49,14 +55,18 @@ router.get("/users/experts", usersControllers.BrowseConcatExperts);
 
 router.get("/users/:id", usersControllers.readUserWithRoles);
 router.get("/users/:id/decisions", usersControllers.browseAllDecisionsByUser);
-router.post("/users", usersControllers.addUser);
+router.post("/users", hashPassword, usersControllers.addUser);
 router.post("/users/:id/role", usersControllers.addRoleToUser);
+router.put("/users/:id/role", usersControllers.editUserRole);
 router.put("/users/:id", usersControllers.editUser);
 router.delete("/users/:id", usersControllers.destroyUser);
 
 router.post("/uploads", upload.single("photo"), uploadFile.postFile);
 
 router.get("/concernedhub", decisionControllers.concernedHub);
+
+router.post("/sendmail", mailControllers.sendMailById);
+router.put("/resetpassword", hashPassword, usersControllers.editUserPassword);
 
 router.get("/roles", rolesControllers.browseRoles);
 router.get("/roles/:id", rolesControllers.readRole);

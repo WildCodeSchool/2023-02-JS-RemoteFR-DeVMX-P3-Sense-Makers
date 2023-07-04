@@ -34,12 +34,13 @@ export default function Dropzone({
     }
   }, []);
 
-  const { getRootProps, getInputProps, fileRejections } = useDropzone({
-    onDrop,
-    maxSize: 1048576,
-    accept: { "image/*": [".jpeg"], "image/png": [".png"] },
-    multiple: false,
-  });
+  const { getRootProps, getInputProps, fileRejections, isDragActive } =
+    useDropzone({
+      onDrop,
+      maxSize: 1048576,
+      accept: { "image/*": [".jpeg"], "image/png": [".png"] },
+      multiple: false,
+    });
 
   return (
     <>
@@ -49,7 +50,15 @@ export default function Dropzone({
         })}
       >
         <input {...getInputProps()} />
-        <p className="dropzone-placeholder-text">Drop the image here </p>
+        <p
+          className={
+            isDragActive
+              ? "dropzone-placeholder-text dropzone-active"
+              : "dropzone-placeholder-text"
+          }
+        >
+          Déposer un fichier de image ici
+        </p>
       </div>
       {fileRejections && <span>{fileRejections[0]?.errors[0].message}</span>}
     </>
