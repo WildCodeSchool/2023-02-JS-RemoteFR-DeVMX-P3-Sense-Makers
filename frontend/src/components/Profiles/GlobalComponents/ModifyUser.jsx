@@ -6,12 +6,10 @@ import Avatar0 from "../../../assets/avatar0.png";
 
 export default function ModifyUser() {
   const [userData, setUserData] = useState([]);
-  // console.log("🚀 - userData:", userData.roles);
-
   const [dropzoneImage, setDropzoneImage] = useState([]);
   const [newUploadedFileName, setNewUploadedFileName] = useState("");
-
   const [rolesData, setRolesData] = useState([]);
+  const [rolesFromUser, setRolesFromUser] = useState([]);
 
   const [targetValues, setTargetValues] = useState({
     firstname: "",
@@ -22,8 +20,6 @@ export default function ModifyUser() {
     role: "",
     roleExpert: "",
   });
-
-  // console.log("🚀 - targetValues:", targetValues);
 
   const update = (event) => {
     const target = event.currentTarget;
@@ -36,7 +32,6 @@ export default function ModifyUser() {
 
   const submit = (event) => {
     event.preventDefault();
-
     axios
       .put(`${import.meta.env.VITE_BACKEND_URL}/users/${userData.id}`, {
         firstname:
@@ -53,21 +48,50 @@ export default function ModifyUser() {
           targetValues.password !== ""
             ? targetValues.password
             : userData.password,
-        role_id: targetValues.role !== "" ? targetValues.role : userData.role,
-        is_expert: targetValues.roleExpert
-          ? targetValues.roleExpert
-          : userData.roleExpert,
+        // role_id: targetValues.role !== "" ? targetValues.role : userData.role,
+        // is_expert: targetValues.roleExpert
+        //   ? targetValues.roleExpert
+        //   : userData.roleExpert,
       })
       .then((response) => {
-        if (targetValues.role !== "" && targetValues.roleExpert !== "") {
+        if (targetValues.role !== "") {
           axios
             .put(
-              `${import.meta.env.VITE_BACKEND_URL}/users/${userData.id}/roles`
+              `${import.meta.env.VITE_BACKEND_URL}/users/${userData.id}/role`,
+              { role: targetValues.role }
             )
             .then((res) => console.info(res))
             .catch((err) => console.error(err));
         }
-        console.info({ message: "Update user done!!!", response });
+
+        if (targetValues.roleExpert === true && rolesFromUser.length <= 1) {
+          axios
+            .post(
+              `${import.meta.env.VITE_BACKEND_URL}/users/${userData.id}/role`,
+              { roleExpert: 3 }
+            )
+            .then((res) => console.info(res))
+            .catch((err) => console.error(err));
+          console.info({
+            message: "Add new expert user role done!!!",
+            response,
+          });
+        }
+
+        if (targetValues.roleExpert === false && rolesFromUser.length >= 2) {
+          axios
+            .delete(
+              `${import.meta.env.VITE_BACKEND_URL}/users/${
+                userData.id
+              }/roleexpert`
+            )
+            .then((res) => console.info(res))
+            .catch((err) => console.error(err));
+          console.info({
+            message: "Delete expert user role done!!!",
+            response,
+          });
+        }
       })
       .catch((err) => console.error(err));
     console.info("Submitted new values form with state:", targetValues);
@@ -82,12 +106,17 @@ export default function ModifyUser() {
 
   useEffect(() => {
     axios
-      .get(`${import.meta.env.VITE_BACKEND_URL}/users/10`)
+      .get(`${import.meta.env.VITE_BACKEND_URL}/users/4`)
       .then((result) => {
         setUserData(result.data[0]);
       })
       .catch((err) => console.error(err));
   }, []);
+
+  useEffect(() => {
+    const sliptUserRoles = userData.roles?.split(", ");
+    setRolesFromUser(sliptUserRoles);
+  }, [userData]);
 
   return (
     <form className="modify-user-management" onSubmit={submit}>
@@ -149,8 +178,17 @@ export default function ModifyUser() {
                       ))}
                   </select>
                 </label>
-                <label htmlFor="roleexpert" className="role-expert">
-                  <input type="checkbox" name="roleExpert" onChange={update} />
+                <label htmlFor="roleExpert" className="role-expert">
+                  {rolesFromUser?.length > 1 ? (
+                    <input
+                      type="checkbox"
+                      name="roleExpert"
+                      defaultChecked
+                      onClick={update}
+                    />
+                  ) : (
+                    <input type="checkbox" name="roleExpert" onClick={update} />
+                  )}
                   Expert(e)
                 </label>
               </div>
@@ -198,7 +236,7 @@ export default function ModifyUser() {
               <span className="role-actuel-data">{userData?.roles}</span>
               <label htmlFor="role">
                 Rôle <br />
-                <select name="role_id" onChange={update}>
+                <select name="role" onChange={update}>
                   <option value="0">Sélectionne votre rôle</option>
                   {rolesData
                     .filter((roleExpert) => roleExpert.role_name !== "Expert")
@@ -209,8 +247,17 @@ export default function ModifyUser() {
                     ))}
                 </select>
               </label>
-              <label htmlFor="role-expert" className="role-expert-2">
-                <input type="checkbox" name="is_expert" onChange={update} />
+              <label htmlFor="roleExpert" className="role-expert-2">
+                {rolesFromUser?.length > 1 ? (
+                  <input
+                    type="checkbox"
+                    name="roleExpert"
+                    defaultChecked
+                    onClick={update}
+                  />
+                ) : (
+                  <input type="checkbox" name="roleExpert" onClick={update} />
+                )}
                 Expert(e)
               </label>
             </div>
