@@ -48,36 +48,39 @@ function UsersList() {
         </thead>
         <tbody>
           {users &&
-            users.map((user) => (
-              <tr key={user.id}>
-                <div className="picture-container">
-                  <img
-                    src={`${import.meta.env.VITE_BACKEND_URL}/uploads/${
-                      user.photo
-                    }`}
-                    alt="profil"
-                  />
-                </div>
-                <td>{user.lastname}</td>
-                <td>{user.firstname}</td>
-                <td>{user.email}</td>
-                <td>{user.roles.split(", ")[0]}</td>
-                <td>{user.roles.split(", ").length > 1 ? "oui" : "non"}</td>
-                <td>{user.creation_date}</td>
-                <td>
-                  <button
-                    type="button"
-                    className="viewBtn"
-                    onClick={() => {
-                      // eslint-disable-next-line no-sequences
-                      return setShowUpdateUser(true), setCurrentUser(user);
-                    }}
-                  >
-                    <img src={oeil} alt="" />
-                  </button>
-                </td>
-              </tr>
-            ))}
+            users.map((user) => {
+              const crerationDate = new Date(user.creation_date);
+              return (
+                <tr key={user.id}>
+                  <div className="picture-container">
+                    <img
+                      src={`${import.meta.env.VITE_BACKEND_URL}/uploads/${
+                        user.photo
+                      }`}
+                      alt="profil"
+                    />
+                  </div>
+                  <td>{user.lastname}</td>
+                  <td>{user.firstname}</td>
+                  <td>{user.email}</td>
+                  <td>{user.roles.split(", ")[0]}</td>
+                  <td>{user.roles.split(", ").length > 1 ? "oui" : "non"}</td>
+                  <td>{crerationDate.toLocaleDateString("fr")}</td>
+                  <td>
+                    <button
+                      type="button"
+                      className="viewBtn"
+                      onClick={() => {
+                        // eslint-disable-next-line no-sequences
+                        return setShowUpdateUser(true), setCurrentUser(user);
+                      }}
+                    >
+                      <img src={oeil} alt="" />
+                    </button>
+                  </td>
+                </tr>
+              );
+            })}
         </tbody>
       </table>
     </div>
