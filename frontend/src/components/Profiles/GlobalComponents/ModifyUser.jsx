@@ -59,11 +59,7 @@ export default function ModifyUser() {
             .catch((err) => console.error(err));
         }
 
-        if (
-          targetValues.role !== "" &&
-          targetValues.roleExpert &&
-          rolesFromUser.length <= 1
-        ) {
+        if (targetValues.roleExpert && rolesFromUser.length <= 1) {
           axios
             .post(
               `${import.meta.env.VITE_BACKEND_URL}/users/${userData.id}/role`,
@@ -77,11 +73,7 @@ export default function ModifyUser() {
           });
         }
 
-        if (
-          targetValues.role !== "" &&
-          !targetValues.roleExpert &&
-          rolesFromUser.length >= 2
-        ) {
+        if (!targetValues.roleExpert && rolesFromUser.length >= 2) {
           axios
             .delete(
               `${import.meta.env.VITE_BACKEND_URL}/users/${
