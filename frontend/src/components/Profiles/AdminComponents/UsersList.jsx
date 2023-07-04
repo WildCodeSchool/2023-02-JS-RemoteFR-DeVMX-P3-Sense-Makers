@@ -61,8 +61,8 @@ function UsersList() {
                 <td>{user.lastname}</td>
                 <td>{user.firstname}</td>
                 <td>{user.email}</td>
-                <td>{user.roles}</td>
-                <td>{user.roles}</td>
+                <td>{user.roles.split(", ")[0]}</td>
+                <td>{user.roles.split(", ").length > 1 ? "oui" : "non"}</td>
                 <td>{user.creation_date}</td>
                 <td>
                   <button
