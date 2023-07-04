@@ -118,7 +118,7 @@ const editUser = (req, res) => {
 const editUserRole = (req, res) => {
   const userId = parseInt(req.params.id, 10);
 
-  const roleId = req.body.role_id;
+  const roleId = req.body.role;
 
   // TODO validations (length, format...)
 
@@ -181,7 +181,7 @@ const addUser = async (req, res) => {
 const addRoleToUser = (req, res) => {
   const userId = parseInt(req.params.id, 10);
 
-  const { roleId } = req.body;
+  const roleId = req.body.roleExpert;
 
   // TODO validations (length, format...)
 
@@ -212,6 +212,24 @@ const destroyUser = (req, res) => {
     });
 };
 
+const destroyUserRoleExpert = (req, res) => {
+  const userId = parseInt(req.params.id, 10);
+
+  models.users
+    .deleteUserRoleExpert(userId)
+    .then(([result]) => {
+      if (result.affectedRows === 0) {
+        res.sendStatus(404);
+      } else {
+        res.sendStatus(204);
+      }
+    })
+    .catch((err) => {
+      console.error(err);
+      res.sendStatus(500);
+    });
+};
+
 module.exports = {
   browseUsers,
   browseUsersWithRoles,
@@ -226,4 +244,5 @@ module.exports = {
   BrowseConcatUsers,
   BrowseConcatExperts,
   editUserPassword,
+  destroyUserRoleExpert,
 };

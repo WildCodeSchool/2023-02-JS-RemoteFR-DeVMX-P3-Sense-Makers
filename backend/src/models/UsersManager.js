@@ -78,11 +78,21 @@ class UsersManager extends AbstractManager {
 
   updateUserRole(userId, roleId) {
     return this.database.query(
-      `update users_roles set user_id = ?, role_id = ? where user_id = ?`,
+      `update users_roles set user_id = ?, role_id = ?
+       where user_id = ?
+       limit 1`,
       [userId, roleId, userId]
     );
   }
-  /// /  test /////
+
+  updateUserRolExpert(userId, roleId) {
+    return this.database.query(
+      `update users_roles set user_id = ?, role_id = ?
+       where user_id = ?
+       limit 1`,
+      [userId, roleId, userId]
+    );
+  }
 
   updateUserPassword(user) {
     return this.database.query(
@@ -107,6 +117,13 @@ class UsersManager extends AbstractManager {
     return this.database.query(`SELECT * FROM ${this.table} WHERE email = ?`, [
       email,
     ]);
+  }
+
+  deleteUserRoleExpert(userId) {
+    return this.database.query(
+      `delete from users_roles where user_id = ? and role_id = 3`,
+      [userId]
+    );
   }
 }
 
