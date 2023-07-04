@@ -1,9 +1,9 @@
 import { useEffect, useState, useRef } from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom";
+import DOMPurify from "dompurify";
 import PostComments from "../components/PostComments";
 import Timeline from "../components/graphicElements/Timeline";
-import DOMPurify from "dompurify";
 
 export default function Decision() {
   const [decision, setDecison] = useState([]);
