@@ -96,7 +96,7 @@ export default function ModifyUser() {
               setUserData(result.data[0]);
             })
             .catch((err) => console.error(err));
-        }, [500]);
+        }, 500);
       })
       .catch((err) => console.error(err));
     console.info("Submitted new values form with state:", targetValues);
