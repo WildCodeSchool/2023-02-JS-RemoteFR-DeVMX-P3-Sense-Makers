@@ -45,7 +45,7 @@ class DecisionManager extends AbstractManager {
 
   findAllDecisionsWithStatusAndNameOfCreatorForCard() {
     return this.database.query(
-      `SELECT d.id d_id, d.title AS title_decision, d.status_id, c.title, s.title AS title_status, u.firstname, u.lastname, u.photo  FROM ${this.table} d
+      `SELECT d.id d_id, d.title AS title_decision, d.status_id, c.title, s.title AS title_status, u.firstname, u.lastname, u.photo, d.initial_date, d.deadline_comment,d.first_take_decision,d.deadline_conflict,d.final_take_decision, d.is_validated FROM ${this.table} d
      JOIN status s ON s.id = d.status_id
      INNER JOIN users_decisions ON users_decisions.decision_id = d.id
      INNER JOIN users u ON users_decisions.user_id = u.id
