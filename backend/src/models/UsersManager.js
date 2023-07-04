@@ -77,10 +77,6 @@ class UsersManager extends AbstractManager {
   }
 
   updateUserRole(userId, roleId) {
-    // console.log("🚀 - roleId:", roleId);
-
-    // console.log("🚀 - userId:", userId);
-
     return this.database.query(
       `update users_roles set user_id = ?, role_id = ?
        where user_id = ?
@@ -90,10 +86,6 @@ class UsersManager extends AbstractManager {
   }
 
   updateUserRolExpert(userId, roleId) {
-    // console.log("🚀 - roleId:", roleId);
-
-    // console.log("🚀 - userId:", userId);
-
     return this.database.query(
       `update users_roles set user_id = ?, role_id = ?
        where user_id = ?
