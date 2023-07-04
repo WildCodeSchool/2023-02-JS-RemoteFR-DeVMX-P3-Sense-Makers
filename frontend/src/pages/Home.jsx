@@ -26,6 +26,7 @@ export default function Home() {
 
   return (
     <div className="all-decisions-container">
+      <div className="timeline-zone" />
       <h1>Toutes les décisions</h1>
       {allStatus.map((statut) => (
         <div className="infos-status-container" key={statut.id}>

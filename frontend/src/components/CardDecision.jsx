@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
+import Timeline from "./graphicElements/Timeline";
 
 export default function CardDecision({ decision }) {
   let statusColors = {
@@ -43,27 +44,41 @@ export default function CardDecision({ decision }) {
       color: "#8294b0",
     };
   }
-
+  const [show, setShow] = useState("none");
   return (
-    <Link
-      className="card-decision-container"
-      to={`/decisions/${decision.d_id}`}
-    >
-      <div className="status-container">
-        <p style={statusColors}>{decision.title_status}</p>
-        <p>{decision.title}</p>
+    <>
+      <div
+        className="Timeline-container-decision"
+        style={{ display: `${show}` }}
+      >
+        <Timeline decision={decision} />
       </div>
-      <h1>{decision.title_decision}</h1>
-      <div className="card-creator-container">
-        <img src={decision.photo} alt="img profil creator" />
-        <p>
-          par{" "}
-          <span>
-            {decision.firstname} {decision.lastname}
-          </span>
-        </p>
-      </div>
-    </Link>
+      <Link
+        className="card-decision-container"
+        to={`/decisions/${decision.d_id}`}
+        onMouseEnter={() => {
+          setShow("flex");
+        }}
+        onMouseLeave={() => {
+          setShow("none");
+        }}
+      >
+        <div className="status-container">
+          <p style={statusColors}>{decision.title_status}</p>
+          <p>{decision.title}</p>
+        </div>
+        <h1>{decision.title_decision}</h1>
+        <div className="card-creator-container">
+          <img src={decision.photo} alt="img profil creator" />
+          <p>
+            par{" "}
+            <span>
+              {decision.firstname} {decision.lastname}
+            </span>
+          </p>
+        </div>
+      </Link>
+    </>
   );
 }
 CardDecision.propTypes = {
