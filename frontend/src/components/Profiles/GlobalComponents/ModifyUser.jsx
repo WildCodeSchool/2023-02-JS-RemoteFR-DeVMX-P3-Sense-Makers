@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import Dropzone from "../../../services/hookDropzone";
-// import inputValidationRules from "../../../services/inputValidationRules";
 import Avatar0 from "../../../assets/avatar0.png";
 
 export default function ModifyUser() {
@@ -48,10 +47,6 @@ export default function ModifyUser() {
           targetValues.password !== ""
             ? targetValues.password
             : userData.password,
-        // role_id: targetValues.role !== "" ? targetValues.role : userData.role,
-        // is_expert: targetValues.roleExpert
-        //   ? targetValues.roleExpert
-        //   : userData.roleExpert,
       })
       .then((response) => {
         if (targetValues.role !== "") {
@@ -64,7 +59,11 @@ export default function ModifyUser() {
             .catch((err) => console.error(err));
         }
 
-        if (targetValues.roleExpert === true && rolesFromUser.length <= 1) {
+        if (
+          targetValues.role !== "" &&
+          targetValues.roleExpert &&
+          rolesFromUser.length <= 1
+        ) {
           axios
             .post(
               `${import.meta.env.VITE_BACKEND_URL}/users/${userData.id}/role`,
@@ -78,7 +77,11 @@ export default function ModifyUser() {
           });
         }
 
-        if (targetValues.roleExpert === false && rolesFromUser.length >= 2) {
+        if (
+          targetValues.role !== "" &&
+          !targetValues.roleExpert &&
+          rolesFromUser.length >= 2
+        ) {
           axios
             .delete(
               `${import.meta.env.VITE_BACKEND_URL}/users/${
