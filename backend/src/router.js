@@ -58,8 +58,10 @@ router.get("/users/:id/decisions", usersControllers.browseAllDecisionsByUser);
 router.post("/users", hashPassword, usersControllers.addUser);
 router.post("/users/:id/role", usersControllers.addRoleToUser);
 router.put("/users/:id/role", usersControllers.editUserRole);
+router.put("/users/:id/roleexpert", usersControllers.editUserRole);
 router.put("/users/:id", usersControllers.editUser);
 router.delete("/users/:id", usersControllers.destroyUser);
+router.delete("/users/:id/roleexpert", usersControllers.destroyUserRoleExpert);
 
 router.post("/uploads", upload.single("photo"), uploadFile.postFile);
 
