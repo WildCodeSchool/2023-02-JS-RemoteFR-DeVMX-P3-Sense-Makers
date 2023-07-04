@@ -88,6 +88,16 @@ export default function ModifyUser() {
           });
         }
       })
+      .then(() => {
+        setTimeout(() => {
+          axios
+            .get(`${import.meta.env.VITE_BACKEND_URL}/users/4`)
+            .then((result) => {
+              setUserData(result.data[0]);
+            })
+            .catch((err) => console.error(err));
+        }, [500]);
+      })
       .catch((err) => console.error(err));
     console.info("Submitted new values form with state:", targetValues);
   };
