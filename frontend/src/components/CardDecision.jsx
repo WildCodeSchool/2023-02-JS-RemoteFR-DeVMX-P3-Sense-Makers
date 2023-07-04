@@ -49,7 +49,7 @@ export default function CardDecision({ decision }) {
     <>
       <div
         className="Timeline-container-decision"
-        style={{ display: `${show}` }}
+        style={{ display: `${show}`, transition: "ease-in-out 5s " }}
       >
         <Timeline decision={decision} />
       </div>
