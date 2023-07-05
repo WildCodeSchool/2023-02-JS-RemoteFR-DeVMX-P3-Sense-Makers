@@ -26,7 +26,7 @@ export default function Login() {
         setUser(res.data.user);
         setToken(res.data.token);
         setTimeout(() => {
-          navigate("/decisions");
+          navigate("/logged/decisions");
         }, 500);
       })
       .catch((err) => console.error(err));
