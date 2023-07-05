@@ -27,19 +27,8 @@ class DecisionManager extends AbstractManager {
 
   update(decision) {
     return this.database.query(
-      `update ${this.table} set title = ?, content = ?, usefulness = ?,context = ?, benefit = ?,disadvantages = ?,positives_votes = ?, negatives_votes = ?, status_id = ? where id = ?`,
-      [
-        decision.title,
-        decision.content,
-        decision.usefulness,
-        decision.context,
-        decision.benefit,
-        decision.disadvantages,
-        decision.positives_votes,
-        decision.negatives_votes,
-        decision.status_id,
-        decision.id,
-      ]
+      `update ${this.table} set first_decision_content = ? where id = ?`,
+      [decision.firstDecision, decision.id]
     );
   }
 
@@ -55,7 +44,7 @@ class DecisionManager extends AbstractManager {
 
   findDecisionWithStatusById(id) {
     return this.database.query(
-      `SELECT d.title AS title_decision, s.title AS title_status, d.content, d.context, d.usefulness, d.benefit, d.disadvantages, c.title AS concerned_hub,d.initial_date,d.deadline_comment,d.first_take_decision,d.deadline_conflict,d.final_take_decision, u.firstname, u.lastname, u.photo FROM ${this.table} d
+      `SELECT d.title AS title_decision, s.title AS title_status, d.content, d.first_decision_content , d.context, d.usefulness, d.benefit, d.disadvantages, c.title AS concerned_hub,d.initial_date,d.deadline_comment,d.first_take_decision,d.deadline_conflict,d.final_take_decision, u.id, u.firstname, u.lastname, u.photo FROM ${this.table} d
       INNER JOIN status s ON s.id = d.status_id
       INNER JOIN users_decisions ud ON d.id = ud.decision_id
       INNER JOIN users u ON ud.user_id = u.id 
