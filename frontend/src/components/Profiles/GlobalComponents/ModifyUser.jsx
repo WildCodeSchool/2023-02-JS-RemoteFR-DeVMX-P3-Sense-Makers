@@ -92,6 +92,68 @@ export default function ModifyUser() {
       .catch((err) => console.error(err));
   };
 
+  const deleteUser = () => {
+    axios
+      .delete(`${import.meta.env.VITE_BACKEND_URL}/users/${userData.id}/roles`)
+      .then((response) => {
+        if (response.status === 204) {
+          axios
+            .delete(
+              `${import.meta.env.VITE_BACKEND_URL}/users/${
+                userData.id
+              }/decisions`
+            )
+            .then((response1) => {
+              if (response1.status === 204) {
+                axios
+                  .delete(
+                    `${import.meta.env.VITE_BACKEND_URL}/users/${
+                      userData.id
+                    }/taggedasexpert`
+                  )
+                  .then((response2) => {
+                    if (response2.status === 204) {
+                      axios
+                        .delete(
+                          `${import.meta.env.VITE_BACKEND_URL}/users/${
+                            userData.id
+                          }/taggedasimpacted`
+                        )
+                        .then((response3) => {
+                          if (response3.status === 204) {
+                            axios
+                              .delete(
+                                `${import.meta.env.VITE_BACKEND_URL}/users/${
+                                  userData.id
+                                }/comments`
+                              )
+                              .then((response4) => {
+                                if (response4.status === 204) {
+                                  axios
+                                    .delete(
+                                      `${
+                                        import.meta.env.VITE_BACKEND_URL
+                                      }/users/${userData.id}`
+                                    )
+                                    .then((response5) => {
+                                      if (response5.status === 204)
+                                        console.info("User deleted completely");
+                                    })
+                                    .catch((err) => console.error(err));
+                                }
+                              });
+                          }
+                        });
+                    }
+                  });
+              }
+            })
+            .catch((err) => console.error(err));
+        }
+      })
+      .catch((err) => console.error(err));
+  };
+
   useEffect(() => {
     axios
       .get(`${import.meta.env.VITE_BACKEND_URL}/roles`)
@@ -122,7 +184,9 @@ export default function ModifyUser() {
       <div className="add-user-title-container">
         <h2 className="add-user-title">Modification d'utilisateur</h2>
         <div className="remove-button-container-2">
-          <button type="button">Supprimer</button>
+          <button type="button" onClick={() => deleteUser()}>
+            Supprimer
+          </button>
         </div>
       </div>
       <div className="user-management-container">
@@ -277,7 +341,9 @@ export default function ModifyUser() {
               <button type="submit">Valider les modifications</button>
             </div>
             <div className="remove-button-container-1">
-              <button type="button">Supprimer</button>
+              <button type="button" onClick={() => deleteUser()}>
+                Supprimer
+              </button>
             </div>
           </div>
         </div>
