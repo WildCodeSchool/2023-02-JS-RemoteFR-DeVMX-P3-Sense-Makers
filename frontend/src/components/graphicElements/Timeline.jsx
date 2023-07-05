@@ -4,30 +4,26 @@ import TimelineDate from "./TimelineDate";
 
 function Timeline({ decision }) {
   const status = [
-    { id: 1, title: "Prise de décision débutée" },
-    { id: 2, title: "Deadline pour donner son avis" },
-    { id: 3, title: "Première décision prise" },
-    { id: 4, title: "Deadline pour entrer en conflit" },
-    { id: 5, title: "Décision définitive" },
-    { id: 6, title: "Décision non aboutie" },
-    { id: 7, title: "Décision terminée" },
+    { id: 1, title: "Deadline pour donner son avis" },
+    { id: 2, title: "Première décision prise" },
+    { id: 3, title: "Deadline pour entrer en conflit" },
   ];
 
   const dates = [
     {
       id: 1,
       date: decision.deadline_comment,
-      title: status[1].title,
+      title: status[0].title,
     },
     {
       id: 2,
       date: decision.first_take_decision,
-      title: status[2].title,
+      title: status[1].title,
     },
     {
       id: 3,
       date: decision.deadline_conflict,
-      title: status[3].title,
+      title: status[2].title,
     },
   ];
   const [finalSameInitial, setFinaleSameInitial] = useState("");
@@ -45,9 +41,11 @@ function Timeline({ decision }) {
 
   const parseDayDate = Date.parse(DayDate);
   const situationDayDate = parseDayDate - parseInitialDate;
-  const progressBar = Math.round((situationDayDate / totalTime) * 100);
+  const progressBar = Math.round((situationDayDate / totalTime) * 100 - 3);
 
-  const finalDateProgress = Math.round((situationFinalDate / totalTime) * 100);
+  const finalDateProgress = Math.round(
+    (situationFinalDate / totalTime) * 100 - 3
+  );
 
   const finalDateProgressLimited = Math.min(
     Math.max(finalDateProgress, 0),
@@ -62,7 +60,7 @@ function Timeline({ decision }) {
 
   useEffect(() => {
     verificationDate();
-  }, [decision]);
+  }, [{ decision }]);
 
   return (
     <div className="timeline-container">
@@ -77,6 +75,7 @@ function Timeline({ decision }) {
       {dates &&
         dates.map((date) => (
           <TimelineDate
+            key={date.id}
             date={date}
             initialDate={decision.initial_date}
             parseInitialDate={parseFinalDate}
@@ -102,22 +101,22 @@ function Timeline({ decision }) {
 
 Timeline.propTypes = {
   decision: PropTypes.shape({
-    benefit: PropTypes.string.isRequired,
-    concerned_hub: PropTypes.string.isRequired,
-    content: PropTypes.string.isRequired,
-    context: PropTypes.string.isRequired,
-    disadvantages: PropTypes.string.isRequired,
+    // benefit: PropTypes.string.isRequired,
+    // concerned_hub: PropTypes.string.isRequired,
+    // content: PropTypes.string.isRequired,
+    // context: PropTypes.string.isRequired,
+    // disadvantages: PropTypes.string.isRequired,
     deadline_comment: PropTypes.string.isRequired,
     deadline_conflict: PropTypes.string.isRequired,
     final_take_decision: PropTypes.string.isRequired,
     first_take_decision: PropTypes.string.isRequired,
-    firstname: PropTypes.string.isRequired,
+    // firstname: PropTypes.string.isRequired,
     initial_date: PropTypes.string.isRequired,
-    lastname: PropTypes.string.isRequired,
-    photo: PropTypes.string.isRequired,
-    title_decision: PropTypes.string.isRequired,
-    title_status: PropTypes.string.isRequired,
-    usefulness: PropTypes.string.isRequired,
+    // lastname: PropTypes.string.isRequired,
+    // photo: PropTypes.string.isRequired,
+    // title_decision: PropTypes.string.isRequired,
+    // title_status: PropTypes.string.isRequired,
+    // usefulness: PropTypes.string.isRequired,
   }).isRequired,
 };
 
