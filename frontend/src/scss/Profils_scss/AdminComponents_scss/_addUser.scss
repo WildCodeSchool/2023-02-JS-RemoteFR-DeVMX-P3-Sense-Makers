@@ -154,6 +154,8 @@
     }
   }
 
+
+
   .input-buttons-container {
     display: flex;
     justify-content: center;
@@ -320,7 +322,9 @@
             border: 1px solid $border-color-base;
             cursor: pointer;
           }
-
+          .require-select{
+            border-color: #e36164;
+          }
           .role-expert-2 {
             margin-top: $space-m;
             margin-right: auto;

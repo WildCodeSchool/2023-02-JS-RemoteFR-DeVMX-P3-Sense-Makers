@@ -8,6 +8,7 @@ export default function AddUser() {
   const [dropzoneImage, setDropzoneImage] = useState([]);
   const [newUploadedFileName, setNewUploadedFileName] = useState("");
   const [rolesData, setRolesData] = useState([]);
+  const [requireSelect, setRequiredSelect] = useState(false);
 
   const [targetValues, setTargetValues] = useState({
     firstName: "",
@@ -60,33 +61,38 @@ export default function AddUser() {
           password: targetValues.password,
         })
         .then((response) => {
-          console.info(response);
           if (response.status === 201 && !targetValues.roleExpert) {
-            axios.post(
-              `${import.meta.env.VITE_BACKEND_URL}/users/${
-                response.data.insertId
-              }/role`,
-              {
-                roleId: parseInt(targetValues.role, 10),
-              }
-            );
+            axios
+              .post(
+                `${import.meta.env.VITE_BACKEND_URL}/users/${
+                  response.data.insertId
+                }/role`,
+                {
+                  roleId: parseInt(targetValues.role, 10),
+                }
+              )
+              .catch((err) => console.error(err));
           } else {
-            axios.post(
-              `${import.meta.env.VITE_BACKEND_URL}/users/${
-                response.data.insertId
-              }/role`,
-              {
-                roleId: parseInt(targetValues.role, 10),
-              }
-            );
-            axios.post(
-              `${import.meta.env.VITE_BACKEND_URL}/users/${
-                response.data.insertId
-              }/role`,
-              {
-                roleId: 3,
-              }
-            );
+            axios
+              .post(
+                `${import.meta.env.VITE_BACKEND_URL}/users/${
+                  response.data.insertId
+                }/role`,
+                {
+                  roleId: parseInt(targetValues.role, 10),
+                }
+              )
+              .catch((err) => console.error(err));
+            axios
+              .post(
+                `${import.meta.env.VITE_BACKEND_URL}/users/${
+                  response.data.insertId
+                }/role`,
+                {
+                  roleId: 3,
+                }
+              )
+              .catch((err) => console.error(err));
           }
           if (response.status === 201) {
             axios
@@ -94,12 +100,15 @@ export default function AddUser() {
                 id: response.data.insertId,
                 email: targetValues.email,
               })
-              .then((result) => console.info(result))
               .catch((err) => console.error(err));
           }
         });
     } else {
-      console.info("XXX Submitting form with state:", targetValues);
+      console.info("Not valid form:", inputValidationRules(targetValues));
+      const invalidInputsTargets = inputValidationRules(targetValues);
+      if (!invalidInputsTargets.role) {
+        setRequiredSelect(true);
+      }
     }
   };
   return (
@@ -156,7 +165,13 @@ export default function AddUser() {
             <div className="roles-container-1">
               <label htmlFor="role">
                 Rôle <br />
-                <select name="role" onChange={update} required>
+                <select
+                  className={requireSelect ? "require-select" : ""}
+                  name="role"
+                  onChange={update}
+                  onClick={() => setRequiredSelect(false)}
+                  required
+                >
                   <option value="0">Sélectionne votre rôle</option>
                   {rolesData
                     .filter((roleExpert) => roleExpert.role_name !== "Expert")
@@ -198,8 +213,14 @@ export default function AddUser() {
           <div className="roles-container-2">
             <label htmlFor="role">
               Rôle <br />
-              <select name="role" onChange={update} required>
-                <option value="0">Sélectionne votre rôle</option>
+              <select
+                className={requireSelect ? "require-select" : ""}
+                name="role"
+                defaultValue="Sélectionne votre rôle"
+                onChange={update}
+                onClick={() => setRequiredSelect(false)}
+              >
+                <option disabled>Sélectionne votre rôle</option>
                 {rolesData
                   .filter((roleExpert) => roleExpert.role_name !== "Expert")
                   .map((role) => (
