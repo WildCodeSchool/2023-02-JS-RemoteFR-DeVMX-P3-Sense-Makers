@@ -47,6 +47,15 @@
     }
     .summary-content {
       margin: auto 2rem;
+
+      .context {
+        display: flex;
+        gap: 1rem;
+
+        p {
+          margin: 0;
+        }
+      }
     }
   }
   details {

@@ -1,6 +1,7 @@
 import { useEffect, useState, useRef } from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom";
+import DOMPurify from "dompurify";
 import PostComments from "../components/PostComments";
 import Timeline from "../components/graphicElements/Timeline";
 
@@ -18,6 +19,12 @@ export default function Decision() {
   const firstDayDiff = (today - initialDate) / 86400000;
   const secondDate = Date.parse(decision.first_take_decision);
   const secondDayDiff = (today - secondDate) / 86400000;
+
+  function strip(html) {
+    return (
+      <div dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(html) }} />
+    );
+  }
 
   const handleAddComment = () => {
     setAddComment((state) => !state);
@@ -90,10 +97,10 @@ export default function Decision() {
           </summary>
 
           <div className="summary-content">
-            <p>
-              <span className="bold-text">context:</span> {decision.context}
-            </p>
-            <p>{decision.content}</p>
+            <div className="context">
+              <p className="bold-text">context:</p> {strip(decision.context)}
+            </div>
+            <p>{strip(decision.content)}</p>
           </div>
         </details>
 
@@ -103,7 +110,7 @@ export default function Decision() {
             <hr />
           </summary>
           <div className="summary-content">
-            <p>{decision.usefulness}</p>
+            <p>{strip(decision.usefulness)}</p>
           </div>
         </details>
 
@@ -113,7 +120,7 @@ export default function Decision() {
             <hr />
           </summary>
           <div className="summary-content">
-            <p>{decision.benefit}</p>
+            <p>{strip(decision.benefit)}</p>
           </div>
         </details>
 
@@ -124,7 +131,7 @@ export default function Decision() {
           </summary>
 
           <div className="summary-content">
-            <p>{decision.disadvantages}</p>
+            <p>{strip(decision.disadvantages)}</p>
           </div>
         </details>
 
