@@ -28,6 +28,7 @@ export default function TimelineDate({
     verificationDate();
   }, [initialDate]);
 
+  console.info(initialDate);
   return (
     <div className="date-container" style={{ bottom: `${Progress}%` }}>
       <div className={`date-infos${dateInitial}`}>
@@ -40,9 +41,13 @@ export default function TimelineDate({
 }
 
 TimelineDate.propTypes = {
-  date: PropTypes.string.isRequired,
+  date: PropTypes.shape({
+    id: PropTypes.number.isRequired,
+    date: PropTypes.string,
+    title: PropTypes.string.isRequired,
+  }).isRequired,
   initialDate: PropTypes.string.isRequired,
-  parseInitialDate: PropTypes.string.isRequired,
-  parseFinalDate: PropTypes.string.isRequired,
-  parseDayDate: PropTypes.string.isRequired,
+  parseInitialDate: PropTypes.number.isRequired,
+  parseFinalDate: PropTypes.number.isRequired,
+  parseDayDate: PropTypes.number.isRequired,
 };
