@@ -58,8 +58,7 @@ const verifyToken = (req, res, next) => {
 
     // if (!token) return res.status(401).json({ msg: "pas de token" });
 
-    const authorizationHeader = req.get("Authorization");
-
+    const authorizationHeader = req.headers.authorization;
     if (authorizationHeader == null) {
       throw new Error("Authorization error is missing");
     }
