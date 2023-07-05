@@ -1,5 +1,5 @@
+import { useContext } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Header from "./components/header/Header";
 import Login from "./pages/Login";
 import Home from "./pages/Home";
 import Decision from "./pages/Decision";
@@ -8,23 +8,39 @@ import PostDecision from "./pages/PostDecision";
 import Profile from "./pages/Profile";
 import WrongPage from "./pages/WrongPage";
 import Password from "./pages/Password";
-
 import "./scss/styles.scss";
+import userContext from "./contexts/userContext";
+import NavLayout from "./layouts/NavLayout";
+import ProtectedRoutes from "./layouts/ProtectedRoutes";
 
 function App() {
+  const { token } = useContext(userContext);
   return (
     <div className="app">
       <Router>
-        <Header />
         <Routes>
+          {/* public routes */}
           <Route path="/" element={<Login />} />
-          <Route path="/decisions" element={<Home />} />
-          <Route path="/users/:id/decisions" element={<MyDecisions />} />
-          <Route path="/postdecision" element={<PostDecision />} />
-          <Route path="/decisions/:id" element={<Decision />} />
-          <Route path="/profile" element={<Profile />} />
-          <Route path="/resetpassword" element={<Password />} />
           <Route path="*" element={<WrongPage />} />
+          <Route path="/resetpassword" element={<Password />} />
+
+          {/* private routes  */}
+          {token && (
+            <Route
+              path="/logged"
+              element={
+                <ProtectedRoutes>
+                  <NavLayout />
+                </ProtectedRoutes>
+              }
+            >
+              <Route path="decisions" element={<Home />} />
+              <Route path="users/:id/decisions" element={<MyDecisions />} />
+              <Route path="postdecision" element={<PostDecision />} />
+              <Route path="decisions/:id" element={<Decision />} />
+              <Route path="profile" element={<Profile />} />
+            </Route>
+          )}
         </Routes>
       </Router>
     </div>
