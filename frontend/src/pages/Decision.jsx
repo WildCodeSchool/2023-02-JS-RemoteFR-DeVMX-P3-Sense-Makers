@@ -27,13 +27,23 @@ export default function Decision() {
       <div dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(html) }} />
     );
   }
+  const getDecision = () => {
+    axios
+      .get(`${import.meta.env.VITE_BACKEND_URL}/decisions/${id}`)
+      .then((res) => setDecison(res.data))
+      .catch((err) => console.error(err));
+  };
 
   const postFirstDecision = () => {
     axios
       .put(`${import.meta.env.VITE_BACKEND_URL}/decisions/${id}`, {
         firstDecision,
+        id,
       })
       .catch((err) => console.error(err));
+    setTimeout(() => {
+      getDecision();
+    }, 500);
   };
 
   const handleAddComment = () => {
@@ -53,10 +63,7 @@ export default function Decision() {
   };
 
   useEffect(() => {
-    axios
-      .get(`${import.meta.env.VITE_BACKEND_URL}/decisions/${id}`)
-      .then((res) => setDecison(res.data))
-      .catch((err) => console.error(err));
+    getDecision();
   }, []);
 
   useEffect(() => {
@@ -145,15 +152,17 @@ export default function Decision() {
           </div>
         </details>
 
-        <details>
-          <summary>
-            Première prise de décision
-            <hr />
-          </summary>
-          <div className="summary-content">
-            <p>{strip(decision.first_decision_content)}</p>
-          </div>
-        </details>
+        {decision.first_decision_content && (
+          <details>
+            <summary>
+              Première prise de décision
+              <hr />
+            </summary>
+            <div className="summary-content">
+              <p>{strip(decision.first_decision_content)}</p>
+            </div>
+          </details>
+        )}
 
         <details>
           <summary>
@@ -194,14 +203,21 @@ export default function Decision() {
           </div>
         </details>
 
-        <FirstDecisionEditor setFirstDecision={setFirstDecision} />
-        <button
-          type="button"
-          className="comment-button"
-          onClick={postFirstDecision}
-        >
-          poster ma première prise de décision
-        </button>
+        {firstDayDiff > 15 &&
+          firstDayDiff < 30 &&
+          !decision.first_decision_content && (
+            <div>
+              {" "}
+              <FirstDecisionEditor setFirstDecision={setFirstDecision} />
+              <button
+                type="button"
+                className="comment-button"
+                onClick={postFirstDecision}
+              >
+                poster ma première prise de décision
+              </button>
+            </div>
+          )}
 
         {!addComment && (
           <button
