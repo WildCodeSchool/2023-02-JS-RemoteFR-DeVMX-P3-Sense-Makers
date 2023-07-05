@@ -30,7 +30,6 @@ function Timeline({ decision }) {
       title: status[3].title,
     },
   ];
-  console.info(decision);
   const [finalSameInitial, setFinaleSameInitial] = useState("");
 
   const finalDate = new Date(decision.final_take_decision);
@@ -46,10 +45,9 @@ function Timeline({ decision }) {
 
   const parseDayDate = Date.parse(DayDate);
   const situationDayDate = parseDayDate - parseInitialDate;
-  const progressBar = Math.round((situationDayDate / totalTime) * 100) - 3;
+  const progressBar = Math.round((situationDayDate / totalTime) * 100);
 
-  const finalDateProgress =
-    Math.round((situationFinalDate / totalTime) * 100) - 3;
+  const finalDateProgress = Math.round((situationFinalDate / totalTime) * 100);
 
   const finalDateProgressLimited = Math.min(
     Math.max(finalDateProgress, 0),
