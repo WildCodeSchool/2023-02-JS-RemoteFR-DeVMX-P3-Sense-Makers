@@ -58,7 +58,6 @@ export default function AddUser() {
           photo: newUploadedFileName,
           email: targetValues.email,
           password: targetValues.password,
-          creation_date: "2023-23-32",
         })
         .then((response) => {
           console.info(response);
