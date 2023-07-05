@@ -7,21 +7,21 @@
   display: flex;
   flex-direction: column;
 
-  .filter-user{
-display: flex;
-flex-direction: column-reverse;
-align-items: center;
+  .filter-user {
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: center;
     input {
       border-radius: 40px;
-     padding: 0.2rem 0.7rem;
-     margin: 1rem;
-     background-color: #d9d9d97f;
-     border: 1px solid rgb(78, 78, 78);
-     width: 100%;
-     max-width: 12.5rem;
-     outline: none;
-     height: 1.3rem;
-   }
+      padding: 0.2rem 0.7rem;
+      margin: 1rem;
+      background-color: #d9d9d97f;
+      border: 1px solid rgb(78, 78, 78);
+      width: 100%;
+      max-width: 12.5rem;
+      outline: none;
+      height: 1.3rem;
+    }
     .addBtn {
       cursor: pointer;
       background-color: $color-default;
@@ -35,20 +35,20 @@ align-items: center;
       height: 2rem;
       margin: 1rem;
     }
-
   }
   table {
     width: 100%;
     margin: 0 auto;
     thead {
       tr {
-        :nth-child(4), :nth-child(1), :nth-child(7){
-          display: none ;
+        :nth-child(4),
+        :nth-child(1),
+        :nth-child(7) {
+          display: none;
         }
         th {
           font-size: $font-size-m;
         }
-  
       }
     }
     tbody {
@@ -61,52 +61,51 @@ align-items: center;
         color: #4249af;
         backdrop-filter: blur(3px);
 
-          :nth-child(4), :nth-child(1), :nth-child(7){
-          display: none ;
-        } 
-      
-      
-      td {
-        font-size: 1rem;
-        .viewBtn {
-          cursor: pointer;
-          background-color: $background-color-base;
-          color: var(--lightBleuColor);
-          border-radius: $border-radius-xxl;
-          border: 1px solid var(--lightBleuColor);
-          transition: 0.3s ease-in-out;
-          display: block;
-          img {
-            display: block;
-            object-fit: cover;
-            height: 1rem;
-            width: 1rem;
-            border-radius: 50%;
-          }
-   
+        :nth-child(4),
+        :nth-child(1),
+        :nth-child(7) {
+          display: none;
         }
-        .viewBtn:hover {
-          transform: scale(1.1);
-          background: var(--lightBleuColor);
-          color: white;
+
+        td {
+          font-size: 1rem;
+          .viewBtn {
+            cursor: pointer;
+            background-color: $background-color-base;
+            color: var(--lightBleuColor);
+            border-radius: $border-radius-xxl;
+            border: 1px solid var(--lightBleuColor);
+            transition: 0.3s ease-in-out;
+            display: block;
+            img {
+              display: block;
+              object-fit: cover;
+              height: 1rem;
+              width: 1rem;
+              border-radius: 50%;
+            }
+          }
+          .viewBtn:hover {
+            transform: scale(1.1);
+            background: var(--lightBleuColor);
+            color: white;
+          }
         }
       }
     }
   }
-  }
 }
 
-
 @media screen and (min-width: 768px) {
-  .display{
+  .display {
     max-width: 80rem;
-.filter-user{
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-    }
+    .filter-user {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
     }
   }
+}
 @media screen and (min-width: 1024px) {
   .display {
     .addBtn {
@@ -120,8 +119,10 @@ align-items: center;
       height: fit-content;
       thead {
         tr {
-          :nth-child(4), :nth-child(1), :nth-child(7){
-            display: table-cell ;
+          :nth-child(4),
+          :nth-child(1),
+          :nth-child(7) {
+            display: table-cell;
           }
           th {
             padding: 5px 0 5px 20px;
@@ -135,7 +136,7 @@ align-items: center;
           display: flex;
           justify-content: center;
           align-items: center;
-          padding:  5px 0 5px 20px;
+          padding: 5px 0 5px 20px;
           height: 5rem;
           width: 5rem;
 
@@ -146,12 +147,13 @@ align-items: center;
             border-radius: 50%;
           }
         }
-        tr {             
-          :nth-child(4), :nth-child(1), :nth-child(7){
-            display: table-cell ;
+        tr {
+          :nth-child(4),
+          :nth-child(1),
+          :nth-child(7) {
+            display: table-cell;
           }
 
-          
           td {
             text-align: center;
             padding: 5px 0 5px 20px;

@@ -54,7 +54,7 @@
         }
 
         td {
-           font-size: $font-size-m;
+          font-size: $font-size-m;
           .viewBtn {
             cursor: pointer;
             background-color: $background-color-base;
@@ -84,15 +84,18 @@
 @media screen and (min-width: 768px) {
   .display-decisions {
     max-width: 80rem;
-       table {
+    table {
       margin: 0 auto;
       max-width: 140rem;
       height: fit-content;
       thead {
         tr {
-          :nth-child(4), :nth-child(1),:nth-child(3),:nth-child(5), :nth-child(7)
-          {
-            display: table-cell ;
+          :nth-child(4),
+          :nth-child(1),
+          :nth-child(3),
+          :nth-child(5),
+          :nth-child(7) {
+            display: table-cell;
           }
           th {
             padding: 5px 0 5px 20px;
@@ -105,7 +108,7 @@
           display: flex;
           justify-content: center;
           align-items: center;
-          padding:  5px 0 5px 20px;
+          padding: 5px 0 5px 20px;
           height: 5rem;
           width: 5rem;
 
@@ -117,13 +120,14 @@
           }
         }
         tr {
-              
-          :nth-child(4), :nth-child(1),:nth-child(5),:nth-child(3), :nth-child(7){
-            display: table-cell ;
+          :nth-child(4),
+          :nth-child(1),
+          :nth-child(5),
+          :nth-child(3),
+          :nth-child(7) {
+            display: table-cell;
           }
-        
 
-          
           td {
             text-align: center;
             padding: 5px 0 5px 20px;
@@ -138,4 +142,3 @@
     }
   }
 }
-
