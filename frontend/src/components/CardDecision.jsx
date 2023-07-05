@@ -45,6 +45,7 @@ export default function CardDecision({ decision }) {
     };
   }
   const [show, setShow] = useState("none");
+
   return (
     <>
       <div
@@ -63,13 +64,28 @@ export default function CardDecision({ decision }) {
           setShow("none");
         }}
       >
+        {decision.is_validated === 1 ? (
+          <div className="decision-validate">
+            <img src="./src/assets/icons/verifier.svg" alt="validate-logo" />
+          </div>
+        ) : (
+          <div className="decision-not-validate">
+            <img src="./src/assets/icons/traverser.svg" alt="validate-logo" />
+          </div>
+        )}
+
         <div className="status-container">
           <p style={statusColors}>{decision.title_status}</p>
           <p>{decision.title}</p>
         </div>
         <h1>{decision.title_decision}</h1>
         <div className="card-creator-container">
-          <img src={decision.photo} alt="img profil creator" />
+          <img
+            src={`${import.meta.env.VITE_BACKEND_URL}/uploads/${
+              decision.photo
+            }`}
+            alt="img profil creator"
+          />
           <p>
             par{" "}
             <span>
