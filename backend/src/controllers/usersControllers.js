@@ -2,7 +2,6 @@ const jwt = require("jsonwebtoken");
 
 const secret = process.env.SECRET_MAIL;
 const models = require("../models");
-const { hashPassword } = require("../services/checkAuth");
 
 const browseUsers = (req, res) => {
   models.users
@@ -118,7 +117,7 @@ const editUser = (req, res) => {
 const editUserRole = (req, res) => {
   const userId = parseInt(req.params.id, 10);
 
-  const roleId = req.body.role_id;
+  const roleId = req.body.role;
 
   // TODO validations (length, format...)
 
@@ -161,14 +160,13 @@ const editUserPassword = (req, res) => {
   });
 };
 
-const addUser = async (req, res) => {
-  const { firstname, lastname, photo, email, password } = req.body;
-  const { creationDate } = req.body.creation_date;
-  const hash = await hashPassword(password);
-  // TODO validations (length, format...)
+const addUser = (req, res) => {
+  const user = req.body;
 
+  // TODO validations (length, format...)
+  console.info(user);
   models.users
-    .insert({ firstname, lastname, photo, email, hash, creationDate })
+    .insert(user)
     .then(([result]) => {
       res.status(201).json(result);
     })
@@ -181,7 +179,7 @@ const addUser = async (req, res) => {
 const addRoleToUser = (req, res) => {
   const userId = parseInt(req.params.id, 10);
 
-  const { roleId } = req.body;
+  const roleId = req.body.roleExpert;
 
   // TODO validations (length, format...)
 
@@ -212,6 +210,24 @@ const destroyUser = (req, res) => {
     });
 };
 
+const destroyUserRoleExpert = (req, res) => {
+  const userId = parseInt(req.params.id, 10);
+
+  models.users
+    .deleteUserRoleExpert(userId)
+    .then(([result]) => {
+      if (result.affectedRows === 0) {
+        res.sendStatus(404);
+      } else {
+        res.sendStatus(204);
+      }
+    })
+    .catch((err) => {
+      console.error(err);
+      res.sendStatus(500);
+    });
+};
+
 module.exports = {
   browseUsers,
   browseUsersWithRoles,
@@ -226,4 +242,5 @@ module.exports = {
   BrowseConcatUsers,
   BrowseConcatExperts,
   editUserPassword,
+  destroyUserRoleExpert,
 };

@@ -42,15 +42,8 @@ class UsersManager extends AbstractManager {
 
   insert(user) {
     return this.database.query(
-      `insert into ${this.table} (firstname, lastname, photo, email, password, creation_Date) values (?, ?, ?, ?, ?, ?)`,
-      [
-        user.firstname,
-        user.lastname,
-        user.photo,
-        user.email,
-        user.hash,
-        user.creationDate,
-      ]
+      `insert into ${this.table} (firstname, lastname, photo, email, password) values (?, ?, ?, ?, ?)`,
+      [user.firstname, user.lastname, user.photo, user.email, user.hpassword]
     );
   }
 
@@ -78,11 +71,21 @@ class UsersManager extends AbstractManager {
 
   updateUserRole(userId, roleId) {
     return this.database.query(
-      `update users_roles set user_id = ?, role_id = ? where user_id = ?`,
+      `update users_roles set user_id = ?, role_id = ?
+       where user_id = ?
+       limit 1`,
       [userId, roleId, userId]
     );
   }
-  /// /  test /////
+
+  updateUserRolExpert(userId, roleId) {
+    return this.database.query(
+      `update users_roles set user_id = ?, role_id = ?
+       where user_id = ?
+       limit 1`,
+      [userId, roleId, userId]
+    );
+  }
 
   updateUserPassword(user) {
     return this.database.query(
@@ -104,9 +107,17 @@ class UsersManager extends AbstractManager {
   }
 
   findOneByEmail(email) {
-    return this.database.query(`SELECT * FROM ${this.table} WHERE email = ?`, [
-      email,
-    ]);
+    return this.database.query(
+      `SELECT email, password FROM ${this.table} WHERE email = ?`,
+      [email]
+    );
+  }
+
+  deleteUserRoleExpert(userId) {
+    return this.database.query(
+      `delete from users_roles where user_id = ? and role_id = 3`,
+      [userId]
+    );
   }
 }
 
