@@ -106,11 +106,9 @@ class UsersManager extends AbstractManager {
     );
   }
 
-  selectByEmail(email) {
+  findOneByEmail(email) {
     return this.database.query(
-      `SELECT u.id, firstname, lastname, photo, email, password, role_id FROM ${this.table} u
-      INNER JOIN users_roles ur ON ur.user_id = u.id
-      WHERE email = ?`,
+      `SELECT email, password FROM ${this.table} WHERE email = ?`,
       [email]
     );
   }
@@ -120,6 +118,39 @@ class UsersManager extends AbstractManager {
       `delete from users_roles where user_id = ? and role_id = 3`,
       [userId]
     );
+  }
+
+  deleteUserAllRoles(userId) {
+    return this.database.query(`delete from users_roles where user_id = ?`, [
+      userId,
+    ]);
+  }
+
+  deleteUserAllUsersDecisions(userId) {
+    return this.database.query(
+      `delete from users_decisions where user_id = ?`,
+      [userId]
+    );
+  }
+
+  deleteUserTaggedAsExpert(userId) {
+    return this.database.query(
+      `delete from tagged_as_experts where user_id = ?`,
+      [userId]
+    );
+  }
+
+  deleteUserTaggedAsImpacted(userId) {
+    return this.database.query(
+      `delete from tagged_as_impacted where user_id = ?`,
+      [userId]
+    );
+  }
+
+  deleteUserAllComments(userId) {
+    return this.database.query(`delete from comments where user_id = ?`, [
+      userId,
+    ]);
   }
 }
 

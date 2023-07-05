@@ -197,6 +197,7 @@ const addRoleToUser = (req, res) => {
 const destroyUser = (req, res) => {
   models.users
     .delete(req.params.id)
+
     .then(([result]) => {
       if (result.affectedRows === 0) {
         res.sendStatus(404);
@@ -228,22 +229,93 @@ const destroyUserRoleExpert = (req, res) => {
     });
 };
 
-const getUserByEmail = (req, res, next) => {
-  const { email } = req.body;
+const destroyUserAllRoles = (req, res) => {
+  const userId = parseInt(req.params.id, 10);
 
   models.users
-    .selectByEmail(email)
-    .then(([users]) => {
-      if (users[0] != null) {
-        [req.user] = users;
-        next();
+    .deleteUserAllRoles(userId)
+    .then(([result]) => {
+      if (result.affectedRows === 0) {
+        res.sendStatus(404);
       } else {
-        res.sendStatus(401);
+        res.sendStatus(204);
       }
     })
     .catch((err) => {
       console.error(err);
-      res.status(500).send("Error retrieving data from database");
+      res.sendStatus(500);
+    });
+};
+
+const destroyUserAllUsersDecisions = (req, res) => {
+  const userId = parseInt(req.params.id, 10);
+
+  models.users
+    .deleteUserAllUsersDecisions(userId)
+    .then(([result]) => {
+      if (result.affectedRows === 0) {
+        res.sendStatus(404);
+      } else {
+        res.sendStatus(204);
+      }
+    })
+    .catch((err) => {
+      console.error(err);
+      res.sendStatus(500);
+    });
+};
+
+const destroyUserAllTaggedAsExpert = (req, res) => {
+  const userId = parseInt(req.params.id, 10);
+
+  models.users
+    .deleteUserTaggedAsExpert(userId)
+    .then(([result]) => {
+      if (result.affectedRows === 0) {
+        res.sendStatus(404);
+      } else {
+        res.sendStatus(204);
+      }
+    })
+    .catch((err) => {
+      console.error(err);
+      res.sendStatus(500);
+    });
+};
+
+const destroyUserAllTaggedAsImpacted = (req, res) => {
+  const userId = parseInt(req.params.id, 10);
+
+  models.users
+    .deleteUserTaggedAsImpacted(userId)
+    .then(([result]) => {
+      if (result.affectedRows === 0) {
+        res.sendStatus(404);
+      } else {
+        res.sendStatus(204);
+      }
+    })
+    .catch((err) => {
+      console.error(err);
+      res.sendStatus(500);
+    });
+};
+
+const destroyUserAllComments = (req, res) => {
+  const userId = parseInt(req.params.id, 10);
+
+  models.users
+    .deleteUserAllComments(userId)
+    .then(([result]) => {
+      if (result.affectedRows === 0) {
+        res.sendStatus(404);
+      } else {
+        res.sendStatus(204);
+      }
+    })
+    .catch((err) => {
+      console.error(err);
+      res.sendStatus(500);
     });
 };
 
@@ -262,5 +334,9 @@ module.exports = {
   BrowseConcatExperts,
   editUserPassword,
   destroyUserRoleExpert,
-  getUserByEmail,
+  destroyUserAllRoles,
+  destroyUserAllUsersDecisions,
+  destroyUserAllTaggedAsExpert,
+  destroyUserAllTaggedAsImpacted,
+  destroyUserAllComments,
 };

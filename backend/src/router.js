@@ -11,18 +11,11 @@ const statusControllers = require("./controllers/statusControllers");
 const usersControllers = require("./controllers/usersControllers");
 const mailControllers = require("./controllers/mailControllers");
 const rolesControllers = require("./controllers/rolesControllers");
+const authControllers = require("./controllers/authControllers");
 
-const {
-  hashPassword,
-  verifyPassword,
-  verifyToken,
-} = require("./services/checkAuth");
+const { hashPassword } = require("./services/checkAuth");
 
-// public route
-router.post("/login", usersControllers.getUserByEmail, verifyPassword);
-
-// routes protected
-router.use(verifyToken);
+router.post("/login", authControllers.login);
 
 router.get("/decisions", decisionControllers.browseDecisions);
 router.get("/decisions/:id", decisionControllers.readDecision);
@@ -56,7 +49,7 @@ router.delete(
 
 router.get("/status", statusControllers.browseStatus);
 
-router.get("/users", verifyToken, usersControllers.browseUsersWithRoles);
+router.get("/users", usersControllers.browseUsersWithRoles);
 router.get("/users/concat", usersControllers.BrowseConcatUsers);
 router.get("/users/experts", usersControllers.BrowseConcatExperts);
 
@@ -68,6 +61,20 @@ router.put("/users/:id/role", usersControllers.editUserRole);
 router.put("/users/:id/roleexpert", usersControllers.editUserRole);
 router.put("/users/:id", usersControllers.editUser);
 router.delete("/users/:id", usersControllers.destroyUser);
+router.delete("/users/:id/roles", usersControllers.destroyUserAllRoles);
+router.delete(
+  "/users/:id/decisions",
+  usersControllers.destroyUserAllUsersDecisions
+);
+router.delete(
+  "/users/:id/taggedasexpert",
+  usersControllers.destroyUserAllTaggedAsExpert
+);
+router.delete(
+  "/users/:id/taggedasimpacted",
+  usersControllers.destroyUserAllTaggedAsImpacted
+);
+router.delete("/users/:id/comments", usersControllers.destroyUserAllComments);
 router.delete("/users/:id/roleexpert", usersControllers.destroyUserRoleExpert);
 
 router.post("/uploads", upload.single("photo"), uploadFile.postFile);
