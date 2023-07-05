@@ -9,6 +9,7 @@ function UsersList() {
   const [showUpdateUser, setShowUpdateUser] = useState(false);
   const [users, setUsers] = useState([]);
   const [currentUser, setCurrentUser] = useState([]);
+  const [filterUser, setFilterUser] = useState("");
   useEffect(() => {
     axios
       .get(`${import.meta.env.VITE_BACKEND_URL}/users`)
@@ -27,13 +28,21 @@ function UsersList() {
           currentUser={currentUser}
         />
       )}
-      <button
-        type="button"
-        className="addBtn"
-        onClick={() => setShowAddUser(true)}
-      >
-        Ajouter un utilisateur
-      </button>
+      <div className="filter-user">
+        <input
+          type="text"
+          placeholder="recherche utilisateur"
+          value={filterUser}
+          onChange={(e) => setFilterUser(e.target.value)}
+        />
+        <button
+          type="button"
+          className="addBtn"
+          onClick={() => setShowAddUser(true)}
+        >
+          Ajouter un utilisateur
+        </button>
+      </div>
       <table>
         <thead>
           <tr>
@@ -48,39 +57,47 @@ function UsersList() {
         </thead>
         <tbody>
           {users &&
-            users.map((user) => {
-              const crerationDate = new Date(user.creation_date);
-              return (
-                <tr key={user.id}>
-                  <div className="picture-container">
-                    <img
-                      src={`${import.meta.env.VITE_BACKEND_URL}/uploads/${
-                        user.photo
-                      }`}
-                      alt="profil"
-                    />
-                  </div>
-                  <td>{user.lastname}</td>
-                  <td>{user.firstname}</td>
-                  <td>{user.email}</td>
-                  <td>{user.roles.split(", ")[0]}</td>
-                  <td>{user.roles.split(", ").length > 1 ? "oui" : "non"}</td>
-                  <td>{crerationDate.toLocaleDateString("fr")}</td>
-                  <td>
-                    <button
-                      type="button"
-                      className="viewBtn"
-                      onClick={() => {
-                        // eslint-disable-next-line no-sequences
-                        return setShowUpdateUser(true), setCurrentUser(user);
-                      }}
-                    >
-                      <img src={oeil} alt="" />
-                    </button>
-                  </td>
-                </tr>
-              );
-            })}
+            users
+              .filter((e) => {
+                return (
+                  e.lastname.toLowerCase().includes(filterUser) ||
+                  e.firstname.toLowerCase().includes(filterUser)
+                );
+              })
+              .map((user) => {
+                const crerationDate = new Date(user.creation_date);
+                return (
+                  <tr key={user.id}>
+                    <td className="picture-container mobile-hide">
+                      <img
+                        className="mobile-hide"
+                        src={`${import.meta.env.VITE_BACKEND_URL}/uploads/${
+                          user.photo
+                        }`}
+                        alt="profil"
+                      />
+                    </td>
+                    <td>{user.lastname}</td>
+                    <td>{user.firstname}</td>
+                    <td>{user.email}</td>
+                    <td>{user.roles.split(", ")[0]}</td>
+                    <td>{user.roles.split(", ").length > 1 ? "oui" : "non"}</td>
+                    <td>{crerationDate.toLocaleDateString("fr")}</td>
+                    <td>
+                      <button
+                        type="button"
+                        className="viewBtn"
+                        onClick={() => {
+                          // eslint-disable-next-line no-sequences
+                          return setShowUpdateUser(true), setCurrentUser(user);
+                        }}
+                      >
+                        <img src={oeil} alt="" />
+                      </button>
+                    </td>
+                  </tr>
+                );
+              })}
         </tbody>
       </table>
     </div>

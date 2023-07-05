@@ -1,8 +1,15 @@
 @import "../variables";
-.adminProfile{
+.admin-global-container{
+  display: flex;
+  flex-direction: column;
+  width: 90%;
+  margin: 0 auto;
+  gap: 1rem;
+  font-family:$primary-font ;
 details[open] {
     summary {
       color: #9b084f;
+      font-weight: bold;
     }
   }
   .details-container {
@@ -12,7 +19,7 @@ details[open] {
     cursor: pointer;
 
     summary {
-      font-size: 1.3rem;
+      font-size: 1.5rem;
       font-weight: bold;
       color: #0c3944;
     }
