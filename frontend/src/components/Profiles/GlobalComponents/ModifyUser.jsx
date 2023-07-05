@@ -41,7 +41,8 @@ export default function ModifyUser() {
           targetValues.lastname !== ""
             ? targetValues.lastname
             : userData.lastname,
-        photo: !newUploadedFileName && userData.photo,
+        photo:
+          newUploadedFileName !== "" ? newUploadedFileName : userData.photo,
         email: targetValues.email !== "" ? targetValues.email : userData.email,
         password:
           targetValues.password !== ""
@@ -203,13 +204,11 @@ export default function ModifyUser() {
         <div className="profile-photo-container">
           <label htmlFor="profile-photo-input">
             <div className="img-container">
-              {userData?.photo ? (
+              {dropzoneImage[0]?.preview ? (
                 <img
                   src={
-                    userData
-                      ? `${import.meta.env.VITE_BACKEND_URL}/uploads/${
-                          userData?.photo
-                        }`
+                    dropzoneImage[0]?.preview
+                      ? dropzoneImage[0]?.preview
                       : Avatar0
                   }
                   alt="profil"
@@ -217,8 +216,10 @@ export default function ModifyUser() {
               ) : (
                 <img
                   src={
-                    dropzoneImage[0]?.preview
-                      ? dropzoneImage[0]?.preview
+                    userData
+                      ? `${import.meta.env.VITE_BACKEND_URL}/uploads/${
+                          userData?.photo
+                        }`
                       : Avatar0
                   }
                   alt="profil"
