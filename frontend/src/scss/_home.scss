@@ -7,6 +7,10 @@
   padding: 2rem;
   font-family: "Raleway", Helvetica, Arial, sans-serif;
 
+  .timeline-zone{
+    height: 15vh;
+  }
+
   h1 {
     color: #0c3944;
     width: 100%;
@@ -74,4 +78,5 @@
       margin: 0 auto;
     }
   }
+
 }

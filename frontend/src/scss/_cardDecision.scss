@@ -1,4 +1,64 @@
+@import "./variables";
+
+/**********************************/
+
+.Timeline-container-decision {
+  transition: ease-in-out 5s ;
+  flex-direction: column;
+  justify-content: center;
+  rotate: -90deg;
+  background-color: white;
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+  position: fixed;
+  border: 1px solid black;
+  left: 34%;
+  top: -50%;
+  height: 100vw;
+  z-index: 999;
+ 
+  .timeline-container {
+    height: 36rem;
+    width: 36rem;
+    progress {
+      width: 47rem;
+    }
+    .date-container {
+      justify-content: center;
+      .date-text {
+        rotate: 45deg;
+        font-size: $font-size-xxs;
+      }
+      .date-text-similar {
+        rotate: 45deg;
+        font-size: $font-size-xxs;
+      }
+      .date-infos {
+        rotate: 45deg;
+        font-size: $font-size-xxs;
+      }
+      .date-infos-similar {
+        rotate: 45deg;
+        font-size: $font-size-xxs;
+      }
+      .date-point {
+        height: 1.1rem;
+        width: 1.1rem;
+        border-radius: 1.3rem;
+      }
+
+      .date-point-similar {
+        height: 1.1rem;
+        width: 1.1rem;
+        border-radius: 1.3rem;
+      }
+    }
+  }
+}
+
+/********************************************/
 .card-decision-container {
+  position: relative;
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;

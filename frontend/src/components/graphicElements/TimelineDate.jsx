@@ -28,8 +28,6 @@ export default function TimelineDate({
     verificationDate();
   }, [initialDate]);
 
-  console.info(`${date.title}:`, situation);
-
   return (
     <div className="date-container" style={{ bottom: `${Progress}%` }}>
       <div className={`date-infos${dateInitial}`}>
