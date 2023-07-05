@@ -128,27 +128,20 @@
       height: 2.4rem;
       width: 14.6rem;
       margin-bottom: 15%;
-      box-shadow:  rgba(16, 16, 16, 0.4) 1px 10px 10px;
-      &:hover{
+      box-shadow: rgba(16, 16, 16, 0.4) 1px 10px 10px;
+      &:hover {
         background-color: $color-primary-active;
-      transform: translate(0px,-2px);
-      box-shadow: 
-      white 0.006em 0.006em 0.007em,
-      #9c9c9c 1px 1px 1px,
-      #9c9c9c 1px 2px 1px,
-      #9c9c9c 1px 3px 1px,
-      #9c9c9c 1px 4px 1px,
-      #9c9c9c 1px 5px 1px,
-      rgba(16, 16, 16, 0.4) 1px 10px 10px,
-      rgba(16, 16, 16, 0.2) 1px 10px 10px,
-      rgba(16, 16, 16, 0.2) 1px 10px 10px,
-      rgba(16, 16, 16, 0.4) 1px 10px 10px,
-      white -0.15em -0.1em 100px;;
+        transform: translate(0px, -2px);
+        box-shadow: white 0.006em 0.006em 0.007em, #9c9c9c 1px 1px 1px,
+          #9c9c9c 1px 2px 1px, #9c9c9c 1px 3px 1px, #9c9c9c 1px 4px 1px,
+          #9c9c9c 1px 5px 1px, rgba(16, 16, 16, 0.4) 1px 10px 10px,
+          rgba(16, 16, 16, 0.2) 1px 10px 10px,
+          rgba(16, 16, 16, 0.2) 1px 10px 10px,
+          rgba(16, 16, 16, 0.4) 1px 10px 10px, white -0.15em -0.1em 100px;
       }
       &:active {
-        transform: translate(0px,2px);
-        }
-      
+        transform: translate(0px, 2px);
+      }
     }
   }
 }

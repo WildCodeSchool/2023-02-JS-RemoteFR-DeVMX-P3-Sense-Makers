@@ -11,11 +11,18 @@ const statusControllers = require("./controllers/statusControllers");
 const usersControllers = require("./controllers/usersControllers");
 const mailControllers = require("./controllers/mailControllers");
 const rolesControllers = require("./controllers/rolesControllers");
-const authControllers = require("./controllers/authControllers");
 
-const { hashPassword } = require("./services/checkAuth");
+const {
+  hashPassword,
+  verifyPassword,
+  verifyToken,
+} = require("./services/checkAuth");
 
-router.post("/login", authControllers.login);
+// public route
+router.post("/login", usersControllers.getUserByEmail, verifyPassword);
+
+// routes protected
+router.use(verifyToken);
 
 router.get("/decisions", decisionControllers.browseDecisions);
 router.get("/decisions/:id", decisionControllers.readDecision);
@@ -49,7 +56,7 @@ router.delete(
 
 router.get("/status", statusControllers.browseStatus);
 
-router.get("/users", usersControllers.browseUsersWithRoles);
+router.get("/users", verifyToken, usersControllers.browseUsersWithRoles);
 router.get("/users/concat", usersControllers.BrowseConcatUsers);
 router.get("/users/experts", usersControllers.BrowseConcatExperts);
 

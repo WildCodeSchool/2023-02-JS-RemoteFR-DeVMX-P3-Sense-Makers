@@ -43,12 +43,13 @@
     justify-content: space-around;
     width: 100%;
     height: auto;
-    gap:2rem;
+    gap: 2rem;
     align-items: center;
     font-size: $font-size-xs;
     font-family: $primary-font;
     font-weight: $primary-font-weight;
     color: $color-default;
+
     @media screen and (min-width: 768px) {
       font-size: $font-size-xxs;
     }
@@ -75,9 +76,6 @@
       background-color: $fluo-green;
       @media screen and (min-width: 768px) {
         height: 0.7rem;
-      }
-      @media screen and (min-width: 1024px) {
-    
       }
     }
     .date-text {

@@ -103,7 +103,7 @@ VALUES (
     "holder",
     "Alaric.jpg",
     "place.holder@placeholder.com",
-    "99922242",
+    "$argon2id$v=19$m=65536,t=3,p=4$G86ilaHqcIdB1K7i9aW7qw$MY6SjY1R4irmD8qIJCIAZ+R65DslW1Pdb6l7X/FYAxM",
     "2023-03-03"
   ),
   (
@@ -111,7 +111,7 @@ VALUES (
     "Michel",
     "Nicolas.jpg",
     "jean.mich@michel.com",
-    "iiiiiii",
+    "$argon2id$v=19$m=65536,t=3,p=4$G86ilaHqcIdB1K7i9aW7qw$MY6SjY1R4irmD8qIJCIAZ+R65DslW1Pdb6l7X/FYAxM",
     "2025-12-08"
   ),
   (
@@ -119,7 +119,7 @@ VALUES (
     "Potter",
     "photo-frederico_cassola_.jpg",
     "Harry.Potter@poudlard.com",
-    "HarryDu93",
+    "$argon2id$v=19$m=65536,t=3,p=4$G86ilaHqcIdB1K7i9aW7qw$MY6SjY1R4irmD8qIJCIAZ+R65DslW1Pdb6l7X/FYAxM",
     "1905-05-25"
   ),
   (
@@ -127,7 +127,7 @@ VALUES (
     "M",
     "Photo_Charlotte.jpg",
     "lorem@ipsum.com",
-    "loremipsum",
+    "$argon2id$v=19$m=65536,t=3,p=4$G86ilaHqcIdB1K7i9aW7qw$MY6SjY1R4irmD8qIJCIAZ+R65DslW1Pdb6l7X/FYAxM",
     "8674-02-05"
   );
 INSERT INTO decisions (

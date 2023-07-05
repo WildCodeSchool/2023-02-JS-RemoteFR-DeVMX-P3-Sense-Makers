@@ -1,8 +1,10 @@
 import { useEffect, useState, useRef } from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom";
+import DOMPurify from "dompurify";
 import PostComments from "../components/PostComments";
 import Timeline from "../components/graphicElements/Timeline";
+import FirstDecisionEditor from "../components/FirstDecisionEditor";
 
 export default function Decision() {
   const [decision, setDecison] = useState([]);
@@ -10,6 +12,7 @@ export default function Decision() {
   const [impactedUsers, setimpactedUsers] = useState([]);
   const [experts, setExperts] = useState([]);
   const [addComment, setAddComment] = useState(false);
+  const [firstDecision, setFirstDecision] = useState("");
   const { id } = useParams();
   const ref = useRef(null);
 
@@ -18,6 +21,30 @@ export default function Decision() {
   const firstDayDiff = (today - initialDate) / 86400000;
   const secondDate = Date.parse(decision.first_take_decision);
   const secondDayDiff = (today - secondDate) / 86400000;
+
+  function strip(html) {
+    return (
+      <div dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(html) }} />
+    );
+  }
+  const getDecision = () => {
+    axios
+      .get(`${import.meta.env.VITE_BACKEND_URL}/decisions/${id}`)
+      .then((res) => setDecison(res.data))
+      .catch((err) => console.error(err));
+  };
+
+  const postFirstDecision = () => {
+    axios
+      .put(`${import.meta.env.VITE_BACKEND_URL}/decisions/${id}`, {
+        firstDecision,
+        id,
+      })
+      .catch((err) => console.error(err));
+    setTimeout(() => {
+      getDecision();
+    }, 500);
+  };
 
   const handleAddComment = () => {
     setAddComment((state) => !state);
@@ -36,10 +63,7 @@ export default function Decision() {
   };
 
   useEffect(() => {
-    axios
-      .get(`${import.meta.env.VITE_BACKEND_URL}/decisions/${id}`)
-      .then((res) => setDecison(res.data))
-      .catch((err) => console.error(err));
+    getDecision();
   }, []);
 
   useEffect(() => {
@@ -90,10 +114,10 @@ export default function Decision() {
           </summary>
 
           <div className="summary-content">
-            <p>
-              <span className="bold-text">context:</span> {decision.context}
-            </p>
-            <p>{decision.content}</p>
+            <div className="context">
+              <p className="bold-text">context:</p> {strip(decision.context)}
+            </div>
+            <p>{strip(decision.content)}</p>
           </div>
         </details>
 
@@ -103,7 +127,7 @@ export default function Decision() {
             <hr />
           </summary>
           <div className="summary-content">
-            <p>{decision.usefulness}</p>
+            <p>{strip(decision.usefulness)}</p>
           </div>
         </details>
 
@@ -113,7 +137,7 @@ export default function Decision() {
             <hr />
           </summary>
           <div className="summary-content">
-            <p>{decision.benefit}</p>
+            <p>{strip(decision.benefit)}</p>
           </div>
         </details>
 
@@ -124,9 +148,21 @@ export default function Decision() {
           </summary>
 
           <div className="summary-content">
-            <p>{decision.disadvantages}</p>
+            <p>{strip(decision.disadvantages)}</p>
           </div>
         </details>
+
+        {decision.first_decision_content && (
+          <details>
+            <summary>
+              Première prise de décision
+              <hr />
+            </summary>
+            <div className="summary-content">
+              <p>{strip(decision.first_decision_content)}</p>
+            </div>
+          </details>
+        )}
 
         <details>
           <summary>
@@ -166,6 +202,22 @@ export default function Decision() {
             ))}
           </div>
         </details>
+
+        {firstDayDiff > 15 &&
+          firstDayDiff < 30 &&
+          !decision.first_decision_content && (
+            <div>
+              {" "}
+              <FirstDecisionEditor setFirstDecision={setFirstDecision} />
+              <button
+                type="button"
+                className="comment-button"
+                onClick={postFirstDecision}
+              >
+                poster ma première prise de décision
+              </button>
+            </div>
+          )}
 
         {!addComment && (
           <button
