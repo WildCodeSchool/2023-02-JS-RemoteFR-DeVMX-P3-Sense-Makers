@@ -42,15 +42,8 @@ class UsersManager extends AbstractManager {
 
   insert(user) {
     return this.database.query(
-      `insert into ${this.table} (firstname, lastname, photo, email, password, creation_Date) values (?, ?, ?, ?, ?, ?)`,
-      [
-        user.firstname,
-        user.lastname,
-        user.photo,
-        user.email,
-        user.hash,
-        user.creationDate,
-      ]
+      `insert into ${this.table} (firstname, lastname, photo, email, password) values (?, ?, ?, ?, ?)`,
+      [user.firstname, user.lastname, user.photo, user.email, user.hpassword]
     );
   }
 
@@ -114,9 +107,10 @@ class UsersManager extends AbstractManager {
   }
 
   findOneByEmail(email) {
-    return this.database.query(`SELECT * FROM ${this.table} WHERE email = ?`, [
-      email,
-    ]);
+    return this.database.query(
+      `SELECT email, password FROM ${this.table} WHERE email = ?`,
+      [email]
+    );
   }
 
   deleteUserRoleExpert(userId) {

@@ -2,7 +2,6 @@ const jwt = require("jsonwebtoken");
 
 const secret = process.env.SECRET_MAIL;
 const models = require("../models");
-const { hashPassword } = require("../services/checkAuth");
 
 const browseUsers = (req, res) => {
   models.users
@@ -161,14 +160,13 @@ const editUserPassword = (req, res) => {
   });
 };
 
-const addUser = async (req, res) => {
-  const { firstname, lastname, photo, email, password } = req.body;
-  const { creationDate } = req.body.creation_date;
-  const hash = await hashPassword(password);
-  // TODO validations (length, format...)
+const addUser = (req, res) => {
+  const user = req.body;
 
+  // TODO validations (length, format...)
+  console.info(user);
   models.users
-    .insert({ firstname, lastname, photo, email, hash, creationDate })
+    .insert(user)
     .then(([result]) => {
       res.status(201).json(result);
     })
