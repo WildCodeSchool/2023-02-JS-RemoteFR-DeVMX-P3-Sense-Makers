@@ -64,15 +64,26 @@ export default function CardDecision({ decision }) {
           setShow("none");
         }}
       >
-        {decision.is_validated === 1 ? (
-          <div className="decision-validate">
-            <img src="./src/assets/icons/verifier.svg" alt="validate-logo" />
-          </div>
-        ) : (
-          <div className="decision-not-validate">
-            <img src="./src/assets/icons/traverser.svg" alt="validate-logo" />
-          </div>
-        )}
+        {decision.title_status === "Décision définitive" &&
+          (decision.is_validated === 1 ? (
+            <div className="decision-validate">
+              <img src="./src/assets/icons/verifier.svg" alt="validate-logo" />
+            </div>
+          ) : (
+            <div className="decision-not-validate">
+              <img src="./src/assets/icons/traverser.svg" alt="validate-logo" />
+            </div>
+          ))}
+        {decision.title_status === "Décision terminée" &&
+          (decision.is_validated === 1 ? (
+            <div className="decision-validate">
+              <img src="./src/assets/icons/verifier.svg" alt="validate-logo" />
+            </div>
+          ) : (
+            <div className="decision-not-validate">
+              <img src="./src/assets/icons/traverser.svg" alt="validate-logo" />
+            </div>
+          ))}
 
         <div className="status-container">
           <p style={statusColors}>{decision.title_status}</p>
