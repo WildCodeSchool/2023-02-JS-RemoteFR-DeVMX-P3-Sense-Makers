@@ -49,14 +49,13 @@ export default function ModifyUser() {
             ? targetValues.password
             : userData.password,
       })
-      .then((response) => {
+      .then(() => {
         if (targetValues.role !== "") {
           axios
             .put(
               `${import.meta.env.VITE_BACKEND_URL}/users/${userData.id}/role`,
               { role: targetValues.role }
             )
-            .then((res) => console.info(res))
             .catch((err) => console.error(err));
         }
 
@@ -66,12 +65,7 @@ export default function ModifyUser() {
               `${import.meta.env.VITE_BACKEND_URL}/users/${userData.id}/role`,
               { roleExpert: 3 }
             )
-            .then((res) => console.info(res))
             .catch((err) => console.error(err));
-          console.info({
-            message: "Add new expert user role done!!!",
-            response,
-          });
         }
 
         if (!targetValues.roleExpert && rolesFromUser.length >= 2) {
@@ -81,12 +75,7 @@ export default function ModifyUser() {
                 userData.id
               }/roleexpert`
             )
-            .then((res) => console.info(res))
             .catch((err) => console.error(err));
-          console.info({
-            message: "Delete expert user role done!!!",
-            response,
-          });
         }
       })
       .then(() => {
@@ -100,7 +89,6 @@ export default function ModifyUser() {
         }, 500);
       })
       .catch((err) => console.error(err));
-    console.info("Submitted new values form with state:", targetValues);
   };
 
   useEffect(() => {
