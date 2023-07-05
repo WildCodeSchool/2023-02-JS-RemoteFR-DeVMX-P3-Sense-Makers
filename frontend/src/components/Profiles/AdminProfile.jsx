@@ -1,20 +1,32 @@
 import DecisionsDetails from "./AdminComponents/DecisionsDetails";
+import DecisionsList from "./AdminComponents/DecisionsList";
 import DecisionsManagement from "./AdminComponents/DecisionsManagement";
-import AddUser from "./AdminComponents/AddUser";
-import ModifyUser from "./GlobalComponents/ModifyUser";
+import UsersList from "./AdminComponents/UsersList";
 
 export default function AdminProfile() {
   return (
-    <div className="adminProfile">
+    <div className="admin-global-container">
       <DecisionsDetails />
       <DecisionsManagement />
-      <details>
+      <details className="details-container">
+        <summary>
+          Statistiques
+          <hr />
+        </summary>
+      </details>
+      <details className="details-container">
         <summary>
           Gestion des utilisateurs
           <hr />
         </summary>
-        <AddUser />
-        <ModifyUser />
+        <UsersList />
+      </details>
+      <details className="details-container">
+        <summary>
+          Gestion des decisions
+          <hr />
+        </summary>
+        <DecisionsList />
       </details>
     </div>
   );
