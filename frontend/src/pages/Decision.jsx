@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom";
 import DOMPurify from "dompurify";
 import PostComments from "../components/PostComments";
 import Timeline from "../components/graphicElements/Timeline";
+import FirstDecisionEditor from "../components/FirstDecisionEditor";
 
 export default function Decision() {
   const [decision, setDecison] = useState([]);
@@ -11,6 +12,7 @@ export default function Decision() {
   const [impactedUsers, setimpactedUsers] = useState([]);
   const [experts, setExperts] = useState([]);
   const [addComment, setAddComment] = useState(false);
+  const [firstDecision, setFirstDecision] = useState("");
   const { id } = useParams();
   const ref = useRef(null);
 
@@ -25,6 +27,14 @@ export default function Decision() {
       <div dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(html) }} />
     );
   }
+
+  const postFirstDecision = () => {
+    axios
+      .put(`${import.meta.env.VITE_BACKEND_URL}/decisions/${id}`, {
+        firstDecision,
+      })
+      .catch((err) => console.error(err));
+  };
 
   const handleAddComment = () => {
     setAddComment((state) => !state);
@@ -137,6 +147,16 @@ export default function Decision() {
 
         <details>
           <summary>
+            Première prise de décision
+            <hr />
+          </summary>
+          <div className="summary-content">
+            <p>{strip(decision.first_decision_content)}</p>
+          </div>
+        </details>
+
+        <details>
+          <summary>
             Avis
             <hr />
           </summary>
@@ -173,6 +193,15 @@ export default function Decision() {
             ))}
           </div>
         </details>
+
+        <FirstDecisionEditor setFirstDecision={setFirstDecision} />
+        <button
+          type="button"
+          className="comment-button"
+          onClick={postFirstDecision}
+        >
+          poster ma première prise de décision
+        </button>
 
         {!addComment && (
           <button
