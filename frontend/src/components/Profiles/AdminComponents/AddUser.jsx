@@ -160,6 +160,7 @@ export default function AddUser() {
                 placeholder="Insérez votre mot de passe"
                 onChange={update}
                 required
+                minLength="8"
               />
             </label>
             <div className="roles-container-1">
@@ -168,11 +169,11 @@ export default function AddUser() {
                 <select
                   className={requireSelect ? "require-select" : ""}
                   name="role"
+                  defaultValue="Sélectionne votre rôle"
                   onChange={update}
                   onClick={() => setRequiredSelect(false)}
-                  required
                 >
-                  <option value="0">Sélectionne votre rôle</option>
+                  <option disabled>Sélectionne votre rôle</option>
                   {rolesData
                     .filter((roleExpert) => roleExpert.role_name !== "Expert")
                     .map((role) => (
