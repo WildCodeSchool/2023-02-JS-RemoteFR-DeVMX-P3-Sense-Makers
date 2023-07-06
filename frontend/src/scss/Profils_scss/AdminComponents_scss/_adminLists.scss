@@ -18,27 +18,29 @@
       background-color: #d9d9d97f;
       border: 1px solid rgb(78, 78, 78);
       width: 100%;
-      max-width: 12.5rem;
+      max-width: 11rem;
       outline: none;
       height: 1.3rem;
     }
     .addBtn {
       cursor: pointer;
-      background-color: $color-default;
-      color: white;
-      border-radius: $border-radius-xxl;
-      padding: 0.2rem 0.7rem;
-      border: 1px solid var(--lightBleuColor);
-      transition: 0.3s ease-in-out;
       width: 100%;
       max-width: 12.5rem;
       height: 2rem;
+      color: white;
+      font-weight: $primary-font-weight;
+      background-color: $color-default;
+      border-radius: $border-radius-xxl;
+      border: 1px solid var(--lightBleuColor);
+      padding: 0.2rem 0.7rem;
       margin: 1rem;
+      transition: 0.3s ease-in-out;
     }
   }
   table {
     width: 100%;
     margin: 0 auto;
+    border-collapse: collapse;
     thead {
       tr {
         :nth-child(4),
@@ -52,13 +54,16 @@
       }
     }
     tbody {
+      > :nth-child(2n + 1) {
+        background-color: #d9d9d9a9;
+      }
       tr {
         height: 3rem;
-        border: 1px solid var(--bleuColor);
-        box-shadow: 0px 15px 20px -10px #d8d8d8;
         text-align: center;
         vertical-align: middle;
-        color: #4249af;
+        color: black;
+        border: 1px solid var(--bleuColor);
+        box-shadow: 0px 15px 20px -10px #d8d8d8;
         backdrop-filter: blur(3px);
 
         :nth-child(4),
@@ -71,12 +76,12 @@
           font-size: 1rem;
           .viewBtn {
             cursor: pointer;
-            background-color: $background-color-base;
+            display: block;
             color: var(--lightBleuColor);
+            background-color: $background-color-base;
             border-radius: $border-radius-xxl;
             border: 1px solid var(--lightBleuColor);
             transition: 0.3s ease-in-out;
-            display: block;
             img {
               display: block;
               object-fit: cover;
@@ -109,14 +114,14 @@
 @media screen and (min-width: 1024px) {
   .display {
     .addBtn {
+      width: 10rem;
       padding: 10px 13px;
       margin: 15px;
-      width: 160px;
     }
     table {
-      margin: 0 auto;
       max-width: 140rem;
       height: fit-content;
+      margin: 0 auto;
       thead {
         tr {
           :nth-child(4),
@@ -136,9 +141,9 @@
           display: flex;
           justify-content: center;
           align-items: center;
-          padding: 5px 0 5px 20px;
-          height: 5rem;
           width: 5rem;
+          height: 5rem;
+          padding: 5px 0 5px 20px;
 
           img {
             object-fit: cover;
@@ -160,7 +165,7 @@
             font-size: $font-size-m;
             .viewBtn {
               border-radius: $border-radius-xxl;
-              padding: 10px 13px;
+              padding: $space-xs $space-xs;
               margin: $space-s;
             }
           }
