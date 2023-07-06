@@ -91,7 +91,9 @@ export default function PostDecision() {
 
   useEffect(() => {
     axios
-      .get(`${import.meta.env.VITE_BACKEND_URL}/users/concat`)
+      .get(`${import.meta.env.VITE_BACKEND_URL}/users/concat`, {
+        withCredentials: true,
+      })
       .then((response) => {
         setUsers(response.data);
       });
@@ -99,7 +101,9 @@ export default function PostDecision() {
 
   useEffect(() => {
     axios
-      .get(`${import.meta.env.VITE_BACKEND_URL}/users/experts`)
+      .get(`${import.meta.env.VITE_BACKEND_URL}/users/experts`, {
+        withCredentials: true,
+      })
       .then((response) => {
         setExpertUsers(response.data);
       });
@@ -108,7 +112,9 @@ export default function PostDecision() {
   /* Import concerned Hub  */
   useEffect(() => {
     axios
-      .get(`${import.meta.env.VITE_BACKEND_URL}/concernedhub`)
+      .get(`${import.meta.env.VITE_BACKEND_URL}/concernedhub`, {
+        withCredentials: true,
+      })
       .then((response) => {
         setHub(response.data);
       });
@@ -151,19 +157,26 @@ export default function PostDecision() {
   /* Post decision to the back */
   function DecisionPosted(status) {
     axios
-      .post(`${import.meta.env.VITE_BACKEND_URL}/decisions`, status)
+      .post(`${import.meta.env.VITE_BACKEND_URL}/decisions`, status, {
+        withCredentials: true,
+      })
       .then((response) => {
         if (response.status === 201) {
           /* post dans user_décision */
           axios.post(`${import.meta.env.VITE_BACKEND_URL}/decisions/:id/user`, {
             userId: context,
             decisionId: response.data[0].insertId,
+            withCredentials: true,
           });
 
           experts.map((expert) => {
             return axios.post(
               `${import.meta.env.VITE_BACKEND_URL}/decisions/:id/expert`,
-              { expertId: expert.id, decisionId: response.data[0].insertId }
+              {
+                expertId: expert.id,
+                decisionId: response.data[0].insertId,
+                withCredentials: true,
+              }
             );
           });
           impacted.map((impact) => {
@@ -172,6 +185,7 @@ export default function PostDecision() {
               {
                 impactedId: impact.id,
                 decisionId: response.data[0].insertId,
+                withCredentials: true,
               }
             );
           });

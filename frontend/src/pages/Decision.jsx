@@ -29,7 +29,9 @@ export default function Decision() {
   }
   const getDecision = () => {
     axios
-      .get(`${import.meta.env.VITE_BACKEND_URL}/decisions/${id}`)
+      .get(`${import.meta.env.VITE_BACKEND_URL}/decisions/${id}`, {
+        withCredentials: true,
+      })
       .then((res) => setDecison(res.data))
       .catch((err) => console.error(err));
   };
@@ -39,6 +41,7 @@ export default function Decision() {
       .put(`${import.meta.env.VITE_BACKEND_URL}/decisions/${id}`, {
         firstDecision,
         id,
+        withCredentials: true,
       })
       .catch((err) => console.error(err));
     setTimeout(() => {
@@ -57,7 +60,9 @@ export default function Decision() {
 
   const handleComment = () => {
     axios
-      .get(`${import.meta.env.VITE_BACKEND_URL}/decisions/${id}/comments`)
+      .get(`${import.meta.env.VITE_BACKEND_URL}/decisions/${id}/comments`, {
+        withCredentials: true,
+      })
       .then((res) => setComments(res.data))
       .catch((err) => console.error(err));
   };
@@ -72,14 +77,18 @@ export default function Decision() {
 
   useEffect(() => {
     axios
-      .get(`${import.meta.env.VITE_BACKEND_URL}/decisions/${id}/impacted`)
+      .get(`${import.meta.env.VITE_BACKEND_URL}/decisions/${id}/impacted`, {
+        withCredentials: true,
+      })
       .then((res) => setimpactedUsers(res.data))
       .catch((err) => console.error(err));
   }, []);
 
   useEffect(() => {
     axios
-      .get(`${import.meta.env.VITE_BACKEND_URL}/decisions/${id}/expert`)
+      .get(`${import.meta.env.VITE_BACKEND_URL}/decisions/${id}/expert`, {
+        withCredentials: true,
+      })
       .then((res) => setExperts(res.data))
       .catch((err) => console.error(err));
   }, []);

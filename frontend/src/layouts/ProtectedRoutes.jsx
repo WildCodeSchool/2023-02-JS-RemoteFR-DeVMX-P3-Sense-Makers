@@ -5,7 +5,7 @@ import userContext from "../contexts/userContext";
 
 function ProtectedRoutes({ children }) {
   const { user } = useContext(userContext);
-  if (user) {
+  if (!user) {
     <Navigate to="/" replace />;
   }
 
