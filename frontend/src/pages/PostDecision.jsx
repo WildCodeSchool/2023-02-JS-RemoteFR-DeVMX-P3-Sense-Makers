@@ -163,11 +163,14 @@ export default function PostDecision() {
       .then((response) => {
         if (response.status === 201) {
           /* post dans user_décision */
-          axios.post(`${import.meta.env.VITE_BACKEND_URL}/decisions/:id/user`, {
-            userId: context,
-            decisionId: response.data[0].insertId,
-            withCredentials: true,
-          });
+          axios.post(
+            `${import.meta.env.VITE_BACKEND_URL}/decisions/:id/user`,
+            {
+              userId: context,
+              decisionId: response.data[0].insertId,
+            },
+            { withCredentials: true }
+          );
 
           experts.map((expert) => {
             return axios.post(
@@ -175,8 +178,8 @@ export default function PostDecision() {
               {
                 expertId: expert.id,
                 decisionId: response.data[0].insertId,
-                withCredentials: true,
-              }
+              },
+              { withCredentials: true }
             );
           });
           impacted.map((impact) => {
@@ -185,8 +188,8 @@ export default function PostDecision() {
               {
                 impactedId: impact.id,
                 decisionId: response.data[0].insertId,
-                withCredentials: true,
-              }
+              },
+              { withCredentials: true }
             );
           });
         }

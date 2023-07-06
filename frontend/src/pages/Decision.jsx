@@ -38,11 +38,14 @@ export default function Decision() {
 
   const postFirstDecision = () => {
     axios
-      .put(`${import.meta.env.VITE_BACKEND_URL}/decisions/${id}`, {
-        firstDecision,
-        id,
-        withCredentials: true,
-      })
+      .put(
+        `${import.meta.env.VITE_BACKEND_URL}/decisions/${id}`,
+        {
+          firstDecision,
+          id,
+        },
+        { withCredentials: true }
+      )
       .catch((err) => console.error(err));
     setTimeout(() => {
       getDecision();
