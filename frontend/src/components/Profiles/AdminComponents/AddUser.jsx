@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import Dropzone from "../../../services/hookDropzone";
 import inputValidationRules from "../../../services/inputValidationRules";
-import Avatar0 from "../../../assets/avatar0.png";
 
 export default function AddUser() {
   const [dropzoneImage, setDropzoneImage] = useState([]);
@@ -56,7 +55,7 @@ export default function AddUser() {
         .post(`${import.meta.env.VITE_BACKEND_URL}/users`, {
           firstname: targetValues.firstName,
           lastname: targetValues.lastName,
-          photo: newUploadedFileName,
+          photo: newUploadedFileName || "default_avatar.png",
           email: targetValues.email,
           password: targetValues.password,
         })
@@ -197,7 +196,9 @@ export default function AddUser() {
                 src={
                   dropzoneImage[0]?.preview
                     ? dropzoneImage[0]?.preview
-                    : Avatar0
+                    : `${
+                        import.meta.env.VITE_BACKEND_URL
+                      }/assets/images/default_avatar.png`
                 }
                 alt="profil"
               />

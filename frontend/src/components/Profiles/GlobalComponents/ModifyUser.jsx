@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import Dropzone from "../../../services/hookDropzone";
-import Avatar0 from "../../../assets/avatar0.png";
 
 export default function ModifyUser() {
   const [userData, setUserData] = useState([]);
@@ -102,15 +101,6 @@ export default function ModifyUser() {
     console.info("Submitted new values form with state:", targetValues);
   };
 
-  const disableUser = () => {
-    axios
-      .put(
-        `${import.meta.env.VITE_BACKEND_URL}/users/${userData.id}/isactive`,
-        { isActive: false }
-      )
-      .catch((err) => console.error(err));
-  };
-
   useEffect(() => {
     axios
       .get(`${import.meta.env.VITE_BACKEND_URL}/roles`)
@@ -137,9 +127,7 @@ export default function ModifyUser() {
       <div className="add-user-title-container">
         <h2 className="add-user-title">Modification d'utilisateur</h2>
         <div className="remove-button-container-2">
-          <button type="button" onClick={disableUser}>
-            Supprimer
-          </button>
+          <button type="button">Supprimer</button>
         </div>
       </div>
       <div className="user-management-container">
@@ -214,14 +202,16 @@ export default function ModifyUser() {
         <div className="profile-photo-container">
           <label htmlFor="profile-photo-input">
             <div className="img-container">
-              {userData?.photo ? (
+              {userData ? (
                 <img
                   src={
-                    userData
+                    userData?.photo
                       ? `${import.meta.env.VITE_BACKEND_URL}/uploads/${
                           userData?.photo
                         }`
-                      : Avatar0
+                      : `${
+                          import.meta.env.VITE_BACKEND_URL
+                        }/assets/images/default_avatar.png`
                   }
                   alt="profil"
                 />
@@ -230,7 +220,9 @@ export default function ModifyUser() {
                   src={
                     dropzoneImage[0]?.preview
                       ? dropzoneImage[0]?.preview
-                      : Avatar0
+                      : `${
+                          import.meta.env.VITE_BACKEND_URL
+                        }/assets/images/default_avatar.png`
                   }
                   alt="profil"
                 />
@@ -283,9 +275,7 @@ export default function ModifyUser() {
               <button type="submit">Valider les modifications</button>
             </div>
             <div className="remove-button-container-1">
-              <button type="button" onClick={disableUser}>
-                Supprimer
-              </button>
+              <button type="button">Supprimer</button>
             </div>
           </div>
         </div>
