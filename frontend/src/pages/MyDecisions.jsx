@@ -1,19 +1,18 @@
-import { useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useContext, useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import CardDecision from "../components/CardDecision";
+import userContext from "../contexts/userContext";
 
 export default function MyDecisions() {
   const navigate = useNavigate();
-  const { id } = useParams();
+  const { user } = useContext(userContext);
   const [allDecisions, setAllDecision] = useState([]);
   const [allStatus, setAllStatus] = useState([]);
 
   useEffect(() => {
     axios
-      .get(`${import.meta.env.VITE_BACKEND_URL}/users/${id}/decisions`, {
-        withCredentials: true,
-      })
+      .get(`${import.meta.env.VITE_BACKEND_URL}/users/${user.id}/decisions`)
       .then((res) => setAllDecision(res.data))
       .catch((err) => {
         console.error(err);
@@ -30,7 +29,7 @@ export default function MyDecisions() {
         console.error(err);
       });
   }, []);
-
+  console.info(user.id);
   return (
     <div className="all-decisions-container">
       <div className="title-container">
