@@ -35,7 +35,7 @@ function App() {
               }
             >
               <Route path="decisions" element={<Home />} />
-              <Route path="users/:id/decisions" element={<MyDecisions />} />
+              <Route path="users/mydecisions" element={<MyDecisions />} />
               <Route path="postdecision" element={<PostDecision />} />
               <Route path="decisions/:id" element={<Decision />} />
               <Route path="profile" element={<Profile />} />
