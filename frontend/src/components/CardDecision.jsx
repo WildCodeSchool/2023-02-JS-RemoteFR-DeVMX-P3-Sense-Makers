@@ -56,7 +56,7 @@ export default function CardDecision({ decision }) {
       </div>
       <Link
         className="card-decision-container"
-        to={`/decisions/${decision.d_id}`}
+        to={`/logged/decisions/${decision.d_id}`}
         onMouseEnter={() => {
           setShow("flex");
         }}

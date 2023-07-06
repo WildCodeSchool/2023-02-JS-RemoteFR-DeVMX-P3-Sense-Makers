@@ -27,9 +27,11 @@ export default function Header() {
           <li>
             <Link
               className={
-                pathname === "/decisions" ? "link-style active" : "link-style"
+                pathname === "/logged/decisions"
+                  ? "link-style active"
+                  : "link-style"
               }
-              to="/decisions"
+              to="/logged/decisions"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -52,11 +54,11 @@ export default function Header() {
           <li>
             <Link
               className={
-                pathname === "/users/:id/decisions"
+                pathname === "/logged/users/:id/decisions"
                   ? "link-style active"
                   : "link-style"
               }
-              to="/users/:id/decisions"
+              to="/logged/users/:id/decisions"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -116,9 +118,11 @@ export default function Header() {
           <li>
             <Link
               className={
-                pathname === "/profile" ? "link-style active" : "link-style"
+                pathname === "/logged/profile"
+                  ? "link-style active"
+                  : "link-style"
               }
-              to="/profile"
+              to="/logged/profile"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"

@@ -177,7 +177,7 @@ export default function PostDecision() {
           });
         }
         setTimeout(() => {
-          navigate(`/decisions/${response.data[0].insertId}`);
+          navigate(`/logged/decisions/${response.data[0].insertId}`);
         }, 500);
       });
   }

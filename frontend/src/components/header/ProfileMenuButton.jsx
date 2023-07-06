@@ -57,9 +57,11 @@ export default function LoginButton({
           <li>
             <Link
               className={
-                pathname === "/decisions" ? "link-style active" : "link-style"
+                pathname === "/logged/decisions"
+                  ? "link-style active"
+                  : "link-style"
               }
-              to="/decisions"
+              to="/logged/decisions"
               onClick={() => handleShowLoginMenu()}
             >
               <svg
@@ -83,11 +85,11 @@ export default function LoginButton({
           <li>
             <Link
               className={
-                pathname === "/users/:id/decisions"
+                pathname === "/logged/users/:id/decisions"
                   ? "link-style active"
                   : "link-style"
               }
-              to="/users/:id/decisions"
+              to="/logged/users/:id/decisions"
               onClick={() => handleShowLoginMenu()}
             >
               <svg
@@ -143,9 +145,11 @@ export default function LoginButton({
           <li>
             <Link
               className={
-                pathname === "/profile" ? "link-style active" : "link-style"
+                pathname === "/logged/profile"
+                  ? "link-style active"
+                  : "link-style"
               }
-              to="/profile"
+              to="/logged/profile"
               onClick={() => handleShowLoginMenu()}
             >
               <svg
@@ -170,9 +174,11 @@ export default function LoginButton({
           <li>
             <Link
               className={
-                pathname === "/profile" ? "link-style active" : "link-style"
+                pathname === "/logged/profile"
+                  ? "link-style active"
+                  : "link-style"
               }
-              to="/profile"
+              to="/logged/profile"
               onClick={() => handleShowLoginMenu()}
             >
               <div className="li-text">Mon compte</div>
@@ -181,11 +187,11 @@ export default function LoginButton({
           <li>
             <Link
               className={
-                pathname === "/postdecision"
+                pathname === "/logged/postdecision"
                   ? "link-style active"
                   : "link-style"
               }
-              to="/postdecision"
+              to="/logged/postdecision"
               onClick={() => handleShowLoginMenu()}
             >
               <div className="li-text">Créer une décision</div>{" "}
