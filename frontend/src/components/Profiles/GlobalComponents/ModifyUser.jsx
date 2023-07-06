@@ -9,7 +9,6 @@ export default function ModifyUser() {
   const [newUploadedFileName, setNewUploadedFileName] = useState("");
   const [rolesData, setRolesData] = useState([]);
   const [rolesFromUser, setRolesFromUser] = useState([]);
-  const [reinicializePassword, setReinicializePassword] = useState(false);
 
   const [targetValues, setTargetValues] = useState({
     firstname: "",
@@ -42,21 +41,21 @@ export default function ModifyUser() {
           targetValues.lastname !== ""
             ? targetValues.lastname
             : userData.lastname,
-        photo:
-          newUploadedFileName !== "" ? newUploadedFileName : userData.photo,
+        photo: !newUploadedFileName && userData.photo,
         email: targetValues.email !== "" ? targetValues.email : userData.email,
         password:
           targetValues.password !== ""
             ? targetValues.password
             : userData.password,
       })
-      .then(() => {
+      .then((response) => {
         if (targetValues.role !== "") {
           axios
             .put(
               `${import.meta.env.VITE_BACKEND_URL}/users/${userData.id}/role`,
               { role: targetValues.role }
             )
+            .then((res) => console.info(res))
             .catch((err) => console.error(err));
         }
 
@@ -66,7 +65,12 @@ export default function ModifyUser() {
               `${import.meta.env.VITE_BACKEND_URL}/users/${userData.id}/role`,
               { roleExpert: 3 }
             )
+            .then((res) => console.info(res))
             .catch((err) => console.error(err));
+          console.info({
+            message: "Add new expert user role done!!!",
+            response,
+          });
         }
 
         if (!targetValues.roleExpert && rolesFromUser.length >= 2) {
@@ -76,7 +80,12 @@ export default function ModifyUser() {
                 userData.id
               }/roleexpert`
             )
+            .then((res) => console.info(res))
             .catch((err) => console.error(err));
+          console.info({
+            message: "Delete expert user role done!!!",
+            response,
+          });
         }
       })
       .then(() => {
@@ -90,67 +99,15 @@ export default function ModifyUser() {
         }, 500);
       })
       .catch((err) => console.error(err));
+    console.info("Submitted new values form with state:", targetValues);
   };
 
-  const deleteUser = () => {
+  const disableUser = () => {
     axios
-      .delete(`${import.meta.env.VITE_BACKEND_URL}/users/${userData.id}/roles`)
-      .then((response) => {
-        if (response.status === 204) {
-          axios
-            .delete(
-              `${import.meta.env.VITE_BACKEND_URL}/users/${
-                userData.id
-              }/decisions`
-            )
-            .then((response1) => {
-              if (response1.status === 204) {
-                axios
-                  .delete(
-                    `${import.meta.env.VITE_BACKEND_URL}/users/${
-                      userData.id
-                    }/taggedasexpert`
-                  )
-                  .then((response2) => {
-                    if (response2.status === 204) {
-                      axios
-                        .delete(
-                          `${import.meta.env.VITE_BACKEND_URL}/users/${
-                            userData.id
-                          }/taggedasimpacted`
-                        )
-                        .then((response3) => {
-                          if (response3.status === 204) {
-                            axios
-                              .delete(
-                                `${import.meta.env.VITE_BACKEND_URL}/users/${
-                                  userData.id
-                                }/comments`
-                              )
-                              .then((response4) => {
-                                if (response4.status === 204) {
-                                  axios
-                                    .delete(
-                                      `${
-                                        import.meta.env.VITE_BACKEND_URL
-                                      }/users/${userData.id}`
-                                    )
-                                    .then((response5) => {
-                                      if (response5.status === 204)
-                                        console.info("User deleted completely");
-                                    })
-                                    .catch((err) => console.error(err));
-                                }
-                              });
-                          }
-                        });
-                    }
-                  });
-              }
-            })
-            .catch((err) => console.error(err));
-        }
-      })
+      .put(
+        `${import.meta.env.VITE_BACKEND_URL}/users/${userData.id}/isactive`,
+        { isActive: false }
+      )
       .catch((err) => console.error(err));
   };
 
@@ -175,16 +132,12 @@ export default function ModifyUser() {
     setRolesFromUser(sliptUserRoles);
   }, [userData]);
 
-  useEffect(() => {
-    setReinicializePassword(false);
-  }, [reinicializePassword]);
-
   return (
     <form className="modify-user-management" onSubmit={submit}>
       <div className="add-user-title-container">
         <h2 className="add-user-title">Modification d'utilisateur</h2>
         <div className="remove-button-container-2">
-          <button type="button" onClick={() => deleteUser()}>
+          <button type="button" onClick={disableUser}>
             Supprimer
           </button>
         </div>
@@ -222,17 +175,6 @@ export default function ModifyUser() {
                 onChange={update}
               />
             </label>
-            <div className="reinicialize-password-container">
-              <span
-                role="button"
-                tabIndex="0"
-                onKeyDown={() => {}}
-                className="reinicialize-password"
-                onClick={() => setReinicializePassword(true)}
-              >
-                Réinitialiser le mot de passe!
-              </span>
-            </div>
             <div className="roles-container-1">
               <div className="role-actuel-container">
                 <div className="role">
@@ -272,11 +214,13 @@ export default function ModifyUser() {
         <div className="profile-photo-container">
           <label htmlFor="profile-photo-input">
             <div className="img-container">
-              {dropzoneImage[0]?.preview ? (
+              {userData?.photo ? (
                 <img
                   src={
-                    dropzoneImage[0]?.preview
-                      ? dropzoneImage[0]?.preview
+                    userData
+                      ? `${import.meta.env.VITE_BACKEND_URL}/uploads/${
+                          userData?.photo
+                        }`
                       : Avatar0
                   }
                   alt="profil"
@@ -284,10 +228,8 @@ export default function ModifyUser() {
               ) : (
                 <img
                   src={
-                    userData
-                      ? `${import.meta.env.VITE_BACKEND_URL}/uploads/${
-                          userData?.photo
-                        }`
+                    dropzoneImage[0]?.preview
+                      ? dropzoneImage[0]?.preview
                       : Avatar0
                   }
                   alt="profil"
@@ -341,7 +283,7 @@ export default function ModifyUser() {
               <button type="submit">Valider les modifications</button>
             </div>
             <div className="remove-button-container-1">
-              <button type="button" onClick={() => deleteUser()}>
+              <button type="button" onClick={() => disableUser()}>
                 Supprimer
               </button>
             </div>
