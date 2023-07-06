@@ -1,12 +1,12 @@
 @import "../variables";
-.admin-global-container{
+.admin-global-container {
   display: flex;
   flex-direction: column;
   width: 90%;
   margin: 0 auto;
   gap: 1rem;
-  font-family:$primary-font ;
-details[open] {
+  font-family: $primary-font;
+  details[open] {
     summary {
       color: #9b084f;
       font-weight: bold;
@@ -26,11 +26,9 @@ details[open] {
   }
 }
 @media screen and (min-width: 768px) {
- .adminProfile
-    .details-container {
-      summary {
-        font-size: 1.5rem;
-      }
-    
+  .adminProfile .details-container {
+    summary {
+      font-size: 1.5rem;
+    }
   }
 }
