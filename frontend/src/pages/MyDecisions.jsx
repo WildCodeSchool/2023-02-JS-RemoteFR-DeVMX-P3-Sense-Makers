@@ -21,7 +21,9 @@ export default function MyDecisions() {
 
   useEffect(() => {
     axios
-      .get(`${import.meta.env.VITE_BACKEND_URL}/status`)
+      .get(`${import.meta.env.VITE_BACKEND_URL}/status`, {
+        withCredentials: true,
+      })
       .then((res) => setAllStatus(res.data))
       .catch((err) => {
         console.error(err);

@@ -12,7 +12,9 @@ function UsersList() {
   const [filterUser, setFilterUser] = useState("");
   useEffect(() => {
     axios
-      .get(`${import.meta.env.VITE_BACKEND_URL}/users`)
+      .get(`${import.meta.env.VITE_BACKEND_URL}/users`, {
+        withCredentials: true,
+      })
       .then((res) => {
         setUsers(res.data);
       })
