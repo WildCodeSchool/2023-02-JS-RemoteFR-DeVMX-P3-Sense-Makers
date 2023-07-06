@@ -121,7 +121,7 @@ const editUserIsActive = (req, res) => {
   const userId = parseInt(req.params.id, 10);
 
   models.users
-    .update(userId, isActive)
+    .updateUserIsActive(userId, isActive)
     .then(([result]) => {
       if (result.affectedRows === 0) {
         res.sendStatus(404);
