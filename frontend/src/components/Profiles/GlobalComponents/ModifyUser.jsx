@@ -8,6 +8,7 @@ export default function ModifyUser() {
   const [newUploadedFileName, setNewUploadedFileName] = useState("");
   const [rolesData, setRolesData] = useState([]);
   const [rolesFromUser, setRolesFromUser] = useState([]);
+  const [reinicializePassword, setReinicializePassword] = useState(false);
 
   const [targetValues, setTargetValues] = useState({
     firstname: "",
@@ -122,6 +123,10 @@ export default function ModifyUser() {
     setRolesFromUser(splitUserRoles);
   }, [userData]);
 
+  useEffect(() => {
+    setReinicializePassword(false);
+  }, [reinicializePassword]);
+
   return (
     <form className="modify-user-management" onSubmit={submit}>
       <div className="add-user-title-container">
@@ -163,6 +168,17 @@ export default function ModifyUser() {
                 onChange={update}
               />
             </label>
+            <div className="reinicialize-password-container">
+              <span
+                role="button"
+                tabIndex="0"
+                onKeyDown={() => {}}
+                className="reinicialize-password"
+                onClick={() => setReinicializePassword(true)}
+              >
+                Réinitialiser le mot de passe!
+              </span>
+            </div>
             <div className="roles-container-1">
               <div className="role-actuel-container">
                 <div className="role">

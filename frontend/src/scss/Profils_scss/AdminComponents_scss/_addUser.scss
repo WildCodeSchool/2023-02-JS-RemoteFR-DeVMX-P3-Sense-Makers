@@ -41,11 +41,11 @@
       align-items: flex-start;
       flex-direction: column;
 
-      > label {
+      >label {
         margin-top: $space-xs;
         font-size: $font-size-s;
 
-        > input {
+        >input {
           margin-top: $space-xs;
           padding: $space-xxs;
           border-radius: $space-xxs;
@@ -83,7 +83,7 @@
         cursor: pointer;
       }
 
-      .require-select{
+      .require-select {
         border-color: #e36164;
       }
 
@@ -262,10 +262,10 @@
         flex-grow: 1;
 
         .input-fields {
-          > label {
+          >label {
             width: 10rem;
 
-            > input {
+            >input {
               width: 80%;
             }
           }
@@ -326,9 +326,11 @@
             border: 1px solid $border-color-base;
             cursor: pointer;
           }
-          .require-select{
+
+          .require-select {
             border-color: #e36164;
           }
+
           .role-expert-2 {
             margin-top: $space-m;
             margin-right: auto;
