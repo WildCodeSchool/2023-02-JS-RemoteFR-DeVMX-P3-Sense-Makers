@@ -118,8 +118,8 @@ export default function ModifyUser() {
   }, []);
 
   useEffect(() => {
-    const sliptUserRoles = userData.roles?.split(", ");
-    setRolesFromUser(sliptUserRoles);
+    const splitUserRoles = userData.roles?.split(", ");
+    setRolesFromUser(splitUserRoles);
   }, [userData]);
 
   return (
