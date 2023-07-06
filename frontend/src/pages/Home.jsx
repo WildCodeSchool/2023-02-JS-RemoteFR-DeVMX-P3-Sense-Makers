@@ -1,22 +1,14 @@
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
-import userContext from "../contexts/userContext";
 import CardDecision from "../components/CardDecision";
 
 export default function Home() {
-  const { token } = useContext(userContext);
   const [allDecisions, setAllDecision] = useState([]);
   const [allStatus, setAllStatus] = useState([]);
 
   useEffect(() => {
-    const myHeader = new Headers();
-    myHeader.append("Authorization", `Bearer ${token}`);
-
-    const requestOptions = {
-      headers: myHeader,
-    };
     axios
-      .get(`${import.meta.env.VITE_BACKEND_URL}/decisions`, requestOptions)
+      .get(`${import.meta.env.VITE_BACKEND_URL}/decisions`)
       .then((res) => setAllDecision(res.data))
       .catch((err) => {
         console.error(err);
