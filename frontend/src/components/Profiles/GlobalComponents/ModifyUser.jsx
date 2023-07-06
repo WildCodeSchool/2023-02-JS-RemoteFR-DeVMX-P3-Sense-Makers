@@ -114,10 +114,6 @@ export default function ModifyUser() {
     setRolesFromUser(splitUserRoles);
   }, [userData]);
 
-  useEffect(() => {
-    setReinicializePassword(false);
-  }, [reinicializePassword]);
-
   return (
     <form className="modify-user-management" onSubmit={submit}>
       <div className="add-user-title-container">
@@ -160,15 +156,19 @@ export default function ModifyUser() {
               />
             </label>
             <div className="reinicialize-password-container">
-              <span
-                role="button"
-                tabIndex="0"
-                onKeyDown={() => {}}
-                className="reinicialize-password"
-                onClick={() => setReinicializePassword(true)}
-              >
-                Réinitialiser le mot de passe!
-              </span>
+              {!reinicializePassword ? (
+                <span
+                  role="button"
+                  tabIndex="0"
+                  onKeyDown={() => {}}
+                  className="reinicialize-password"
+                  onClick={() => setReinicializePassword(true)}
+                >
+                  Réinitialiser le mot de passe!
+                </span>
+              ) : (
+                <span> Mot de passe réinitialisée!!!</span>
+              )}
             </div>
             <div className="roles-container-1">
               <div className="role-actuel-container">
