@@ -48,7 +48,7 @@ export default function ModifyUser() {
             ? targetValues.password
             : userData.password,
       })
-      .then((response) => {
+      .then(() => {
         if (targetValues.role !== "") {
           axios
             .put(
@@ -67,13 +67,9 @@ export default function ModifyUser() {
             )
             .then((res) => console.info(res))
             .catch((err) => console.error(err));
-          console.info({
-            message: "Add new expert user role done!!!",
-            response,
-          });
         }
 
-        if (!targetValues.roleExpert && rolesFromUser.length >= 2) {
+        if (targetValues.roleExpert === false && rolesFromUser.length >= 2) {
           axios
             .delete(
               `${import.meta.env.VITE_BACKEND_URL}/users/${
@@ -82,16 +78,12 @@ export default function ModifyUser() {
             )
             .then((res) => console.info(res))
             .catch((err) => console.error(err));
-          console.info({
-            message: "Delete expert user role done!!!",
-            response,
-          });
         }
       })
       .then(() => {
         setTimeout(() => {
           axios
-            .get(`${import.meta.env.VITE_BACKEND_URL}/users/4`)
+            .get(`${import.meta.env.VITE_BACKEND_URL}/users/3`)
             .then((result) => {
               setUserData(result.data[0]);
             })
@@ -99,7 +91,6 @@ export default function ModifyUser() {
         }, 500);
       })
       .catch((err) => console.error(err));
-    console.info("Submitted new values form with state:", targetValues);
   };
 
   useEffect(() => {
@@ -111,7 +102,7 @@ export default function ModifyUser() {
 
   useEffect(() => {
     axios
-      .get(`${import.meta.env.VITE_BACKEND_URL}/users/4`)
+      .get(`${import.meta.env.VITE_BACKEND_URL}/users/3`)
       .then((result) => {
         setUserData(result.data[0]);
       })
