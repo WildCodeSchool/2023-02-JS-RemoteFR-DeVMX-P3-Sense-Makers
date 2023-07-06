@@ -10,7 +10,7 @@
   input {
     border-radius: 40px;
     padding: 0.2rem 0.7rem;
-    margin: 1rem auto;
+    margin: 1rem;
     background-color: #d9d9d97f;
     border: 1px solid rgb(78, 78, 78);
     width: 100%;
@@ -21,6 +21,7 @@
   table {
     width: 100%;
     margin: 0 auto;
+    border-collapse: collapse;
     thead {
       tr {
         :nth-child(1),
@@ -36,13 +37,16 @@
       }
     }
     tbody {
+      > :nth-child(2n + 1) {
+        background-color: #d9d9d9a9;
+      }
       tr {
         height: 3rem;
         border: 1px solid var(--bleuColor);
         box-shadow: 0px 15px 20px -10px #d8d8d8;
         text-align: center;
         vertical-align: middle;
-        color: #4249af;
+        color: black;
         backdrop-filter: blur(3px);
 
         :nth-child(1),
