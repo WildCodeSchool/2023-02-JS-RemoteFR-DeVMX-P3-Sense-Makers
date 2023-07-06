@@ -114,7 +114,7 @@ const editUser = (req, res) => {
     });
 };
 const editUserIsActive = (req, res) => {
-  const isActive = req.body;
+  const { isActive } = req.body;
 
   // TODO validations (length, format...)
 
