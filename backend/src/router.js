@@ -27,7 +27,7 @@ router.post(
 );
 
 // routes protected
-router.use("/logged", verifyToken);
+router.use(verifyToken);
 
 router.get("/decisions", decisionControllers.browseDecisions);
 router.get("/decisions/:id", decisionControllers.readDecision);
