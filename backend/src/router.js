@@ -27,7 +27,7 @@ router.post(
 );
 
 // routes protected
-router.use("/logged", verifyToken);
+router.use(verifyToken);
 
 router.get("/decisions", decisionControllers.browseDecisions);
 router.get("/decisions/:id", decisionControllers.readDecision);
@@ -72,6 +72,7 @@ router.post("/users/:id/role", usersControllers.addRoleToUser);
 router.put("/users/:id/role", usersControllers.editUserRole);
 router.put("/users/:id/roleexpert", usersControllers.editUserRole);
 router.put("/users/:id", usersControllers.editUser);
+router.put("/users/:id/isactive", usersControllers.editUserIsActive);
 router.delete("/users/:id", usersControllers.destroyUser);
 router.delete("/users/:id/roleexpert", usersControllers.destroyUserRoleExpert);
 
