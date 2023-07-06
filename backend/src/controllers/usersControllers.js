@@ -113,6 +113,27 @@ const editUser = (req, res) => {
       res.sendStatus(500);
     });
 };
+const editUserIsActive = (req, res) => {
+  const isActive = req.body;
+
+  // TODO validations (length, format...)
+
+  const userId = parseInt(req.params.id, 10);
+
+  models.users
+    .update(userId, isActive)
+    .then(([result]) => {
+      if (result.affectedRows === 0) {
+        res.sendStatus(404);
+      } else {
+        res.sendStatus(204);
+      }
+    })
+    .catch((err) => {
+      console.error(err);
+      res.sendStatus(500);
+    });
+};
 
 const editUserRole = (req, res) => {
   const userId = parseInt(req.params.id, 10);
@@ -254,6 +275,7 @@ module.exports = {
   readUser,
   readUserWithRoles,
   editUser,
+  editUserIsActive,
   editUserRole,
   addUser,
   addRoleToUser,

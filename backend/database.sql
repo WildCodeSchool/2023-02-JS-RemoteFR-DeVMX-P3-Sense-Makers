@@ -97,6 +97,7 @@ INSERT INTO users (
     photo,
     email,
     password,
+    is_active,
     creation_date
   )
 VALUES (
@@ -105,6 +106,7 @@ VALUES (
     "Alaric.jpg",
     "place.holder@placeholder.com",
     "$argon2id$v=19$m=65536,t=3,p=4$G86ilaHqcIdB1K7i9aW7qw$MY6SjY1R4irmD8qIJCIAZ+R65DslW1Pdb6l7X/FYAxM",
+    1,
     "2023-03-03"
   ),
   (
@@ -113,6 +115,7 @@ VALUES (
     "Nicolas.jpg",
     "jean.mich@michel.com",
     "$argon2id$v=19$m=65536,t=3,p=4$G86ilaHqcIdB1K7i9aW7qw$MY6SjY1R4irmD8qIJCIAZ+R65DslW1Pdb6l7X/FYAxM",
+    1,
     "2025-12-08"
   ),
   (
@@ -121,6 +124,7 @@ VALUES (
     "photo-frederico_cassola_.jpg",
     "Harry.Potter@poudlard.com",
     "$argon2id$v=19$m=65536,t=3,p=4$G86ilaHqcIdB1K7i9aW7qw$MY6SjY1R4irmD8qIJCIAZ+R65DslW1Pdb6l7X/FYAxM",
+    1,
     "1905-05-25"
   ),
   (
@@ -129,6 +133,7 @@ VALUES (
     "Photo_Charlotte.jpg",
     "lorem@ipsum.com",
     "$argon2id$v=19$m=65536,t=3,p=4$G86ilaHqcIdB1K7i9aW7qw$MY6SjY1R4irmD8qIJCIAZ+R65DslW1Pdb6l7X/FYAxM",
+    1,
     "8674-02-05"
   );
 INSERT INTO decisions (

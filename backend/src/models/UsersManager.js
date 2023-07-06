@@ -122,7 +122,7 @@ class UsersManager extends AbstractManager {
     );
   }
 
-  updateIsActiveUser(isActive, userId) {
+  updateIsActiveUser(userId, isActive) {
     return this.database.query(`update users set is_active = ? where id = ?`, [
       isActive,
       userId,
