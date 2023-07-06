@@ -103,7 +103,6 @@ export default function AddUser() {
           }
         });
     } else {
-      console.info("Not valid form:", inputValidationRules(targetValues));
       const invalidInputsTargets = inputValidationRules(targetValues);
       if (!invalidInputsTargets.role) {
         setRequiredSelect(true);

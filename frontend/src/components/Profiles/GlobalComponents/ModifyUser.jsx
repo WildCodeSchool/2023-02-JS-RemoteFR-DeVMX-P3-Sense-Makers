@@ -55,7 +55,6 @@ export default function ModifyUser() {
               `${import.meta.env.VITE_BACKEND_URL}/users/${userData.id}/role`,
               { role: targetValues.role }
             )
-            .then((res) => console.info(res))
             .catch((err) => console.error(err));
         }
 
@@ -65,7 +64,6 @@ export default function ModifyUser() {
               `${import.meta.env.VITE_BACKEND_URL}/users/${userData.id}/role`,
               { roleExpert: 3 }
             )
-            .then((res) => console.info(res))
             .catch((err) => console.error(err));
         }
 
@@ -76,7 +74,6 @@ export default function ModifyUser() {
                 userData.id
               }/roleexpert`
             )
-            .then((res) => console.info(res))
             .catch((err) => console.error(err));
         }
       })
