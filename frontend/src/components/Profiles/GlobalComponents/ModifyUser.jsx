@@ -283,7 +283,7 @@ export default function ModifyUser() {
               <button type="submit">Valider les modifications</button>
             </div>
             <div className="remove-button-container-1">
-              <button type="button" onClick={() => disableUser()}>
+              <button type="button" onClick={disableUser}>
                 Supprimer
               </button>
             </div>
