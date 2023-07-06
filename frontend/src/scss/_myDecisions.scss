@@ -1,3 +1,5 @@
+@import "./variables";
+
 .title-container {
   display: flex;
   flex-direction: column;
@@ -9,20 +11,20 @@
   }
 
   button {
-    height: 2.5rem;
-    max-width: 58%;
-    margin: 2rem auto;
-    padding: 0.5rem;
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 1rem;
-    background: #0c3944;
-    color: #fff;
-    font-family: "Raleway", Helvetica, Arial, sans-serif;
-    font-weight: bold;
-    border-radius: 50px;
+    height: 2.5rem;
+    max-width: 58%;
+    margin: 2rem auto;
+    padding: 0.5rem;
     border: none;
+    background: $color-default;
+    color: #fff;
+    font-family: $primary-font;
+    font-weight: $primary-font-weight;
+    border-radius: $border-radius-xxl;
 
     i {
       border: 1px solid white;
@@ -38,6 +40,7 @@
 
     h1 {
       text-align: left;
+      font-size: $font-size-xxxxxl;
     }
   }
 }
