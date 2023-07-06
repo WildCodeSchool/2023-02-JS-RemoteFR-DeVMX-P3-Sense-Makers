@@ -19,10 +19,15 @@ const {
 } = require("./services/checkAuth");
 
 // public route
-router.post("/login", usersControllers.getUserByEmail, verifyPassword);
+router.post(
+  "/login",
+  usersControllers.getUserByEmail,
+  verifyPassword,
+  verifyToken
+);
 
 // routes protected
-router.use(verifyToken);
+router.use("/logged", verifyToken);
 
 router.get("/decisions", decisionControllers.browseDecisions);
 router.get("/decisions/:id", decisionControllers.readDecision);
@@ -56,7 +61,7 @@ router.delete(
 
 router.get("/status", statusControllers.browseStatus);
 
-router.get("/users", verifyToken, usersControllers.browseUsersWithRoles);
+router.get("/users", usersControllers.browseUsersWithRoles);
 router.get("/users/concat", usersControllers.BrowseConcatUsers);
 router.get("/users/experts", usersControllers.BrowseConcatExperts);
 

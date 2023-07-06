@@ -31,7 +31,7 @@ export default function MyDecisions() {
     <div className="all-decisions-container">
       <div className="title-container">
         <h1>Mes décisions</h1>
-        <button type="button" onClick={() => navigate("/postdecision")}>
+        <button type="button" onClick={() => navigate("/logged/postdecision")}>
           <i className="fa-solid fa-plus" />
           Créer une décision
         </button>
