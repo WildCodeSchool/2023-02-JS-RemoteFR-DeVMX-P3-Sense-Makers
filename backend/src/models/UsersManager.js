@@ -7,7 +7,7 @@ class UsersManager extends AbstractManager {
 
   findAllUsersWithRoles() {
     return this.database.query(
-      `SELECT ${this.table}.id, ${this.table}.firstname, ${this.table}.lastname, ${this.table}.photo, ${this.table}.email, ${this.table}.password, ${this.table}.creation_date, GROUP_CONCAT( r.role_name SEPARATOR ", " ) roles FROM  ${this.table}
+      `SELECT ${this.table}.id, ${this.table}.firstname, ${this.table}.lastname, ${this.table}.photo, ${this.table}.email, ${this.table}.password, ${this.table}.is_active, ${this.table}.creation_date, GROUP_CONCAT( r.role_name SEPARATOR ", " ) roles FROM  ${this.table}
       left join users_roles ur ON ur.user_id = ${this.table}.id
       inner join roles r ON r.id = ur.role_id
       group by ${this.table}.id;
@@ -17,7 +17,7 @@ class UsersManager extends AbstractManager {
 
   findUserWithRolesById(id) {
     return this.database.query(
-      `SELECT ${this.table}.id, ${this.table}.firstname, ${this.table}.lastname, ${this.table}.photo, ${this.table}.email, ${this.table}.password, ${this.table}.creation_date, GROUP_CONCAT ( r.role_name SEPARATOR ", " ) roles FROM  ${this.table}
+      `SELECT ${this.table}.id, ${this.table}.firstname, ${this.table}.lastname, ${this.table}.photo, ${this.table}.email, ${this.table}.password, ${this.table}.is_active, ${this.table}.creation_date, GROUP_CONCAT ( r.role_name SEPARATOR ", " ) roles FROM  ${this.table}
       left join users_roles ur ON ur.user_id = ${this.table}.id
       inner join roles r ON r.id = ur.role_id
       where ${this.table}.id = ?
@@ -120,6 +120,13 @@ class UsersManager extends AbstractManager {
       `delete from users_roles where user_id = ? and role_id = 3`,
       [userId]
     );
+  }
+
+  updateUserIsActive(userId, isActive) {
+    return this.database.query(`update users set is_active = ? where id = ?`, [
+      isActive,
+      userId,
+    ]);
   }
 }
 

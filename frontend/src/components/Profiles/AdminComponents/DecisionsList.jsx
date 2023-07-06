@@ -10,7 +10,9 @@ function DecisionsList() {
 
   useEffect(() => {
     axios
-      .get(`${import.meta.env.VITE_BACKEND_URL}/decisions`)
+      .get(`${import.meta.env.VITE_BACKEND_URL}/decisions`, {
+        withCredentials: true,
+      })
       .then((res) => {
         setDecisions(res.data);
       })
