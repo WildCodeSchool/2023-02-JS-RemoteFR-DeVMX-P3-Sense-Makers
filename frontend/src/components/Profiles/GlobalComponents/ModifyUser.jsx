@@ -32,28 +32,38 @@ export default function ModifyUser() {
   const submit = (event) => {
     event.preventDefault();
     axios
-      .put(`${import.meta.env.VITE_BACKEND_URL}/users/${userData.id}`, {
-        firstname:
-          targetValues.firstname !== ""
-            ? targetValues.firstname
-            : userData.firstname,
-        lastname:
-          targetValues.lastname !== ""
-            ? targetValues.lastname
-            : userData.lastname,
-        photo: !newUploadedFileName && userData.photo,
-        email: targetValues.email !== "" ? targetValues.email : userData.email,
-        password:
-          targetValues.password !== ""
-            ? targetValues.password
-            : userData.password,
-      })
+      .put(
+        `${import.meta.env.VITE_BACKEND_URL}/users/${userData.id}`,
+        {
+          firstname:
+            targetValues.firstname !== ""
+              ? targetValues.firstname
+              : userData.firstname,
+          lastname:
+            targetValues.lastname !== ""
+              ? targetValues.lastname
+              : userData.lastname,
+          photo: !newUploadedFileName && userData.photo,
+          email:
+            targetValues.email !== "" ? targetValues.email : userData.email,
+          password:
+            targetValues.password !== ""
+              ? targetValues.password
+              : userData.password,
+        },
+        {
+          withCredentials: true,
+        }
+      )
       .then((response) => {
         if (targetValues.role !== "") {
           axios
             .put(
               `${import.meta.env.VITE_BACKEND_URL}/users/${userData.id}/role`,
-              { role: targetValues.role }
+              { role: targetValues.role },
+              {
+                withCredentials: true,
+              }
             )
             .then((res) => console.info(res))
             .catch((err) => console.error(err));
@@ -63,7 +73,10 @@ export default function ModifyUser() {
           axios
             .post(
               `${import.meta.env.VITE_BACKEND_URL}/users/${userData.id}/role`,
-              { roleExpert: 3 }
+              { roleExpert: 3 },
+              {
+                withCredentials: true,
+              }
             )
             .then((res) => console.info(res))
             .catch((err) => console.error(err));
@@ -78,7 +91,10 @@ export default function ModifyUser() {
             .delete(
               `${import.meta.env.VITE_BACKEND_URL}/users/${
                 userData.id
-              }/roleexpert`
+              }/roleexpert`,
+              {
+                withCredentials: true,
+              }
             )
             .then((res) => console.info(res))
             .catch((err) => console.error(err));
@@ -91,7 +107,9 @@ export default function ModifyUser() {
       .then(() => {
         setTimeout(() => {
           axios
-            .get(`${import.meta.env.VITE_BACKEND_URL}/users/4`)
+            .get(`${import.meta.env.VITE_BACKEND_URL}/users/4`, {
+              withCredentials: true,
+            })
             .then((result) => {
               setUserData(result.data[0]);
             })
@@ -104,14 +122,18 @@ export default function ModifyUser() {
 
   useEffect(() => {
     axios
-      .get(`${import.meta.env.VITE_BACKEND_URL}/roles`)
+      .get(`${import.meta.env.VITE_BACKEND_URL}/roles`, {
+        withCredentials: true,
+      })
       .then((response) => setRolesData(response.data))
       .catch((err) => console.error(err));
   }, []);
 
   useEffect(() => {
     axios
-      .get(`${import.meta.env.VITE_BACKEND_URL}/users/4`)
+      .get(`${import.meta.env.VITE_BACKEND_URL}/users/4`, {
+        withCredentials: true,
+      })
       .then((result) => {
         setUserData(result.data[0]);
       })

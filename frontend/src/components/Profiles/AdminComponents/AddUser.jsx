@@ -38,7 +38,9 @@ export default function AddUser() {
 
   useEffect(() => {
     axios
-      .get(`${import.meta.env.VITE_BACKEND_URL}/roles`)
+      .get(`${import.meta.env.VITE_BACKEND_URL}/roles`, {
+        withCredentials: true,
+      })
       .then((response) => setRolesData(response.data))
       .catch((err) => console.error(err));
   }, []);
@@ -52,14 +54,20 @@ export default function AddUser() {
 
     if (isValidForm) {
       axios
-        .post(`${import.meta.env.VITE_BACKEND_URL}/users`, {
-          firstname: targetValues.firstName,
-          lastname: targetValues.lastName,
-          photo: newUploadedFileName,
-          email: targetValues.email,
-          password: targetValues.password,
-          creation_date: "2023-23-32",
-        })
+        .post(
+          `${import.meta.env.VITE_BACKEND_URL}/users`,
+          {
+            firstname: targetValues.firstName,
+            lastname: targetValues.lastName,
+            photo: newUploadedFileName,
+            email: targetValues.email,
+            password: targetValues.password,
+            creation_date: "2023-23-32",
+          },
+          {
+            withCredentials: true,
+          }
+        )
         .then((response) => {
           console.info(response);
           if (response.status === 201 && !targetValues.roleExpert) {
@@ -69,6 +77,9 @@ export default function AddUser() {
               }/role`,
               {
                 roleId: parseInt(targetValues.role, 10),
+              },
+              {
+                withCredentials: true,
               }
             );
           } else {
@@ -78,6 +89,9 @@ export default function AddUser() {
               }/role`,
               {
                 roleId: parseInt(targetValues.role, 10),
+              },
+              {
+                withCredentials: true,
               }
             );
             axios.post(
@@ -86,15 +100,24 @@ export default function AddUser() {
               }/role`,
               {
                 roleId: 3,
+              },
+              {
+                withCredentials: true,
               }
             );
           }
           if (response.status === 201) {
             axios
-              .post(`${import.meta.env.VITE_BACKEND_URL}/sendmail`, {
-                id: response.data.insertId,
-                email: targetValues.email,
-              })
+              .post(
+                `${import.meta.env.VITE_BACKEND_URL}/sendmail`,
+                {
+                  id: response.data.insertId,
+                  email: targetValues.email,
+                },
+                {
+                  withCredentials: true,
+                }
+              )
               .then((result) => console.info(result))
               .catch((err) => console.error(err));
           }
