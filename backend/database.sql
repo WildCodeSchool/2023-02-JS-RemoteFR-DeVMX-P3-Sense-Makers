@@ -86,11 +86,13 @@ VALUES ("Administrateur"),
   ("Expert");
 INSERT INTO `status` (title)
 VALUES ("Prise de décision débutée"),
+  ("Prise de décision en attente"),
   ("Première décision prise"),
-  ("Conflit sur la décision"),
+  ("Décision définitive en attente"),
   ("Décision définitive"),
-  ("Décision non aboutie"),
-  ("Décision terminée");
+  ("Décision terminée"),
+  ("Décision non aboutie");
+
 INSERT INTO users (
     firstname,
     lastname,
@@ -231,6 +233,48 @@ Nibh cras pulvinar mattis nunc. Sed risus ultricies tristique nulla aliquet enim
     1
   ),
   (
+    "placeholder",
+    "je place holder; tu places holder; il place holder; nous plaçons holder; vous placez holder; ils placent holder, je place holder; tu places holder; il place holder; nous plaçons holder; vous placez holder; ils placent holder, je place holder; tu places holder; il place holder; nous plaçons holder; vous placez holder; ils placent holder, je place holder; tu places holder; il place holder; nous plaçons holder; vous placez holder; ils placent holder, je place holder; tu places holder; il place holder; nous plaçons holder; vous placez holder; ils placent holder, je place holder; tu places holder; il place holder; nous plaçons holder; vous placez holder; ils placent holder, je place holder; tu places holder; il place holder; nous plaçons holder; vous placez holder; ils placent holder, je place holder; tu places holder; il place holder; nous plaçons holder; vous placez holder; ils placent holder, je place holder; tu places holder; il place holder; nous plaçons holder; vous placez holder; ils placent holder, je place holder; tu places holder; il place holder; nous plaçons holder; vous placez holder; ils placent holder, je place holder; tu places holder; il place holder; nous plaçons holder; vous placez holder; ils placent holder, je place holder; tu places holder; il place holder; nous plaçons holder; vous placez holder; ils placent holder, je place holder; tu places holder; il place holder; nous plaçons holder; vous placez holder; ils placent holder, je place holder; tu places holder; il place holder; nous plaçons holder; vous placez holder; ils placent holder, je place holder; tu places holder; il place holder; nous plaçons holder; vous placez holder; ils placent holder, je place holder; tu places holder; il place holder; nous plaçons holder; vous placez holder; ils placent holder, je place holder; tu places holder; il place holder; nous plaçons holder; vous placez holder; ils placent holder, je place holder; tu places holder; il place holder; nous plaçons holder; vous placez holder; ils placent holder, je place holder; tu places holder; il place holder; nous plaçons holder; vous placez holder; ils placent holder, je place holder; tu places holder; il place holder; nous plaçons holder; vous placez holder; ils placent holder, je place holder; tu places holder; il place holder; nous plaçons holder; vous placez holder; ils placent holder, je place holder; tu places holder; il place holder; nous plaçons holder; vous placez holder; ils placent holder, je place holder; tu places holder; il place holder; nous plaçons holder; vous placez holder; ils placent holder, je place holder; tu places holder; il place holder; nous plaçons holder; vous placez holder; ils placent holder, je place holder; tu places holder; il place holder; nous plaçons holder; vous placez holder; ils placent holder, je place holder; tu places holder; il place holder; nous plaçons holder; vous placez holder; ils placent holder, je place holder; tu places holder; il place holder; nous plaçons holder; vous placez holder; ils placent holder, je place holder; tu places holder; il place holder; nous plaçons holder; vous placez holder; ils placent holder, je place holder; tu places holder; il place holder; nous plaçons holder; vous placez holder; ils placent holder, je place holder; tu places holder; il place holder; nous plaçons holder; vous placez holder; ils placent holder, je place holder; tu places holder; il place holder; nous plaçons holder; vous placez holder; ils placent holder, je place holder; tu places holder; il place holder; nous plaçons holder; vous placez holder; ils placent holder, je place holder; tu places holder; il place holder; nous plaçons holder; vous placez holder; ils placent holder, je place holder; tu places holder; il place holder; nous plaçons holder; vous placez holder; ils placent holder, je place holder; tu places holder; il place holder; nous plaçons holder; vous placez holder; ils placent holder, je place holder; tu places holder; il place holder; nous plaçons holder; vous placez holder; ils placent holder, je place holder; tu places holder; il place holder; nous plaçons holder; vous placez holder; ils placent holder, je place holder; tu places holder; il place holder; nous plaçons holder; vous placez holder; ils placent holder, je place holder; tu places holder; il place holder; nous plaçons holder; vous placez holder; ils placent holder, je place holder; tu places holder; il place holder; nous plaçons holder; vous placez holder; ils placent holder, je place holder; tu places holder; il place holder; nous plaçons holder; vous placez holder; ils placent holder, je place holder; tu places holder; il place holder; nous plaçons holder; vous placez holder; ils placent holder, je place holder; tu places holder; il place holder; nous plaçons holder; vous placez holder; ils placent holder, je place holder; tu places holder; il place holder; nous plaçons holder; vous placez holder; ils placent holder, je place holder; tu places holder; il place holder; nous plaçons holder; vous placez holder; ils placent holder, je place holder; tu places holder; il place holder; nous plaçons holder; vous placez holder; ils placent holder, je place holder; tu places holder; il place holder; nous plaçons holder; vous placez holder; ils placent holder, je place holder; tu places holder; il place holder; nous plaçons holder; vous placez holder; ils placent holder, je place holder; tu places holder; il place holder; nous plaçons holder; vous placez holder; ils placent holder, je place holder; tu places holder; il place holder; nous plaçons holder; vous placez holder; ils placent holder, je place holder; tu places holder; il place holder; nous plaçons holder; vous placez holder; ils placent holder, je place holder; tu places holder; il place holder; nous plaçons holder; vous placez holder; ils placent holder, je place holder; tu places holder; il place holder; nous plaçons holder; vous placez holder; ils placent holder, je place holder; tu places holder; il place holder; nous plaçons holder; vous placez holder; ils placent holder, je place holder; tu places holder; il place holder; nous plaçons holder; vous placez holder; ils placent holder, je place holder; tu places holder; il place holder; nous plaçons holder; vous placez holder; ils placent holder, je place holder; tu places holder; il place holder; nous plaçons holder; vous placez holder; ils placent holder, je place holder; tu places holder; il place holder; nous plaçons holder; vous placez holder; ils placent holder, je place holder; tu places holder; il place holder; nous plaçons holder; vous placez holder; ils placent holder, je place holder; tu places holder; il place holder; nous plaçons holder; vous placez holder; ils placent holder, je place holder; tu places holder; il place holder; nous plaçons holder; vous placez holder; ils placent holder, je place holder; tu places holder; il place holder; nous plaçons holder; vous placez holder; ils placent holder, je place holder; tu places holder; il place holder; nous plaçons holder; vous placez holder; ils placent holder, je place holder; tu places holder; il place holder; nous plaçons holder; vous placez holder; ils placent holder, je place holder; tu places holder; il place holder; nous plaçons holder; vous placez holder; ils placent holder, je place holder; tu places holder; il place holder; nous plaçons holder; vous placez holder; ils placent holder, je place holder; tu places holder; il place holder; nous plaçons holder; vous placez holder; ils placent holder, je place holder; tu places holder; il place holder; nous plaçons holder; vous placez holder; ils placent holder, je place holder; tu places holder; il place holder; nous plaçons holder; vous placez holder; ils placent holder, je place holder; tu places holder; il place holder; nous plaçons holder; vous placez holder; ils placent holder, je place holder; tu places holder; il place holder; nous plaçons holder; vous placez holder; ils placent holder",
+    "il faut placer holder parce qu'on a toujours besoin d'un petit placeholder quelque part",
+    "placer holder dans le cadre d'un plaçage de holder",
+    "holder sera enfin placé, et je pense que notre entreprise a vraiment besoin d'un holder placé a l'heure actuel car dans le context économique actuel nous ne pouvons pas nous permettre d'avoir un contenu n'étant pas du placeholder",
+    "c'est très long de placer holder et placeholder ne restera pas du coup c'est d'autant plus de temps de perdu",
+    1,
+    "2023-06-21",
+    "2023-07-06",
+    "2023-07-13",
+    "2023-07-28",
+    "2023-08-12",
+    42,
+    42,
+    NULL,
+    1
+  ),
+  
+  (
+    "Lorem Ipsum",
+    "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Diam quam nulla porttitor massa id neque aliquam vestibulum morbi. Mattis enim ut tellus elementum sagittis. Euismod elementum nisi quis eleifend quam adipiscing vitae proin sagittis. Malesuada pellentesque elit eget gravida cum. Nunc sed augue lacus viverra vitae. Id interdum velit laoreet id donec. Purus semper eget duis at tellus. Aliquet eget sit amet tellus cras adipiscing enim. Elit ullamcorper dignissim cras tincidunt lobortis feugiat. Etiam erat velit scelerisque in dictum non consectetur a. Diam quam nulla porttitor massa id neque. Et egestas quis ipsum suspendisse. Neque volutpat ac tincidunt vitae. Porttitor eget dolor morbi non arcu risus quis varius. Quis lectus nulla at volutpat diam ut venenatis tellus.
+Leo in vitae turpis massa. Urna cursus eget nunc scelerisque viverra mauris in aliquam sem. Imperdiet proin fermentum leo vel orci porta non pulvinar. Rutrum tellus pellentesque eu tincidunt tortor. Curabitur vitae nunc sed velit dignissim sodales ut eu sem. Cum sociis natoque penatibus et magnis. Suspendisse interdum consectetur libero id faucibus. Sit amet justo donec enim diam vulputate ut. Malesuada fames ac turpis egestas. Mattis nunc sed blandit libero volutpat. Eget arcu dictum varius duis. Turpis egestas sed tempus urna et. Fermentum odio eu feugiat pretium nibh ipsum. Ac placerat vestibulum lectus mauris ultrices eros.
+Non pulvinar neque laoreet suspendisse interdum consectetur libero id faucibus. Habitasse platea dictumst vestibulum rhoncus est pellentesque elit ullamcorper dignissim. Pharetra massa massa ultricies mi quis hendrerit dolor magna. Quam vulputate dignissim suspendisse in est ante. Velit scelerisque in dictum non consectetur a erat nam at. Tellus pellentesque eu tincidunt tortor aliquam nulla. Pharetra sit amet aliquam id diam maecenas ultricies mi eget. Phasellus vestibulum lorem sed risus ultricies tristique nulla. Sed turpis tincidunt id aliquet risus feugiat in ante. Purus gravida quis blandit turpis. Tincidunt vitae semper quis lectus nulla at volutpat diam. Tristique et egestas quis ipsum suspendisse ultrices gravida. Placerat duis ultricies lacus sed. Purus in massa tempor nec feugiat nisl pretium fusce. Tristique magna sit amet purus gravida. Turpis egestas pretium aenean pharetra magna. Blandit turpis cursus in hac habitasse platea dictumst quisque sagittis. Porttitor lacus luctus accumsan tortor posuere ac ut consequat semper.
+Nibh cras pulvinar mattis nunc. Sed risus ultricies tristique nulla aliquet enim tortor at. Elementum sagittis vitae et leo duis ut diam quam. Elementum nisi quis eleifend quam adipiscing vitae proin sagittis. Massa massa ultricies mi quis hendrerit dolor magna eget. Natoque penatibus et magnis dis parturient. Duis at consectetur lorem donec massa sapien faucibus et. Vel pharetra vel turpis nunc eget lorem dolor sed. Commodo ullamcorper a lacus vestibulum sed. Ipsum dolor sit amet consectetur adipiscing elit ut aliquam purus. Amet justo donec enim diam vulputate ut. Leo vel orci porta non pulvinar. Enim facilisis gravida neque convallis a cras semper auctor. Vitae suscipit tellus mauris a. Velit scelerisque in dictum non consectetur a. Et ultrices neque ornare aenean euismod elementum nisi quis. Scelerisque mauris pellentesque pulvinar pellentesque. Fermentum posuere urna nec tincidunt praesent semper feugiat. Tortor condimentum lacinia quis vel eros donec ac odio. Libero id faucibus nisl tincidunt eget nullam non nisi est.",
+    "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Diam quam nulla porttitor massa id neque aliquam vestibulum morbi. Mattis enim ut tellus elementum sagittis. Euismod elementum nisi quis eleifend quam adipiscing vitae proin sagittis. Malesuada pellentesque elit eget gravida cum. Nunc sed augue lacus viverra vitae. Id interdum velit laoreet id donec. Purus semper eget duis at tellus. Aliquet eget sit amet tellus cras adipiscing enim. Elit ullamcorper dignissim cras tincidunt lobortis feugiat.",
+    "Lorem ipsum dolor sit amet",
+    "Leo in vitae turpis massa. Urna cursus eget nunc scelerisque viverra mauris in aliquam sem. Imperdiet proin fermentum leo vel orci porta non pulvinar. Rutrum tellus pellentesque eu tincidunt tortor. Curabitur vitae nunc sed velit dignissim sodales ut eu sem. Cum sociis natoque penatibus et magnis. Suspendisse interdum consectetur libero id faucibus. Sit amet justo donec enim diam vulputate ut. Malesuada fames ac turpis egestas. Mattis nunc sed blandit libero volutpat. Eget arcu dictum varius duis. Turpis egestas sed tempus urna et. Fermentum odio eu feugiat pretium nibh ipsum. Ac placerat vestibulum lectus mauris ultrices eros.",
+    "Placerat duis ultricies lacus sed. Purus in massa tempor nec feugiat nisl pretium fusce. Tristique magna sit amet purus gravida. Turpis egestas pretium aenean pharetra magna. Blandit turpis cursus in hac habitasse platea dictumst quisque sagittis. Porttitor lacus luctus accumsan tortor posuere ac ut consequat semper.
+Nibh cras pulvinar mattis nunc. Sed risus ultricies tristique nulla aliquet enim tortor at. Elementum sagittis vitae et leo duis ut diam quam. Elementum nisi quis eleifend quam adipiscing vitae proin sagittis.",
+    1,
+    "2023-06-08",
+    "2023-06-23",
+    "2023-06-30",
+    "2023-07-15",
+    "2023-07-30",
+    42,
+    12,
+    NULL,
+    2
+  ),
+
+  (
     "test42",
     "Lo",
     "Lorem",
@@ -357,15 +401,15 @@ VALUES ("Hub France");
 SET GLOBAL event_scheduler = ON;
 CREATE EVENT update_status_event ON SCHEDULE EVERY 1 DAY STARTS CURRENT_TIMESTAMP DO
 UPDATE decisions
-SET status_id = 5
-WHERE status_id = 1
-  AND DATE(now()) >= initial_date + 22;
+SET status_id = 7
+WHERE status_id = 2
+  AND DATE(now()) >= deadline_comment + 7;
 UPDATE decisions
-SET status_id = 4,
+SET status_id = 5,
   is_validated = 0
-WHERE status_id = 3
-  AND DATE(now()) >= initial_date + 52;
+WHERE status_id = 4
+  AND DATE(now()) >= deadline_conflict + 15;
   UPDATE decisions
 SET status_id = 6
-WHERE status_id = 4
-  AND DATE(now()) >= initial_date + 142;
+WHERE status_id = 5
+  AND DATE(now()) >= final_take_decision + 90;
