@@ -54,14 +54,15 @@ export default function AddUser() {
 
     if (isValidForm) {
       axios
-        .post(`${import.meta.env.VITE_BACKEND_URL}/users`, 
-        {
-          firstname: targetValues.firstName,
-          lastname: targetValues.lastName,
-          photo: newUploadedFileName || "default_avatar.png",
-          email: targetValues.email,
-          password: targetValues.password,
-        },
+        .post(
+          `${import.meta.env.VITE_BACKEND_URL}/users`,
+          {
+            firstname: targetValues.firstName,
+            lastname: targetValues.lastName,
+            photo: newUploadedFileName || "default_avatar.png",
+            email: targetValues.email,
+            password: targetValues.password,
+          },
           {
             withCredentials: true,
           }
