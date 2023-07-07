@@ -11,10 +11,16 @@ export default function PostComments({ setAddComment, handleComment }) {
   function postComment() {
     setAddComment(false);
     axios
-      .post(`${import.meta.env.VITE_BACKEND_URL}/decisions/${id}/comments`, {
-        comment,
-        userId: placholderUserId,
-      })
+      .post(
+        `${import.meta.env.VITE_BACKEND_URL}/decisions/${id}/comments`,
+        {
+          comment,
+          userId: placholderUserId,
+        },
+        {
+          withCredentials: true,
+        }
+      )
       .catch((err) => console.error(err));
   }
 
