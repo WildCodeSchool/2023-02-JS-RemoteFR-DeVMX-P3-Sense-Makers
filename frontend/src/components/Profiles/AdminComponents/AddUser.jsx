@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react";
+import PropTypes from "prop-types";
 import axios from "axios";
 import Dropzone from "../../../services/hookDropzone";
 import inputValidationRules from "../../../services/inputValidationRules";
 
-export default function AddUser() {
+export default function AddUser({ setShowAddUser }) {
   const [dropzoneImage, setDropzoneImage] = useState([]);
   const [newUploadedFileName, setNewUploadedFileName] = useState("");
   const [rolesData, setRolesData] = useState([]);
@@ -38,7 +39,9 @@ export default function AddUser() {
 
   useEffect(() => {
     axios
-      .get(`${import.meta.env.VITE_BACKEND_URL}/roles`)
+      .get(`${import.meta.env.VITE_BACKEND_URL}/roles`, {
+        withCredentials: true,
+      })
       .then((response) => setRolesData(response.data))
       .catch((err) => console.error(err));
   }, []);
@@ -52,53 +55,68 @@ export default function AddUser() {
 
     if (isValidForm) {
       axios
-        .post(`${import.meta.env.VITE_BACKEND_URL}/users`, {
-          firstname: targetValues.firstName,
-          lastname: targetValues.lastName,
-          photo: newUploadedFileName || "default_avatar.png",
-          email: targetValues.email,
-          password: targetValues.password,
-        })
+        .post(
+          `${import.meta.env.VITE_BACKEND_URL}/users`,
+          {
+            firstname: targetValues.firstName,
+            lastname: targetValues.lastName,
+            photo: newUploadedFileName || "default_avatar.png",
+            email: targetValues.email,
+            password: targetValues.password,
+          },
+          {
+            withCredentials: true,
+          }
+        )
         .then((response) => {
           if (response.status === 201 && !targetValues.roleExpert) {
-            axios
-              .post(
-                `${import.meta.env.VITE_BACKEND_URL}/users/${
-                  response.data.insertId
-                }/role`,
-                {
-                  roleId: parseInt(targetValues.role, 10),
-                }
-              )
-              .catch((err) => console.error(err));
+            axios.post(
+              `${import.meta.env.VITE_BACKEND_URL}/users/${
+                response.data.insertId
+              }/role`,
+              {
+                roleId: parseInt(targetValues.role, 10),
+              },
+              {
+                withCredentials: true,
+              }
+            );
           } else {
-            axios
-              .post(
-                `${import.meta.env.VITE_BACKEND_URL}/users/${
-                  response.data.insertId
-                }/role`,
-                {
-                  roleId: parseInt(targetValues.role, 10),
-                }
-              )
-              .catch((err) => console.error(err));
-            axios
-              .post(
-                `${import.meta.env.VITE_BACKEND_URL}/users/${
-                  response.data.insertId
-                }/role`,
-                {
-                  roleId: 3,
-                }
-              )
-              .catch((err) => console.error(err));
+            axios.post(
+              `${import.meta.env.VITE_BACKEND_URL}/users/${
+                response.data.insertId
+              }/role`,
+              {
+                roleId: parseInt(targetValues.role, 10),
+              },
+              {
+                withCredentials: true,
+              }
+            );
+            axios.post(
+              `${import.meta.env.VITE_BACKEND_URL}/users/${
+                response.data.insertId
+              }/role`,
+              {
+                roleId: 3,
+              },
+              {
+                withCredentials: true,
+              }
+            );
           }
           if (response.status === 201) {
             axios
-              .post(`${import.meta.env.VITE_BACKEND_URL}/sendmail`, {
-                id: response.data.insertId,
-                email: targetValues.email,
-              })
+              .post(
+                `${import.meta.env.VITE_BACKEND_URL}/sendmail`,
+                {
+                  id: response.data.insertId,
+                  email: targetValues.email,
+                },
+                {
+                  withCredentials: true,
+                }
+              )
               .catch((err) => console.error(err));
           }
         });
@@ -113,6 +131,29 @@ export default function AddUser() {
     <form className="add-user-management" onSubmit={submit}>
       <div className="add-user-title-container">
         <h2 className="add-user-title">Ajout d'utilisateur</h2>
+        <div className="close-modal-button-container">
+          <button
+            type="button"
+            className="close-modal-button"
+            onClick={() => setShowAddUser(false)}
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              className="feather feather-x"
+            >
+              <line x1="18" y1="6" x2="6" y2="18" />
+              <line x1="6" y1="6" x2="18" y2="18" />
+            </svg>
+          </button>
+        </div>
       </div>
       <div className="user-management-container">
         <div className="input-container">
@@ -244,3 +285,7 @@ export default function AddUser() {
     </form>
   );
 }
+
+AddUser.propTypes = {
+  setShowAddUser: PropTypes.func.isRequired,
+};
