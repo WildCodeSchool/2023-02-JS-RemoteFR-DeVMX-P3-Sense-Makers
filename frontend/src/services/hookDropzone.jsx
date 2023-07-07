@@ -25,6 +25,7 @@ export default function Dropzone({
       axios
         .post(`${import.meta.env.VITE_BACKEND_URL}/uploads`, formData, {
           headers: { "Content-Type": "multipart/form-data" },
+          withCredentials: true,
         })
         .then((result) => {
           console.info(result);
