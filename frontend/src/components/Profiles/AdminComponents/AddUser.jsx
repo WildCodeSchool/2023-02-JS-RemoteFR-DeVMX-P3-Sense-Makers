@@ -38,7 +38,9 @@ export default function AddUser() {
 
   useEffect(() => {
     axios
-      .get(`${import.meta.env.VITE_BACKEND_URL}/roles`)
+      .get(`${import.meta.env.VITE_BACKEND_URL}/roles`, {
+        withCredentials: true,
+      })
       .then((response) => setRolesData(response.data))
       .catch((err) => console.error(err));
   }, []);
@@ -52,53 +54,68 @@ export default function AddUser() {
 
     if (isValidForm) {
       axios
-        .post(`${import.meta.env.VITE_BACKEND_URL}/users`, {
-          firstname: targetValues.firstName,
-          lastname: targetValues.lastName,
-          photo: newUploadedFileName || "default_avatar.png",
-          email: targetValues.email,
-          password: targetValues.password,
-        })
+        .post(
+          `${import.meta.env.VITE_BACKEND_URL}/users`,
+          {
+            firstname: targetValues.firstName,
+            lastname: targetValues.lastName,
+            photo: newUploadedFileName || "default_avatar.png",
+            email: targetValues.email,
+            password: targetValues.password,
+          },
+          {
+            withCredentials: true,
+          }
+        )
         .then((response) => {
           if (response.status === 201 && !targetValues.roleExpert) {
-            axios
-              .post(
-                `${import.meta.env.VITE_BACKEND_URL}/users/${
-                  response.data.insertId
-                }/role`,
-                {
-                  roleId: parseInt(targetValues.role, 10),
-                }
-              )
-              .catch((err) => console.error(err));
+            axios.post(
+              `${import.meta.env.VITE_BACKEND_URL}/users/${
+                response.data.insertId
+              }/role`,
+              {
+                roleId: parseInt(targetValues.role, 10),
+              },
+              {
+                withCredentials: true,
+              }
+            );
           } else {
-            axios
-              .post(
-                `${import.meta.env.VITE_BACKEND_URL}/users/${
-                  response.data.insertId
-                }/role`,
-                {
-                  roleId: parseInt(targetValues.role, 10),
-                }
-              )
-              .catch((err) => console.error(err));
-            axios
-              .post(
-                `${import.meta.env.VITE_BACKEND_URL}/users/${
-                  response.data.insertId
-                }/role`,
-                {
-                  roleId: 3,
-                }
-              )
-              .catch((err) => console.error(err));
+            axios.post(
+              `${import.meta.env.VITE_BACKEND_URL}/users/${
+                response.data.insertId
+              }/role`,
+              {
+                roleId: parseInt(targetValues.role, 10),
+              },
+              {
+                withCredentials: true,
+              }
+            );
+            axios.post(
+              `${import.meta.env.VITE_BACKEND_URL}/users/${
+                response.data.insertId
+              }/role`,
+              {
+                roleId: 3,
+              },
+              {
+                withCredentials: true,
+              }
+            );
           }
           if (response.status === 201) {
             axios
-              .post(`${import.meta.env.VITE_BACKEND_URL}/sendmail`, {
-                id: response.data.insertId,
-                email: targetValues.email,
-              })
+              .post(
+                `${import.meta.env.VITE_BACKEND_URL}/sendmail`,
+                {
+                  id: response.data.insertId,
+                  email: targetValues.email,
+                },
+                {
+                  withCredentials: true,
+                }
+              )
               .catch((err) => console.error(err));
           }
         });

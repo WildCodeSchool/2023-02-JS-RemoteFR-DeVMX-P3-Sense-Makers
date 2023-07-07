@@ -13,9 +13,15 @@ export default function resetPassword() {
     if (password === verifPassword) {
       console.info("ok");
       axios
-        .put(`${import.meta.env.VITE_BACKEND_URL}/resetpassword`, {
-          user: { password, id, token },
-        })
+        .put(
+          `${import.meta.env.VITE_BACKEND_URL}/resetpassword`,
+          {
+            user: { password, id, token },
+          },
+          {
+            withCredentials: true,
+          }
+        )
         .then((response) => console.info(response))
         .catch((err) => console.error(err));
     } else {
