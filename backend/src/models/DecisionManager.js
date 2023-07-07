@@ -32,6 +32,13 @@ class DecisionManager extends AbstractManager {
     );
   }
 
+  updateValidation(decision) {
+    return this.database.query(
+      `UPDATE ${this.table} set is_validated = ?, final_take_decision = NOW() where id = ?`,
+      [decision.expertChoice, decision.id]
+    );
+  }
+
   findAllDecisionsWithStatusAndNameOfCreatorForCard() {
     return this.database.query(
       `SELECT d.id d_id, d.title AS title_decision, d.status_id, c.title, s.title AS title_status, u.firstname, u.lastname, u.photo, d.initial_date, d.deadline_comment,d.first_take_decision,d.deadline_conflict,d.final_take_decision, d.is_validated FROM ${this.table} d
