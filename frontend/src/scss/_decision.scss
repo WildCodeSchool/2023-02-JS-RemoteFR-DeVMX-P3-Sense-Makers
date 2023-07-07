@@ -99,6 +99,24 @@
     }
   }
 
+  .expert-choice {
+    margin: auto;
+    display: flex;
+    gap: 2rem;
+    justify-content: center;
+    button {
+      height: 6rem;
+      border-radius: 5px;
+      font-weight: bolder;
+    }
+    .validate {
+      background-color: $sage-green;
+    }
+    .reject {
+      background-color: $color-primary;
+    }
+  }
+
   .closed-comment {
     display: flex;
     flex-direction: column;
