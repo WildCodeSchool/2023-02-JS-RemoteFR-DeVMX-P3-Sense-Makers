@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import Timeline from "./graphicElements/Timeline";
+import validated from "../assets/icons/verifier.svg";
+import notValidated from "../assets/icons/traverser.svg";
 
 export default function CardDecision({ decision }) {
   let statusColors = {
@@ -67,21 +69,21 @@ export default function CardDecision({ decision }) {
         {decision.title_status === "Décision définitive" &&
           (decision.is_validated === 1 ? (
             <div className="decision-validate">
-              <img src="./src/assets/icons/verifier.svg" alt="validate-logo" />
+              <img src={validated} alt="validate-logo" />
             </div>
           ) : (
             <div className="decision-not-validate">
-              <img src="./src/assets/icons/traverser.svg" alt="validate-logo" />
+              <img src={notValidated} alt="validate-logo" />
             </div>
           ))}
         {decision.title_status === "Décision terminée" &&
           (decision.is_validated === 1 ? (
             <div className="decision-validate">
-              <img src="./src/assets/icons/verifier.svg" alt="validate-logo" />
+              <img src={validated} alt="validate-logo" />
             </div>
           ) : (
             <div className="decision-not-validate">
-              <img src="./src/assets/icons/traverser.svg" alt="validate-logo" />
+              <img src={notValidated} alt="validate-logo" />
             </div>
           ))}
 
