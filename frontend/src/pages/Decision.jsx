@@ -1,10 +1,11 @@
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState, useRef, useContext } from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom";
 import DOMPurify from "dompurify";
 import PostComments from "../components/PostComments";
 import Timeline from "../components/graphicElements/Timeline";
 import FirstDecisionEditor from "../components/FirstDecisionEditor";
+import userContext from "../contexts/userContext";
 
 export default function Decision() {
   const [decision, setDecison] = useState([]);
@@ -13,6 +14,7 @@ export default function Decision() {
   const [experts, setExperts] = useState([]);
   const [addComment, setAddComment] = useState(false);
   const [firstDecision, setFirstDecision] = useState("");
+  const { user } = useContext(userContext);
   const { id } = useParams();
   const ref = useRef(null);
 
@@ -216,7 +218,8 @@ export default function Decision() {
         </details>
 
         {firstDayDiff > 15 &&
-          firstDayDiff < 30 &&
+          firstDayDiff < 22 &&
+          user.id === decision.id &&
           !decision.first_decision_content && (
             <div>
               {" "}
