@@ -41,11 +41,11 @@
       align-items: flex-start;
       flex-direction: column;
 
-      > label {
+      >label {
         margin-top: $space-xs;
         font-size: $font-size-s;
 
-        > input {
+        >input {
           margin-top: $space-xs;
           padding: $space-xxs;
           border-radius: $space-xxs;
@@ -59,6 +59,23 @@
 
         input[type="email"] {
           width: 13rem;
+        }
+      }
+
+      .reinicialize-password-container {
+        margin-top: $space-s;
+        margin-bottom: $space-xxs;
+
+        .reinicialize-password {
+          color: #f3976b;
+          font-size: $font-size-s;
+          font-family: $primary-font;
+          font-weight: $primary-font-weight;
+          cursor: pointer;
+        }
+
+        :hover {
+          color: #196c84;
         }
       }
     }
@@ -315,10 +332,10 @@
         flex-grow: 1;
 
         .input-fields {
-          > label {
+          >label {
             width: 10rem;
 
-            > input {
+            >input {
               width: 80%;
             }
           }

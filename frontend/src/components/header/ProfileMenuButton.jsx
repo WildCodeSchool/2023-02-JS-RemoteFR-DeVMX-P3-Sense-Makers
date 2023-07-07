@@ -85,11 +85,11 @@ export default function LoginButton({
           <li>
             <Link
               className={
-                pathname === "/logged/users/:id/decisions"
+                pathname === "/logged/users/mydecisions"
                   ? "link-style active"
                   : "link-style"
               }
-              to="/logged/users/:id/decisions"
+              to="/logged/users/mydecisions"
               onClick={() => handleShowLoginMenu()}
             >
               <svg

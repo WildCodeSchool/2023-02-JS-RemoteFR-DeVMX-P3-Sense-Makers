@@ -5,11 +5,6 @@ const isValidEmail = (email) => {
   return regex.test(String(email).toLowerCase());
 };
 
-const isValidPhoto = (photo) => {
-  if (photo.length === 0) return false;
-  return true;
-};
-
 export default function inputValidationRules(targetValues) {
   return {
     firstName:
@@ -21,8 +16,8 @@ export default function inputValidationRules(targetValues) {
       !!targetValues.password &&
       targetValues.password.length > 8 &&
       targetValues.password.match(/^ *$/) === null,
-    photo: isValidPhoto(targetValues.photo),
-    role: true,
+    photo: true,
+    role: targetValues.role !== "",
     roleExperts: true,
   };
 }

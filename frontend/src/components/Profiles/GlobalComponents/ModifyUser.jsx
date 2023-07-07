@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import Dropzone from "../../../services/hookDropzone";
-import Avatar0 from "../../../assets/avatar0.png";
 
 export default function ModifyUser() {
   const [userData, setUserData] = useState([]);
@@ -9,6 +8,7 @@ export default function ModifyUser() {
   const [newUploadedFileName, setNewUploadedFileName] = useState("");
   const [rolesData, setRolesData] = useState([]);
   const [rolesFromUser, setRolesFromUser] = useState([]);
+  const [reinicializePassword, setReinicializePassword] = useState(false);
 
   const [targetValues, setTargetValues] = useState({
     firstname: "",
@@ -32,30 +32,28 @@ export default function ModifyUser() {
   const submit = (event) => {
     event.preventDefault();
     axios
-      .put(
-        `${import.meta.env.VITE_BACKEND_URL}/users/${userData.id}`,
-        {
-          firstname:
-            targetValues.firstname !== ""
-              ? targetValues.firstname
-              : userData.firstname,
-          lastname:
-            targetValues.lastname !== ""
-              ? targetValues.lastname
-              : userData.lastname,
-          photo: !newUploadedFileName && userData.photo,
-          email:
-            targetValues.email !== "" ? targetValues.email : userData.email,
-          password:
-            targetValues.password !== ""
-              ? targetValues.password
-              : userData.password,
-        },
+      .put(`${import.meta.env.VITE_BACKEND_URL}/users/${userData.id}`, {
+        firstname:
+          targetValues.firstname !== ""
+            ? targetValues.firstname
+            : userData.firstname,
+        lastname:
+          targetValues.lastname !== ""
+            ? targetValues.lastname
+            : userData.lastname,
+        photo: !newUploadedFileName && userData.photo,
+        email: targetValues.email !== "" ? targetValues.email : userData.email,
+        password:
+          targetValues.password !== ""
+            ? targetValues.password
+            : userData.password,
+      }
+      ,
         {
           withCredentials: true,
         }
       )
-      .then((response) => {
+      .then(() => {
         if (targetValues.role !== "") {
           axios
             .put(
@@ -65,7 +63,6 @@ export default function ModifyUser() {
                 withCredentials: true,
               }
             )
-            .then((res) => console.info(res))
             .catch((err) => console.error(err));
         }
 
@@ -78,15 +75,10 @@ export default function ModifyUser() {
                 withCredentials: true,
               }
             )
-            .then((res) => console.info(res))
             .catch((err) => console.error(err));
-          console.info({
-            message: "Add new expert user role done!!!",
-            response,
-          });
         }
 
-        if (!targetValues.roleExpert && rolesFromUser.length >= 2) {
+        if (targetValues.roleExpert === false && rolesFromUser.length >= 2) {
           axios
             .delete(
               `${import.meta.env.VITE_BACKEND_URL}/users/${
@@ -96,12 +88,7 @@ export default function ModifyUser() {
                 withCredentials: true,
               }
             )
-            .then((res) => console.info(res))
             .catch((err) => console.error(err));
-          console.info({
-            message: "Delete expert user role done!!!",
-            response,
-          });
         }
       })
       .then(() => {
@@ -117,7 +104,6 @@ export default function ModifyUser() {
         }, 500);
       })
       .catch((err) => console.error(err));
-    console.info("Submitted new values form with state:", targetValues);
   };
 
   useEffect(() => {
@@ -141,8 +127,8 @@ export default function ModifyUser() {
   }, []);
 
   useEffect(() => {
-    const sliptUserRoles = userData.roles?.split(", ");
-    setRolesFromUser(sliptUserRoles);
+    const splitUserRoles = userData.roles?.split(", ");
+    setRolesFromUser(splitUserRoles);
   }, [userData]);
 
   return (
@@ -186,6 +172,21 @@ export default function ModifyUser() {
                 onChange={update}
               />
             </label>
+            <div className="reinicialize-password-container">
+              {!reinicializePassword ? (
+                <span
+                  role="button"
+                  tabIndex="0"
+                  onKeyDown={() => {}}
+                  className="reinicialize-password"
+                  onClick={() => setReinicializePassword(true)}
+                >
+                  Réinitialiser le mot de passe!
+                </span>
+              ) : (
+                <span> Mot de passe réinitialisée!!!</span>
+              )}
+            </div>
             <div className="roles-container-1">
               <div className="role-actuel-container">
                 <div className="role">
@@ -225,14 +226,16 @@ export default function ModifyUser() {
         <div className="profile-photo-container">
           <label htmlFor="profile-photo-input">
             <div className="img-container">
-              {userData?.photo ? (
+              {userData ? (
                 <img
                   src={
-                    userData
+                    userData?.photo
                       ? `${import.meta.env.VITE_BACKEND_URL}/uploads/${
                           userData?.photo
                         }`
-                      : Avatar0
+                      : `${
+                          import.meta.env.VITE_BACKEND_URL
+                        }/assets/images/default_avatar.png`
                   }
                   alt="profil"
                 />
@@ -241,7 +244,9 @@ export default function ModifyUser() {
                   src={
                     dropzoneImage[0]?.preview
                       ? dropzoneImage[0]?.preview
-                      : Avatar0
+                      : `${
+                          import.meta.env.VITE_BACKEND_URL
+                        }/assets/images/default_avatar.png`
                   }
                   alt="profil"
                 />

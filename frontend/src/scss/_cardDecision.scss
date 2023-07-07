@@ -67,14 +67,14 @@
   width: 20rem;
   height: 15rem;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-  border-radius: 5px;
+  border-radius: $border-radius-s;
   font-family: "Raleway", Helvetica, Arial, sans-serif;
   .decision-validate {
     position: absolute;
     height: 100%;
     width: 100%;
-    top: 0px;
-    left: 0px;
+    top: $space-0;
+    left: $space-0;
     background: $sage-green-opacity;
     display: flex;
     align-items: center;
@@ -113,12 +113,12 @@
     align-items: center;
 
     p {
-      border: 1px solid #2088a7;
+      border: 1px solid $color-primary-active;
       background: rgba(32, 136, 167, 0.25);
-      color: #2088a7;
-      font-size: 0.6rem;
+      color: $color-primary-active;
+      font-size: $font-size-xxs;
       width: 9rem;
-      border-radius: 10px;
+      border-radius: $border-radius-m;
       padding: 0.5rem;
       text-align: center;
     }
@@ -138,11 +138,11 @@
   }
   h1 {
     width: 80%;
-    margin: 0 auto;
-    font-size: 1.625rem;
+    margin: $space-0 auto;
+    font-size: $font-size-xxxl;
     height: 7rem;
-    font-weight: bold;
-    color: #0c3944;
+    font-weight: $primary-font-weight;
+    color: $color-default;
   }
 }
 
@@ -155,15 +155,12 @@
     width: 3rem;
     height: 3rem;
     border-radius: 50%;
-    width: 3rem;
-    height: 3rem;
-    border-radius: 50%;
   }
   p {
-    color: #0c3944;
-    font-size: 1.2rem;
+    color: $color-default;
+    font-size: $font-size-l;
     span {
-      font-weight: bold;
+      font-weight: $primary-font-weight;
     }
   }
 }

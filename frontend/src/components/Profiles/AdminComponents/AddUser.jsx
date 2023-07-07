@@ -2,12 +2,12 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import Dropzone from "../../../services/hookDropzone";
 import inputValidationRules from "../../../services/inputValidationRules";
-import Avatar0 from "../../../assets/avatar0.png";
 
 export default function AddUser() {
   const [dropzoneImage, setDropzoneImage] = useState([]);
   const [newUploadedFileName, setNewUploadedFileName] = useState("");
   const [rolesData, setRolesData] = useState([]);
+  const [requireSelect, setRequiredSelect] = useState(false);
 
   const [targetValues, setTargetValues] = useState({
     firstName: "",
@@ -54,22 +54,18 @@ export default function AddUser() {
 
     if (isValidForm) {
       axios
-        .post(
-          `${import.meta.env.VITE_BACKEND_URL}/users`,
-          {
-            firstname: targetValues.firstName,
-            lastname: targetValues.lastName,
-            photo: newUploadedFileName,
-            email: targetValues.email,
-            password: targetValues.password,
-            creation_date: "2023-23-32",
-          },
+        .post(`${import.meta.env.VITE_BACKEND_URL}/users`, {
+          firstname: targetValues.firstName,
+          lastname: targetValues.lastName,
+          photo: newUploadedFileName || "default_avatar.png",
+          email: targetValues.email,
+          password: targetValues.password,
+        },
           {
             withCredentials: true,
           }
         )
         .then((response) => {
-          console.info(response);
           if (response.status === 201 && !targetValues.roleExpert) {
             axios.post(
               `${import.meta.env.VITE_BACKEND_URL}/users/${
@@ -118,12 +114,14 @@ export default function AddUser() {
                   withCredentials: true,
                 }
               )
-              .then((result) => console.info(result))
               .catch((err) => console.error(err));
           }
         });
     } else {
-      console.info("XXX Submitting form with state:", targetValues);
+      const invalidInputsTargets = inputValidationRules(targetValues);
+      if (!invalidInputsTargets.role) {
+        setRequiredSelect(true);
+      }
     }
   };
   return (
@@ -175,13 +173,20 @@ export default function AddUser() {
                 placeholder="Insérez votre mot de passe"
                 onChange={update}
                 required
+                minLength="8"
               />
             </label>
             <div className="roles-container-1">
               <label htmlFor="role">
                 Rôle <br />
-                <select name="role" onChange={update} required>
-                  <option value="0">Sélectionne votre rôle</option>
+                <select
+                  className={requireSelect ? "require-select" : ""}
+                  name="role"
+                  defaultValue="Sélectionne votre rôle"
+                  onChange={update}
+                  onClick={() => setRequiredSelect(false)}
+                >
+                  <option disabled>Sélectionne votre rôle</option>
                   {rolesData
                     .filter((roleExpert) => roleExpert.role_name !== "Expert")
                     .map((role) => (
@@ -205,7 +210,9 @@ export default function AddUser() {
                 src={
                   dropzoneImage[0]?.preview
                     ? dropzoneImage[0]?.preview
-                    : Avatar0
+                    : `${
+                        import.meta.env.VITE_BACKEND_URL
+                      }/assets/images/default_avatar.png`
                 }
                 alt="profil"
               />
@@ -222,8 +229,14 @@ export default function AddUser() {
           <div className="roles-container-2">
             <label htmlFor="role">
               Rôle <br />
-              <select name="role" onChange={update} required>
-                <option value="0">Sélectionne votre rôle</option>
+              <select
+                className={requireSelect ? "require-select" : ""}
+                name="role"
+                defaultValue="Sélectionne votre rôle"
+                onChange={update}
+                onClick={() => setRequiredSelect(false)}
+              >
+                <option disabled>Sélectionne votre rôle</option>
                 {rolesData
                   .filter((roleExpert) => roleExpert.role_name !== "Expert")
                   .map((role) => (

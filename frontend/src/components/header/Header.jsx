@@ -54,11 +54,11 @@ export default function Header() {
           <li>
             <Link
               className={
-                pathname === "/logged/users/:id/decisions"
+                pathname === "/logged/users/mydecisions"
                   ? "link-style active"
                   : "link-style"
               }
-              to="/logged/users/:id/decisions"
+              to="/logged/users/mydecisions"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"

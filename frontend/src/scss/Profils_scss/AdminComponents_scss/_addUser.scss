@@ -41,11 +41,11 @@
       align-items: flex-start;
       flex-direction: column;
 
-      > label {
+      >label {
         margin-top: $space-xs;
         font-size: $font-size-s;
 
-        > input {
+        >input {
           margin-top: $space-xs;
           padding: $space-xxs;
           border-radius: $space-xxs;
@@ -81,6 +81,10 @@
         border-radius: $space-xxs;
         border: 1px solid $border-color-base;
         cursor: pointer;
+      }
+
+      .require-select {
+        border-color: #e36164;
       }
 
       .role-expert {
@@ -153,6 +157,8 @@
       }
     }
   }
+
+
 
   .input-buttons-container {
     display: flex;
@@ -256,10 +262,10 @@
         flex-grow: 1;
 
         .input-fields {
-          > label {
+          >label {
             width: 10rem;
 
-            > input {
+            >input {
               width: 80%;
             }
           }
@@ -319,6 +325,10 @@
             border-radius: $space-xxs;
             border: 1px solid $border-color-base;
             cursor: pointer;
+          }
+
+          .require-select {
+            border-color: #e36164;
           }
 
           .role-expert-2 {

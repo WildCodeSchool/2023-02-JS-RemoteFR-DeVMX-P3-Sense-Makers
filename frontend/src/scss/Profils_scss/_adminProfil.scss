@@ -3,13 +3,13 @@
   display: flex;
   flex-direction: column;
   width: 90%;
-  margin: 0 auto;
+  margin: $space-0 auto;
   gap: 1rem;
   font-family: $primary-font;
   details[open] {
     summary {
       color: #9b084f;
-      font-weight: bold;
+      font-weight: $primary-font-weight;
     }
   }
   .details-container {
@@ -19,16 +19,16 @@
     cursor: pointer;
 
     summary {
-      font-size: 1.5rem;
-      font-weight: bold;
-      color: #0c3944;
+      font-size: $font-size-xxl;
+      font-weight: $primary-font-weight;
+      color: $color-default;
     }
   }
 }
 @media screen and (min-width: 768px) {
   .adminProfile .details-container {
     summary {
-      font-size: 1.5rem;
+      font-size: $font-size-xxl;
     }
   }
 }
