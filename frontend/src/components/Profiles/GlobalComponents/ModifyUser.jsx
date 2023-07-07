@@ -32,23 +32,25 @@ export default function ModifyUser() {
   const submit = (event) => {
     event.preventDefault();
     axios
-      .put(`${import.meta.env.VITE_BACKEND_URL}/users/${userData.id}`, {
-        firstname:
-          targetValues.firstname !== ""
-            ? targetValues.firstname
-            : userData.firstname,
-        lastname:
-          targetValues.lastname !== ""
-            ? targetValues.lastname
-            : userData.lastname,
-        photo: !newUploadedFileName && userData.photo,
-        email: targetValues.email !== "" ? targetValues.email : userData.email,
-        password:
-          targetValues.password !== ""
-            ? targetValues.password
-            : userData.password,
-      }
-      ,
+      .put(
+        `${import.meta.env.VITE_BACKEND_URL}/users/${userData.id}`,
+        {
+          firstname:
+            targetValues.firstname !== ""
+              ? targetValues.firstname
+              : userData.firstname,
+          lastname:
+            targetValues.lastname !== ""
+              ? targetValues.lastname
+              : userData.lastname,
+          photo: !newUploadedFileName && userData.photo,
+          email:
+            targetValues.email !== "" ? targetValues.email : userData.email,
+          password:
+            targetValues.password !== ""
+              ? targetValues.password
+              : userData.password,
+        },
         {
           withCredentials: true,
         }
