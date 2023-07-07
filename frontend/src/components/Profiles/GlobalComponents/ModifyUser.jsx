@@ -1,8 +1,9 @@
 import { useState, useEffect } from "react";
+import PropTypes from "prop-types";
 import axios from "axios";
 import Dropzone from "../../../services/hookDropzone";
 
-export default function ModifyUser() {
+export default function ModifyUser({ setShowUpdateUser }) {
   const [userData, setUserData] = useState([]);
   const [dropzoneImage, setDropzoneImage] = useState([]);
   const [newUploadedFileName, setNewUploadedFileName] = useState("");
@@ -116,7 +117,11 @@ export default function ModifyUser() {
       <div className="add-user-title-container">
         <h2 className="add-user-title">Modification d'utilisateur</h2>
         <div className="close-modal-button-container">
-          <button type="button" className="close-modal-button">
+          <button
+            type="button"
+            className="close-modal-button"
+            onClick={() => setShowUpdateUser(false)}
+          >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="24"
@@ -306,3 +311,7 @@ export default function ModifyUser() {
     </form>
   );
 }
+
+ModifyUser.propTypes = {
+  setShowUpdateUser: PropTypes.func.isRequired,
+};
