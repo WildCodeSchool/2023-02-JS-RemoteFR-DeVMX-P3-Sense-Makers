@@ -1,6 +1,7 @@
 @import "../../variables";
 
 .modify-user-management {
+  position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -17,6 +18,26 @@
   border-radius: $space-xs;
   box-shadow: 5px 9px 19px 8px rgba(0, 0, 0, 0.25);
 
+
+  .close-modal-button-container {
+    position: absolute;
+    top: 3%;
+    right: 10%;
+    button {
+      width: 1rem;
+      height: 1rem;
+      padding: 0;
+      color: $color-default;
+      border: none;
+      cursor: pointer;
+      transition: all 250ms ease-out;
+    }
+    >:hover{
+      color:$border-color-active;
+      transform: scale(1.1);
+    }
+  }
+
   .add-user-title-container {
     display: flex;
     justify-content: flex-start;
@@ -27,6 +48,14 @@
       font-size: $font-size-m;
       margin-bottom: $space-xxs;
     }
+
+    // .close-modal-button-container {
+    //   width: $space-xs;
+    //   height: $space-xs;
+
+
+
+    // }
   }
 
   .input-container {
@@ -264,6 +293,25 @@
   .modify-user-management {
     padding: 0 $space-s $space-s $space-s;
 
+    .close-modal-button-container {
+      position: absolute;
+      top: 4%;
+      right: 3%;
+      button {
+        width: 1rem;
+        height: 1rem;
+        padding: 0;
+        color: $color-default;
+        border: none;
+        cursor: pointer;
+        transition: all 250ms ease-out;
+      }
+      >:hover{
+        color:$border-color-active;
+        transform: scale(1.1);
+      }
+    }
+
     .add-user-title-container {
       display: flex;
       justify-content: space-between;
@@ -278,6 +326,7 @@
       .remove-button-container-2 {
         display: inline-block;
         margin-top: $space-xs;
+        margin-right: $space-l;
         width: 5rem;
         height: 2rem;
 
