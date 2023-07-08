@@ -9,7 +9,7 @@ CREATE TABLE users (
   lastname VARCHAR(100) NOT NULL,
   photo VARCHAR(254),
   email VARCHAR(100) NOT NULL UNIQUE,
-  is_active TINYINT NOT NULL,
+  is_active TINYINT DEFAULT 1,
   password VARCHAR(254) NOT NULL,
   creation_date DATE DEFAULT (CURRENT_DATE) 
 );
