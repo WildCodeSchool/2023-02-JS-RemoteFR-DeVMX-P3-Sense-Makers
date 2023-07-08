@@ -401,9 +401,17 @@ VALUES ("Hub France");
 SET GLOBAL event_scheduler = ON;
 CREATE EVENT update_status_event ON SCHEDULE EVERY 1 DAY STARTS CURRENT_TIMESTAMP DO
 UPDATE decisions
+SET status_id = 2
+WHERE status_id = 1
+AND DATE(now()) >= initial_date + 15;
+UPDATE decisions
 SET status_id = 7
 WHERE status_id = 2
   AND DATE(now()) >= deadline_comment + 7;
+  UPDATE decisions
+  SET status_id = 4
+  WHERE status_id = 3
+  AND DATE(now()) >=  first_take_decision + 15;
 UPDATE decisions
 SET status_id = 5,
   is_validated = 0
