@@ -12,7 +12,9 @@ export default function MyDecisions() {
 
   useEffect(() => {
     axios
-      .get(`${import.meta.env.VITE_BACKEND_URL}/users/${user.id}/decisions`)
+      .get(`${import.meta.env.VITE_BACKEND_URL}/users/${user.id}/decisions`, {
+        withCredentials: true,
+      })
       .then((res) => setAllDecision(res.data))
       .catch((err) => {
         console.error(err);
@@ -29,7 +31,7 @@ export default function MyDecisions() {
         console.error(err);
       });
   }, []);
-  console.info(user.id);
+
   return (
     <div className="all-decisions-container">
       <div className="title-container">
