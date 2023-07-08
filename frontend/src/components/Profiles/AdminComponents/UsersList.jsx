@@ -27,6 +27,7 @@ function UsersList() {
       {showUpdateUser && (
         <ModifyUser
           setShowUpdateUser={setShowUpdateUser}
+          setCurrentUser={setCurrentUser}
           currentUser={currentUser}
         />
       )}
