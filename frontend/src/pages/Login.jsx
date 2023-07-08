@@ -2,12 +2,13 @@ import { useState, useContext } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import userContext from "../contexts/userContext";
+import CookiesConsent from "../components/CookiesConsent";
 
 export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const { setUser, setToken } = useContext(userContext);
-
+  const [showCookieBanner, setShowCookieBanner] = useState(true);
   const navigate = useNavigate();
 
   const postUserInfos = (e) => {
@@ -62,6 +63,9 @@ export default function Login() {
           <p>Mot de passe oublié ?</p>
         </div>
       </form>
+      {showCookieBanner && (
+        <CookiesConsent setShowCookieBanner={setShowCookieBanner} />
+      )}
     </div>
   );
 }
