@@ -46,6 +46,7 @@ router.post("/decisions/:id/expert", decisionControllers.addExpert);
 router.post("/decisions/:id/user", decisionControllers.addUserOnDecision);
 
 router.put("/decisions/:id", decisionControllers.editDecision);
+router.put("/decisions/:id/validation", decisionControllers.editvalidation);
 router.post("/decisions", decisionControllers.addDecision);
 router.delete("/decisions/:id", decisionControllers.destroyDecision);
 
