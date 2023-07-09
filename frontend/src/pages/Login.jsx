@@ -24,7 +24,7 @@ export default function Login() {
       )
       .then((res) => {
         setUser(res.data.user);
-        setToken(res.data.token);
+        setToken(document.cookie);
         setTimeout(() => {
           navigate("/logged/decisions");
         }, 500);
