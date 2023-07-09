@@ -26,6 +26,11 @@ router.post(
   verifyToken
 );
 
+router.post(
+  "/forgotpassword",
+  usersControllers.getUserByEmail,
+  mailControllers.sendMailResetById
+);
 // routes protected
 router.use(verifyToken);
 
