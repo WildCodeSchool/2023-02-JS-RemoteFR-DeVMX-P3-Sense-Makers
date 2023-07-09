@@ -3,8 +3,11 @@ import PropTypes from "prop-types";
 import axios from "axios";
 import Dropzone from "../../../services/hookDropzone";
 
-export default function ModifyUser({ setShowUpdateUser }) {
-  const [userData, setUserData] = useState([]);
+export default function ModifyUser({
+  setShowUpdateUser,
+  setCurrentUser,
+  currentUser,
+}) {
   const [dropzoneImage, setDropzoneImage] = useState([]);
   const [newUploadedFileName, setNewUploadedFileName] = useState("");
   const [rolesData, setRolesData] = useState([]);
@@ -34,23 +37,26 @@ export default function ModifyUser({ setShowUpdateUser }) {
     event.preventDefault();
     axios
       .put(
-        `${import.meta.env.VITE_BACKEND_URL}/users/${userData.id}`,
+        `${import.meta.env.VITE_BACKEND_URL}/users/${currentUser.id}`,
         {
           firstname:
             targetValues.firstname !== ""
               ? targetValues.firstname
-              : userData.firstname,
+              : currentUser.firstname,
           lastname:
             targetValues.lastname !== ""
               ? targetValues.lastname
-              : userData.lastname,
-          photo: !newUploadedFileName && userData.photo,
+              : currentUser.lastname,
+          photo:
+            newUploadedFileName !== ""
+              ? newUploadedFileName
+              : currentUser.photo,
           email:
-            targetValues.email !== "" ? targetValues.email : userData.email,
+            targetValues.email !== "" ? targetValues.email : currentUser.email,
           password:
             targetValues.password !== ""
               ? targetValues.password
-              : userData.password,
+              : currentUser.password,
         },
         {
           withCredentials: true,
@@ -60,7 +66,9 @@ export default function ModifyUser({ setShowUpdateUser }) {
         if (targetValues.role !== "") {
           axios
             .put(
-              `${import.meta.env.VITE_BACKEND_URL}/users/${userData.id}/role`,
+              `${import.meta.env.VITE_BACKEND_URL}/users/${
+                currentUser.id
+              }/role`,
               { role: targetValues.role },
               {
                 withCredentials: true,
@@ -69,11 +77,13 @@ export default function ModifyUser({ setShowUpdateUser }) {
             .catch((err) => console.error(err));
         }
 
-        if (targetValues.roleExpert && rolesFromUser.length <= 1) {
+        if (targetValues.roleExpert === true && rolesFromUser.length <= 1) {
           axios
             .post(
-              `${import.meta.env.VITE_BACKEND_URL}/users/${userData.id}/role`,
-              { roleExpert: 3 },
+              `${import.meta.env.VITE_BACKEND_URL}/users/${
+                currentUser.id
+              }/role`,
+              { roleId: 3 },
               {
                 withCredentials: true,
               }
@@ -85,7 +95,7 @@ export default function ModifyUser({ setShowUpdateUser }) {
           axios
             .delete(
               `${import.meta.env.VITE_BACKEND_URL}/users/${
-                userData.id
+                currentUser.id
               }/roleexpert`,
               {
                 withCredentials: true,
@@ -97,11 +107,14 @@ export default function ModifyUser({ setShowUpdateUser }) {
       .then(() => {
         setTimeout(() => {
           axios
-            .get(`${import.meta.env.VITE_BACKEND_URL}/users/4`, {
-              withCredentials: true,
-            })
+            .get(
+              `${import.meta.env.VITE_BACKEND_URL}/users/${currentUser.id}`,
+              {
+                withCredentials: true,
+              }
+            )
             .then((result) => {
-              setUserData(result.data[0]);
+              setCurrentUser(result.data[0]);
             })
             .catch((err) => console.error(err));
         }, 500);
@@ -119,20 +132,9 @@ export default function ModifyUser({ setShowUpdateUser }) {
   }, []);
 
   useEffect(() => {
-    axios
-      .get(`${import.meta.env.VITE_BACKEND_URL}/users/4`, {
-        withCredentials: true,
-      })
-      .then((result) => {
-        setUserData(result.data[0]);
-      })
-      .catch((err) => console.error(err));
-  }, []);
-
-  useEffect(() => {
-    const splitUserRoles = userData.roles?.split(", ");
+    const splitUserRoles = currentUser.roles?.split(", ");
     setRolesFromUser(splitUserRoles);
-  }, [userData]);
+  }, [currentUser]);
 
   return (
     <form className="modify-user-management" onSubmit={submit}>
@@ -174,7 +176,7 @@ export default function ModifyUser({ setShowUpdateUser }) {
                 <input
                   type="text"
                   name="lastname"
-                  placeholder={userData.lastname}
+                  placeholder={currentUser.lastname}
                   onChange={update}
                 />
               </label>
@@ -183,7 +185,7 @@ export default function ModifyUser({ setShowUpdateUser }) {
                 <input
                   type="text"
                   name="firstname"
-                  placeholder={userData.firstname}
+                  placeholder={currentUser.firstname}
                   onChange={update}
                 />
               </label>
@@ -194,7 +196,7 @@ export default function ModifyUser({ setShowUpdateUser }) {
                 type="email"
                 name="email"
                 className="input-email"
-                placeholder={userData.email}
+                placeholder={currentUser.email}
                 onChange={update}
               />
             </label>
@@ -217,7 +219,7 @@ export default function ModifyUser({ setShowUpdateUser }) {
               <div className="role-actuel-container">
                 <div className="role">
                   <h4 className="role-actuel-title"> Rôle(s) actuel(s) </h4>
-                  <p className="role-actuel-data">{userData?.roles}</p>
+                  <p className="role-actuel-data">{currentUser?.roles}</p>
                 </div>
                 <label htmlFor="role">
                   Rôle <br />
@@ -252,28 +254,13 @@ export default function ModifyUser({ setShowUpdateUser }) {
         <div className="profile-photo-container">
           <label htmlFor="profile-photo-input">
             <div className="img-container">
-              {userData ? (
-                <img
-                  src={
-                    userData?.photo
-                      ? `${import.meta.env.VITE_BACKEND_URL}/uploads/${
-                          userData?.photo
-                        }`
-                      : `${
-                          import.meta.env.VITE_BACKEND_URL
-                        }/assets/images/default_avatar.png`
-                  }
-                  alt="profil"
-                />
+              {dropzoneImage[0]?.preview ? (
+                <img src={dropzoneImage[0]?.preview} alt="profil" />
               ) : (
                 <img
-                  src={
-                    dropzoneImage[0]?.preview
-                      ? dropzoneImage[0]?.preview
-                      : `${
-                          import.meta.env.VITE_BACKEND_URL
-                        }/assets/images/default_avatar.png`
-                  }
+                  src={`${import.meta.env.VITE_BACKEND_URL}/uploads/${
+                    currentUser?.photo
+                  }`}
                   alt="profil"
                 />
               )}
@@ -291,7 +278,7 @@ export default function ModifyUser({ setShowUpdateUser }) {
           <div className="roles-container-2">
             <div className="role-actuel">
               <h4 className="role-actuel-title"> Rôle(s) actuel(s) </h4>
-              <span className="role-actuel-data">{userData?.roles}</span>
+              <span className="role-actuel-data">{currentUser?.roles}</span>
               <label htmlFor="role">
                 Rôle <br />
                 <select name="role" onChange={update}>
@@ -336,4 +323,6 @@ export default function ModifyUser({ setShowUpdateUser }) {
 
 ModifyUser.propTypes = {
   setShowUpdateUser: PropTypes.func.isRequired,
+  setCurrentUser: PropTypes.func.isRequired,
+  currentUser: PropTypes.shape.isRequired,
 };

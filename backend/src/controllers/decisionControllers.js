@@ -63,12 +63,30 @@ const readExpertOnDecision = (req, res) => {
 const editDecision = (req, res) => {
   const decision = req.body;
 
-  // TODO validations (length, format...)
-
   decision.id = parseInt(req.params.id, 10);
 
   models.decision
     .update(decision)
+    .then(([result]) => {
+      if (result.affectedRows === 0) {
+        res.sendStatus(404);
+      } else {
+        res.sendStatus(204);
+      }
+    })
+    .catch((err) => {
+      console.error(err);
+      res.sendStatus(500);
+    });
+};
+
+const editvalidation = (req, res) => {
+  const decision = req.body;
+
+  decision.id = parseInt(req.params.id, 10);
+
+  models.decision
+    .updateValidation(decision)
     .then(([result]) => {
       if (result.affectedRows === 0) {
         res.sendStatus(404);
@@ -177,4 +195,5 @@ module.exports = {
   addExpert,
   concernedHub,
   addUserOnDecision,
+  editvalidation,
 };

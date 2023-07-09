@@ -27,8 +27,15 @@ class DecisionManager extends AbstractManager {
 
   update(decision) {
     return this.database.query(
-      `update ${this.table} set first_decision_content = ? where id = ?`,
+      `update ${this.table} set first_decision_content = ?, first_take_decision = NOW(), deadline_conflict = NOW()+ INTERVAL 15 DAY, final_take_decision = NOW()+ INTERVAL 30 DAY, status_id = 3 where id = ?`,
       [decision.firstDecision, decision.id]
+    );
+  }
+
+  updateValidation(decision) {
+    return this.database.query(
+      `UPDATE ${this.table} set is_validated = ?, final_take_decision = NOW() where id = ?`,
+      [decision.expertChoice, decision.id]
     );
   }
 

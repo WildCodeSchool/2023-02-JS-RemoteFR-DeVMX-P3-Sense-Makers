@@ -200,7 +200,7 @@ const addUser = (req, res) => {
 const addRoleToUser = (req, res) => {
   const userId = parseInt(req.params.id, 10);
 
-  const roleId = req.body.roleExpert;
+  const { roleId } = req.body;
 
   // TODO validations (length, format...)
 

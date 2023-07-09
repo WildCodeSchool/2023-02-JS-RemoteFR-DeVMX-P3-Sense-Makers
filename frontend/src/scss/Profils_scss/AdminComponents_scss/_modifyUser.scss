@@ -33,7 +33,7 @@
       transition: all 250ms ease-out;
     }
 
-    >:hover {
+    > :hover {
       color: $border-color-active;
       transform: scale(1.1);
     }
@@ -63,11 +63,11 @@
       align-items: flex-start;
       flex-direction: column;
 
-      >label {
+      > label {
         margin-top: $space-xs;
         font-size: $font-size-s;
 
-        >input {
+        > input {
           margin-top: $space-xs;
           padding: $space-xxs;
           border-radius: $space-xxs;
@@ -305,7 +305,7 @@
       .remove-button-container-2 {
         display: inline-block;
         margin-top: $space-xs;
-        margin-right: $space-l;
+        margin-right: $space-xxl;
         width: 5rem;
         height: 2rem;
 
@@ -360,10 +360,10 @@
         flex-grow: 1;
 
         .input-fields {
-          >label {
+          > label {
             width: 10rem;
 
-            >input {
+            > input {
               width: 80%;
             }
           }

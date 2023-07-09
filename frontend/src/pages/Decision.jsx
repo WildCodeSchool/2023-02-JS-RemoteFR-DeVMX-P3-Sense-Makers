@@ -23,6 +23,8 @@ export default function Decision() {
   const firstDayDiff = (today - initialDate) / 86400000;
   const secondDate = Date.parse(decision.first_take_decision);
   const secondDayDiff = (today - secondDate) / 86400000;
+  const openValidation = Date.parse(decision.deadline_conflict);
+  const closeValidation = Date.parse(decision.final_take_decision);
 
   function strip(html) {
     return (
@@ -57,6 +59,17 @@ export default function Decision() {
   const handleAddComment = () => {
     setAddComment((state) => !state);
   };
+
+  const handleExpertChoice = (e) => {
+    axios.put(
+      `${import.meta.env.VITE_BACKEND_URL}/decisions/${id}/validation`,
+      {
+        expertChoice: e.target.value,
+      },
+      { withCredentials: true }
+    );
+  };
+
   useEffect(() => {
     if (addComment && ref.current) {
       ref.current?.scrollIntoView({ behavior: "smooth" });
@@ -216,6 +229,30 @@ export default function Decision() {
             ))}
           </div>
         </details>
+
+        {experts.some((expert) => expert.id === user.id) &&
+          openValidation < today &&
+          closeValidation > today && (
+            <div className="expert-choice">
+              <button
+                className="validate"
+                type="button"
+                value={1}
+                onClick={handleExpertChoice}
+              >
+                Valider cette décision
+              </button>
+
+              <button
+                className="reject"
+                type="button"
+                value={0}
+                onClick={handleExpertChoice}
+              >
+                Rejeter cette décision
+              </button>
+            </div>
+          )}
 
         {firstDayDiff > 15 &&
           firstDayDiff < 22 &&

@@ -28,11 +28,10 @@ const transport = nodemailer.createTransport({
 const sendMailById = (req) => {
   transport?.sendMail(
     {
-      from: "NICOLAS <nlopes93600@gmail.com>",
+      from: "Admin <nlopes93600@gmail.com>",
       to: `${req.body.email}`, // put the email of user depuis le payload//
-      subject: "password test reset",
-      text: "Vous souhaitez réinitialiser votre mot de passe ?",
-      html: `<a href="http://localhost:3000/resetpassword?token=${token}&id=${req.body.id}">Cliquez ici</a>`,
+      subject: "Reinitialisation du mot de passe",
+      html: `Veuillez cliquer sur le lien si vous souhaitez mettre à jour votre mot de passe, si vous n'êtes pas à l'origine de la demande contactez dans les plus brefs délais votre administrateur.<a href="http://localhost:3000/resetpassword?token=${token}&id=${req.body.id}">Cliquez ici</a>`,
     },
     (err, info) => {
       if (err) console.error(err);
@@ -40,7 +39,21 @@ const sendMailById = (req) => {
     }
   );
 };
-
+const sendMailResetById = (req) => {
+  transport?.sendMail(
+    {
+      from: "Admin <nlopes93600@gmail.com>",
+      to: `${req.user.email}`, // put the email of user depuis le payload//
+      subject: "Reinitialisation du mot de passe",
+      html: `Veuillez cliquer sur le lien si vous souhaitez mettre à jour votre mot de passe, si vous n'êtes pas à l'origine de la demande contactez dans les plus brefs délais votre administrateur.<a href="http://localhost:3000/resetpassword?token=${token}&id=${req.user.id}">Cliquez ici</a>`,
+    },
+    (err, info) => {
+      if (err) console.error(err);
+      else console.warn(info);
+    }
+  );
+};
 module.exports = {
   sendMailById,
+  sendMailResetById,
 };
