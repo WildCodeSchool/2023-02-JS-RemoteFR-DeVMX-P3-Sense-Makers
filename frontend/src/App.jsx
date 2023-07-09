@@ -1,4 +1,3 @@
-import { useContext } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Login from "./pages/Login";
 import Home from "./pages/Home";
@@ -9,12 +8,10 @@ import Profile from "./pages/Profile";
 import WrongPage from "./pages/WrongPage";
 import Password from "./pages/Password";
 import "./scss/styles.scss";
-import userContext from "./contexts/userContext";
 import NavLayout from "./layouts/NavLayout";
 import ProtectedLayout from "./layouts/ProtectedLayout";
 
 function App() {
-  const { token } = useContext(userContext);
   return (
     <div className="app">
       <Router>

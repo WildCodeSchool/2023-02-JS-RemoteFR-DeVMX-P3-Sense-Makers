@@ -1,8 +1,9 @@
-import { useEffect, useRef } from "react";
+import { useContext, useEffect, useRef } from "react";
 import { Link, useLocation } from "react-router-dom";
 import PropTypes from "prop-types";
 import NotificationButton from "./NotificationsMenu";
 import kikoAvatar from "../../assets/kiko_avatar.png";
+import userContext from "../../contexts/userContext";
 
 export default function LoginButton({
   showLoginMenu,
@@ -13,6 +14,7 @@ export default function LoginButton({
 }) {
   const menuRef = useRef();
   const { pathname } = useLocation();
+  const { setUser, setToken } = useContext(userContext);
 
   useEffect(() => {
     const handler = (e) => {
@@ -22,6 +24,15 @@ export default function LoginButton({
     };
     document.addEventListener("mousedown", handler);
   }, []);
+
+  const disconnect = () => {
+    setUser(null);
+    setToken(null);
+    localStorage.clear();
+    document.cookie =
+      "user_token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+    handleShowLoginMenu();
+  };
 
   return (
     <div ref={menuRef}>
@@ -201,7 +212,7 @@ export default function LoginButton({
             <Link
               className={pathname === "/" ? "link-style active" : "link-style"}
               to="/"
-              onClick={() => handleShowLoginMenu()}
+              onClick={disconnect}
             >
               <div className="li-text">Déconnexion</div>{" "}
             </Link>
