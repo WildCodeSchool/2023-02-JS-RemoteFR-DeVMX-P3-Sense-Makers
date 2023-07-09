@@ -1,39 +1,37 @@
 @import "./variables.scss";
-.cookie-container{
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    background-color:grey ;
-    padding: 0 2rem;
-    transition: 400ms;
-    font-family: $primary-font;
+.cookie-container {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: grey;
+  padding: 0 2rem;
+  transition: 400ms;
+  font-family: $primary-font;
+  &:hover {
+    background-color: grey;
+  }
+  p {
+    color: white;
     &:hover {
+      background-color: grey;
+      color: white;
+    }
+    a {
+      &:hover {
         background-color: grey;
-    }
-    p{
         color: white;
-        &:hover {
-            background-color: grey;
-            color: white;
-        }
-        a{
-            &:hover {
-                background-color: grey;
-                color: white;
-            }
-        }
+      }
     }
+  }
 
-    .cookie-btn{
-        background-color: #196c84;
-        color: $background-color-base;
-        border: none;
-        border-radius: $border-radius-m;
-        padding: 0.5rem 3rem;
-        
-        cursor: pointer;
-    }
+  .cookie-btn {
+    background-color: #196c84;
+    color: $background-color-base;
+    border: none;
+    border-radius: $border-radius-m;
+    padding: 0.5rem 3rem;
 
-
+    cursor: pointer;
+  }
 }
