@@ -70,7 +70,7 @@ export default function Login() {
               className="reinicialize-password"
               onClick={() => setOpenModal(true)}
             >
-              Réinitialiser le mot de passe!
+              Mot de passe oublié ?
             </span>
           </div>
         </form>
