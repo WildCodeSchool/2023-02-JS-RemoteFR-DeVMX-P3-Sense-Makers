@@ -1,9 +1,10 @@
 import PropTypes from "prop-types";
 
-function CookiesConsent({ setShowCookieBanner }) {
+function CookiesConsent({ setShowCookieBanner, setCookieValidation }) {
   const handleClick = () => {
     localStorage.setItem("cookieBannerDisplayed", "true");
     setShowCookieBanner(false);
+    setCookieValidation("hide");
   };
   setTimeout(() => {
     if (!localStorage.getItem("cookieBannerDisplayed")) {
@@ -26,6 +27,7 @@ function CookiesConsent({ setShowCookieBanner }) {
   );
 }
 CookiesConsent.propTypes = {
-  setShowCookieBanner: PropTypes.bool.isRequired,
+  setShowCookieBanner: PropTypes.func.isRequired,
+  setCookieValidation: PropTypes.func.isRequired,
 };
 export default CookiesConsent;

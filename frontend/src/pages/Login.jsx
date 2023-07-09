@@ -9,28 +9,31 @@ export default function Login() {
   const [password, setPassword] = useState("");
   const { setUser, setToken } = useContext(userContext);
   const [showCookieBanner, setShowCookieBanner] = useState(true);
+  const [cookieValidation, setCookieValidation] = useState("hide");
   const navigate = useNavigate();
 
   const postUserInfos = (e) => {
     e.preventDefault();
-
-    axios
-      .post(
-        `${import.meta.env.VITE_BACKEND_URL}/login`,
-        {
-          email,
-          password,
-        },
-        { withCredentials: true, credentials: "include" }
-      )
-      .then((res) => {
-        setUser(res.data.user);
-        setToken(res.data.token);
-        setTimeout(() => {
-          navigate("/logged/decisions");
-        }, 500);
-      })
-      .catch((err) => console.error(err));
+    if (localStorage.getItem("cookieBannerDisplayed")) {
+      axios
+        .post(
+          `${import.meta.env.VITE_BACKEND_URL}/login`,
+          {
+            email,
+            password,
+          },
+          { withCredentials: true, credentials: "include" }
+        )
+        .then((res) => {
+          setUser(res.data.user);
+          setToken(res.data.token);
+          setTimeout(() => {
+            navigate("/logged/decisions");
+          }, 500);
+        })
+        .catch((err) => console.error(err));
+    }
+    setCookieValidation("cookie-obligation");
   };
 
   return (
@@ -38,6 +41,10 @@ export default function Login() {
       <form onSubmit={postUserInfos}>
         <div className="logIn-input">
           <div className="inputsContainer">
+            <p className={cookieValidation}>
+              Vous devez accepter les cookies avant d'acceder à la plateforme
+            </p>
+
             <label htmlFor="logInUsername">
               <p>Email</p>
             </label>
@@ -64,7 +71,10 @@ export default function Login() {
         </div>
       </form>
       {showCookieBanner && (
-        <CookiesConsent setShowCookieBanner={setShowCookieBanner} />
+        <CookiesConsent
+          setShowCookieBanner={setShowCookieBanner}
+          setCookieValidation={setCookieValidation}
+        />
       )}
     </div>
   );
