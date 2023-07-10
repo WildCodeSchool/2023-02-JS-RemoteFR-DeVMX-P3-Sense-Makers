@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import userContext from "../contexts/userContext";
 import CookiesConsent from "../components/CookiesConsent";
 import ModalEmail from "../components/ModalEmail";
+import GraphicElements from "../components/graphicElements/GraphicElements";
 
 export default function Login() {
   const [email, setEmail] = useState("");
@@ -41,6 +42,7 @@ export default function Login() {
 
   return (
     <>
+    <GraphicElements />
       {openModal && <ModalEmail setOpenModal={setOpenModal} />}
       <div className="logInContainer">
         <form onSubmit={postUserInfos}>

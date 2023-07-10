@@ -1,7 +1,16 @@
+import coloredTraits from "../../assets/colored_traits.png";
+
 export default function graphicElements() {
   return (
     <>
-      <div className="bottom-left-deco">
+      <div>
+        <img
+          className="bottom-left-deco"
+          src={coloredTraits}
+          alt="bottom left decorations"
+        />
+      </div>
+      {/* <div className="bottom-left-deco">
         <div className="rectangle1" />
         <div className="circle1" />
         <div className="rectangle2" />
@@ -32,7 +41,7 @@ export default function graphicElements() {
         <div className="small-yellow-rectangle" />
         <div className="small-yellow-circle1" />
         <div className="small-yellow-circle2" />
-      </div>
+      </div> */}
     </>
   );
 }
