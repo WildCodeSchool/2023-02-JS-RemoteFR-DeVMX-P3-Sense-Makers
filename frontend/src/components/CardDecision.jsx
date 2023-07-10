@@ -50,12 +50,12 @@ export default function CardDecision({ decision }) {
 
   return (
     <>
-      <div
+      {/* <div
         className="Timeline-container-decision"
         style={{ display: `${show}`, transition: "ease-in-out 5s " }}
       >
         <Timeline decision={decision} />
-      </div>
+      </div> */}
       <Link
         className="card-decision-container"
         to={`/logged/decisions/${decision.d_id}`}
@@ -66,6 +66,12 @@ export default function CardDecision({ decision }) {
           setShow("none");
         }}
       >
+        <div
+          className="Timeline-container-decision"
+          style={{ display: `${show}` }}
+        >
+          <Timeline decision={decision} />
+        </div>
         {decision.title_status === "Décision définitive" &&
           (decision.is_validated === 1 ? (
             <div className="decision-validate">

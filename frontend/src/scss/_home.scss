@@ -8,6 +8,7 @@
   gap: 2rem;
   padding: 2rem;
   font-family: $primary-font;
+  
 
   .timeline-zone {
     height: 15vh;
@@ -59,6 +60,7 @@
     }
   }
   .cards-decision-container {
+    position: relative;
     display: flex;
     flex-wrap: wrap;
     gap: 2rem;
