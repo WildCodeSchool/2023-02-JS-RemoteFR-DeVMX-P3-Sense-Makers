@@ -122,6 +122,22 @@ export default function ModifyUser({
       .catch((err) => console.error(err));
   };
 
+  const sendEmailToReinitializePassword = () => {
+    axios
+      .post(
+        `${import.meta.env.VITE_BACKEND_URL}/forgotpassword`,
+        {
+          email: currentUser.email,
+        },
+        {
+          withCredentials: true,
+        }
+      )
+      .then((response) => console.info(response))
+      .catch((err) => console.error(err));
+    setReinicializePassword(true);
+  };
+
   useEffect(() => {
     axios
       .get(`${import.meta.env.VITE_BACKEND_URL}/roles`, {
@@ -207,7 +223,7 @@ export default function ModifyUser({
                   tabIndex="0"
                   onKeyDown={() => {}}
                   className="reinicialize-password"
-                  onClick={() => setReinicializePassword(true)}
+                  onClick={sendEmailToReinitializePassword}
                 >
                   Réinitialiser le mot de passe!
                 </span>
