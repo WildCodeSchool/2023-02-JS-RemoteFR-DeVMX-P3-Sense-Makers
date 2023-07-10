@@ -18,7 +18,6 @@ function DecisionsList() {
       })
       .catch((err) => console.error(err));
   }, []);
-
   return (
     <div className="display-decisions">
       <input
@@ -59,7 +58,7 @@ function DecisionsList() {
                         type="button"
                         className="viewBtn"
                         onClick={() => {
-                          return navigate(`/decisions/${decision.d_id}`);
+                          return navigate(`/logged/decisions/${decision.d_id}`);
                         }}
                       >
                         <img src={oeil} alt="" />
