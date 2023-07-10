@@ -340,5 +340,5 @@ export default function ModifyUser({
 ModifyUser.propTypes = {
   setShowUpdateUser: PropTypes.func.isRequired,
   setCurrentUser: PropTypes.func.isRequired,
-  currentUser: PropTypes.shape.isRequired,
+  currentUser: PropTypes.shape().isRequired,
 };

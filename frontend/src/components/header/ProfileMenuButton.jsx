@@ -240,5 +240,5 @@ LoginButton.propTypes = {
   handleShowLoginMenu: PropTypes.func.isRequired,
   showNotificationsMenu: PropTypes.bool.isRequired,
   handleShowNotificationsMenu: PropTypes.func.isRequired,
-  userRoleId: PropTypes.shape.isRequired,
+  userRoleId: PropTypes.number.isRequired,
 };
