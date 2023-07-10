@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 export default function resetPassword() {
   const [password, setPassword] = useState();
@@ -7,6 +8,7 @@ export default function resetPassword() {
   const params = new URLSearchParams(window.location.search);
   const id = params.get("id");
   const token = params.get("token");
+  const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -23,7 +25,12 @@ export default function resetPassword() {
             withCredentials: true,
           }
         )
-        .then((response) => console.info(response))
+        .then((response) => {
+          setTimeout(() => {
+            navigate("/");
+          }, 500);
+          console.info(response);
+        })
         .catch((err) => console.error(err));
     } else {
       console.info("Is not the same password");
