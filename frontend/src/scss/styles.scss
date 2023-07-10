@@ -1,14 +1,26 @@
 @use "./wrongPage";
 @use "./app";
+@use "./header";
 @use "./decision";
 @use "./home";
 @use "./login";
 @use "./myDecisions";
 @use "./postDecision";
+@use "./cardDecision";
 @use "./profil";
 @use "./Profils_scss/adminProfil";
 @use "./Profils_scss/userProfil";
 @use "./Profils_scss/AdminComponents_scss/decisionsDetails";
 @use "./Profils_scss/AdminComponents_scss/decisionsManagement";
-@use "./Profils_scss/AdminComponents_scss/userManagement";
+@use "./Profils_scss/AdminComponents_scss/addUser";
+@use "./Profils_scss/AdminComponents_scss/adminLists";
+@use "./Profils_scss/AdminComponents_scss/adminDecisionsList";
 @use "./variables";
+@use "./graphicElements/graphicElements";
+@use "./resetPassword";
+@use "./Profils_scss/AdminComponents_scss/modifyUser";
+@use "./postComment";
+@use "./graphicElements/timeline";
+@use "./cookieConsent";
+@use "./ModalEmail";
+

@@ -1,0 +1,187 @@
+@import "./variables";
+
+.card-decision-container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  text-decoration: none;
+  padding: 1rem;
+  width: 20rem;
+  height: 15rem;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: $border-radius-s;
+  font-family: "Raleway", Helvetica, Arial, sans-serif;
+
+  /**********************************/
+
+  .Timeline-container-decision {
+    display: flex;
+    visibility: hidden;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    transform: rotate(-90deg);
+    -moz-transform: rotate(-90deg);
+    background-color: white;
+    position: fixed;
+    border-radius: 5px;
+    left: 35vw;
+    top: -5vh;
+    height: 40rem;
+    width: 20rem;
+    z-index: 999;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    
+
+    @media screen and (min-width: 768px) {
+    visibility: visible;
+     
+    }
+     
+    @media screen and (min-width: 1024px) {
+      left: 50vw;
+      top: -7vh;
+     
+    }
+
+    .timeline-container {
+      height: 36rem;
+      width: 36rem;
+      progress {
+        width: 47rem;
+      }
+      .date-container {
+        justify-content: center;
+        width: 60%;
+        .date-text {
+          transform: rotate(45deg);
+          -moz-transform: rotate(45deg);
+          font-size: $font-size-xxs;
+        }
+        .date-text-similar {
+          transform: rotate(45deg);
+          -moz-transform: rotate(45deg);
+          font-size: $font-size-xxs;
+        }
+        .date-infos {
+          transform: rotate(45deg);
+          -moz-transform: rotate(45deg);
+          font-size: $font-size-xxs;
+        }
+        .date-infos-similar {
+          transform: rotate(45deg);
+          -moz-transform: rotate(45deg);
+          font-size: $font-size-xxs;
+        }
+        .date-point {
+          height: 1.1rem;
+          width: 1.4rem;
+          border-radius: 1.1rem;
+        }
+
+        .date-point-similar {
+          height: 1.1rem;
+          width: 1.4rem;
+          border-radius: 1.3rem;
+        }
+      }
+    }
+  }
+
+  /********************************************/
+  .decision-validate {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    top: $space-0;
+    left: $space-0;
+    background: $sage-green-opacity;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    img {
+      position: absolute;
+      top: 25%;
+      left: 30%;
+      height: 50%;
+      opacity: 0.7;
+    }
+  }
+
+  .decision-not-validate {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    top: 0px;
+    left: 0px;
+    background: $color-primary-opacity;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    img {
+      position: absolute;
+      top: 25%;
+      left: 30%;
+      height: 50%;
+      opacity: 0.7;
+    }
+  }
+
+  .status-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    p {
+      border: 1px solid $color-primary-active;
+      background: rgba(32, 136, 167, 0.25);
+      color: $color-primary-active;
+      font-size: $font-size-xxs;
+      width: 9rem;
+      border-radius: $border-radius-m;
+      padding: 0.5rem;
+      text-align: center;
+    }
+    @media screen and (min-width: 420px) {
+      p {
+        width: 10rem;
+      }
+    }
+
+    :nth-child(2) {
+      border: 1px solid #c10b63;
+      background: rgba(193, 11, 99, 0.25);
+      color: #c10b63;
+      width: 5rem;
+      text-align: center;
+    }
+  }
+  h1 {
+    width: 80%;
+    margin: $space-0 auto;
+    font-size: $font-size-xxxl;
+    height: 7rem;
+    font-weight: $primary-font-weight;
+    color: $color-default;
+  }
+}
+
+.card-creator-container {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+
+  img {
+    width: 3rem;
+    height: 3rem;
+    border-radius: 50%;
+  }
+  p {
+    color: $color-default;
+    font-size: $font-size-l;
+    span {
+      font-weight: $primary-font-weight;
+    }
+  }
+}

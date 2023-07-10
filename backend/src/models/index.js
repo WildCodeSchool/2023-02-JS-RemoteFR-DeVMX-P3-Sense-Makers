@@ -12,6 +12,7 @@ const pool = mysql.createPool({
   user: DB_USER,
   password: DB_PASSWORD,
   database: DB_NAME,
+  timezone: "+00:00",
 });
 
 // try a connection
@@ -30,14 +31,27 @@ pool.getConnection().catch(() => {
 const models = {};
 
 const ItemManager = require("./ItemManager");
+const CommentsManager = require("./commentsManager");
+const StatusManager = require("./StatusManager");
+const UsersManager = require("./UsersManager");
+const RolesManager = require("./RolesManager");
 
 models.item = new ItemManager();
 models.item.setDatabase(pool);
+models.comment = new CommentsManager();
+models.comment.setDatabase(pool);
+models.status = new StatusManager();
+models.status.setDatabase(pool);
+models.users = new UsersManager();
+models.users.setDatabase(pool);
 
 const DecisionManager = require("./DecisionManager");
 
 models.decision = new DecisionManager();
 models.decision.setDatabase(pool);
+
+models.roles = new RolesManager();
+models.roles.setDatabase(pool);
 
 // bonus: use a proxy to personalize error message,
 // when asking for a non existing model
