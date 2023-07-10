@@ -74,9 +74,15 @@ function UsersList() {
                     <td className="picture-container mobile-hide">
                       <img
                         className="mobile-hide"
-                        src={`${import.meta.env.VITE_BACKEND_URL}/uploads/${
-                          user.photo
-                        }`}
+                        src={
+                          user.photo === "default_avatar.png"
+                            ? `${
+                                import.meta.env.VITE_BACKEND_URL
+                              }/assets/images/${user.photo}`
+                            : `${import.meta.env.VITE_BACKEND_URL}/uploads/${
+                                user.photo
+                              }`
+                        }
                         alt="profil"
                       />
                     </td>
