@@ -256,8 +256,6 @@ const getUserByEmail = (req, res) => {
     .selectByEmail(email)
     .then(([[user]]) => {
       if (user != null) {
-        // [req.user] = users;
-
         verify(user.password, password)
           .then((isVerified) => {
             if (isVerified) {
