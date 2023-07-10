@@ -2,6 +2,7 @@ import { useState, useContext } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import userContext from "../contexts/userContext";
+import CookiesConsent from "../components/CookiesConsent";
 import ModalEmail from "../components/ModalEmail";
 
 export default function Login() {
@@ -9,29 +10,32 @@ export default function Login() {
   const [password, setPassword] = useState("");
   const [openModal, setOpenModal] = useState(false);
   const { setUser, setToken } = useContext(userContext);
-
+  const [showCookieBanner, setShowCookieBanner] = useState(true);
+  const [cookieValidation, setCookieValidation] = useState("hide");
   const navigate = useNavigate();
 
   const postUserInfos = (e) => {
     e.preventDefault();
-
-    axios
-      .post(
-        `${import.meta.env.VITE_BACKEND_URL}/login`,
-        {
-          email,
-          password,
-        },
-        { withCredentials: true, credentials: "include" }
-      )
-      .then((res) => {
-        setUser(res.data.user);
-        setToken(document.cookie);
-        setTimeout(() => {
-          navigate("/logged/decisions");
-        }, 500);
-      })
-      .catch((err) => console.error(err));
+    if (localStorage.getItem("cookieBannerDisplayed")) {
+      axios
+        .post(
+          `${import.meta.env.VITE_BACKEND_URL}/login`,
+          {
+            email,
+            password,
+          },
+          { withCredentials: true, credentials: "include" }
+        )
+        .then((res) => {
+          setUser(res.data.user);
+          setToken(document.cookie);
+          setTimeout(() => {
+            navigate("/logged/decisions");
+          }, 500);
+        })
+        .catch((err) => console.error(err));
+    }
+    setCookieValidation("cookie-obligation");
   };
 
   return (
@@ -41,6 +45,9 @@ export default function Login() {
         <form onSubmit={postUserInfos}>
           <div className="logIn-input">
             <div className="inputsContainer">
+              <p className={cookieValidation}>
+                Vous devez accepter les cookies
+              </p>
               <label htmlFor="logInUsername">
                 <p>Email</p>
               </label>
@@ -74,6 +81,12 @@ export default function Login() {
             </span>
           </div>
         </form>
+        {showCookieBanner && (
+          <CookiesConsent
+            setShowCookieBanner={setShowCookieBanner}
+            setCookieValidation={setCookieValidation}
+          />
+        )}
       </div>
     </>
   );
