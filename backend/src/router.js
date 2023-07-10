@@ -31,6 +31,7 @@ router.post(
   usersControllers.getUserByEmail,
   mailControllers.sendMailResetById
 );
+router.put("/resetpassword", hashPassword, usersControllers.editUserPassword);
 // routes protected
 router.use(verifyToken);
 
@@ -87,7 +88,6 @@ router.post("/uploads", upload.single("photo"), uploadFile.postFile);
 router.get("/concernedhub", decisionControllers.concernedHub);
 
 router.post("/sendmail", mailControllers.sendMailById);
-router.put("/resetpassword", hashPassword, usersControllers.editUserPassword);
 
 router.get("/roles", rolesControllers.browseRoles);
 router.get("/roles/:id", rolesControllers.readRole);

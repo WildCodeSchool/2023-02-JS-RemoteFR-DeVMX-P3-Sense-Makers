@@ -11,12 +11,13 @@ export default function resetPassword() {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (password === verifPassword) {
-      console.info("ok");
       axios
         .put(
           `${import.meta.env.VITE_BACKEND_URL}/resetpassword`,
           {
-            user: { password, id, token },
+            password,
+            id,
+            token,
           },
           {
             withCredentials: true,
