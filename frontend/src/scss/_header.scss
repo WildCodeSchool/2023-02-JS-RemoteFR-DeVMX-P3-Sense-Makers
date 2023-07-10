@@ -11,8 +11,6 @@
   font-size: 14px;
 
   .logo-container {
-    flex-grow: 2;
-
     .img-logo {
       width: 7.8rem;
     }
@@ -21,8 +19,9 @@
 
 .navBar-icons {
   display: flex;
-  justify-content: center;
+  justify-content: flex-end;
   align-items: center;
+  min-width: 60%;
 
   .navBar-list {
     display: flex;
@@ -30,7 +29,9 @@
     align-items: center;
     list-style: none;
     gap: $space-xs;
+    padding: 0;
     margin-right: $space-m;
+    margin-left: $space-m;
 
     .link-style {
       display: flex;
@@ -86,7 +87,7 @@
   animation: openLoginMenu 350ms 1 ease-in-out;
 
   > :first-child {
-    & > :last-child {
+    &> :last-child {
       padding-bottom: $space-s;
     }
   }
@@ -247,7 +248,7 @@
   }
 
   .login-menu {
-    right: 3%;
+    right: 2%;
   }
 }
 
@@ -302,7 +303,7 @@
       color: $color-default;
     }
 
-    & > .icon-close-modal {
+    &>.icon-close-modal {
       margin-left: 90%;
     }
 
