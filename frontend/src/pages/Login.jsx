@@ -46,8 +46,8 @@ export default function Login() {
           <div className="logIn-input">
             <div className="inputsContainer">
               <p className={cookieValidation}>
-              Vous devez accepter les cookies
-            </p>
+                Vous devez accepter les cookies
+              </p>
               <label htmlFor="logInUsername">
                 <p>Email</p>
               </label>
@@ -81,12 +81,12 @@ export default function Login() {
             </span>
           </div>
         </form>
- {showCookieBanner && (
-        <CookiesConsent
-          setShowCookieBanner={setShowCookieBanner}
-          setCookieValidation={setCookieValidation}
-        />
-      )}
+        {showCookieBanner && (
+          <CookiesConsent
+            setShowCookieBanner={setShowCookieBanner}
+            setCookieValidation={setCookieValidation}
+          />
+        )}
       </div>
     </>
   );
