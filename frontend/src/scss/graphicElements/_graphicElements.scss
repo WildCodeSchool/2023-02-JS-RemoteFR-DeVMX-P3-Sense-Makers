@@ -1,144 +1,25 @@
 @import "../variables.scss";
 
-.bottom-left-deco {
-  width: 20rem;
-  height: 20rem;
-  position:fixed;
-  right: 100;
-  bottom: 0; 
-}
+  .bottom-left-deco {
+    width:20rem;
+    height: 20rem;
+    position:fixed;
+    right: 100;
+    bottom: 0; 
+  }
+  
+  .top-left-deco {
+    display: none;
+  }
+  
+  .top-right-deco {
+    display: none;
+  }
+  
+  .bottom-right-deco {
+    display: none;
+  }
 
-
-
-//traits on bottom left
-// .bottom-left-deco {
-//   transform: rotate(40deg);
-//   position: relative;
-//   left: 1rem;
-//   top: 9rem;
-//   z-index: -1;
-
-//   .rectangle1 {
-//     position: absolute;
-//     width: 300px;
-//     height: 200px;
-//     clip-path: polygon(0 0, 10% 0, 10% 100%, 0% 100%);
-//     background: $light-yellow;
-//   }
-
-//   .circle1 {
-//     position: absolute;
-//     margin: auto;
-//     top: -1rem;
-//     width: 30px;
-//     height: 30px;
-//     border-radius: 50%;
-//     background: $light-yellow;
-//   }
-
-//   .rectangle2 {
-//     position: absolute;
-//     bottom: -15rem;
-//     left: 2.5rem;
-//     width: 300px;
-//     height: 200px;
-//     clip-path: polygon(0 0, 10% 0, 10% 100%, 0% 100%);
-//     background: $color-primary;
-//   }
-
-//   .circle2 {
-//     position: absolute;
-//     margin: auto;
-//     left: 40px;
-//     top: 25px;
-//     width: 30px;
-//     height: 30px;
-//     border-radius: 50%;
-//     background: $color-primary;
-//   }
-
-//   .rectangle3 {
-//     position: absolute;
-//     left: 5rem;
-//     width: 300px;
-//     height: 200px;
-//     clip-path: polygon(0 0, 10% 0, 10% 100%, 0% 100%);
-//     background: $fluo-yellow;
-//   }
-
-//   .circle3 {
-//     position: absolute;
-//     margin: auto;
-//     top: -1rem;
-//     left: 5rem;
-//     width: 30px;
-//     height: 30px;
-//     border-radius: 50%;
-//     background: $fluo-yellow;
-//   }
-
-//   .rectangle4 {
-//     position: absolute;
-//     left: 7.5rem;
-//     bottom: -15rem;
-//     width: 300px;
-//     height: 200px;
-//     clip-path: polygon(0 0, 10% 0, 10% 100%, 0% 100%);
-//     background: $sage-green;
-//   }
-
-//   .circle4 {
-//     position: absolute;
-//     margin: auto;
-//     left: 120px;
-//     top: 25px;
-//     width: 30px;
-//     height: 30px;
-//     border-radius: 50%;
-//     background: $sage-green;
-//   }
-
-//   .rectangle5 {
-//     position: absolute;
-//     left: 10rem;
-//     width: 300px;
-//     height: 200px;
-//     clip-path: polygon(0 0, 10% 0, 10% 100%, 0% 100%);
-//     background: $fluo-green;
-//   }
-
-//   .circle5 {
-//     position: absolute;
-//     margin: auto;
-//     top: -1rem;
-//     left: 10rem;
-//     width: 30px;
-//     height: 30px;
-//     border-radius: 50%;
-//     background: $fluo-green;
-//   }
-
-//   .rectangle6 {
-//     position: absolute;
-//     left: 12.5rem;
-//     bottom: -15rem;
-//     width: 300px;
-//     height: 200px;
-//     clip-path: polygon(0 0, 10% 0, 10% 100%, 0% 100%);
-//     background: $color-peach;
-//   }
-
-//   .circle6 {
-//     position: absolute;
-//     margin: auto;
-//     left: 200px;
-//     top: 25px;
-//     width: 30px;
-//     height: 30px;
-//     border-radius: 50%;
-//     background: $color-peach;
-//   }
-// }
 
 @media screen and (min-width: 768px) {
   .bottom-left-deco {
@@ -146,11 +27,29 @@
     width: 30rem;
   }
   .top-left-deco {
+    display: initial;
     width: 25rem;
     height: 25rem;
     position:fixed;
     right: 100;
     top: 100px;
+  }
+  .top-right-deco {
+    display: initial;
+    width: 10rem;
+    height: 10rem;
+    position:fixed;
+    right: 30px;
+    top: 5%;
+  }
+  .bottom-right-deco {
+    display: initial;
+    width: 25rem;
+    height: 30rem;
+    position:fixed;
+    right: -50px;
+    bottom: 0px;
+    transform:rotate(10deg);
   }
 }
 
@@ -158,131 +57,9 @@
   .top-left-deco {
     top:20px;
   }
+  .top-right-deco {
+    height: 12rem;
+    width:12rem;
+    right:90px;
+  }
 }
-//   //pill on the top left
-
-//   .top-left-deco {
-//     transform: rotate(30deg);
-//     position: absolute;
-//     top: 8rem;
-//     left: -5rem;
-//     z-index: -1;
-
-//     .pill-border {
-//       .rectangle-pill-border {
-//         position: absolute;
-//         clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
-//         border: 2px solid $sage-green;
-//         border-radius: 4rem;
-//         width: 300px;
-//         height: 100px;
-//       }
-
-//       .circle-pill-border {
-//         position: absolute;
-//         left: 7rem;
-//         top: -13px;
-//         clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
-//         background-color: $sage-green;
-//         width: 80px;
-//         height: 30px;
-//         border-radius: 2rem;
-//       }
-//     }
-//   }
-
-//   // 3 traits on top right
-//   .top-right-deco {
-//     transform: rotate(50deg);
-//     position: relative;
-//     left: 22rem;
-//     bottom: 14rem;
-
-//     .small-green-rectangle {
-//       position: absolute;
-//       clip-path: polygon(0 0, 10% 0, 10% 100%, 0% 100%);
-//       height: 50px;
-//       width: 200px;
-//       background-color: $fluo-green;
-//     }
-
-//     .small-green-circle1 {
-//       position: relative;
-//       top: 2.5rem;
-//       width: 20px;
-//       height: 20px;
-//       border-radius: 50%;
-//       background: $fluo-green;
-//     }
-
-//     .small-green-circle2 {
-//       position: relative;
-//       bottom: 2rem;
-//       width: 20px;
-//       height: 20px;
-//       border-radius: 50%;
-//       background: $fluo-green;
-//     }
-
-//     .small-red-rectangle {
-//       position: relative;
-//       clip-path: polygon(0 0, 10% 0, 10% 100%, 0% 100%);
-//       left: 1.8rem;
-//       bottom: 5rem;
-//       height: 130px;
-//       width: 200px;
-//       background-color: $color-primary;
-//     }
-
-//     .small-red-circle1 {
-//       position: relative;
-//       left: 1.8rem;
-//       bottom: 5.5rem;
-//       width: 20px;
-//       height: 20px;
-//       border-radius: 50%;
-//       background: $color-primary;
-//     }
-
-//     .small-red-circle2 {
-//       position: relative;
-//       left: 1.8rem;
-//       bottom: 15rem;
-//       width: 20px;
-//       height: 20px;
-//       border-radius: 50%;
-//       background: $color-primary;
-//     }
-
-//     .small-yellow-rectangle {
-//       position: relative;
-//       clip-path: polygon(0 0, 10% 0, 10% 100%, 0% 100%);
-//       left: 3.6rem;
-//       bottom: 14.3rem;
-//       height: 90px;
-//       width: 200px;
-//       background-color: $light-yellow;
-//     }
-
-//     .small-yellow-circle1 {
-//       position: relative;
-//       left: 3.6rem;
-//       bottom: 15rem;
-//       width: 20px;
-//       height: 20px;
-//       border-radius: 50%;
-//       background: $light-yellow;
-//     }
-
-//     .small-yellow-circle2 {
-//       position: relative;
-//       left: 3.6rem;
-//       bottom: 21.6rem;
-//       width: 20px;
-//       height: 20px;
-//       border-radius: 50%;
-//       background: $light-yellow;
-//     }
-//   }
-// }
-
