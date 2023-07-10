@@ -41,11 +41,14 @@
     }
   }
 
-  p {
+  p, span {
     color: #f3976b;
     font-size: $font-size-s;
     font-family: $primary-font;
     font-weight: $primary-font-weight;
+  }
+  span{
+    cursor: pointer;
   }
 
   :hover {
@@ -101,8 +104,9 @@
       }
     }
 
-    p {
+    p,span {
       font-size: $font-size-l;
     }
+
   }
 }
