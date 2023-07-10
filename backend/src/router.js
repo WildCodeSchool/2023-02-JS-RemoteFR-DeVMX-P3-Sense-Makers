@@ -14,16 +14,16 @@ const rolesControllers = require("./controllers/rolesControllers");
 
 const {
   hashPassword,
-  verifyPassword,
+  // verifyPassword,
   verifyToken,
 } = require("./services/checkAuth");
 
 // public route
 router.post(
   "/login",
-  usersControllers.getUserByEmail,
-  verifyPassword,
-  verifyToken
+  usersControllers.getUserByEmail
+  // verifyPassword,
+  // verifyToken
 );
 
 router.post(
