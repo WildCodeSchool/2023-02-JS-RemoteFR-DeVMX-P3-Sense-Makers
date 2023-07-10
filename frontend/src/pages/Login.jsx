@@ -34,8 +34,9 @@ export default function Login() {
           }, 500);
         })
         .catch((err) => console.error(err));
+    } else {
+      setCookieValidation("cookie-obligation");
     }
-    setCookieValidation("cookie-obligation");
   };
 
   return (
