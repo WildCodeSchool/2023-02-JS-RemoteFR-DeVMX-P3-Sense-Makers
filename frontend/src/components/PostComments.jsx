@@ -1,12 +1,13 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom";
 import PropTypes from "prop-types";
+import userContext from "../contexts/userContext";
 
 export default function PostComments({ setAddComment, handleComment }) {
   const [comment, setComment] = useState("");
   const { id } = useParams();
-  const placholderUserId = Math.floor(Math.random() * 4 + 1);
+  const { user } = useContext(userContext);
 
   function postComment() {
     setAddComment(false);
@@ -15,7 +16,7 @@ export default function PostComments({ setAddComment, handleComment }) {
         `${import.meta.env.VITE_BACKEND_URL}/decisions/${id}/comments`,
         {
           comment,
-          userId: placholderUserId,
+          userId: user.id,
         },
         {
           withCredentials: true,
