@@ -2,7 +2,6 @@ import { useContext, useEffect, useRef } from "react";
 import { Link, useLocation } from "react-router-dom";
 import PropTypes from "prop-types";
 import NotificationButton from "./NotificationsMenu";
-import kikoAvatar from "../../assets/kiko_avatar.png";
 import userContext from "../../contexts/userContext";
 
 export default function LoginButton({
@@ -14,7 +13,7 @@ export default function LoginButton({
 }) {
   const menuRef = useRef();
   const { pathname } = useLocation();
-  const { setUser, setToken } = useContext(userContext);
+  const { setUser, setToken, user } = useContext(userContext);
 
   useEffect(() => {
     const handler = (e) => {
@@ -61,7 +60,11 @@ export default function LoginButton({
             <line x1="3" y1="18" x2="21" y2="18" />
           </svg>
         </div>
-        <img className="img-avatar" src={kikoAvatar} alt="avatar" />
+        <img
+          className="img-avatar"
+          src={`${import.meta.env.VITE_BACKEND_URL}/uploads/${user.photo}`}
+          alt="avatar"
+        />
       </div>
       <div className={showLoginMenu ? "login-menu" : "login-menu-hidden"}>
         <ul className="login-menu-app">

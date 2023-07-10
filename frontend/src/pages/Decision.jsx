@@ -13,18 +13,11 @@ export default function Decision() {
   const [impactedUsers, setimpactedUsers] = useState([]);
   const [experts, setExperts] = useState([]);
   const [addComment, setAddComment] = useState(false);
+  const [displayValidation, setDisplayValidation] = useState(true);
   const [firstDecision, setFirstDecision] = useState("");
   const { user } = useContext(userContext);
   const { id } = useParams();
   const ref = useRef(null);
-
-  const today = Date.parse(new Date());
-  const initialDate = Date.parse(decision.initial_date);
-  const firstDayDiff = (today - initialDate) / 86400000;
-  const secondDate = Date.parse(decision.first_take_decision);
-  const secondDayDiff = (today - secondDate) / 86400000;
-  const openValidation = Date.parse(decision.deadline_conflict);
-  const closeValidation = Date.parse(decision.final_take_decision);
 
   function strip(html) {
     return (
@@ -68,6 +61,7 @@ export default function Decision() {
       },
       { withCredentials: true }
     );
+    setDisplayValidation(false);
   };
 
   useEffect(() => {
@@ -231,8 +225,8 @@ export default function Decision() {
         </details>
 
         {experts.some((expert) => expert.id === user.id) &&
-          openValidation < today &&
-          closeValidation > today && (
+          decision.status_id === 4 &&
+          displayValidation && (
             <div className="expert-choice">
               <button
                 className="validate"
@@ -254,9 +248,8 @@ export default function Decision() {
             </div>
           )}
 
-        {firstDayDiff > 15 &&
-          firstDayDiff < 22 &&
-          user.id === decision.id &&
+        {decision.status_id === 2 &&
+          user.id === decision.userId &&
           !decision.first_decision_content && (
             <div>
               {" "}
@@ -271,19 +264,20 @@ export default function Decision() {
             </div>
           )}
 
-        {!addComment && (
+        {!addComment && user.id !== decision.userId && (
           <button
             type="button"
             className="comment-button"
             onClick={handleAddComment}
             disabled={
-              (firstDayDiff > 15 && secondDayDiff > 0) || secondDayDiff > 15
+              (decision.status_id !== 1 && decision.status_id !== 3) ||
+              user.id === decision.userId
             }
           >
             Donner mon avis
           </button>
         )}
-        {firstDayDiff > 15 && !secondDate && (
+        {decision.status_id === 2 && (
           <div className="closed-comment">
             <p> La période de commentaire est à present terminée!</p>
             <p>
@@ -292,7 +286,7 @@ export default function Decision() {
             </p>
           </div>
         )}
-        {secondDayDiff > 15 && (
+        {decision.status_id === 4 && (
           <div className="closed-comment">
             <p> La période de commentaire est à present terminée!</p>
             <p>Merci pour vos retours!</p>
@@ -338,16 +332,16 @@ export default function Decision() {
             ))}
           </div>
         </div>
-        <button
-          type="button"
-          className="comment-button"
-          onClick={handleAddComment}
-          disabled={
-            (firstDayDiff > 15 && secondDayDiff > 0) || secondDayDiff > 15
-          }
-        >
-          Donner mon avis
-        </button>
+        {user.id !== decision.userId && (
+          <button
+            type="button"
+            className="comment-button"
+            onClick={handleAddComment}
+            disabled={decision.status_id !== 1 && decision.status_id !== 3}
+          >
+            Donner mon avis
+          </button>
+        )}
       </div>
     </div>
   );
