@@ -1,4 +1,5 @@
 import coloredTraits from "../../assets/colored_traits.png";
+import greenPill from "../../assets/green_pill.png";
 
 export default function graphicElements() {
   return (
@@ -8,6 +9,13 @@ export default function graphicElements() {
           className="bottom-left-deco"
           src={coloredTraits}
           alt="bottom left decorations"
+        />
+      </div>
+      <div>
+        <img
+          className="top-left-deco"
+          src={greenPill}
+          alt="top left decoration"
         />
       </div>
       {/* <div className="bottom-left-deco">

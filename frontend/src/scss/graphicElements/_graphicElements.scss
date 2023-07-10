@@ -7,6 +7,9 @@
   right: 100;
   bottom: 0; 
 }
+
+
+
 //traits on bottom left
 // .bottom-left-deco {
 //   transform: rotate(40deg);
@@ -137,12 +140,25 @@
 //   }
 // }
 
-// @media screen and (min-width: 768px) {
-//   .bottom-left-deco {
-//     top: 27rem;
-//     left: -2rem;
-//   }
+@media screen and (min-width: 768px) {
+  .bottom-left-deco {
+    height: 30rem;
+    width: 30rem;
+  }
+  .top-left-deco {
+    width: 25rem;
+    height: 25rem;
+    position:fixed;
+    right: 100;
+    top: 100px;
+  }
+}
 
+@media screen and (min-width: 1024px) {
+  .top-left-deco {
+    top:20px;
+  }
+}
 //   //pill on the top left
 
 //   .top-left-deco {
@@ -270,9 +286,3 @@
 //   }
 // }
 
-// @media screen and (min-width: 1024px) {
-//   .top-right-deco {
-//     left: 50vw;
-//     bottom: 0;
-//   }
-// }
