@@ -158,8 +158,8 @@ const editUserRole = (req, res) => {
 };
 
 const editUserPassword = (req, res) => {
-  const { user } = req.body;
-  console.info(req.body);
+  const user = req.body;
+  console.info(user);
   // TODO validations (length, format...)
   jwt.verify(user.token, secret, { expiresIn: "1h" }, (err) => {
     if (err) {
