@@ -27,7 +27,7 @@ export default function resetPassword() {
         )
         .then((response) => {
           setTimeout(() => {
-            navigate("/logged/decisions");
+            navigate("/");
           }, 500);
           console.info(response);
         })
