@@ -19,12 +19,7 @@ const {
 } = require("./services/checkAuth");
 
 // public route
-router.post(
-  "/login",
-  usersControllers.getUserByEmail,
-  verifyPassword,
-  verifyToken
-);
+router.post("/login", usersControllers.getUserByEmail, verifyPassword);
 
 router.post(
   "/forgotpassword",
