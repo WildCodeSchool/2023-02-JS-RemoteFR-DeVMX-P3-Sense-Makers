@@ -9,7 +9,7 @@ export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [openModal, setOpenModal] = useState(false);
-  const { setUser, setToken } = useContext(userContext);
+  const { setUser } = useContext(userContext);
   const [showCookieBanner, setShowCookieBanner] = useState(true);
   const [cookieValidation, setCookieValidation] = useState("hide");
   const navigate = useNavigate();
@@ -27,7 +27,6 @@ export default function Login() {
           { withCredentials: true }
         )
         .then((res) => {
-          console.info(res.data);
           setUser(res.data.user);
           setTimeout(() => {
             navigate("/logged/decisions");
