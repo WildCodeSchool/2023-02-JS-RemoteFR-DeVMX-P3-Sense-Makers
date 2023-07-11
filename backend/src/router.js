@@ -75,6 +75,7 @@ router.put("/users/:id/role", usersControllers.editUserRole);
 router.put("/users/:id/roleexpert", usersControllers.editUserRole);
 router.put("/users/:id", usersControllers.editUser);
 router.put("/users/:id/isactive", usersControllers.editUserIsActive);
+router.put("/users/:id/myprofil", usersControllers.editUserMyProfil);
 router.delete("/users/:id", usersControllers.destroyUser);
 router.delete("/users/:id/roleexpert", usersControllers.destroyUserRoleExpert);
 
