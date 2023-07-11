@@ -24,7 +24,7 @@ export default function Login() {
             email,
             password,
           },
-          { withCredentials: true, credentials: "include" }
+          { withCredentials: true }
         )
         .then((res) => {
           setUser(res.data.user);
