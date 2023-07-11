@@ -7,7 +7,13 @@ function DecisionsList() {
   const navigate = useNavigate();
   const [decisions, setDecisions] = useState([]);
   const [filterDecision, setFilterDecision] = useState("");
-
+  const [currentPage, setCurrentPage] = useState(1);
+  const recordsPerPage = 5;
+  const lastIndex = currentPage * recordsPerPage;
+  const firstIndex = lastIndex - recordsPerPage;
+  const records = decisions.slice(firstIndex, lastIndex);
+  const npage = Math.ceil(decisions.length / recordsPerPage);
+  const numbers = [...Array(npage + 1).keys()].slice(1);
   useEffect(() => {
     axios
       .get(`${import.meta.env.VITE_BACKEND_URL}/decisions`, {
@@ -18,6 +24,21 @@ function DecisionsList() {
       })
       .catch((err) => console.error(err));
   }, []);
+
+  const prePage = () => {
+    if (currentPage !== 1) {
+      setCurrentPage(currentPage - 1);
+    }
+  };
+  const changeCpage = (id) => {
+    setCurrentPage(id);
+  };
+
+  const nextPage = () => {
+    if (currentPage !== npage) {
+      setCurrentPage(currentPage + 1);
+    }
+  };
   return (
     <div className="display-decisions">
       <input
@@ -37,8 +58,8 @@ function DecisionsList() {
           </tr>
         </thead>
         <tbody>
-          {decisions &&
-            decisions
+          {records &&
+            records
               .filter((e) => {
                 return e.title_decision.toLowerCase().includes(filterDecision);
               })
@@ -69,6 +90,32 @@ function DecisionsList() {
               })}
         </tbody>
       </table>
+      <nav>
+        <ul className="pagination">
+          <li className="page-item">
+            <button type="button" onClick={prePage}>
+              Prev
+            </button>
+          </li>
+          {numbers.map((n) => (
+            <li
+              className={`page-item-number ${
+                currentPage === n ? "active" : ""
+              }`}
+              key={n}
+            >
+              <button type="button" onClick={() => changeCpage(n)}>
+                {n}
+              </button>
+            </li>
+          ))}
+          <li className="page-item">
+            <button className="page-link" type="button" onClick={nextPage}>
+              Next
+            </button>
+          </li>
+        </ul>
+      </nav>
     </div>
   );
 }

@@ -10,6 +10,14 @@ function UsersList() {
   const [users, setUsers] = useState([]);
   const [currentUser, setCurrentUser] = useState([]);
   const [filterUser, setFilterUser] = useState("");
+  const [currentPage, setCurrentPage] = useState(1);
+  const recordsPerPage = 5;
+  const lastIndex = currentPage * recordsPerPage;
+  const firstIndex = lastIndex - recordsPerPage;
+  const records = users.slice(firstIndex, lastIndex);
+  const npage = Math.ceil(users.length / recordsPerPage);
+  const numbers = [...Array(npage + 1).keys()].slice(1);
+
   useEffect(() => {
     axios
       .get(`${import.meta.env.VITE_BACKEND_URL}/users`, {
@@ -21,6 +29,20 @@ function UsersList() {
       .catch((err) => console.error(err));
   }, [showAddUser, setShowAddUser, showUpdateUser]);
 
+  const prePage = () => {
+    if (currentPage !== 1) {
+      setCurrentPage(currentPage - 1);
+    }
+  };
+  const changeCpage = (id) => {
+    setCurrentPage(id);
+  };
+
+  const nextPage = () => {
+    if (currentPage !== npage) {
+      setCurrentPage(currentPage + 1);
+    }
+  };
   return (
     <div className="display">
       {showAddUser && <AddUser setShowAddUser={setShowAddUser} />}
@@ -59,8 +81,8 @@ function UsersList() {
           </tr>
         </thead>
         <tbody>
-          {users &&
-            users
+          {records &&
+            records
               .filter((e) => {
                 return (
                   e.lastname.toLowerCase().includes(filterUser) ||
@@ -109,6 +131,32 @@ function UsersList() {
               })}
         </tbody>
       </table>
+      <nav>
+        <ul className="pagination">
+          <li className="page-item">
+            <button type="button" onClick={prePage}>
+              Prev
+            </button>
+          </li>
+          {numbers.map((n) => (
+            <li
+              className={`page-item-number ${
+                currentPage === n ? "active" : ""
+              }`}
+              key={n}
+            >
+              <button type="button" onClick={() => changeCpage(n)}>
+                {n}
+              </button>
+            </li>
+          ))}
+          <li className="page-item">
+            <button className="page-link" type="button" onClick={nextPage}>
+              Next
+            </button>
+          </li>
+        </ul>
+      </nav>
     </div>
   );
 }
