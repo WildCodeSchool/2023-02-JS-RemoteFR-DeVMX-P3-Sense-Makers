@@ -4,7 +4,7 @@ import Dropzone from "../../../services/hookDropzone";
 import userContext from "../../../contexts/userContext";
 
 export default function ModifyMyProfil() {
-  const { user } = useContext(userContext);
+  const { user, setUser } = useContext(userContext);
   const [currentUser, setCurrentUser] = useState([]);
   const [reinicializePassword, setReinicializePassword] = useState(false);
   const [dropzoneImage, setDropzoneImage] = useState([]);
@@ -34,7 +34,6 @@ export default function ModifyMyProfil() {
           withCredentials: true,
         }
       )
-
       .then(() => {
         setTimeout(() => {
           axios
@@ -45,7 +44,7 @@ export default function ModifyMyProfil() {
               }
             )
             .then((result) => {
-              setCurrentUser(result.data[0]);
+              setUser(result.data[0]);
             })
             .catch((err) => console.error(err));
         }, 500);
@@ -64,7 +63,6 @@ export default function ModifyMyProfil() {
           withCredentials: true,
         }
       )
-      .then((response) => console.info(response))
       .catch((err) => console.error(err));
     setReinicializePassword(true);
   };
@@ -74,11 +72,7 @@ export default function ModifyMyProfil() {
       <div className="add-user-title-container">
         <h2 className="add-user-title">Modification d'utilisateur</h2>
         <div className="close-modal-button-container">
-          <button
-            type="button"
-            className="close-modal-button"
-            // onClick={() => setShowUpdateUser(false)}
-          >
+          <button type="button" className="close-modal-button">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="24"
