@@ -182,10 +182,10 @@ const editUserPassword = (req, res) => {
 
 const editUserMyProfil = (req, res) => {
   const userId = parseInt(req.params.id, 10);
+  const { photo } = req.body;
 
-  const photo = req.body;
   models.users
-    .updateUserPassword(photo, userId)
+    .updateUserMyProfil(photo, userId)
     .then(([result]) => {
       if (result.affectedRows === 0) {
         res.sendStatus(404);
