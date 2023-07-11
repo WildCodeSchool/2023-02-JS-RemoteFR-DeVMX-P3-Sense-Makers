@@ -83,6 +83,7 @@
 @media screen and (min-width: 768px) {
   .logInContainer {
     left: 30%;
+    left: 30%;
     max-width: 45vw;
     input {
       width: 25vw;
@@ -96,7 +97,7 @@
 
 @media screen and (min-width: 1024px) {
   .logInContainer {
-    top: 25vh;
+    top: 10vw;
     .logInUsername {
       label {
         p {
@@ -105,7 +106,7 @@
       }
     }
     button {
-      min-width: 12rem;
+      width: 12rem;
       h2 {
         font-size: $font-size-l;
       }

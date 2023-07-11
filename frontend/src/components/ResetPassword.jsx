@@ -49,18 +49,18 @@ export default function resetPassword() {
               type="password"
               id="newpassword"
               name="newpassword"
-              placeholder="Insérez votre mot de passe"
+              placeholder=" Insérez votre mot de passe"
               onChange={(e) => setPassword(e.target.value)}
               required
             />
           </label>
           <label htmlFor="verifypassword">
-            Ressaisir le mot de passe <br />
+            Confirmer mot de passe <br />
             <input
               type="password"
               id="verifypassword"
               name="verifypassword"
-              placeholder=" votre mot de passe"
+              placeholder=" Votre mot de passe"
               onChange={(e) => setVerifPassword(e.target.value)}
               required
             />
