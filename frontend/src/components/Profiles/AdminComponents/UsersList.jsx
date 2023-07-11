@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import AddUser from "./AddUser";
 import oeil from "../../../assets/view.png";
-import ModifyUser from "../GlobalComponents/ModifyUser";
+import ModifyUser from "./ModifyUser";
 
 function UsersList() {
   const [showAddUser, setShowAddUser] = useState(false);

@@ -4,12 +4,13 @@ import Home from "./pages/Home";
 import Decision from "./pages/Decision";
 import MyDecisions from "./pages/MyDecisions";
 import PostDecision from "./pages/PostDecision";
-import Profile from "./pages/Profile";
+import Administration from "./pages/Administration";
 import WrongPage from "./pages/WrongPage";
 import Password from "./pages/Password";
 import "./scss/styles.scss";
 import NavLayout from "./layouts/NavLayout";
 import ProtectedLayout from "./layouts/ProtectedLayout";
+import MyProfil from "./pages/MyProfil";
 
 function App() {
   return (
@@ -28,7 +29,8 @@ function App() {
               <Route path="users/mydecisions" element={<MyDecisions />} />
               <Route path="postdecision" element={<PostDecision />} />
               <Route path="decisions/:id" element={<Decision />} />
-              <Route path="profile" element={<Profile />} />
+              <Route path="administration" element={<Administration />} />
+              <Route path="myprofil" element={<MyProfil />} />
             </Route>
           </Route>
         </Routes>
