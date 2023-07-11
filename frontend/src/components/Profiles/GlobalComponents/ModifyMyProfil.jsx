@@ -68,7 +68,7 @@ export default function ModifyMyProfil() {
   };
 
   return (
-    <form className="modify-user-management" onSubmit={submit}>
+    <form className="modify-my-profil-management" onSubmit={submit}>
       <div className="add-user-title-container">
         <h2 className="add-user-title">Modification d'utilisateur</h2>
         <div className="close-modal-button-container">
