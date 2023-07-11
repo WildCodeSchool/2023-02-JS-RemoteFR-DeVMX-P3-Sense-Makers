@@ -1,5 +1,4 @@
 const jwt = require("jsonwebtoken");
-const { verify } = require("argon2");
 
 const secret = process.env.SECRET_MAIL;
 const models = require("../models");
@@ -249,39 +248,15 @@ const destroyUserRoleExpert = (req, res) => {
     });
 };
 
-const getUserByEmail = (req, res) => {
-  const { email, password } = req.body;
+const getUserByEmail = (req, res, next) => {
+  const { email } = req.body;
 
   models.users
     .selectByEmail(email)
-    .then(([[user]]) => {
-      if (user != null) {
-        verify(user.password, password)
-          .then((isVerified) => {
-            if (isVerified) {
-              const payload = { sub: user.id };
-              const token = jwt.sign(payload, process.env.TOKEN_SECRET, {
-                expiresIn: "1h",
-              });
-              // eslint-disable-next-line no-param-reassign
-              delete user.password;
-              res
-                .status(200)
-                .cookie("user_token", token, {
-                  httpOnly: false,
-                  expires: new Date(Date.now() + 1000 * 60 * 60),
-                })
-                .send({ token, user });
-            } else {
-              res.status(401).send({
-                message: "Les informations renseignées sont incorrectes",
-              });
-            }
-          })
-          .catch((err) => {
-            console.error(err);
-            res.sendStatus(500);
-          });
+    .then(([users]) => {
+      if (users[0] != null) {
+        [req.user] = users;
+        next();
       } else {
         res.sendStatus(401);
       }
