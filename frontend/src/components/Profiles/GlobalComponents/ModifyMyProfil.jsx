@@ -6,7 +6,6 @@ import userContext from "../../../contexts/userContext";
 export default function ModifyMyProfil() {
   const { user } = useContext(userContext);
   const [currentUser, setCurrentUser] = useState([]);
-  const [rolesFromUser, setRolesFromUser] = useState([]);
   const [reinicializePassword, setReinicializePassword] = useState(false);
   const [dropzoneImage, setDropzoneImage] = useState([]);
   const [newUploadedFileName, setNewUploadedFileName] = useState("");
@@ -20,72 +19,22 @@ export default function ModifyMyProfil() {
       .catch((err) => console.error(err));
   }, []);
 
-  useEffect(() => {
-    const splitUserRoles = currentUser.roles?.split(", ");
-    setRolesFromUser(splitUserRoles);
-  }, [currentUser]);
-
   const submit = (event) => {
     event.preventDefault();
     axios
       .put(
-        `${import.meta.env.VITE_BACKEND_URL}/users/${currentUser.id}`,
+        `${import.meta.env.VITE_BACKEND_URL}/users/${currentUser.id}/myprofil`,
         {
-          firstname: currentUser.firstname,
-          lastname: currentUser.lastname,
           photo:
             newUploadedFileName !== ""
               ? newUploadedFileName
               : currentUser.photo,
-          email: currentUser.email,
-          password: currentUser.password,
         },
         {
           withCredentials: true,
         }
       )
-      .then(() => {
-        if (rolesFromUser.role.length === 1) {
-          axios
-            .put(
-              `${import.meta.env.VITE_BACKEND_URL}/users/${
-                currentUser.id
-              }/role`,
-              { role: currentUser.role },
-              {
-                withCredentials: true,
-              }
-            )
-            .catch((err) => console.error(err));
-        }
 
-        if (rolesFromUser.length <= 1) {
-          axios
-            .post(
-              `${import.meta.env.VITE_BACKEND_URL}/users/${
-                currentUser.id
-              }/role`,
-              { roleId: 3 },
-              {
-                withCredentials: true,
-              }
-            )
-            .catch((err) => console.error(err));
-        }
-
-        if (rolesFromUser.length >= 2) {
-          axios
-            .delete(
-              `${import.meta.env.VITE_BACKEND_URL}/users/${
-                currentUser.id
-              }/roleexpert`,
-              {
-                withCredentials: true,
-              }
-            )
-            .catch((err) => console.error(err));
-        }
-      })
       .then(() => {
         setTimeout(() => {
           axios
