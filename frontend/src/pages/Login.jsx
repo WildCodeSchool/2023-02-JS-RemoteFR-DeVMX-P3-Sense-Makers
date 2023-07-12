@@ -24,7 +24,7 @@ export default function Login() {
     });
   };
   const dataNotValide = () => {
-    toast.error("email ou mot de passe incorect", {
+    toast.error("email ou mot de passe incorrect", {
       color: "white",
       backgroundColor: "red",
       icon: "❌",
