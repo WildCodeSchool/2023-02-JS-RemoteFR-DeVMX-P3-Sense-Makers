@@ -89,7 +89,7 @@ function UsersList({
       <table>
         <thead>
           <tr>
-            <th>photo</th>
+            <th>Photo</th>
             <th>Nom</th>
             <th>Prénom</th>
             <th>Email</th>
@@ -108,7 +108,7 @@ function UsersList({
                 );
               })
               .map((user) => {
-                const crerationDate = new Date(user.creation_date);
+                const creationDate = new Date(user.creation_date);
                 return (
                   <tr key={user.id}>
                     <td className="picture-container mobile-hide">
@@ -131,7 +131,7 @@ function UsersList({
                     <td>{user.email}</td>
                     <td>{user.roles.split(", ")[0]}</td>
                     <td>{user.roles.split(", ").length > 1 ? "oui" : "non"}</td>
-                    <td>{crerationDate.toLocaleDateString("fr")}</td>
+                    <td>{creationDate.toLocaleDateString("fr")}</td>
                     <td>
                       <button
                         type="button"
