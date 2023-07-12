@@ -54,29 +54,29 @@
     font-family: $primary-font;
     font-weight: $primary-font-weight;
   }
-  span{
+  .reinicialize-password{
     cursor: pointer;
-    margin-top: 10%;
+    margin-top: 1rem;
   }
-
-  :hover {
-    color: #196c84;
-    background-color: $background-color-base;
-  }
-
+  
   button {
     background-color: #196c84;
     color: $background-color-base;
     border-radius: $border-radius-m;
     padding: 0 10%;
     cursor: pointer;
-
+    
+    
     h2 {
       font-size: $font-size-s;
       margin: 0.5rem 0rem 0.5rem 0rem;
       font-family: $primary-font;
       font-weight: $primary-font-weight;
     }
+  }
+  :hover {
+    color: #196c84;
+    background-color: $background-color-base;
   }
 }
 
@@ -86,12 +86,21 @@
     top: 30vh;
     width: 45vw;
     height: 35vh;
+
     input {
       width: 25vw;
     }
 
     button {
       margin: 0 0 3% 0;
+    }
+    
+    .reinicialize-password {
+      max-height: 30px;
+      max-width: 205px;
+    }
+    :hover {
+      background-color: transparent;
     }
   }
 }
@@ -100,15 +109,16 @@
   .logInContainer {
     top: 25vh;
     width: 35vw;
-    height: 50vh;
+    height: 55vh;
     left:30vw;
     .logInUsername {
       label {
         p {
           font-size: $font-size-l;
         }
-      }
+      }  
     }
+
     button {
       min-width: 12rem;
       h2 {
@@ -119,6 +129,14 @@
     p,span {
       font-size: $font-size-l;
     }
+
+    // .reinicialize-password {
+    //   height: 30px;
+    //   width: 205px;
+    // }
+    // :hover {
+    //   background-color: transparent;
+    // }
 
   }
 }
