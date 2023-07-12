@@ -1,10 +1,18 @@
 import { useEffect, useState } from "react";
+import PropTypes from "prop-types";
 import axios from "axios";
 import AddUser from "./AddUser";
 import oeil from "../../../assets/view.png";
 import ModifyUser from "../GlobalComponents/ModifyUser";
 
-function UsersList() {
+function UsersList({
+  userAddNotif,
+  userNotAddNotif,
+  userModifNotif,
+  userDeleteNotif,
+  emailSend,
+  emailNotSend,
+}) {
   const [showAddUser, setShowAddUser] = useState(false);
   const [showUpdateUser, setShowUpdateUser] = useState(false);
   const [users, setUsers] = useState([]);
@@ -45,12 +53,22 @@ function UsersList() {
   };
   return (
     <div className="display">
-      {showAddUser && <AddUser setShowAddUser={setShowAddUser} />}
+      {showAddUser && (
+        <AddUser
+          setShowAddUser={setShowAddUser}
+          userAddNotif={userAddNotif}
+          userNotAddNotif={userNotAddNotif}
+        />
+      )}
       {showUpdateUser && (
         <ModifyUser
           setShowUpdateUser={setShowUpdateUser}
           setCurrentUser={setCurrentUser}
           currentUser={currentUser}
+          userModifNotif={userModifNotif}
+          userDeleteNotif={userDeleteNotif}
+          emailSend={emailSend}
+          emailNotSend={emailNotSend}
         />
       )}
       <div className="filter-user">
@@ -160,5 +178,13 @@ function UsersList() {
     </div>
   );
 }
+UsersList.propTypes = {
+  userAddNotif: PropTypes.func.isRequired,
+  userNotAddNotif: PropTypes.func.isRequired,
+  userModifNotif: PropTypes.func.isRequired,
+  userDeleteNotif: PropTypes.func.isRequired,
+  emailSend: PropTypes.func.isRequired,
+  emailNotSend: PropTypes.func.isRequired,
+};
 
 export default UsersList;

@@ -4,7 +4,11 @@ import { useParams } from "react-router-dom";
 import PropTypes from "prop-types";
 import userContext from "../contexts/userContext";
 
-export default function PostComments({ setAddComment, handleComment }) {
+export default function PostComments({
+  setAddComment,
+  handleComment,
+  commentAdd,
+}) {
   const [comment, setComment] = useState("");
   const { id } = useParams();
   const { user } = useContext(userContext);
@@ -27,6 +31,7 @@ export default function PostComments({ setAddComment, handleComment }) {
 
   const handleClick = () => {
     postComment();
+    commentAdd();
     setTimeout(handleComment, 500);
   };
 
@@ -49,4 +54,5 @@ export default function PostComments({ setAddComment, handleComment }) {
 PostComments.propTypes = {
   setAddComment: PropTypes.func.isRequired,
   handleComment: PropTypes.func.isRequired,
+  commentAdd: PropTypes.func.isRequired,
 };

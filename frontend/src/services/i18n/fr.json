@@ -1,0 +1,11 @@
+{
+  "header": {
+    "decision": "Décisions",
+    "my-decisions": "Mes décisions",
+    "notif": "Notifications",
+    "admin": "Administration",
+    "account": "Mon compte",
+    "creation": "Créer une décision",
+    "disconnect": "Déconnexion"
+  }
+}

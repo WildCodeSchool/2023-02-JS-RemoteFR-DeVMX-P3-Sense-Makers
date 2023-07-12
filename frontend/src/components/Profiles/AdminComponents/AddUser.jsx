@@ -4,7 +4,11 @@ import axios from "axios";
 import Dropzone from "../../../services/hookDropzone";
 import inputValidationRules from "../../../services/inputValidationRules";
 
-export default function AddUser({ setShowAddUser }) {
+export default function AddUser({
+  setShowAddUser,
+  userAddNotif,
+  userNotAddNotif,
+}) {
   const [dropzoneImage, setDropzoneImage] = useState([]);
   const [newUploadedFileName, setNewUploadedFileName] = useState("");
   const [rolesData, setRolesData] = useState([]);
@@ -117,8 +121,20 @@ export default function AddUser({ setShowAddUser }) {
                   withCredentials: true,
                 }
               )
-              .catch((err) => console.error(err));
+              .then((resp) => {
+                if (resp.status === 200) {
+                  setShowAddUser(false);
+                  userAddNotif();
+                }
+              })
+              .catch((err) => {
+                console.error(err);
+              });
           }
+        })
+        .catch((err) => {
+          console.error(err);
+          return userNotAddNotif();
         });
     } else {
       const invalidInputsTargets = inputValidationRules(targetValues);
@@ -282,10 +298,13 @@ export default function AddUser({ setShowAddUser }) {
           </div>
         </div>
       </div>
+      {/* <ToastContainer autoClose={1500} transition={Slide} /> */}
     </form>
   );
 }
 
 AddUser.propTypes = {
   setShowAddUser: PropTypes.func.isRequired,
+  userAddNotif: PropTypes.func.isRequired,
+  userNotAddNotif: PropTypes.func.isRequired,
 };
