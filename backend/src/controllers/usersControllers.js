@@ -180,6 +180,25 @@ const editUserPassword = (req, res) => {
   });
 };
 
+const editUserMyProfil = (req, res) => {
+  const userId = parseInt(req.params.id, 10);
+  const { photo } = req.body;
+
+  models.users
+    .updateUserMyProfil(photo, userId)
+    .then(([result]) => {
+      if (result.affectedRows === 0) {
+        res.sendStatus(404);
+      } else {
+        res.sendStatus(204);
+      }
+    })
+    .catch((error) => {
+      console.error(error);
+      res.sendStatus(500);
+    });
+};
+
 const addUser = (req, res) => {
   const user = req.body;
 
@@ -276,6 +295,7 @@ module.exports = {
   editUser,
   editUserIsActive,
   editUserRole,
+  editUserMyProfil,
   addUser,
   addRoleToUser,
   destroyUser,
