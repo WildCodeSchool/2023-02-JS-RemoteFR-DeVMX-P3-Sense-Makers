@@ -35,7 +35,7 @@ function UsersList({
         setUsers(res.data);
       })
       .catch((err) => console.error(err));
-  }, [showAddUser, setShowAddUser, showUpdateUser]);
+  }, [records, showAddUser, setShowAddUser, showUpdateUser]);
 
   const prePage = () => {
     if (currentPage !== 1) {

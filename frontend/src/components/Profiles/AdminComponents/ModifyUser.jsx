@@ -163,7 +163,6 @@ export default function ModifyUser({
       )
       .then(() => {
         userDeleteNotif();
-        setShowUpdateUser(false);
       })
       .catch((err) => console.error(err));
     setShowUpdateUser(false);
