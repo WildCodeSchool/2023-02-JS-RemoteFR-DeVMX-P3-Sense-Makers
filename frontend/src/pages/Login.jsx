@@ -33,7 +33,7 @@ export default function Login() {
 
   const postUserInfos = (e) => {
     e.preventDefault();
-    if (localStorage.getItem("cookieBannerDisplayed")) {
+    if (localStorage.getItem("conditionsAcceptation")) {
       axios
         .post(
           `${import.meta.env.VITE_BACKEND_URL}/login`,
@@ -69,7 +69,7 @@ export default function Login() {
           <div className="logIn-input">
             <div className="inputsContainer">
               <p className={cookieValidation}>
-                Vous devez accepter les cookies
+                Vous devez accepter les conditions
               </p>
               <label htmlFor="logInUsername">
                 <p>Email</p>

@@ -1,28 +1,51 @@
 import PropTypes from "prop-types";
 
 function CookiesConsent({ setShowCookieBanner, setCookieValidation }) {
-  const handleClick = () => {
-    localStorage.setItem("cookieBannerDisplayed", "true");
+  const handleClickAccept = () => {
+    localStorage.setItem("conditionsAcceptation", "true");
     setShowCookieBanner(false);
     setCookieValidation("hide");
   };
   setTimeout(() => {
-    if (!localStorage.getItem("cookieBannerDisplayed")) {
+    if (!localStorage.getItem("conditionsAcceptation")) {
       setShowCookieBanner(true);
     } else setShowCookieBanner(false);
   });
+
+  const handleClickRefuse = () => {
+    localStorage.setItem("conditionsRefused", "false");
+    setShowCookieBanner(true);
+  };
+  // setTimeout(() => {
+  //   if (!localStorage.getItem("conditionsRefused")) {
+  //     setShowCookieBanner(true);
+  //   } else setShowCookieBanner(false);
+  // });
   return (
     <div className="cookie-container">
       <p>
-        Ce site utilise des cookies. Lisez notre{" "}
-        <a style={{ color: " rgb(255, 243, 13)" }} href="/loged/privacy">
-          politique d'usage
+        Ce site utilise des données de connexion. Lisez notre{" "}
+        <a style={{ color: " rgb(227, 97, 100)" }} href="/loged/privacy">
+          politique de confidentialité
         </a>{" "}
         pour plus d'infos{" "}
       </p>
-      <button type="button" className="cookie-btn" onClick={handleClick}>
-        D'accord
-      </button>
+      <div className="container-button">
+        <button
+          type="button"
+          className="cookie-btn"
+          onClick={handleClickAccept}
+        >
+          Accord
+        </button>
+        <button
+          type="button"
+          className="cookie-btn"
+          onClick={handleClickRefuse}
+        >
+          Refus
+        </button>
+      </div>
     </div>
   );
 }
