@@ -26,6 +26,8 @@ export default function LoginButton({
       }
     };
     document.addEventListener("mousedown", handler);
+
+    return () => document.addEventListener("mousedown", handler);
   }, []);
 
   const disconnect = () => {
