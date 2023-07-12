@@ -8,7 +8,7 @@ export default function ModifyUser({
   setCurrentUser,
   currentUser,
   userModifNotif,
-  // userDeleteNotif,
+  userDeleteNotif,
   emailSend,
   emailNotSend,
 }) {
@@ -161,6 +161,10 @@ export default function ModifyUser({
           withCredentials: true,
         }
       )
+      .then(() => {
+        userDeleteNotif();
+        setShowUpdateUser(false);
+      })
       .catch((err) => console.error(err));
     setShowUpdateUser(false);
   };
@@ -372,7 +376,7 @@ ModifyUser.propTypes = {
   setCurrentUser: PropTypes.func.isRequired,
   currentUser: PropTypes.shape().isRequired,
   userModifNotif: PropTypes.func.isRequired,
-  // userDeleteNotif: PropTypes.func.isRequired,
+  userDeleteNotif: PropTypes.func.isRequired,
   emailSend: PropTypes.func.isRequired,
   emailNotSend: PropTypes.func.isRequired,
 };
