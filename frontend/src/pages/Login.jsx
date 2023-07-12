@@ -26,7 +26,7 @@ export default function Login() {
     });
   };
   const dataNotValide = () => {
-    toast.error("email ou mot de passe incorect", {
+    toast.error("email ou mot de passe incorrect", {
       color: "white",
       backgroundColor: "red",
       icon: "❌",
@@ -35,7 +35,7 @@ export default function Login() {
 
   const postUserInfos = (e) => {
     e.preventDefault();
-    if (localStorage.getItem("cookieBannerDisplayed")) {
+    if (localStorage.getItem("conditionsAcceptation")) {
       axios
         .post(
           `${import.meta.env.VITE_BACKEND_URL}/login`,
