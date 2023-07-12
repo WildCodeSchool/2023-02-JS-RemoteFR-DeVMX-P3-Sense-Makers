@@ -5,10 +5,10 @@
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   border-radius: 5px;
   position: relative;
-  top: 5rem;
-  left: 0.5rem;
+  top: 20vh;
+  left: 12vw;
   height: 50vh;
-  max-width: 75vw;
+  width: 75vw;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -54,22 +54,20 @@
     font-family: $primary-font;
     font-weight: $primary-font-weight;
   }
-  span{
+  .reinicialize-password{
     cursor: pointer;
+    margin-top: 1rem;
   }
-
-  :hover {
-    color: #196c84;
-    background-color: $background-color-base;
-  }
-
+  
   button {
     background-color: #196c84;
     color: $background-color-base;
     border-radius: $border-radius-m;
     padding: 0 10%;
     cursor: pointer;
-
+    transition: 0.2s ease-in-out;
+    
+    
     h2 {
       font-size: $font-size-s;
       margin: 0.5rem 0rem 0.5rem 0rem;
@@ -77,13 +75,20 @@
       font-weight: $primary-font-weight;
     }
   }
+  :hover {
+    color: #196c84;
+    background-color: $background-color-base;
+    transition: 0.2s ease-in-out;
+  }
 }
 
 @media screen and (min-width: 768px) {
   .logInContainer {
-    left: 25vw;
-    top: 20vw;
-    max-width: 45vw;
+    left: 30%;
+    top: 30vh;
+    width: 45vw;
+    height: 35vh;
+
     input {
       width: 25vw;
     }
@@ -91,21 +96,33 @@
     button {
       margin: 0 0 3% 0;
     }
+    
+    .reinicialize-password {
+      max-height: 30px;
+      max-width: 205px;
+    }
+    :hover {
+      background-color: transparent;
+    }
   }
 }
 
 @media screen and (min-width: 1024px) {
   .logInContainer {
-    top: 10vw;
+    top: 25vh;
+    width: 35vw;
+    height: 55vh;
+    left:30vw;
     .logInUsername {
       label {
         p {
           font-size: $font-size-l;
         }
-      }
+      }  
     }
+
     button {
-      width: 12rem;
+      min-width: 12rem;
       h2 {
         font-size: $font-size-l;
       }
