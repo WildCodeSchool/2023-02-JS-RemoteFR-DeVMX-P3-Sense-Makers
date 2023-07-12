@@ -16,11 +16,6 @@ function CookiesConsent({ setShowCookieBanner, setCookieValidation }) {
     localStorage.setItem("conditionsRefused", "false");
     setShowCookieBanner(true);
   };
-  // setTimeout(() => {
-  //   if (!localStorage.getItem("conditionsRefused")) {
-  //     setShowCookieBanner(true);
-  //   } else setShowCookieBanner(false);
-  // });
   return (
     <div className="cookie-container">
       <p>
