@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import PropTypes from "prop-types";
+import { useTranslation } from "react-i18next";
 
 export default function TimelineDate({
   date,
@@ -9,6 +10,7 @@ export default function TimelineDate({
   parseDayDate,
 }) {
   const [dateInitial, setDateInitial] = useState("");
+  const { t } = useTranslation();
 
   const dateI = new Date(date.date);
   const parstDateI = Date.parse(date.date);
@@ -31,7 +33,7 @@ export default function TimelineDate({
   return (
     <div className="date-container" style={{ bottom: `${Progress}%` }}>
       <div className={`date-infos${dateInitial}`}>
-        {dateI.toLocaleDateString("fr")}
+        {dateI.toLocaleDateString(t("timeline.dateDisplay"))}
       </div>
       <div className={`date-point${dateInitial}`} />
       <div className={`date-text${dateInitial}`}>{date.title}</div>

@@ -41,5 +41,83 @@
       "6": "Décision terminée",
       "7": "Décision non aboutie"
     }
+  },
+
+  "decision": {
+    "by": "Par",
+    "details": {
+      "decisionDetails": "Les details de la décision",
+      "context": "contexte:",
+      "impact": "Impact sur l'organisation",
+      "benefit": "Bénéfices",
+      "risks": "Risques potentiels",
+      "firstTake": "Première prise de décision",
+      "comments": "Avis"
+    },
+    "comment": {
+      "expert": "expert",
+      "impacted": "impacté par la décision",
+      "on": "le"
+    },
+    "approve": "Valider cette décision",
+    "reject": "Rejeter cette décision",
+    "postFirstTake": "poster ma première prise de décision",
+    "commButton": "Donner mon avis",
+    "closedComment": "La période de commentaires est à present terminée!",
+    "waitComment": "Attendez la première prise de décision de l'auteur pour a nouveau pouvoir donner votre avis!",
+    "thanks": "Merci pour vos retours!",
+    "dates": "Dates à retenir",
+    "impactedUsers": "Personnes impactées",
+    "expertsUsers": "Personnes expertes"
+  },
+
+  "timeline": {
+    "firstDeadline": "Deadline pour donner son avis",
+    "secondDeadline": "Première décision prise",
+    "firstTake": "Deadline pour entrer en conflit",
+    "decisionOpen": "Prise de décision commencée",
+    "finalDecision": "Décision définitive",
+    "dateDisplay": "fr"
+  },
+
+  "login": {
+    "banner": {
+      "textForAcceptation": "Vous devez accepter les conditions"
+    },
+    "email": "Email",
+    "password": "Mot de passe",
+    "connectionButton": "Se connecter",
+    "forgotPassword": "Mot de passe oublié ?"
+  },
+
+  "resetPassword": {
+    "newPassword": "Nouveau mot de passe",
+    "confirmationPassword": "Confirmer mot de passe",
+    "validate": "Valider"
+  },
+
+  "wrongPage": {
+    "title": "Erreur 404",
+    "subTitle": "Hey, mais qu'est-ce que tu fais là ?",
+    "text": "Si tu es perdu(e), tu peux retourner sur la page principale en",
+    "textButton": "cliquant ici !"
+  },
+
+  "modalEmail": {
+    "email": "Saisir votre email",
+    "validate": "Valider"
+  },
+
+  "cookieConsent": {
+    "textPart1": "Ce site utilise des données de connexion. Lisez notre",
+    "link": "politique de confidentialité",
+    "textPart2": "pour plus d'infos",
+    "agreement": "Accord",
+    "refusal": "Refus"
+  },
+
+  "postComment": {
+    "label": "Mon commentaire:",
+    "textButton": "Poster mon commentaire"
   }
 }

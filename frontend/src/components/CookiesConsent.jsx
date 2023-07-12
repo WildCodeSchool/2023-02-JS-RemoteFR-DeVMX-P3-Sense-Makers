@@ -1,6 +1,9 @@
 import PropTypes from "prop-types";
+import { useTranslation } from "react-i18next";
 
 function CookiesConsent({ setShowCookieBanner, setCookieValidation }) {
+  const { t } = useTranslation();
+
   const handleClick = () => {
     localStorage.setItem("cookieBannerDisplayed", "true");
     setShowCookieBanner(false);
@@ -14,14 +17,14 @@ function CookiesConsent({ setShowCookieBanner, setCookieValidation }) {
   return (
     <div className="cookie-container">
       <p>
-        Ce site utilise des cookies. Lisez notre{" "}
+        {t("cookieConsent.textPart1")}{" "}
         <a style={{ color: " rgb(255, 243, 13)" }} href="/loged/privacy">
-          politique d'usage
+          {t("cookieConsent.link")}
         </a>{" "}
-        pour plus d'infos{" "}
+        {t("cookieConsent.textPart2")}{" "}
       </p>
       <button type="button" className="cookie-btn" onClick={handleClick}>
-        D'accord
+        {t("cookieConsent.agreement")}
       </button>
     </div>
   );

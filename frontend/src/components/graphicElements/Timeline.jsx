@@ -1,12 +1,14 @@
 import PropTypes from "prop-types";
 import { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
 import TimelineDate from "./TimelineDate";
 
 function Timeline({ decision }) {
+  const { t } = useTranslation();
   const status = [
-    { id: 1, title: "Deadline pour donner son avis" },
-    { id: 2, title: "Première décision prise" },
-    { id: 3, title: "Deadline pour entrer en conflit" },
+    { id: 1, title: t("timeline.firstDeadline") },
+    { id: 2, title: t("timeline.firstTake") },
+    { id: 3, title: t("timeline.secondDeadline") },
   ];
 
   const dates = [
@@ -67,10 +69,10 @@ function Timeline({ decision }) {
       <progress id="file" max="100" value={progressBar} />
       <div className="date-container" style={{ top: "0%" }}>
         <div className="date-infos-similar">
-          {initialDate.toLocaleDateString("fr")}
+          {initialDate.toLocaleDateString(t("timeline.dateDisplay"))}
         </div>
         <div className="date-point-similar" />
-        <div className="date-text-similar">Prise de décision commencée</div>
+        <div className="date-text-similar">{t("timeline.decisionOpen")}</div>
       </div>
       {dates &&
         dates.map((date) => (
@@ -88,11 +90,11 @@ function Timeline({ decision }) {
         style={{ top: `${finalDateProgressLimited}%` }}
       >
         <div className={`date-infos${finalSameInitial}`}>
-          {finalDate.toLocaleDateString("fr")}
+          {finalDate.toLocaleDateString(t("timeline.dateDisplay"))}
         </div>
         <div className={`date-point${finalSameInitial}`} />
         <div className={`date-text${finalSameInitial}`}>
-          Décision définitive
+          {t("timeline.finalDecision")}
         </div>
       </div>
     </div>

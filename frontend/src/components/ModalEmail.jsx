@@ -2,9 +2,11 @@ import axios from "axios";
 import { useState } from "react";
 import PropTypes from "prop-types";
 import { Slide, ToastContainer, toast } from "react-toastify";
+import { useTranslation } from "react-i18next";
 
 export default function ModalEmail({ setOpenModal, emailSend }) {
   const [email, setEmail] = useState();
+  const { t } = useTranslation();
 
   const emailNotSend = () => {
     toast.success("l'email n'existe pas", {
@@ -50,7 +52,7 @@ export default function ModalEmail({ setOpenModal, emailSend }) {
         <form onSubmit={handleSubmit}>
           <div className="inputs-container">
             <label htmlFor="verifemail">
-              Saisir votre email <br />
+              {t("modalEmail.email")} <br />
               <input
                 type="email"
                 id="verifemail"
@@ -60,7 +62,7 @@ export default function ModalEmail({ setOpenModal, emailSend }) {
                 required
               />
             </label>
-            <button type="submit">Valider</button>
+            <button type="submit">{t("modalEmail.validate")}</button>
           </div>
         </form>
         <ToastContainer autoClose={1500} transition={Slide} />
