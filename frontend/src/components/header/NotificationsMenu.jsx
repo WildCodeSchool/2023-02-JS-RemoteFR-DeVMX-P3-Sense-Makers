@@ -1,6 +1,8 @@
 import PropTypes from "prop-types";
+import { useTranslation } from "react-i18next";
 
 export default function NotificationButton({ handleShowNotificationsMenu }) {
+  const { t } = useTranslation();
   return (
     <div className="notifications-modal">
       <div className="notifications-container">
@@ -20,7 +22,7 @@ export default function NotificationButton({ handleShowNotificationsMenu }) {
           <line x1="18" y1="6" x2="6" y2="18" />
           <line x1="6" y1="6" x2="18" y2="18" />
         </svg>
-        <div className="notifications-title">Notifications</div>
+        <div className="notifications-title">{t("header.notif")}</div>
         <ul>
           <li className="li-notifications">Titre décision 1</li>
           <li className="li-notifications">Titre décision 2</li>

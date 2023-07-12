@@ -28,7 +28,7 @@ const transport = nodemailer.createTransport({
   },
 });
 
-const sendMailById = (req) => {
+const sendMailById = (req, res) => {
   transport?.sendMail(
     {
       from: "Admin <nlopes93600@gmail.com>",
@@ -36,13 +36,13 @@ const sendMailById = (req) => {
       subject: "Reinitialisation du mot de passe",
       html: `Veuillez cliquer sur le lien si vous souhaitez mettre à jour votre mot de passe, si vous n'êtes pas à l'origine de la demande contactez dans les plus brefs délais votre administrateur.<a href="http://localhost:3000/resetpassword?token=${token}&id=${req.body.id}">Cliquez ici</a>`,
     },
-    (err, info) => {
+    (err) => {
       if (err) console.error(err);
-      else console.warn(info);
+      else res.sendStatus(200);
     }
   );
 };
-const sendMailResetById = (req) => {
+const sendMailResetById = (req, res) => {
   transport?.sendMail(
     {
       from: "Admin <nlopes93600@gmail.com>",
@@ -50,9 +50,9 @@ const sendMailResetById = (req) => {
       subject: "Reinitialisation du mot de passe",
       html: `Veuillez cliquer sur le lien si vous souhaitez mettre à jour votre mot de passe, si vous n'êtes pas à l'origine de la demande contactez dans les plus brefs délais votre administrateur.<a href="http://localhost:3000/resetpassword?token=${token}&id=${req.user.id}">Cliquez ici</a>`,
     },
-    (err, info) => {
+    (err) => {
       if (err) console.error(err);
-      else console.warn(info);
+      else res.sendStatus(200);
     }
   );
 };

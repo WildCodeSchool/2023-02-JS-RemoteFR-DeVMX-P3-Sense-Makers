@@ -7,6 +7,10 @@ export default function ModifyUser({
   setShowUpdateUser,
   setCurrentUser,
   currentUser,
+  userModifNotif,
+  // userDeleteNotif,
+  emailSend,
+  emailNotSend,
 }) {
   const [dropzoneImage, setDropzoneImage] = useState([]);
   const [newUploadedFileName, setNewUploadedFileName] = useState("");
@@ -105,6 +109,8 @@ export default function ModifyUser({
         }
       })
       .then(() => {
+        userModifNotif();
+        setShowUpdateUser(false);
         setTimeout(() => {
           axios
             .get(
@@ -133,8 +139,17 @@ export default function ModifyUser({
           withCredentials: true,
         }
       )
-      .catch((err) => console.error(err));
-    setReinicializePassword(true);
+      .then((response) => {
+        if (response.status === 200) {
+          setShowUpdateUser(false);
+          emailSend();
+        }
+        emailNotSend();
+      })
+      .catch((err) => {
+        console.error(err);
+        return setReinicializePassword(false);
+      });
   };
 
   useEffect(() => {
@@ -340,4 +355,8 @@ ModifyUser.propTypes = {
   setShowUpdateUser: PropTypes.func.isRequired,
   setCurrentUser: PropTypes.func.isRequired,
   currentUser: PropTypes.shape().isRequired,
+  userModifNotif: PropTypes.func.isRequired,
+  // userDeleteNotif: PropTypes.func.isRequired,
+  emailSend: PropTypes.func.isRequired,
+  emailNotSend: PropTypes.func.isRequired,
 };

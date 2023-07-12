@@ -1,6 +1,7 @@
 import { useEffect, useReducer, useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { Slide, ToastContainer, toast } from "react-toastify";
 import AsyncSelect from "react-select/async";
 import TextEditor from "../components/TextEditor";
 
@@ -56,6 +57,13 @@ export default function PostDecision() {
   const [selectedHub, setSelectedHub] = useState();
   const context = 1;
 
+  const notifyDecision = () => {
+    toast.success("décision postée", {
+      color: "white",
+      backgroundColor: "green",
+      icon: "✔️",
+    });
+  };
   /*  reducer initialisation */
   const initialState = {
     title: "",
@@ -193,9 +201,10 @@ export default function PostDecision() {
             );
           });
         }
+        notifyDecision();
         setTimeout(() => {
           navigate(`/logged/decisions/${response.data[0].insertId}`);
-        }, 500);
+        }, 2500);
       });
   }
 
@@ -309,6 +318,7 @@ export default function PostDecision() {
           Poster cette décision
         </button>
       </div>
+      <ToastContainer autoClose={1500} transition={Slide} />
     </div>
   );
 }
