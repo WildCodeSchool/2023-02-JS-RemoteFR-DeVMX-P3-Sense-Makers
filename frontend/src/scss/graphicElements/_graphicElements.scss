@@ -1,25 +1,24 @@
 @import "../variables.scss";
 
-  .bottom-left-deco {
-    width:20rem;
-    height: 20rem;
-    position:fixed;
-    right: 100;
-    bottom: 0; 
-  }
-  
-  .top-left-deco {
-    display: none;
-  }
-  
-  .top-right-deco {
-    display: none;
-  }
-  
-  .bottom-right-deco {
-    display: none;
-  }
+.bottom-left-deco {
+  width: 20rem;
+  height: 20rem;
+  position: fixed;
+  right: 100;
+  bottom: 0;
+}
 
+.top-left-deco {
+  display: none;
+}
+
+.top-right-deco {
+  display: none;
+}
+
+.bottom-right-deco {
+  display: none;
+}
 
 @media screen and (min-width: 768px) {
   .bottom-left-deco {
@@ -30,7 +29,7 @@
     display: initial;
     width: 25rem;
     height: 25rem;
-    position:fixed;
+    position: fixed;
     right: 100;
     top: 100px;
   }
@@ -38,7 +37,7 @@
     display: initial;
     width: 10rem;
     height: 10rem;
-    position:fixed;
+    position: fixed;
     right: 30px;
     top: 5%;
   }
@@ -46,21 +45,21 @@
     display: initial;
     width: 25rem;
     height: 30rem;
-    position:fixed;
+    position: fixed;
     right: -50px;
     bottom: 0px;
-    transform:rotate(10deg);
+    transform: rotate(10deg);
   }
 }
 
 @media screen and (min-width: 1024px) {
   .top-left-deco {
-    top:20px;
+    top: 20px;
   }
   .top-right-deco {
     height: 12rem;
-    width:12rem;
-    right:90px;
+    width: 12rem;
+    right: 90px;
   }
 }
 
@@ -77,7 +76,7 @@
 
   .top-right-deco {
     height: 16rem;
-    width:16rem;
+    width: 16rem;
   }
 
   .bottom-right-deco {

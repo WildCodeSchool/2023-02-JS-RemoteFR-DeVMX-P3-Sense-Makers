@@ -6,9 +6,9 @@
   height: 10vh;
   align-items: center;
   margin-left: 2rem;
-  img{
+  img {
     width: 10rem;
-    @media screen and (min-width : 1024px) {
+    @media screen and (min-width: 1024px) {
       max-width: 20rem;
     }
   }
@@ -20,15 +20,15 @@
   flex-direction: column;
   justify-content: space-around;
   height: 80vh;
-  margin : 2rem;
-  @media screen and (min-width : 1024px) {
+  margin: 2rem;
+  @media screen and (min-width: 1024px) {
     flex-direction: row;
   }
-  
+
   .raccoon {
     width: 20rem;
     height: auto;
-    @media screen and (min-width : 1024px) {
+    @media screen and (min-width: 1024px) {
       width: 35rem;
     }
   }
@@ -38,7 +38,7 @@
     flex-direction: column;
     align-items: flex-start;
     width: 20rem;
-    @media screen and (min-width : 1024px) {
+    @media screen and (min-width: 1024px) {
       width: 35rem;
     }
     h1 {
@@ -48,7 +48,7 @@
       font-family: $primary-font;
       font-size: $font-size-xxxxxl;
       font-weight: $primary-font-weight;
-      @media screen and (min-width : 1024px) {
+      @media screen and (min-width: 1024px) {
         font-size: $font-size-xxxxxl;
       }
     }
@@ -57,7 +57,7 @@
       font-family: $primary-font;
       font-size: $font-size-xxxl;
       font-weight: $primary-font-weight;
-      @media screen and (min-width : 1024px) {
+      @media screen and (min-width: 1024px) {
         font-size: $font-size-xxxxl;
       }
     }
@@ -66,7 +66,7 @@
       font-family: $primary-font;
       font-size: $font-size-xxl;
       font-weight: $primary-font-weight;
-      @media screen and (min-width : 1024px) {
+      @media screen and (min-width: 1024px) {
         font-size: $font-size-xxxxl;
       }
 
@@ -78,7 +78,7 @@
         font-family: $primary-font;
         font-size: $font-size-xxl;
         font-weight: $primary-font-weight;
-        @media screen and (min-width : 1024px) {
+        @media screen and (min-width: 1024px) {
           font-size: $font-size-xxxxl;
         }
       }
