@@ -63,3 +63,25 @@
     right:90px;
   }
 }
+
+@media screen and (min-width: 1024px) {
+  .bottom-left-deco {
+    height: 35rem;
+    width: 35rem;
+  }
+
+  .top-left-deco {
+    height: 30rem;
+    width: 30rem;
+  }
+
+  .top-right-deco {
+    height: 16rem;
+    width:16rem;
+  }
+
+  .bottom-right-deco {
+    width: 35rem;
+    height: 40rem;
+  }
+}
