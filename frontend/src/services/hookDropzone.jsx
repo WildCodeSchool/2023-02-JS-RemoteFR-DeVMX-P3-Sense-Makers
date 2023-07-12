@@ -28,7 +28,6 @@ export default function Dropzone({
           withCredentials: true,
         })
         .then((result) => {
-          console.info(result);
           setNewUploadedFileName(result.data.newUploadedFileName);
         })
         .catch((err) => console.error(err));

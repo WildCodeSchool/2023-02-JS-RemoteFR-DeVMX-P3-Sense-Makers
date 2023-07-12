@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import axios from "axios";
 import AddUser from "./AddUser";
 import oeil from "../../../assets/view.png";
-import ModifyUser from "../GlobalComponents/ModifyUser";
+import ModifyUser from "./ModifyUser";
 
 function UsersList({
   userAddNotif,
