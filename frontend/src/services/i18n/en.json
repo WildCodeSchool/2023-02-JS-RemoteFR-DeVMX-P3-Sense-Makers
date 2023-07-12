@@ -7,5 +7,24 @@
     "account": "My account",
     "creation": "Create a decision",
     "disconnect": "Disconnect"
+  },
+
+  "postDecision": {
+    "title": "Post a decision",
+    "button": "Post this decision",
+    "inputs": {
+      "title": "Decision's title",
+      "hub": "Concerned hub",
+      "impacted": " Concerned persons",
+      "experts": "Expert persons"
+    },
+
+    "editors": {
+      "desc": "Description of decision",
+      "usefulness": "Usefulness of this decision for the organization",
+      "context": "Context around the decision",
+      "benefit": "Benefits of decision",
+      "disadvantages": "Disadvantages of the decision"
+    }
   }
 }

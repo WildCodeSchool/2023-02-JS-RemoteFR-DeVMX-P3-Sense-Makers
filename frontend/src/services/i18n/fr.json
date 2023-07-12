@@ -7,5 +7,24 @@
     "account": "Mon compte",
     "creation": "Créer une décision",
     "disconnect": "Déconnexion"
+  },
+
+  "postDecision": {
+    "title": "Poster une décision",
+    "button": "Poster cette décision",
+    "inputs": {
+      "title": "Titre de la décision",
+      "hub": "Pôle concerné",
+      "impacted": "Personnes concernées",
+      "experts": "Personnes expertes"
+    },
+
+    "editors": {
+      "desc": "Description de la décision",
+      "usefulness": "Utilité de cette décision pour l'organisation",
+      "context": "Contexte autour de la décision",
+      "benefit": "Bénéfices de la décision",
+      "disadvantages": "Inconvenients de la décision"
+    }
   }
 }

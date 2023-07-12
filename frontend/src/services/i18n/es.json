@@ -1,11 +1,30 @@
 {
   "header": {
-    "decision": "decisiones",
-    "my-decisions": "mes decisiones",
+    "decision": "Decisiones",
+    "my-decisions": "Mis decisiones",
     "notif": "Notificaciones",
     "admin": "Administración",
     "account": "Mi cuenta",
     "creation": "Crear una decisión",
     "disconnect": "Cerrar sesión"
+  },
+
+  "postDecision": {
+    "title": "Publicar una decisión",
+    "button": "Publicar esta decisión",
+    "inputs": {
+      "title": "Título de la decisión",
+      "hub": "Polo preocupado",
+      "impacted": "Personas afectadas",
+      "experts": "Gente experta"
+    },
+
+    "editors": {
+      "desc": "Descripción de la decisión",
+      "usefulness": "Utilidad de esta decisión para la organización",
+      "context": "Contexto en torno a la decisión",
+      "benefit": "Beneficios de la decisión",
+      "disadvantages": "Desventajas de la decisión"
+    }
   }
 }
