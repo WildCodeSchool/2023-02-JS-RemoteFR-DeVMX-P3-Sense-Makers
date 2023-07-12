@@ -26,5 +26,18 @@
       "benefit": "Bénéfices de la décision",
       "disadvantages": "Inconvenients de la décision"
     }
+  },
+
+  "home": {
+    "title": "Toutes les décisions",
+    "status": {
+      "1": "Prise de décision débutée",
+      "2": "Prise de décision en attente",
+      "3": "Première décision prise",
+      "4": "Décision définitive en attente",
+      "5": "Décision définitive",
+      "6": "Décision terminée",
+      "7": "Décision non aboutie"
+    }
   }
 }

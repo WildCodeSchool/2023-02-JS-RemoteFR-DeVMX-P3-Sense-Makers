@@ -26,5 +26,18 @@
       "benefit": "Beneficios de la decisión",
       "disadvantages": "Desventajas de la decisión"
     }
+  },
+
+  "home": {
+    "title": "Todas las decisiones",
+    "status": {
+      "1": "Toma de decisiones comenzó",
+      "2": "Toma de decisiones pendientes",
+      "3": "Primera decisión tomada",
+      "4": "Decisión final pendiente",
+      "5": "Decisión definitiva",
+      "6": "Decisión completa",
+      "7": "Decisión fallida"
+    }
   }
 }

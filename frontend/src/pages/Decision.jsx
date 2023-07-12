@@ -304,7 +304,7 @@ export default function Decision() {
         )}
         {decision.status_id === 2 && (
           <div className="closed-comment">
-            <p> La période de commentaire est à present terminée!</p>
+            <p> La période de commentaires est à present terminée!</p>
             <p>
               Attendez la première prise de décision de l'auteur pour a nouveau
               pouvoir donner votre avis!
@@ -313,7 +313,7 @@ export default function Decision() {
         )}
         {decision.status_id === 4 && (
           <div className="closed-comment">
-            <p> La période de commentaire est à present terminée!</p>
+            <p> La période de commentaires est à present terminée!</p>
             <p>Merci pour vos retours!</p>
           </div>
         )}

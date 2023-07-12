@@ -26,5 +26,18 @@
       "benefit": "Benefits of decision",
       "disadvantages": "Disadvantages of the decision"
     }
+  },
+
+  "home": {
+    "title": "All Decisions",
+    "status": {
+      "1": "Decision making started",
+      "2": "Pending decision making",
+      "3": "First decision made",
+      "4": "Final decision pending",
+      "5": "Final Decision",
+      "6": "Decision Complete",
+      "7": "Unsuccessful decision"
+    }
   }
 }

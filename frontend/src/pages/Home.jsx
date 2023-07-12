@@ -1,10 +1,12 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { useTranslation } from "react-i18next";
 import CardDecision from "../components/CardDecision";
 
 export default function Home() {
   const [allDecisions, setAllDecision] = useState([]);
   const [allStatus, setAllStatus] = useState([]);
+  const { t } = useTranslation();
 
   useEffect(() => {
     axios
@@ -31,12 +33,12 @@ export default function Home() {
   return (
     <div className="all-decisions-container">
       <div className="timeline-zone" />
-      <h1>Toutes les décisions</h1>
+      <h1>{t("home.title")}</h1>
       {allStatus.map((statut) => (
         <div className="infos-status-container" key={statut.id}>
           <details className="details-container">
             <summary>
-              {statut.title}
+              {t(`home.status.${statut.id}`)}
               <hr />
             </summary>
             <div className="cards-decision-container">
