@@ -1,9 +1,18 @@
 import axios from "axios";
 import { useState } from "react";
 import PropTypes from "prop-types";
+import { Slide, ToastContainer, toast } from "react-toastify";
 
-export default function ModalEmail({ setOpenModal }) {
+export default function ModalEmail({ setOpenModal, emailSend }) {
   const [email, setEmail] = useState();
+
+  const emailNotSend = () => {
+    toast.success("l'email n'existe pas", {
+      color: "white",
+      backgroundColor: "red",
+      icon: "❌",
+    });
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -17,9 +26,16 @@ export default function ModalEmail({ setOpenModal }) {
           withCredentials: true,
         }
       )
-      .then((response) => console.info(response))
-      .catch((err) => console.error(err));
-    setOpenModal(false);
+      .then((response) => {
+        if (response.status === 200) {
+          setOpenModal(false);
+          emailSend();
+        }
+      })
+      .catch((err) => {
+        console.error(err);
+        return emailNotSend();
+      });
   };
 
   return (
@@ -47,10 +63,12 @@ export default function ModalEmail({ setOpenModal }) {
             <button type="submit">Valider</button>
           </div>
         </form>
+        <ToastContainer autoClose={1500} transition={Slide} />
       </div>
     </div>
   );
 }
 ModalEmail.propTypes = {
   setOpenModal: PropTypes.bool.isRequired,
+  emailSend: PropTypes.func.isRequired,
 };

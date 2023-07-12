@@ -7,6 +7,7 @@ import PostDecision from "./pages/PostDecision";
 import Profile from "./pages/Profile";
 import WrongPage from "./pages/WrongPage";
 import Password from "./pages/Password";
+import "react-toastify/dist/ReactToastify.css";
 import "./scss/styles.scss";
 import NavLayout from "./layouts/NavLayout";
 import ProtectedLayout from "./layouts/ProtectedLayout";
