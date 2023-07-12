@@ -133,7 +133,6 @@ export default function ModifyUser({
           withCredentials: true,
         }
       )
-      .then((response) => console.info(response))
       .catch((err) => console.error(err));
     setReinicializePassword(true);
   };
