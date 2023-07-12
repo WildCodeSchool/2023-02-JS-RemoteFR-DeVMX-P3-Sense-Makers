@@ -21,14 +21,14 @@ export default function LoginButton({
 
   useEffect(() => {
     const handler = (e) => {
-      if (!menuRef.current.contains(e.target)) {
+      if (menuRef.current && !menuRef.current.contains(e.target)) {
         setShowLoginMenu(false);
       }
     };
-    document.addEventListener("mousedown", handler);
+    document.addEventListener("click", handler);
 
-    return () => document.addEventListener("mousedown", handler);
-  }, []);
+    return () => document.removeEventListener("click", handler);
+  }, [setShowLoginMenu]);
 
   const disconnect = () => {
     setUser(null);
