@@ -128,6 +128,13 @@ class UsersManager extends AbstractManager {
       userId,
     ]);
   }
+
+  updateUserMyProfil(photo, userId) {
+    return this.database.query(`update users set photo = ? where id = ?`, [
+      photo,
+      userId,
+    ]);
+  }
 }
 
 module.exports = UsersManager;

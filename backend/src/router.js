@@ -12,10 +12,14 @@ const usersControllers = require("./controllers/usersControllers");
 const mailControllers = require("./controllers/mailControllers");
 const rolesControllers = require("./controllers/rolesControllers");
 
-const { hashPassword, verifyToken } = require("./services/checkAuth");
+const {
+  hashPassword,
+  verifyPassword,
+  verifyToken,
+} = require("./services/checkAuth");
 
 // public route
-router.post("/login", usersControllers.getUserByEmail);
+router.post("/login", usersControllers.getUserByEmail, verifyPassword);
 
 router.post(
   "/forgotpassword",
@@ -71,6 +75,7 @@ router.put("/users/:id/role", usersControllers.editUserRole);
 router.put("/users/:id/roleexpert", usersControllers.editUserRole);
 router.put("/users/:id", usersControllers.editUser);
 router.put("/users/:id/isactive", usersControllers.editUserIsActive);
+router.put("/users/:id/myprofil", usersControllers.editUserMyProfil);
 router.delete("/users/:id", usersControllers.destroyUser);
 router.delete("/users/:id/roleexpert", usersControllers.destroyUserRoleExpert);
 
