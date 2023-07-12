@@ -1,8 +1,8 @@
 import { Slide, ToastContainer, toast } from "react-toastify";
-import DecisionsDetails from "../components/Profiles/AdminComponents/DecisionsDetails";
-import DecisionsList from "../components/Profiles/AdminComponents/DecisionsList";
-import DecisionsManagement from "../components/Profiles/AdminComponents/DecisionsManagement";
-import UsersList from "../components/Profiles/AdminComponents/UsersList";
+import DecisionsDetails from "./AdminComponents/DecisionsDetails";
+import DecisionsList from "./AdminComponents/DecisionsList";
+import DecisionsManagement from "./AdminComponents/DecisionsManagement";
+import UsersList from "./AdminComponents/UsersList";
 
 export default function Administration() {
   const userAddNotif = () => {

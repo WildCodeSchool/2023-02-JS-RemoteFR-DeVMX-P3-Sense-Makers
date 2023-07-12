@@ -4,7 +4,7 @@ import Home from "./pages/Home";
 import Decision from "./pages/Decision";
 import MyDecisions from "./pages/MyDecisions";
 import PostDecision from "./pages/PostDecision";
-import Administration from "./pages/Administration";
+import Administration from "./components/Profiles/Administration";
 import WrongPage from "./pages/WrongPage";
 import Password from "./pages/Password";
 import "react-toastify/dist/ReactToastify.css";
