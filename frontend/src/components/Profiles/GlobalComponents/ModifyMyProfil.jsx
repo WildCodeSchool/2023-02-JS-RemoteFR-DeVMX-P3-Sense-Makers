@@ -44,7 +44,10 @@ export default function ModifyMyProfil() {
               }
             )
             .then((result) => {
-              setUser(result.data[0]);
+              setUser((previousState) => ({
+                ...previousState,
+                photo: result.data[0].photo,
+              }));
             })
             .catch((err) => console.error(err));
         }, 500);
