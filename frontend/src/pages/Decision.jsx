@@ -1,6 +1,7 @@
 import { useEffect, useState, useRef, useContext } from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom";
+import { Slide, ToastContainer, toast } from "react-toastify";
 import DOMPurify from "dompurify";
 import PostComments from "../components/PostComments";
 import Timeline from "../components/graphicElements/Timeline";
@@ -18,6 +19,28 @@ export default function Decision() {
   const { user } = useContext(userContext);
   const { id } = useParams();
   const ref = useRef(null);
+
+  const commentAdd = () => {
+    toast.success("commentaire ajouté", {
+      color: "white",
+      backgroundColor: "green",
+      icon: "✔️",
+    });
+  };
+  const firstDecisionAdd = () => {
+    toast.success("première décision ajoutée", {
+      color: "white",
+      backgroundColor: "green",
+      icon: "✔️",
+    });
+  };
+  const finalDecisionAdd = () => {
+    toast.success("validation prise en compte", {
+      color: "white",
+      backgroundColor: "green",
+      icon: "✔️",
+    });
+  };
 
   function strip(html) {
     return (
@@ -44,6 +67,7 @@ export default function Decision() {
         { withCredentials: true }
       )
       .catch((err) => console.error(err));
+    firstDecisionAdd();
     setTimeout(() => {
       getDecision();
     }, 500);
@@ -61,6 +85,7 @@ export default function Decision() {
       },
       { withCredentials: true }
     );
+    finalDecisionAdd();
     setDisplayValidation(false);
   };
 
@@ -253,7 +278,10 @@ export default function Decision() {
           !decision.first_decision_content && (
             <div>
               {" "}
-              <FirstDecisionEditor setFirstDecision={setFirstDecision} />
+              <FirstDecisionEditor
+                setFirstDecision={setFirstDecision}
+                firstDecisionAdd={firstDecisionAdd}
+              />
               <button
                 type="button"
                 className="comment-button"
@@ -264,15 +292,12 @@ export default function Decision() {
             </div>
           )}
 
-        {!addComment && user.id !== decision.userId && (
+        {!addComment && (
           <button
             type="button"
             className="comment-button"
             onClick={handleAddComment}
-            disabled={
-              (decision.status_id !== 1 && decision.status_id !== 3) ||
-              user.id === decision.userId
-            }
+            disabled={decision.status_id !== 1 && decision.status_id !== 3}
           >
             Donner mon avis
           </button>
@@ -295,6 +320,7 @@ export default function Decision() {
         {addComment && (
           <div ref={ref}>
             <PostComments
+              commentAdd={commentAdd}
               setAddComment={setAddComment}
               handleComment={handleComment}
             />
@@ -332,17 +358,17 @@ export default function Decision() {
             ))}
           </div>
         </div>
-        {user.id !== decision.userId && (
-          <button
-            type="button"
-            className="comment-button"
-            onClick={handleAddComment}
-            disabled={decision.status_id !== 1 && decision.status_id !== 3}
-          >
-            Donner mon avis
-          </button>
-        )}
+
+        <button
+          type="button"
+          className="comment-button"
+          onClick={handleAddComment}
+          disabled={decision.status_id !== 1 && decision.status_id !== 3}
+        >
+          Donner mon avis
+        </button>
       </div>
+      <ToastContainer autoClose={1500} transition={Slide} />
     </div>
   );
 }

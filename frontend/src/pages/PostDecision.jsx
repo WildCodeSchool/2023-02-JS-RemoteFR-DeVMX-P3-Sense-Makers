@@ -57,8 +57,10 @@ export default function PostDecision() {
   const [selectedHub, setSelectedHub] = useState();
   const context = 1;
 
-  const notify = () => {
-    toast.succes("décision postée", {
+  const notifyDecision = () => {
+    toast.success("décision postée", {
+      color: "white",
+      backgroundColor: "green",
       icon: "✔️",
     });
   };
@@ -199,10 +201,10 @@ export default function PostDecision() {
             );
           });
         }
-        notify();
+        notifyDecision();
         setTimeout(() => {
           navigate(`/logged/decisions/${response.data[0].insertId}`);
-        }, 2000);
+        }, 2500);
       });
   }
 
@@ -316,12 +318,7 @@ export default function PostDecision() {
           Poster cette décision
         </button>
       </div>
-      <ToastContainer
-        toastStyle={{ color: "white", backgroundColor: "green" }}
-        icon="✔️"
-        autoClose={1500}
-        transition={Slide}
-      />
+      <ToastContainer autoClose={1500} transition={Slide} />
     </div>
   );
 }

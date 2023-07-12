@@ -1,11 +1,14 @@
 import { useEffect, useState } from "react";
 import PropTypes from "prop-types";
-import { Slide, ToastContainer, toast } from "react-toastify";
 import axios from "axios";
 import Dropzone from "../../../services/hookDropzone";
 import inputValidationRules from "../../../services/inputValidationRules";
 
-export default function AddUser({ setShowAddUser }) {
+export default function AddUser({
+  setShowAddUser,
+  userAddNotif,
+  userNotAddNotif,
+}) {
   const [dropzoneImage, setDropzoneImage] = useState([]);
   const [newUploadedFileName, setNewUploadedFileName] = useState("");
   const [rolesData, setRolesData] = useState([]);
@@ -47,9 +50,6 @@ export default function AddUser({ setShowAddUser }) {
       .catch((err) => console.error(err));
   }, []);
 
-  const notify = () => {
-    toast.succes("Utilisateur ajouté");
-  };
   const submit = (event) => {
     event.preventDefault();
 
@@ -121,9 +121,20 @@ export default function AddUser({ setShowAddUser }) {
                   withCredentials: true,
                 }
               )
-              .catch((err) => console.error(err));
+              .then((resp) => {
+                if (resp.status === 200) {
+                  setShowAddUser(false);
+                  userAddNotif();
+                }
+              })
+              .catch((err) => {
+                console.error(err);
+              });
           }
-          notify();
+        })
+        .catch((err) => {
+          console.error(err);
+          return userNotAddNotif();
         });
     } else {
       const invalidInputsTargets = inputValidationRules(targetValues);
@@ -287,16 +298,13 @@ export default function AddUser({ setShowAddUser }) {
           </div>
         </div>
       </div>
-      <ToastContainer
-        toastStyle={{ color: "white", backgroundColor: "green" }}
-        icon="✔️"
-        autoClose={1500}
-        transition={Slide}
-      />
+      {/* <ToastContainer autoClose={1500} transition={Slide} /> */}
     </form>
   );
 }
 
 AddUser.propTypes = {
   setShowAddUser: PropTypes.func.isRequired,
+  userAddNotif: PropTypes.func.isRequired,
+  userNotAddNotif: PropTypes.func.isRequired,
 };

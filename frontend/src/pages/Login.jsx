@@ -1,6 +1,7 @@
 import { useState, useContext } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { Slide, ToastContainer, toast } from "react-toastify";
 import userContext from "../contexts/userContext";
 import CookiesConsent from "../components/CookiesConsent";
 import ModalEmail from "../components/ModalEmail";
@@ -13,6 +14,21 @@ export default function Login() {
   const [showCookieBanner, setShowCookieBanner] = useState(true);
   const [cookieValidation, setCookieValidation] = useState("hide");
   const navigate = useNavigate();
+
+  const emailSend = () => {
+    toast.success("email envoyé", {
+      color: "white",
+      backgroundColor: "green",
+      icon: "✔️",
+    });
+  };
+  const dataNotValide = () => {
+    toast.error("email ou mot de passe incorect", {
+      color: "white",
+      backgroundColor: "red",
+      icon: "❌",
+    });
+  };
 
   const postUserInfos = (e) => {
     e.preventDefault();
@@ -32,7 +48,10 @@ export default function Login() {
             navigate("/logged/decisions");
           }, 500);
         })
-        .catch((err) => console.error(err));
+        .catch((err) => {
+          console.error(err);
+          return dataNotValide();
+        });
     } else {
       setCookieValidation("cookie-obligation");
     }
@@ -40,7 +59,9 @@ export default function Login() {
 
   return (
     <>
-      {openModal && <ModalEmail setOpenModal={setOpenModal} />}
+      {openModal && (
+        <ModalEmail emailSend={emailSend} setOpenModal={setOpenModal} />
+      )}
       <div className="logInContainer">
         <form onSubmit={postUserInfos}>
           <div className="logIn-input">
@@ -88,6 +109,7 @@ export default function Login() {
           />
         )}
       </div>
+      <ToastContainer autoClose={1500} transition={Slide} />
     </>
   );
 }

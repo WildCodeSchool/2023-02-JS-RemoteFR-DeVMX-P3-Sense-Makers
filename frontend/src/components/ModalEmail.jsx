@@ -3,15 +3,9 @@ import { useState } from "react";
 import PropTypes from "prop-types";
 import { Slide, ToastContainer, toast } from "react-toastify";
 
-export default function ModalEmail({ setOpenModal }) {
+export default function ModalEmail({ setOpenModal, emailSend }) {
   const [email, setEmail] = useState();
-  const emailSend = () => {
-    toast.success("email envoyé", {
-      color: "white",
-      backgroundColor: "green",
-      icon: "✔️",
-    });
-  };
+
   const emailNotSend = () => {
     toast.success("l'email n'existe pas", {
       color: "white",
@@ -32,12 +26,16 @@ export default function ModalEmail({ setOpenModal }) {
           withCredentials: true,
         }
       )
-      .then(
-        (response) => console.info(response.status),
-        emailSend(),
-        setOpenModal(false)
-      )
-      .catch((err) => console.error(err), emailNotSend());
+      .then((response) => {
+        if (response.status === 200) {
+          setOpenModal(false);
+          emailSend();
+        }
+      })
+      .catch((err) => {
+        console.error(err);
+        return emailNotSend();
+      });
   };
 
   return (
@@ -72,4 +70,5 @@ export default function ModalEmail({ setOpenModal }) {
 }
 ModalEmail.propTypes = {
   setOpenModal: PropTypes.bool.isRequired,
+  emailSend: PropTypes.func.isRequired,
 };
