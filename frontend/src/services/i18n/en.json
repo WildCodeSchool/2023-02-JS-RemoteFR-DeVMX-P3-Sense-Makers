@@ -28,8 +28,10 @@
     }
   },
 
-  "home": {
+  "decisions": {
     "title": "All Decisions",
+    "myTitle": "My Decisions",
+    "create": "Create Decision",
     "status": {
       "1": "Decision making started",
       "2": "Pending decision making",

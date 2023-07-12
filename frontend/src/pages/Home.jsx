@@ -33,12 +33,12 @@ export default function Home() {
   return (
     <div className="all-decisions-container">
       <div className="timeline-zone" />
-      <h1>{t("home.title")}</h1>
+      <h1>{t("decisions.title")}</h1>
       {allStatus.map((statut) => (
         <div className="infos-status-container" key={statut.id}>
           <details className="details-container">
             <summary>
-              {t(`home.status.${statut.id}`)}
+              {t(`decisions.status.${statut.id}`)}
               <hr />
             </summary>
             <div className="cards-decision-container">

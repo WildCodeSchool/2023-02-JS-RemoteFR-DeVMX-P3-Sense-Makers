@@ -28,8 +28,10 @@
     }
   },
 
-  "home": {
+  "decisions": {
     "title": "Toutes les décisions",
+    "myTitle": "Mes décisions",
+    "create": "Créer une décision",
     "status": {
       "1": "Prise de décision débutée",
       "2": "Prise de décision en attente",

@@ -28,8 +28,10 @@
     }
   },
 
-  "home": {
+  "decisions": {
     "title": "Todas las decisiones",
+    "myTitle": "Mis decisiones",
+    "create": "Crear decisión",
     "status": {
       "1": "Toma de decisiones comenzó",
       "2": "Toma de decisiones pendientes",
