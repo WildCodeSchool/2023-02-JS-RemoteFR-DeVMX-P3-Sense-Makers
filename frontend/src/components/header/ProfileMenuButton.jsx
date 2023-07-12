@@ -168,11 +168,11 @@ export default function LoginButton({
             <li>
               <Link
                 className={
-                  pathname === "/logged/profile"
+                  pathname === "/logged/administration"
                     ? "link-style active"
                     : "link-style"
                 }
-                to="/logged/profile"
+                to="/logged/administration"
                 onClick={() => handleShowLoginMenu()}
               >
                 <svg
@@ -198,11 +198,11 @@ export default function LoginButton({
           <li>
             <Link
               className={
-                pathname === "/logged/profile"
+                pathname === "/logged/myprofil"
                   ? "link-style active"
                   : "link-style"
               }
-              to="/logged/profile"
+              to="/logged/myprofil"
               onClick={() => handleShowLoginMenu()}
             >
               <div className="li-text">{t("header.account")}</div>
