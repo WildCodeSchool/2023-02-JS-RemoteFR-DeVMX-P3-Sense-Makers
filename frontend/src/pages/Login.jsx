@@ -5,6 +5,7 @@ import { Slide, ToastContainer, toast } from "react-toastify";
 import userContext from "../contexts/userContext";
 import CookiesConsent from "../components/CookiesConsent";
 import ModalEmail from "../components/ModalEmail";
+import GraphicElements from "../components/graphicElements/GraphicElements";
 
 export default function Login() {
   const [email, setEmail] = useState("");
@@ -59,9 +60,8 @@ export default function Login() {
 
   return (
     <>
-      {openModal && (
-        <ModalEmail emailSend={emailSend} setOpenModal={setOpenModal} />
-      )}
+      <GraphicElements />
+      {openModal && <ModalEmail setOpenModal={setOpenModal} />}
       <div className="logInContainer">
         <form onSubmit={postUserInfos}>
           <div className="logIn-input">
