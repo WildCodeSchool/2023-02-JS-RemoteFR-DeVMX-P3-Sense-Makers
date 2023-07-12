@@ -79,10 +79,11 @@ export default function resetPassword() {
               required
             />
           </label>
-        <button type="submit">Valider</button>
-      </div>
-      <ToastContainer autoClose={1500} transition={Slide} />
-    </form>
+          <button type="submit">Valider</button>
+        </div>
+        <ToastContainer autoClose={1500} transition={Slide} />
+      </form>
     </>
   );
 }
+
