@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import PropTypes from "prop-types";
+import { Slide, ToastContainer, toast } from "react-toastify";
 import axios from "axios";
 import Dropzone from "../../../services/hookDropzone";
 import inputValidationRules from "../../../services/inputValidationRules";
@@ -46,6 +47,9 @@ export default function AddUser({ setShowAddUser }) {
       .catch((err) => console.error(err));
   }, []);
 
+  const notify = () => {
+    toast.succes("Utilisateur ajouté");
+  };
   const submit = (event) => {
     event.preventDefault();
 
@@ -119,6 +123,7 @@ export default function AddUser({ setShowAddUser }) {
               )
               .catch((err) => console.error(err));
           }
+          notify();
         });
     } else {
       const invalidInputsTargets = inputValidationRules(targetValues);
@@ -282,6 +287,12 @@ export default function AddUser({ setShowAddUser }) {
           </div>
         </div>
       </div>
+      <ToastContainer
+        toastStyle={{ color: "white", backgroundColor: "green" }}
+        icon="✔️"
+        autoClose={1500}
+        transition={Slide}
+      />
     </form>
   );
 }

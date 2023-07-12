@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { Slide, ToastContainer, toast } from "react-toastify";
 
 export default function resetPassword() {
   const [password, setPassword] = useState();
@@ -9,6 +10,14 @@ export default function resetPassword() {
   const id = params.get("id");
   const token = params.get("token");
   const navigate = useNavigate();
+
+  const notify = () => {
+    toast.success("Mot de passe reinitialisé", {
+      color: "white",
+      backgroundColor: "green",
+      icon: "✔️",
+    });
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -26,14 +35,19 @@ export default function resetPassword() {
           }
         )
         .then((response) => {
+          notify();
           setTimeout(() => {
             navigate("/");
-          }, 500);
+          }, 1500);
           console.info(response);
         })
         .catch((err) => console.error(err));
     } else {
-      console.info("Is not the same password");
+      toast.error("les mot de passe ne sont pas similaires!", {
+        color: "white",
+        backgroundColor: "red",
+        icon: "❌",
+      });
     }
   };
 
@@ -65,6 +79,7 @@ export default function resetPassword() {
 
         <button type="submit">Valider</button>
       </div>
+      <ToastContainer autoClose={1500} transition={Slide} />
     </form>
   );
 }
