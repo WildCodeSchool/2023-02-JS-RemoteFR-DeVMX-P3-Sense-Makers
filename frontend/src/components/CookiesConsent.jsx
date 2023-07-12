@@ -20,7 +20,7 @@ function CookiesConsent({ setShowCookieBanner, setCookieValidation }) {
     <div className="cookie-container">
       <p>
         Ce site utilise des données de connexion. Lisez notre{" "}
-        <a style={{ color: " rgb(227, 97, 100)" }} href="/loged/privacy">
+        <a style={{ color: " rgb(227, 97, 100)" }} href="/privacypolicies">
           politique de confidentialité
         </a>{" "}
         pour plus d'infos{" "}
