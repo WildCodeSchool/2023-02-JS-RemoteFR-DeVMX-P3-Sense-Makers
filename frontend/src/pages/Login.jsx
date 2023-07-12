@@ -61,7 +61,9 @@ export default function Login() {
   return (
     <>
       <GraphicElements />
-      {openModal && <ModalEmail setOpenModal={setOpenModal} emailSend={emailSend} />}
+      {openModal && (
+        <ModalEmail setOpenModal={setOpenModal} emailSend={emailSend} />
+      )}
       <div className="logInContainer">
         <form onSubmit={postUserInfos}>
           <div className="logIn-input">
