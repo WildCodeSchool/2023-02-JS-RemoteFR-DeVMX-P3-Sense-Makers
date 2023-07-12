@@ -17,6 +17,7 @@ export default function ModifyUser({
   const [rolesData, setRolesData] = useState([]);
   const [rolesFromUser, setRolesFromUser] = useState([]);
   const [reinicializePassword, setReinicializePassword] = useState(false);
+  // const [isActiveUser, setIsActiveUser] = useState(true);
 
   const [targetValues, setTargetValues] = useState({
     firstname: "",
@@ -152,6 +153,16 @@ export default function ModifyUser({
       });
   };
 
+  const deactivateUser = () => {
+    axios.put(
+      `${import.meta.env.VITE_BACKEND_URL}/users/${currentUser.id}/isactive`,
+      { isActive: false },
+      {
+        withCredentials: true,
+      }
+    );
+  };
+
   useEffect(() => {
     axios
       .get(`${import.meta.env.VITE_BACKEND_URL}/roles`, {
@@ -194,7 +205,9 @@ export default function ModifyUser({
           </button>
         </div>
         <div className="remove-button-container-2">
-          <button type="button">Supprimer</button>
+          <button type="button" onClick={deactivateUser}>
+            Supprimer
+          </button>
         </div>
       </div>
       <div className="user-management-container">
@@ -341,7 +354,9 @@ export default function ModifyUser({
               <button type="submit">Valider les modifications</button>
             </div>
             <div className="remove-button-container-1">
-              <button type="button">Supprimer</button>
+              <button type="button" onClick={deactivateUser}>
+                Supprimer
+              </button>
             </div>
           </div>
         </div>
