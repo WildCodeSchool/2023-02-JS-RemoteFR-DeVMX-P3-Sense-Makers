@@ -63,6 +63,7 @@ function UsersList({
       {showUpdateUser && (
         <ModifyUser
           setShowUpdateUser={setShowUpdateUser}
+          setShowAddUser={setShowAddUser}
           setCurrentUser={setCurrentUser}
           currentUser={currentUser}
           userModifNotif={userModifNotif}

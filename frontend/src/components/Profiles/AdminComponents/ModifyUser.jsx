@@ -17,7 +17,6 @@ export default function ModifyUser({
   const [rolesData, setRolesData] = useState([]);
   const [rolesFromUser, setRolesFromUser] = useState([]);
   const [reinicializePassword, setReinicializePassword] = useState(false);
-  // const [isActiveUser, setIsActiveUser] = useState(true);
 
   const [targetValues, setTargetValues] = useState({
     firstname: "",
@@ -154,13 +153,16 @@ export default function ModifyUser({
   };
 
   const deactivateUser = () => {
-    axios.put(
-      `${import.meta.env.VITE_BACKEND_URL}/users/${currentUser.id}/isactive`,
-      { isActive: false },
-      {
-        withCredentials: true,
-      }
-    );
+    axios
+      .put(
+        `${import.meta.env.VITE_BACKEND_URL}/users/${currentUser.id}/isactive`,
+        { isActive: false },
+        {
+          withCredentials: true,
+        }
+      )
+      .catch((err) => console.error(err));
+    setShowUpdateUser(false);
   };
 
   useEffect(() => {
