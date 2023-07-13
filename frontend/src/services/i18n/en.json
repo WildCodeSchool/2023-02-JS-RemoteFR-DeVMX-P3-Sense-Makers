@@ -7,5 +7,117 @@
     "account": "My account",
     "creation": "Create a decision",
     "disconnect": "Disconnect"
+  },
+
+  "postDecision": {
+    "title": "Post a decision",
+    "button": "Post this decision",
+    "inputs": {
+      "title": "Decision's title",
+      "hub": "Concerned hub",
+      "impacted": " Concerned persons",
+      "experts": "Expert persons"
+    },
+
+    "editors": {
+      "desc": "Description of decision",
+      "usefulness": "Usefulness of this decision for the organization",
+      "context": "Context around the decision",
+      "benefit": "Benefits of decision",
+      "disadvantages": "Disadvantages of the decision"
+    }
+  },
+
+  "decisions": {
+    "title": "All Decisions",
+    "myTitle": "My Decisions",
+    "create": "Create Decision",
+    "status": {
+      "1": "Decision making started",
+      "2": "Pending decision making",
+      "3": "First decision made",
+      "4": "Final decision pending",
+      "5": "Final Decision",
+      "6": "Decision Complete",
+      "7": "Unsuccessful decision"
+    }
+  },
+
+  "decision": {
+    "by": "By",
+    "details": {
+      "decisionDetails": "Details of the Decision",
+      "context": "context:",
+      "impact": "Impact on the organization",
+      "benefit": "Benefits",
+      "risks": "Potential risks",
+      "firstTake": "First decision making",
+      "comments": "comments"
+    },
+    "comment": {
+      "expert": "expert",
+      "impacted": "impacted by the decision",
+      "on": "at"
+    },
+    "approve": "Validate this decision",
+    "reject": "Reject this decision",
+    "postFirstTake": "post my first decision making",
+    "commButton": "Give my opinion",
+    "closedComment": "The comment period is now over!",
+    "waitComment": "Wait for the author's first decision to be able to give your opinion again!",
+    "thanks": "Thank you for your feedback!",
+    "dates": "Dates to Remember",
+    "impactedUsers": "People impacted",
+    "expertsUsers": "Expert people"
+  },
+
+  "timeline": {
+    "firstDeadline": "Deadline to give opinion",
+    "secondDeadline": "First Decision Made",
+    "firstTake": "Deadline to Conflict",
+    "decisionOpen": "Decision making started",
+    "finalDecision": "Final Decision",
+    "dateDisplay": "en"
+  },
+
+  "login": {
+    "banner": {
+      "textForAcceptation": "You must accept the terms"
+    },
+    "email": "Email",
+    "password": "Password",
+    "connectionButton": "Sign in",
+    "forgotPassword": "Forgot your password ?"
+  },
+
+  "resetPassword": {
+    "newPassword": "New password",
+    "confirmationPassword": "Confirm password",
+    "validate": "Validate"
+  },
+
+  "wrongPage": {
+    "title": "Error 404",
+    "subTitle": "Hey, but what are you doing here?",
+    "text": "If you are lost, you can return to the main page on",
+    "textButton": "click here!"
+  },
+
+  "modalEmail": {
+    "email": "Enter your email",
+    "validate": "Validate"
+  },
+
+  "cookieConsent": {
+    "textPart1": "This website uses login data. Read our",
+    "link": "Privacy Policy",
+    "textPart2": "for more info",
+    "agreement": "Accord",
+    "refusal": "Refus"
+  },
+
+  "postComment": {
+    "label": "My comment:",
+    "textButton": "Post my comment"
   }
 }

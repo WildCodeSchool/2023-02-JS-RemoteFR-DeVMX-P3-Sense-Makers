@@ -2,7 +2,8 @@ import axios from "axios";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Slide, ToastContainer, toast } from "react-toastify";
-import GraphicElements from "./graphicElements/GraphicElements";
+import { useTranslation } from "react-i18next";
+import GraphicElements from "../components/graphicElements/GraphicElements";
 
 export default function resetPassword() {
   const [password, setPassword] = useState();
@@ -11,6 +12,7 @@ export default function resetPassword() {
   const id = params.get("id");
   const token = params.get("token");
   const navigate = useNavigate();
+  const { t } = useTranslation();
 
   const notify = () => {
     toast.success("Mot de passe reinitialisé", {
@@ -58,7 +60,7 @@ export default function resetPassword() {
       <form onSubmit={handleSubmit}>
         <div className="reset-password-container">
           <label htmlFor="newpassword">
-            Nouveau mot de passe <br />
+            {t("resetPassword.newPassword")} <br />
             <input
               type="password"
               id="newpassword"
@@ -69,7 +71,7 @@ export default function resetPassword() {
             />
           </label>
           <label htmlFor="verifypassword">
-            Confirmer mot de passe <br />
+            {t("resetPassword.confirmationPassword")} <br />
             <input
               type="password"
               id="verifypassword"
@@ -79,7 +81,7 @@ export default function resetPassword() {
               required
             />
           </label>
-          <button type="submit">Valider</button>
+          <button type="submit">{t("resetPassword.validate")}</button>
         </div>
         <ToastContainer autoClose={1500} transition={Slide} />
       </form>

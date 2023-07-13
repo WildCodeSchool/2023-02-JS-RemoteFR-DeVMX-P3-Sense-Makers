@@ -19,11 +19,11 @@
     rotate: 90deg;
     vertical-align: 0rem;
     -webkit-appearance: none;
-     -webkit-appearance: none;
+    -webkit-appearance: none;
     appearance: none;
     border-radius: 15px;
-    border:none;
-    
+    border: none;
+
     &::-webkit-progress-bar {
       background-color: $border-color-base;
       border-radius: 15px;
@@ -32,12 +32,12 @@
       background-color: $fluo-green;
       border-radius: 15px;
     }
-    
+
     &::-webkit-progress-value {
       border-radius: 15px;
       background: $fluo-green;
     }
-   
+
     @media screen and (min-width: 768px) {
       height: 0.3rem;
       width: 15rem;

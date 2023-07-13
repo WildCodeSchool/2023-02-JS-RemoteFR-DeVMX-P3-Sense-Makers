@@ -6,7 +6,7 @@ import MyDecisions from "./pages/MyDecisions";
 import PostDecision from "./pages/PostDecision";
 import Administration from "./pages/Administration";
 import WrongPage from "./pages/WrongPage";
-import Password from "./pages/Password";
+import ResetPassword from "./pages/ResetPassword";
 import "react-toastify/dist/ReactToastify.css";
 import "./scss/styles.scss";
 import NavLayout from "./layouts/NavLayout";
@@ -21,7 +21,7 @@ function App() {
           {/* public routes */}
           <Route path="/" element={<Login />} />
           <Route path="*" element={<WrongPage />} />
-          <Route path="/resetpassword" element={<Password />} />
+          <Route path="/resetpassword" element={<ResetPassword />} />
 
           {/* private routes  */}
           <Route element={<ProtectedLayout />}>

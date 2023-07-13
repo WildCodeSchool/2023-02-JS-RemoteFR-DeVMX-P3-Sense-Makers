@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import PropTypes from "prop-types";
 import Timeline from "./graphicElements/Timeline";
 import validated from "../assets/icons/verifier.svg";
@@ -47,6 +48,7 @@ export default function CardDecision({ decision }) {
     };
   }
   const [show, setShow] = useState("none");
+  const { t } = useTranslation();
 
   return (
     <Link
@@ -97,7 +99,7 @@ export default function CardDecision({ decision }) {
           alt="img profil creator"
         />
         <p>
-          par{" "}
+          {t("decision.by")}{" "}
           <span>
             {decision.firstname} {decision.lastname}
           </span>

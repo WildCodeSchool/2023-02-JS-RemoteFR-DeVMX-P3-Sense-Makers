@@ -143,8 +143,9 @@ export default function ModifyUser({
         if (response.status === 200) {
           setShowUpdateUser(false);
           emailSend();
+        } else {
+          emailNotSend();
         }
-        emailNotSend();
       })
       .catch((err) => {
         console.error(err);
