@@ -15,9 +15,8 @@
 
     .total-numbers {
         font-size: 2rem;
-        margin:0;
-        margin-bottom: 0.5rem;
-        color: $sage-green;
+        margin:0 0.5rem;
+        color: $color-default;
     }
 
     .title {
@@ -79,6 +78,26 @@
         margin-bottom: 0.5rem;
         padding-bottom: 0.5rem;
         padding-top: 0.5rem;
+    }
+    .icon-and-number-container {
+        display: flex;
+        align-items: center;
+    }
+
+    .check {
+        color: $sage-green;
+        height:1.8rem;
+        width:1.8rem;
+    }
+
+    .cross {
+        color:$color-primary;
+        height:2rem;
+        width:2rem;
+    }
+
+    .clock {
+        color: $color-default;
     }
 }
 
