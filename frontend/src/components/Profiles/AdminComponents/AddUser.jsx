@@ -3,13 +3,10 @@ import { useTranslation } from "react-i18next";
 import PropTypes from "prop-types";
 import axios from "axios";
 import Dropzone from "../../../services/hookDropzone";
+import { userAddNotif, userNotAddNotif } from "../../../services/toast";
 import inputValidationRules from "../../../services/inputValidationRules";
 
-export default function AddUser({
-  setShowAddUser,
-  userAddNotif,
-  userNotAddNotif,
-}) {
+export default function AddUser({ setShowAddUser }) {
   const [dropzoneImage, setDropzoneImage] = useState([]);
   const [newUploadedFileName, setNewUploadedFileName] = useState("");
   const [rolesData, setRolesData] = useState([]);
@@ -303,13 +300,10 @@ export default function AddUser({
           </div>
         </div>
       </div>
-      {/* <ToastContainer autoClose={1500} transition={Slide} /> */}
     </form>
   );
 }
 
 AddUser.propTypes = {
   setShowAddUser: PropTypes.func.isRequired,
-  userAddNotif: PropTypes.func.isRequired,
-  userNotAddNotif: PropTypes.func.isRequired,
 };

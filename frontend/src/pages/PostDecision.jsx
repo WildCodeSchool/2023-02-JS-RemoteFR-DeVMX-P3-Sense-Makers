@@ -1,9 +1,10 @@
 import { useEffect, useReducer, useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import { Slide, ToastContainer, toast } from "react-toastify";
+import { Slide, ToastContainer } from "react-toastify";
 import { useTranslation } from "react-i18next";
 import AsyncSelect from "react-select/async";
+import notifyDecision from "../services/toast";
 import TextEditor from "../components/TextEditor";
 
 /* Style selector */
@@ -59,13 +60,6 @@ export default function PostDecision() {
   const context = 1;
   const { t } = useTranslation();
 
-  const notifyDecision = () => {
-    toast.success("décision postée", {
-      color: "white",
-      backgroundColor: "green",
-      icon: "✔️",
-    });
-  };
   /*  reducer initialisation */
   const initialState = {
     title: "",

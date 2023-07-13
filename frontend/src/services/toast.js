@@ -36,3 +36,78 @@ export function errorSamePassword() {
     icon: "❌",
   });
 }
+
+export function notifyDecisio() {
+  toast.success("décision postée", {
+    color: "white",
+    backgroundColor: "green",
+    icon: "✔️",
+  });
+}
+
+export function userAddNotif() {
+  toast.success("utilisateur ajouté", {
+    color: "white",
+    backgroundColor: "green",
+    icon: "✔️",
+  });
+  toast.success("email envoyé", {
+    color: "white",
+    backgroundColor: "green",
+    icon: "✔️",
+  });
+}
+
+export function userNotAddNotif() {
+  toast.error("l'email existe déjà", {
+    color: "white",
+    backgroundColor: "red",
+    icon: "❌",
+  });
+}
+
+export function userModifNotif() {
+  toast.success("utilisateur modifié", {
+    color: "white",
+    backgroundColor: "green",
+    icon: "✔️",
+  });
+}
+
+export function userNotModifyNotif() {
+  toast.error("Aucune modification effectué", {
+    color: "white",
+    backgroundColor: "red",
+    icon: "❌",
+  });
+}
+
+export function userDeleteNotif() {
+  toast.success("utilisateur supprimé", {
+    color: "white",
+    backgroundColor: "green",
+    icon: "✔️",
+  });
+}
+
+export function commentAdd() {
+  toast.success("commentaire ajouté", {
+    color: "white",
+    backgroundColor: "green",
+    icon: "✔️",
+  });
+}
+export function firstDecisionAdd() {
+  toast.success("première décision ajoutée", {
+    color: "white",
+    backgroundColor: "green",
+    icon: "✔️",
+  });
+}
+export function finalDecisionAdd() {
+  toast.success("validation prise en compte", {
+    color: "white",
+    backgroundColor: "green",
+    icon: "✔️",
+  });
+}

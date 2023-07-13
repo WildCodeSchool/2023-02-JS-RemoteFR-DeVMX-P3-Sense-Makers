@@ -1,9 +1,14 @@
 import { useEffect, useState, useRef, useContext } from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom";
-import { Slide, ToastContainer, toast } from "react-toastify";
+import { Slide, ToastContainer } from "react-toastify";
 import { useTranslation } from "react-i18next";
 import DOMPurify from "dompurify";
+import {
+  commentAdd,
+  firstDecisionAdd,
+  finalDecisionAdd,
+} from "../services/toast";
 import PostComments from "../components/PostComments";
 import Timeline from "../components/graphicElements/Timeline";
 import FirstDecisionEditor from "../components/FirstDecisionEditor";
@@ -21,28 +26,6 @@ export default function Decision() {
   const { id } = useParams();
   const ref = useRef(null);
   const { t } = useTranslation();
-
-  const commentAdd = () => {
-    toast.success("commentaire ajouté", {
-      color: "white",
-      backgroundColor: "green",
-      icon: "✔️",
-    });
-  };
-  const firstDecisionAdd = () => {
-    toast.success("première décision ajoutée", {
-      color: "white",
-      backgroundColor: "green",
-      icon: "✔️",
-    });
-  };
-  const finalDecisionAdd = () => {
-    toast.success("validation prise en compte", {
-      color: "white",
-      backgroundColor: "green",
-      icon: "✔️",
-    });
-  };
 
   function strip(html) {
     return (
