@@ -1,10 +1,14 @@
 import { Slide, ToastContainer, toast } from "react-toastify";
+import { useState, useEffect } from "react";
+import axios from "axios";
 import DecisionsDetails from "../components/Profiles/AdminComponents/DecisionsDetails";
 import DecisionsList from "../components/Profiles/AdminComponents/DecisionsList";
 import DecisionsManagement from "../components/Profiles/AdminComponents/DecisionsManagement";
 import UsersList from "../components/Profiles/AdminComponents/UsersList";
+import StatsAnual from "../components/Profiles/AdminComponents/StatsAnual";
 
 export default function Administration() {
+  const [statsData, setStatsData] = useState([]);
   const userAddNotif = () => {
     toast.success("utilisateur ajouté", {
       color: "white",
@@ -54,6 +58,15 @@ export default function Administration() {
       icon: "❌",
     });
   };
+
+  useEffect(() => {
+    axios
+      .get(`${import.meta.env.VITE_BACKEND_URL}/decisions`, {
+        withCredentials: true,
+      })
+      .then((response) => setStatsData(response.data))
+      .catch((err) => console.error(err));
+  }, []);
   return (
     <div className="admin-global-container">
       <DecisionsDetails />
@@ -63,6 +76,7 @@ export default function Administration() {
           Statistiques
           <hr />
         </summary>
+        <StatsAnual statsData={statsData} />
       </details>
       <details className="details-container">
         <summary>
