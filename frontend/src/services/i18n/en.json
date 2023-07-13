@@ -127,5 +127,38 @@
   "postComment": {
     "label": "My comment:",
     "textButton": "Post my comment"
+  },
+
+  "privacyPolicy": {
+    "title": "PRIVACY POLICY",
+    "subTitle": {
+      "1": "DEFINITIONS:",
+      "2": "1 - COLLECTION OF IDENTITY DATA:",
+      "3": "2 - COLLECTION OF IDENTIFICATION DATA:",
+      "4": "3 - TERMINAL DATA COLLECTION:",
+      "5": "4 - COOKIES :"
+    },
+    "strong": {
+      "1": "The Editor",
+      "2": "The Site",
+      "3": "The user",
+      "4": "Registration and prior identification for the provision of the service",
+      "5": "Use of user ID only for access to services.",
+      "6": "No collection of technical data",
+      "7": "User's right to refuse cookies, deactivation resulting in degraded operation of the service",
+      "8": "Possible association of cookies with personal data to allow the operation of the service"
+    },
+    "paragraphe": {
+      "1": " : The natural or legal person who publishes online public communication services.",
+      "2": ": All sites, Internet pages and online services offered by the Publisher.",
+      "3": " : The person using the Site and services.",
+      "4": "Use of the Site requires registration and prior identification. Your personal data (surname, first name, e-mail, etc.) are used to perform our legal obligations resulting from the delivery of products and/or services, in under the End User License Agreement, the Limitation of Warranty, if any, or any other applicable term. You will not provide false personally identifiable information or create an account for another person without their permission. Your contact details must be always be accurate and up-to-date.",
+      "5": "We use your electronic identifiers only for and during the execution of the contract.",
+      "6": "We do not collect or store any technical data from your device (IP address, Internet service provider, etc.).",
+      "7": "You acknowledge having been informed that the Publisher may use cookies, and authorize it. If you do not want cookies to be used on your device, most browsers allow you to disable cookies by going through settings options. However, you are informed that some services may no longer work properly.",
+      "8": "The Publisher may collect browsing information through the use of cookies."
+    },
+    "agree": "Accept",
+    "reject": "Refuse"
   }
 }
