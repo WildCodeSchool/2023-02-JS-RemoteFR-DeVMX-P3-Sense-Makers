@@ -3,6 +3,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Slide, ToastContainer, toast } from "react-toastify";
 import { useTranslation } from "react-i18next";
+import Lang from "../components/Lang";
 import GraphicElements from "../components/graphicElements/GraphicElements";
 
 export default function resetPassword() {
@@ -57,6 +58,9 @@ export default function resetPassword() {
   return (
     <>
       <GraphicElements />
+      <div className="languages-choice-container">
+        <Lang />
+      </div>
       <form onSubmit={handleSubmit}>
         <div className="reset-password-container">
           <label htmlFor="newpassword">

@@ -3,6 +3,7 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { Slide, ToastContainer, toast } from "react-toastify";
 import { useTranslation } from "react-i18next";
+import Lang from "../components/Lang";
 import userContext from "../contexts/userContext";
 import CookiesConsent from "../components/CookiesConsent";
 import ModalEmail from "../components/ModalEmail";
@@ -66,6 +67,9 @@ export default function Login() {
       {openModal && (
         <ModalEmail setOpenModal={setOpenModal} emailSend={emailSend} />
       )}
+      <div className="languages-choice-container">
+        <Lang />
+      </div>
       <div className="logInContainer">
         <form onSubmit={postUserInfos}>
           <div className="logIn-input">
