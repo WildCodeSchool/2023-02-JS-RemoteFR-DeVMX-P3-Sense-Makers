@@ -1,20 +1,13 @@
 import axios from "axios";
 import { useState } from "react";
 import PropTypes from "prop-types";
-import { Slide, ToastContainer, toast } from "react-toastify";
+import { Slide, ToastContainer } from "react-toastify";
 import { useTranslation } from "react-i18next";
+import { emailSend, emailNotSend } from "../services/toast";
 
-export default function ModalEmail({ setOpenModal, emailSend }) {
+export default function ModalEmail({ setOpenModal }) {
   const [email, setEmail] = useState();
   const { t } = useTranslation();
-
-  const emailNotSend = () => {
-    toast.success("l'email n'existe pas", {
-      color: "white",
-      backgroundColor: "red",
-      icon: "❌",
-    });
-  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -72,5 +65,4 @@ export default function ModalEmail({ setOpenModal, emailSend }) {
 }
 ModalEmail.propTypes = {
   setOpenModal: PropTypes.bool.isRequired,
-  emailSend: PropTypes.func.isRequired,
 };
