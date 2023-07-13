@@ -1,7 +1,6 @@
 import { Slide, ToastContainer, toast } from "react-toastify";
-import DecisionsDetails from "../components/Profiles/AdminComponents/DecisionsDetails";
+import { useTranslation } from "react-i18next";
 import DecisionsList from "../components/Profiles/AdminComponents/DecisionsList";
-import DecisionsManagement from "../components/Profiles/AdminComponents/DecisionsManagement";
 import UsersList from "../components/Profiles/AdminComponents/UsersList";
 
 export default function Administration() {
@@ -54,19 +53,19 @@ export default function Administration() {
       icon: "❌",
     });
   };
+  const { t } = useTranslation();
+
   return (
     <div className="admin-global-container">
-      <DecisionsDetails />
-      <DecisionsManagement />
       <details className="details-container">
         <summary>
-          Statistiques
+          {t("admin.stats")}
           <hr />
         </summary>
       </details>
       <details className="details-container">
         <summary>
-          Gestion des utilisateurs
+          {t("admin.userManagement")}
           <hr />
         </summary>
         <UsersList
@@ -80,7 +79,7 @@ export default function Administration() {
       </details>
       <details className="details-container">
         <summary>
-          Gestion des decisions
+          {t("admin.decisionsManagement")}
           <hr />
         </summary>
         <DecisionsList />

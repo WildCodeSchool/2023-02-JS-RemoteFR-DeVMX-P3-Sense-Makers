@@ -57,7 +57,7 @@
     "comment": {
       "expert": "expert",
       "impacted": "impacted by the decision",
-      "on": "at"
+      "on": "on"
     },
     "approve": "Validate this decision",
     "reject": "Reject this decision",
@@ -119,5 +119,83 @@
   "postComment": {
     "label": "My comment:",
     "textButton": "Post my comment"
+  },
+
+  "modifyProfil": {
+    "userModif": "Edit User",
+    "lastname": "Lastame",
+    "firstname": "First name",
+    "mail": "Email",
+    "resetPassword": "Reset password!",
+    "passReseted": "Password reset!!!",
+    "roles": "Current role(s)",
+    "validation": "Validate changes",
+    "modifyUser": {
+      "role": "Role",
+      "roleSelect": "Select your role",
+      "expert": "Expert",
+      "delete": "Delete"
+    }
+  },
+
+  "usersListAdmin": {
+    "polaceHolderSearch": "user search",
+    "textButton": "Add a user",
+    "tableTitle": {
+      "photo": "Photo",
+      "lastName": "Lastname",
+      "firstName": "Firstname",
+      "email": "Email",
+      "role": "role",
+      "expert": "expert",
+      "created": "Created on"
+    },
+    "tableContent": {
+      "Administrateur": "Administrator",
+      "Salarié": "Employee",
+      "yes": "yes",
+      "no": "no",
+      "dateDisplay": "en"
+    }
+  },
+
+  "decisionsListAdmin": {
+    "placeHolderSearch": "decision research",
+    "tableTitle": {
+      "id": "Id",
+      "title": "Title",
+      "status": "Status",
+      "createdOn": "Created on",
+      "createdBy": "Created by"
+    },
+    "status": {
+      "1": "Decision making started",
+      "2": "Pending decision making",
+      "3": "First decision made",
+      "4": "Final decision pending",
+      "5": "Final Decision",
+      "6": "Decision Complete",
+      "7": "Unsuccessful decision"
+    },
+    "dateDisplay": "en"
+  },
+
+  "admin": {
+    "stats": "Statistics",
+    "userManagement": "User Management",
+    "decisionsManagement": "Decision Management"
+  },
+
+  "addUser": {
+    "add": "Add user",
+    "lastname": "Lastame",
+    "firstname": "Firstname",
+    "email": "Email",
+    "password": "Password",
+    "placeholderPassword": "Insert your password",
+    "role": "Role",
+    "defaultRole": "Select your role",
+    "expert": "Expert",
+    "addUser": "Add User"
   }
 }

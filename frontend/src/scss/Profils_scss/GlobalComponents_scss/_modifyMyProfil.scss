@@ -63,7 +63,7 @@
       align-items: flex-start;
       flex-direction: column;
 
-      >label {
+      > label {
         margin-top: $space-xs;
         font-size: $font-size-m;
 
@@ -274,7 +274,7 @@
         flex-grow: 1;
 
         .input-fields {
-          >label {
+          > label {
             width: 10rem;
           }
 
@@ -312,8 +312,6 @@
         > :last-child {
           width: 100%;
         }
-
-
 
         .add-button-container-1 {
           display: flex;
