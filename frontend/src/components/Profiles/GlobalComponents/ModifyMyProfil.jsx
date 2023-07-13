@@ -147,10 +147,8 @@ export default function ModifyMyProfil() {
               <span className="role-actuel-data">{currentUser?.roles}</span>
             </div>
           </div>
-          <div className="add-remove-buttons-container-1">
-            <div className="add-button-container-1">
-              <button type="submit">Valider les modifications</button>
-            </div>
+          <div className="add-button-container-1">
+            <button type="submit">Valider les modifications</button>
           </div>
         </div>
       </div>
