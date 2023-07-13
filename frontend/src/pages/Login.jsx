@@ -2,6 +2,7 @@ import { useState, useContext } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { Slide, ToastContainer, toast } from "react-toastify";
+import { useTranslation } from "react-i18next";
 import userContext from "../contexts/userContext";
 import CookiesConsent from "../components/CookiesConsent";
 import ModalEmail from "../components/ModalEmail";
@@ -15,6 +16,7 @@ export default function Login() {
   const [showCookieBanner, setShowCookieBanner] = useState(true);
   const [cookieValidation, setCookieValidation] = useState("hide");
   const navigate = useNavigate();
+  const { t } = useTranslation();
 
   const emailSend = () => {
     toast.success("email envoyé", {
@@ -69,10 +71,10 @@ export default function Login() {
           <div className="logIn-input">
             <div className="inputsContainer">
               <p className={cookieValidation}>
-                Vous devez accepter les conditions
+                {t("login.banner.textForAcceptation")}
               </p>
               <label htmlFor="logInUsername">
-                <p>Email</p>
+                <p>{t("login.email")}</p>
               </label>
               <input
                 autoComplete="nom d'utilisateur"
@@ -81,7 +83,7 @@ export default function Login() {
                 onChange={(e) => setEmail(e.target.value)}
               />
               <label htmlFor="logInPassword">
-                <p>Mot de passe</p>
+                <p>{t("login.password")}</p>
               </label>
               <input
                 autoComplete="mot de passe"
@@ -91,7 +93,7 @@ export default function Login() {
               />
             </div>
             <button type="submit">
-              <h2>Se connecter</h2>
+              <h2>{t("login.connectionButton")}</h2>
             </button>
             <span
               role="button"
@@ -100,7 +102,7 @@ export default function Login() {
               className="reinicialize-password"
               onClick={() => setOpenModal(true)}
             >
-              Mot de passe oublié ?
+              {t("login.forgotPassword")}
             </span>
           </div>
         </form>

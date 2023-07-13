@@ -2,6 +2,7 @@ import { useEffect, useState, useRef, useContext } from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom";
 import { Slide, ToastContainer, toast } from "react-toastify";
+import { useTranslation } from "react-i18next";
 import DOMPurify from "dompurify";
 import PostComments from "../components/PostComments";
 import Timeline from "../components/graphicElements/Timeline";
@@ -19,6 +20,7 @@ export default function Decision() {
   const { user } = useContext(userContext);
   const { id } = useParams();
   const ref = useRef(null);
+  const { t } = useTranslation();
 
   const commentAdd = () => {
     toast.success("commentaire ajouté", {
@@ -146,7 +148,7 @@ export default function Decision() {
             alt={`${decision.firstname} ${decision.lastname}`}
           />
           <p>
-            par{" "}
+            {t("decision.by")}{" "}
             <span className="bold-text">
               {decision.firstname} {decision.lastname}
             </span>
@@ -155,13 +157,14 @@ export default function Decision() {
 
         <details>
           <summary>
-            Les details de la décison
+            {t("decision.details.decisionDetails")}
             <hr />
           </summary>
 
           <div className="summary-content">
             <div className="context">
-              <p className="bold-text">context:</p> {strip(decision.context)}
+              <p className="bold-text">{t("decision.details.context")}</p>{" "}
+              {strip(decision.context)}
             </div>
             <p>{strip(decision.content)}</p>
           </div>
@@ -169,7 +172,7 @@ export default function Decision() {
 
         <details>
           <summary>
-            Impact sur l'organisation
+            {t("decision.details.impact")}
             <hr />
           </summary>
           <div className="summary-content">
@@ -179,7 +182,7 @@ export default function Decision() {
 
         <details>
           <summary>
-            Bénéfices
+            {t("decision.details.benefit")}
             <hr />
           </summary>
           <div className="summary-content">
@@ -189,7 +192,7 @@ export default function Decision() {
 
         <details>
           <summary>
-            Risques potentiels
+            {t("decision.details.risks")}
             <hr />
           </summary>
 
@@ -201,7 +204,7 @@ export default function Decision() {
         {decision.first_decision_content && (
           <details>
             <summary>
-              Première prise de décision
+              {t("decision.details.firstTake")}
               <hr />
             </summary>
             <div className="summary-content">
@@ -212,7 +215,7 @@ export default function Decision() {
 
         <details>
           <summary>
-            Avis
+            {t("decision.details.comments")}
             <hr />
           </summary>
 
@@ -232,13 +235,21 @@ export default function Decision() {
                       {comment.firstname} {comment.lastname}
                     </p>
                     {experts.some((expert) => expert.id === comment.user_id) ? (
-                      <p className="bold-text">expert</p>
+                      <p className="bold-text">
+                        {t("decision.comment.expert")}
+                      </p>
                     ) : (
                       impactedUsers.some(
                         (impactedUser) => impactedUser.id === comment.user_id
-                      ) && <p className="bold-text ">impacté par la décision</p>
+                      ) && (
+                        <p className="bold-text ">
+                          {t("decision.comment.impacted")}
+                        </p>
+                      )
                     )}{" "}
-                    <p>le {comment.date}</p>
+                    <p>
+                      {t("decision.comment.on")} {comment.date}
+                    </p>
                   </div>
                 </div>
                 <div className="comment-text">
@@ -259,7 +270,7 @@ export default function Decision() {
                 value={1}
                 onClick={handleExpertChoice}
               >
-                Valider cette décision
+                {t("decision.approve")}
               </button>
 
               <button
@@ -268,7 +279,7 @@ export default function Decision() {
                 value={0}
                 onClick={handleExpertChoice}
               >
-                Rejeter cette décision
+                {t("decision.reject")}
               </button>
             </div>
           )}
@@ -287,7 +298,7 @@ export default function Decision() {
                 className="comment-button"
                 onClick={postFirstDecision}
               >
-                poster ma première prise de décision
+                {t("decision.postFirstTake")}
               </button>
             </div>
           )}
@@ -299,22 +310,19 @@ export default function Decision() {
             onClick={handleAddComment}
             disabled={decision.status_id !== 1 && decision.status_id !== 3}
           >
-            Donner mon avis
+            {t("decision.commButton")}
           </button>
         )}
         {decision.status_id === 2 && (
           <div className="closed-comment">
-            <p> La période de commentaire est à present terminée!</p>
-            <p>
-              Attendez la première prise de décision de l'auteur pour a nouveau
-              pouvoir donner votre avis!
-            </p>
+            <p>{t("decision.closedComment")}</p>
+            <p>{t("decision.waitComment")}</p>
           </div>
         )}
         {decision.status_id === 4 && (
           <div className="closed-comment">
-            <p> La période de commentaire est à present terminée!</p>
-            <p>Merci pour vos retours!</p>
+            <p>{t("decision.closedComment")}</p>
+            <p>{t("decision.thanks")}</p>
           </div>
         )}
         {addComment && (
@@ -329,9 +337,9 @@ export default function Decision() {
       </div>
       <div className="side-content">
         <div className="side-text">
-          <h2>Dates à retenir</h2>
+          <h2>{t("decision.dates")}</h2>
           <Timeline decision={decision} />
-          <h2>Personnes impactées</h2>
+          <h2>{t("decision.impactedUsers")}</h2>
           <div className="tagged" data-count={impactedUsers.length}>
             {impactedUsers.map((impactedUser) => (
               <img
@@ -344,7 +352,7 @@ export default function Decision() {
               />
             ))}
           </div>
-          <h2>Personnes expertes</h2>
+          <h2>{t("decision.expertsUsers")}</h2>
           <div className="tagged">
             {experts.map((expert) => (
               <img
@@ -365,7 +373,7 @@ export default function Decision() {
           onClick={handleAddComment}
           disabled={decision.status_id !== 1 && decision.status_id !== 3}
         >
-          Donner mon avis
+          {t("decision.commButton")}
         </button>
       </div>
       <ToastContainer autoClose={1500} transition={Slide} />

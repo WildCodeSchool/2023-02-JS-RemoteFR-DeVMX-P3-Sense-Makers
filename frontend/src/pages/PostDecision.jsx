@@ -2,6 +2,7 @@ import { useEffect, useReducer, useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { Slide, ToastContainer, toast } from "react-toastify";
+import { useTranslation } from "react-i18next";
 import AsyncSelect from "react-select/async";
 import TextEditor from "../components/TextEditor";
 
@@ -56,6 +57,7 @@ export default function PostDecision() {
   const [hub, setHub] = useState([]);
   const [selectedHub, setSelectedHub] = useState();
   const context = 1;
+  const { t } = useTranslation();
 
   const notifyDecision = () => {
     toast.success("décision postée", {
@@ -209,22 +211,22 @@ export default function PostDecision() {
   }
 
   const editors = [
-    ["Description de la décision", "content"],
-    ["Utilité de cette décision pour l'organisation", "usefulness"],
-    ["Contexte autour de la décision", "context"],
-    ["Bénéfices de la décision", "benefit"],
-    ["Inconvenients de la décision", "disadvantages"],
+    [t("postDecision.editors.desc"), "content"],
+    [t("postDecision.editors.usefulness"), "usefulness"],
+    [t("postDecision.editors.context"), "context"],
+    [t("postDecision.editors.benefit"), "benefit"],
+    [t("postDecision.editors.disadvantages"), "disadvantages"],
   ];
 
   return (
     <div className="post-container">
       <div className="title-container">
-        <h1 className="post-decision">Poster une décision </h1>
+        <h1 className="post-decision">{t("postDecision.title")}</h1>
       </div>
 
       <div className="decision-information">
         <label htmlFor="title_decision">
-          Titre de la décision *
+          {t("postDecision.inputs.title")} *
           <input
             type="text"
             id="title_decision"
@@ -243,7 +245,7 @@ export default function PostDecision() {
 
         <div className="hub-container">
           <label htmlFor="hub_decision">
-            Pôle concerné *
+            {t("postDecision.inputs.hub")} *
             <select
               id="hub_decision"
               value={selectedHub}
@@ -267,7 +269,7 @@ export default function PostDecision() {
 
         <div className="impacted-people">
           <label htmlFor="concerned_decision">
-            Personnes concernées *
+            {t("postDecision.inputs.impacted")} *
             <AsyncSelect
               id="concerned_decision"
               styles={customStyles}
@@ -280,7 +282,7 @@ export default function PostDecision() {
           </label>
 
           <label htmlFor="expert_decision">
-            Personnes expertes *
+            {t("postDecision.inputs.experts")} *
             <AsyncSelect
               id="expert_decision"
               styles={customStyles}
@@ -315,7 +317,7 @@ export default function PostDecision() {
             DecisionPosted(state);
           }}
         >
-          Poster cette décision
+          {t("postDecision.button")}
         </button>
       </div>
       <ToastContainer autoClose={1500} transition={Slide} />

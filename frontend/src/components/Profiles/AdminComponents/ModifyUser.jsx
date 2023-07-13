@@ -8,7 +8,7 @@ export default function ModifyUser({
   setCurrentUser,
   currentUser,
   userModifNotif,
-  // userDeleteNotif,
+  userDeleteNotif,
   emailSend,
   emailNotSend,
 }) {
@@ -143,13 +143,30 @@ export default function ModifyUser({
         if (response.status === 200) {
           setShowUpdateUser(false);
           emailSend();
+        } else {
+          emailNotSend();
         }
-        emailNotSend();
       })
       .catch((err) => {
         console.error(err);
         return setReinicializePassword(false);
       });
+  };
+
+  const deactivateUser = () => {
+    axios
+      .put(
+        `${import.meta.env.VITE_BACKEND_URL}/users/${currentUser.id}/isactive`,
+        { isActive: false },
+        {
+          withCredentials: true,
+        }
+      )
+      .then(() => {
+        userDeleteNotif();
+      })
+      .catch((err) => console.error(err));
+    setShowUpdateUser(false);
   };
 
   useEffect(() => {
@@ -194,7 +211,9 @@ export default function ModifyUser({
           </button>
         </div>
         <div className="remove-button-container-2">
-          <button type="button">Supprimer</button>
+          <button type="button" onClick={deactivateUser}>
+            Supprimer
+          </button>
         </div>
       </div>
       <div className="user-management-container">
@@ -341,7 +360,9 @@ export default function ModifyUser({
               <button type="submit">Valider les modifications</button>
             </div>
             <div className="remove-button-container-1">
-              <button type="button">Supprimer</button>
+              <button type="button" onClick={deactivateUser}>
+                Supprimer
+              </button>
             </div>
           </div>
         </div>
@@ -355,7 +376,7 @@ ModifyUser.propTypes = {
   setCurrentUser: PropTypes.func.isRequired,
   currentUser: PropTypes.shape().isRequired,
   userModifNotif: PropTypes.func.isRequired,
-  // userDeleteNotif: PropTypes.func.isRequired,
+  userDeleteNotif: PropTypes.func.isRequired,
   emailSend: PropTypes.func.isRequired,
   emailNotSend: PropTypes.func.isRequired,
 };

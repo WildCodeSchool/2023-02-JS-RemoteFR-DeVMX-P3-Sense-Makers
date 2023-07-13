@@ -35,7 +35,7 @@ function UsersList({
         setUsers(res.data);
       })
       .catch((err) => console.error(err));
-  }, [showAddUser, setShowAddUser, showUpdateUser]);
+  }, [records, showAddUser, setShowAddUser, showUpdateUser]);
 
   const prePage = () => {
     if (currentPage !== 1) {
@@ -63,6 +63,7 @@ function UsersList({
       {showUpdateUser && (
         <ModifyUser
           setShowUpdateUser={setShowUpdateUser}
+          setShowAddUser={setShowAddUser}
           setCurrentUser={setCurrentUser}
           currentUser={currentUser}
           userModifNotif={userModifNotif}
@@ -89,7 +90,7 @@ function UsersList({
       <table>
         <thead>
           <tr>
-            <th>photo</th>
+            <th>Photo</th>
             <th>Nom</th>
             <th>Prénom</th>
             <th>Email</th>
@@ -108,43 +109,47 @@ function UsersList({
                 );
               })
               .map((user) => {
-                const crerationDate = new Date(user.creation_date);
+                const creationDate = new Date(user.creation_date);
                 return (
-                  <tr key={user.id}>
-                    <td className="picture-container mobile-hide">
-                      <img
-                        className="mobile-hide"
-                        src={
-                          user.photo === "default_avatar.png"
-                            ? `${
-                                import.meta.env.VITE_BACKEND_URL
-                              }/assets/images/${user.photo}`
-                            : `${import.meta.env.VITE_BACKEND_URL}/uploads/${
-                                user.photo
-                              }`
-                        }
-                        alt="profil"
-                      />
-                    </td>
-                    <td>{user.lastname}</td>
-                    <td>{user.firstname}</td>
-                    <td>{user.email}</td>
-                    <td>{user.roles.split(", ")[0]}</td>
-                    <td>{user.roles.split(", ").length > 1 ? "oui" : "non"}</td>
-                    <td>{crerationDate.toLocaleDateString("fr")}</td>
-                    <td>
-                      <button
-                        type="button"
-                        className="viewBtn"
-                        onClick={() => {
-                          // eslint-disable-next-line no-sequences
-                          return setShowUpdateUser(true), setCurrentUser(user);
-                        }}
-                      >
-                        <img src={oeil} alt="" />
-                      </button>
-                    </td>
-                  </tr>
+                  user.is_active === 1 && (
+                    <tr key={user.id}>
+                      <td className="picture-container mobile-hide">
+                        <img
+                          className="mobile-hide"
+                          src={
+                            user.photo === "default_avatar.png"
+                              ? `${
+                                  import.meta.env.VITE_BACKEND_URL
+                                }/assets/images/${user.photo}`
+                              : `${import.meta.env.VITE_BACKEND_URL}/uploads/${
+                                  user.photo
+                                }`
+                          }
+                          alt="profil"
+                        />
+                      </td>
+                      <td>{user.lastname}</td>
+                      <td>{user.firstname}</td>
+                      <td>{user.email}</td>
+                      <td>{user.roles.split(", ")[0]}</td>
+                      <td>
+                        {user.roles.split(", ").length > 1 ? "oui" : "non"}
+                      </td>
+                      <td>{creationDate.toLocaleDateString("fr")}</td>
+                      <td>
+                        <button
+                          type="button"
+                          className="viewBtn"
+                          onClick={() => {
+                            setShowUpdateUser(true);
+                            setCurrentUser(user);
+                          }}
+                        >
+                          <img src={oeil} alt="" />
+                        </button>
+                      </td>
+                    </tr>
+                  )
                 );
               })}
         </tbody>

@@ -87,7 +87,7 @@
   animation: openLoginMenu 350ms 1 ease-in-out;
 
   > :first-child {
-    &> :last-child {
+    & > :last-child {
       padding-bottom: $space-s;
     }
   }
@@ -303,7 +303,7 @@
       color: $color-default;
     }
 
-    &>.icon-close-modal {
+    & > .icon-close-modal {
       margin-left: 90%;
     }
 

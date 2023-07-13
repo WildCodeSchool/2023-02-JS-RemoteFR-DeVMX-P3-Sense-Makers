@@ -1,11 +1,123 @@
 {
   "header": {
-    "decision": "decisiones",
-    "my-decisions": "mes decisiones",
+    "decision": "Decisiones",
+    "my-decisions": "Mis decisiones",
     "notif": "Notificaciones",
     "admin": "Administración",
     "account": "Mi cuenta",
     "creation": "Crear una decisión",
     "disconnect": "Cerrar sesión"
+  },
+
+  "postDecision": {
+    "title": "Publicar una decisión",
+    "button": "Publicar esta decisión",
+    "inputs": {
+      "title": "Título de la decisión",
+      "hub": "Polo preocupado",
+      "impacted": "Personas afectadas",
+      "experts": "Gente experta"
+    },
+
+    "editors": {
+      "desc": "Descripción de la decisión",
+      "usefulness": "Utilidad de esta decisión para la organización",
+      "context": "Contexto en torno a la decisión",
+      "benefit": "Beneficios de la decisión",
+      "disadvantages": "Desventajas de la decisión"
+    }
+  },
+
+  "decisions": {
+    "title": "Todas las decisiones",
+    "myTitle": "Mis decisiones",
+    "create": "Crear decisión",
+    "status": {
+      "1": "Toma de decisión comenzó",
+      "2": "Toma de decisión pendiente",
+      "3": "Primera decisión tomada",
+      "4": "Decisión final pendiente",
+      "5": "Decisión definitiva",
+      "6": "Decisión completa",
+      "7": "Decisión no alcanzada"
+    }
+  },
+
+  "decision": {
+    "by": "Por",
+    "details": {
+      "decisionDetails": "Los detalles de la decisión",
+      "context": "contexto:",
+      "impact": "Impacto en la organización",
+      "benefit": "Beneficios",
+      "risks": "Riesgos potenciales",
+      "firstTake": "Primera toma de decisiones",
+      "comments": "comentarios"
+    },
+    "comment": {
+      "expert": "experto",
+      "impacted": "impactado por la decisión",
+      "on": "el"
+    },
+    "approve": "Validar esta decisión",
+    "reject": "Rechazar esta decisión",
+    "postFirstTake": "publicar mi primera toma de decisiones",
+    "commButton": "Dar mi opinión",
+    "closedComment": "¡El período de comentarios ha terminado!",
+    "waitComment": "¡Espera la primera decisión del autor para poder volver a dar tu opinión!",
+    "thanks": "¡Gracias por tus comentarios!",
+    "dates": "Fechas para recordar",
+    "impactedUsers": "Personas impactadas",
+    "expertsUsers": "Gente experta"
+  },
+
+  "timeline": {
+    "firstDeadline": "Fecha límite para emitir opinión",
+    "secondDeadline": "Primera decisión tomada",
+    "firstTake": "Fecha límite para el conflicto",
+    "decisionOpen": "Toma de decisiones comenzó",
+    "finalDecision": "Decisión definitiva",
+    "dateDisplay": "es"
+  },
+
+  "login": {
+    "banner": {
+      "textForAcceptation": "Debes aceptar los términos"
+    },
+    "email": "Correo electrónico",
+    "password": "Contraseña",
+    "connectionButton": "Inicia sesión",
+    "forgotPassword": "¿Olvidó su contraseña?"
+  },
+
+  "resetPassword": {
+    "newPassword": "Nueva contraseña",
+    "confirmationPassword": "Confirmar contraseña",
+    "validate": "Validar"
+  },
+
+  "wrongPage": {
+    "title": "Error 404",
+    "subTitle": "Oye, pero ¿qué estás haciendo aquí?",
+    "text": "Si se pierde, puede volver a la página principal en",
+    "textButton": "¡Haga clic aquí!"
+  },
+
+  "modalEmail": {
+    "email": "Introduce tu email",
+    "validate": "Validar"
+  },
+
+  "cookieConsent": {
+    "textPart1": "Este sitio web utiliza datos de inicio de sesión. Lea nuestro",
+    "link": "Política de privacidad",
+    "textPart2": "para más información",
+    "agreement": "Acuerdo",
+    "refusal": "Negativa"
+  },
+
+  "postComment": {
+    "label": "Mi comentario:",
+    "textButton": "Publicar mi comentario"
   }
 }
