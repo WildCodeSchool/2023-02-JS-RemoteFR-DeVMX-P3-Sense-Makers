@@ -63,7 +63,7 @@ class DecisionManager extends AbstractManager {
 
   findImpactedOnDecisionById(id) {
     return this.database.query(
-      `SELECT u.id, u.firstname, u.lastname, u.photo FROM tagged_as_impacted ti
+      `SELECT u.id, u.firstname, u.lastname, u.photo, te.is_notif_read FROM tagged_as_impacted ti
       INNER JOIN users u ON u.id = ti.user_id
     where ti.decision_id = ?`,
       [id]
@@ -72,7 +72,7 @@ class DecisionManager extends AbstractManager {
 
   findExpertOnDecisionById(id) {
     return this.database.query(
-      `SELECT u.id, u.firstname, u.lastname, u.photo  FROM tagged_as_experts te
+      `SELECT u.id, u.firstname, u.lastname, u.photo, te.is_notif_read  FROM tagged_as_experts te
       INNER JOIN users u ON u.id = te.user_id
     where te.decision_id = ?`,
       [id]
@@ -101,7 +101,7 @@ class DecisionManager extends AbstractManager {
   }
 
   findConcernedHub() {
-    return this.database.query(`SELECT * FROM concernedhub c`);
+    return this.database.query(`SELECT * FROM concernedhub`);
   }
 }
 
