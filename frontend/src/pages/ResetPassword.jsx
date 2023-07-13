@@ -1,9 +1,10 @@
 import axios from "axios";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { Slide, ToastContainer, toast } from "react-toastify";
+import { Slide, ToastContainer } from "react-toastify";
 import { useTranslation } from "react-i18next";
 import Lang from "../components/Lang";
+import { passwordReinit, errorSamePassword } from "../services/toast";
 import GraphicElements from "../components/graphicElements/GraphicElements";
 
 export default function resetPassword() {
@@ -14,14 +15,6 @@ export default function resetPassword() {
   const token = params.get("token");
   const navigate = useNavigate();
   const { t } = useTranslation();
-
-  const notify = () => {
-    toast.success("Mot de passe reinitialisé", {
-      color: "white",
-      backgroundColor: "green",
-      icon: "✔️",
-    });
-  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -39,7 +32,7 @@ export default function resetPassword() {
           }
         )
         .then((response) => {
-          notify();
+          passwordReinit();
           setTimeout(() => {
             navigate("/");
           }, 1500);
@@ -47,11 +40,7 @@ export default function resetPassword() {
         })
         .catch((err) => console.error(err));
     } else {
-      toast.error("les mot de passe ne sont pas similaires!", {
-        color: "white",
-        backgroundColor: "red",
-        icon: "❌",
-      });
+      errorSamePassword();
     }
   };
 

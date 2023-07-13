@@ -2,16 +2,18 @@ import { useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import PropTypes from "prop-types";
 import axios from "axios";
+import {
+  userModifNotif,
+  userDeleteNotif,
+  emailSend,
+  emailNotSend,
+} from "../../../services/toast";
 import Dropzone from "../../../services/hookDropzone";
 
 export default function ModifyUser({
   setShowUpdateUser,
   setCurrentUser,
   currentUser,
-  userModifNotif,
-  userDeleteNotif,
-  emailSend,
-  emailNotSend,
 }) {
   const [dropzoneImage, setDropzoneImage] = useState([]);
   const [newUploadedFileName, setNewUploadedFileName] = useState("");
@@ -384,8 +386,4 @@ ModifyUser.propTypes = {
   setShowUpdateUser: PropTypes.func.isRequired,
   setCurrentUser: PropTypes.func.isRequired,
   currentUser: PropTypes.shape().isRequired,
-  userModifNotif: PropTypes.func.isRequired,
-  userDeleteNotif: PropTypes.func.isRequired,
-  emailSend: PropTypes.func.isRequired,
-  emailNotSend: PropTypes.func.isRequired,
 };

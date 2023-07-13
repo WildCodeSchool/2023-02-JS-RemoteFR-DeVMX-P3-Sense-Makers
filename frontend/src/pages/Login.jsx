@@ -1,8 +1,9 @@
 import { useState, useContext } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import { Slide, ToastContainer, toast } from "react-toastify";
+import { Slide, ToastContainer } from "react-toastify";
 import { useTranslation } from "react-i18next";
+import dataNotValide from "../services/toast";
 import Lang from "../components/Lang";
 import userContext from "../contexts/userContext";
 import CookiesConsent from "../components/CookiesConsent";
@@ -18,21 +19,6 @@ export default function Login() {
   const [cookieValidation, setCookieValidation] = useState("hide");
   const navigate = useNavigate();
   const { t } = useTranslation();
-
-  const emailSend = () => {
-    toast.success("email envoyé", {
-      color: "white",
-      backgroundColor: "green",
-      icon: "✔️",
-    });
-  };
-  const dataNotValide = () => {
-    toast.error("email ou mot de passe incorrect", {
-      color: "white",
-      backgroundColor: "red",
-      icon: "❌",
-    });
-  };
 
   const postUserInfos = (e) => {
     e.preventDefault();
@@ -64,9 +50,7 @@ export default function Login() {
   return (
     <>
       <GraphicElements />
-      {openModal && (
-        <ModalEmail setOpenModal={setOpenModal} emailSend={emailSend} />
-      )}
+      {openModal && <ModalEmail setOpenModal={setOpenModal} />}
       <div className="languages-choice-container">
         <Lang />
       </div>
