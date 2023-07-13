@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -6,10 +7,9 @@ import {
   Title,
   Tooltip,
   Legend,
+  // Colors,
 } from "chart.js";
 import { Bar } from "react-chartjs-2";
-
-const faker = [2, 2, 4, 35, 7, 1, 2, 2, 4, 5, 7, 1];
 
 ChartJS.register(
   CategoryScale,
@@ -48,32 +48,47 @@ const labels = [
   "Décembre",
 ];
 
-export const data = {
-  labels,
-  datasets: [
-    {
-      label: "Crées",
-      data: faker,
-      backgroundColor: "rgba(53, 162, 235, 0.5)",
-    },
-    {
-      label: "Abouties",
-      data: faker,
-      backgroundColor: "rgba(0, 128, 0, 0.5)",
-    },
-    {
-      label: "Non abouties",
-      data: faker,
-      backgroundColor: "rgba(255, 99, 132, 0.5)",
-    },
-    {
-      label: "Non abouties",
-      data: faker,
-      backgroundColor: "rgba(255, 99, 132, 0.5)",
-    },
-  ],
-};
+export default function Stats({ statsData }) {
+  // console.log("🚀 - statsData:", statsData);
 
-export default function Stats() {
+  const generateDataByMonth = (category) => {
+    const categoryArray = [];
+    statsData.forEach((dataPerMonth) => {
+      if (dataPerMonth[category] > 0) {
+        categoryArray.push(dataPerMonth[category]);
+      } else {
+        categoryArray.push("");
+      }
+    });
+    return categoryArray;
+  };
+
+  const data = {
+    labels,
+    datasets: [
+      {
+        label: "Crées",
+        data: generateDataByMonth("created"),
+        backgroundColor: "rgba(53, 162, 235, 0.5)",
+      },
+      {
+        label: "Validées",
+        data: generateDataByMonth("finishedValid"),
+        backgroundColor: "rgba(0, 128, 0, 0.5)",
+      },
+      {
+        label: "Non validées",
+        data: generateDataByMonth("finishedNotValid"),
+        backgroundColor: "rgba(255, 99, 132, 0.5)",
+      },
+      {
+        label: "Non abouties",
+        data: generateDataByMonth("notFinished"),
+        backgroundColor: "rgba(255, 0, 0, 0.5)",
+      },
+    ],
+  };
+
+  // console.log(data.datasets[0].data);
   return <Bar options={options} data={data} />;
 }

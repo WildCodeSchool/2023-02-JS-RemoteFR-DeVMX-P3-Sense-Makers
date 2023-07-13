@@ -8,7 +8,102 @@ import UsersList from "../components/Profiles/AdminComponents/UsersList";
 import StatsAnual from "../components/Profiles/AdminComponents/StatsAnual";
 
 export default function Administration() {
+  const [decisionsData, setDecisionsData] = useState([]);
   const [statsData, setStatsData] = useState([]);
+
+  // statsData.forEach((decision) => console.log(decision.finishedValid));
+  // console.log("🚀 - statsData:", decisionsData);
+
+  // const decisionsDates = [];
+
+  // for (const decision of decisionsData) {
+  //   const date = new Date(decision.initial_date);
+  //   const month = date.toLocaleString("default", { month: "long" });
+  //   decisionsDates.push(month);
+  // }
+  // console.log("🚀 - decisionsDates:", decisionsDates);
+
+  const getStatsData = (data) => {
+    const monthArray = [
+      "janvier",
+      "février",
+      "mars",
+      "avril",
+      "mai",
+      "juin",
+      "juillet",
+      "août",
+      "septembre",
+      "octobre",
+      "novembre",
+      "décembre",
+    ];
+
+    const decisionsByMonth = [];
+
+    for (let i = 0; i < monthArray.length; i += 1) {
+      const resultByMonth = [];
+
+      const statsResult = {
+        created: 0,
+        firstMadeDecision: 0,
+        waitingFor: 0,
+        waitingForExpert: 0,
+        notFinished: 0,
+        finishedValid: 0,
+        finishedNotValid: 0,
+        totalFinished: 0,
+      };
+
+      for (const decision of data) {
+        const date = new Date(decision.initial_date);
+        const month = date.toLocaleString("default", {
+          month: "long",
+        });
+        if (month === monthArray[i]) {
+          const decisionStatus = decision.status_id;
+          const isValidatedDecision = decision.is_validated;
+
+          switch ((decisionStatus, isValidatedDecision)) {
+            case 2:
+              statsResult.waitingFor += 1;
+              break;
+            case 3:
+              statsResult.firstMadeDecision += 1;
+              break;
+            case 4:
+              statsResult.waitingForExpert += 1;
+              break;
+            case 5 && isValidatedDecision === 0:
+              statsResult.finishedNotValid += 1;
+              break;
+            case 5 && isValidatedDecision === 1:
+              statsResult.finishedValid += 1;
+              break;
+            case 6:
+              statsResult.totalFinished += 1;
+              break;
+            case 7:
+              statsResult.finishedNotValid += 1;
+              break;
+            default:
+              break;
+          }
+          statsResult.created += 1;
+        }
+      }
+      resultByMonth.push(statsResult);
+
+      decisionsByMonth.push(resultByMonth[0]);
+    }
+    setStatsData(decisionsByMonth);
+  };
+
+  useEffect(() => {
+    getStatsData(decisionsData);
+    // statsData.forEach((decision) => console.log(decision.finishedValid));
+  }, [decisionsData]);
+
   const userAddNotif = () => {
     toast.success("utilisateur ajouté", {
       color: "white",
@@ -64,7 +159,7 @@ export default function Administration() {
       .get(`${import.meta.env.VITE_BACKEND_URL}/decisions`, {
         withCredentials: true,
       })
-      .then((response) => setStatsData(response.data))
+      .then((response) => setDecisionsData(response.data))
       .catch((err) => console.error(err));
   }, []);
   return (
