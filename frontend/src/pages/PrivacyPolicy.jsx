@@ -1,16 +1,17 @@
-import PropTypes from "prop-types";
+import { useNavigate } from "react-router-dom";
 import GraphicElements from "../components/graphicElements/GraphicElements";
 
-function PrivacyPolicy({ setShowCookieBanner, setCookieValidation }) {
+export default function PrivacyPolicy() {
+  const navigate = useNavigate();
+
   const handleClickAccept = () => {
     localStorage.setItem("conditionsAcceptation", "true");
-    setShowCookieBanner(false);
-    setCookieValidation("hide");
+    navigate("/");
   };
 
   const handleClickRefuse = () => {
     localStorage.setItem("conditionsRefused", "false");
-    setShowCookieBanner(true);
+    navigate("/");
   };
 
   return (
@@ -18,6 +19,12 @@ function PrivacyPolicy({ setShowCookieBanner, setCookieValidation }) {
       <GraphicElements />
       <div className="privacy-policy-container">
         <div className="text-container">
+          <div className="close-btn">
+            <button type="button" onClick={() => navigate("/")}>
+              {" "}
+              X{" "}
+            </button>
+          </div>
           <h1>POLITIQUE DE CONFIDENTIALITÉ</h1>
           <div>
             <h3>DÉFINITIONS :</h3>
@@ -102,7 +109,7 @@ function PrivacyPolicy({ setShowCookieBanner, setCookieValidation }) {
               </strong>
             </p>
             <p>
-              L'Éditeur peut être amenée à recueillir des informations de
+              L'Éditeur peut être amené à recueillir des informations de
               navigation via l'utilisation de cookies.
             </p>
           </div>
@@ -112,14 +119,14 @@ function PrivacyPolicy({ setShowCookieBanner, setCookieValidation }) {
               className="handle-cookie-btn firstBtn"
               onClick={handleClickAccept}
             >
-              Accord
+              Accepter
             </button>
             <button
               type="button"
               className="handle-cookie-btn"
               onClick={handleClickRefuse}
             >
-              Refus
+              Refuser
             </button>
           </div>
         </div>
@@ -127,9 +134,3 @@ function PrivacyPolicy({ setShowCookieBanner, setCookieValidation }) {
     </>
   );
 }
-PrivacyPolicy.propTypes = {
-  setShowCookieBanner: PropTypes.func.isRequired,
-  setCookieValidation: PropTypes.func.isRequired,
-};
-
-export default PrivacyPolicy;

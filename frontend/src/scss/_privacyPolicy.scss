@@ -33,6 +33,7 @@ color: $color-primary;
 .container-button {
     display: flex;
     justify-content: center;
+    margin-top: 1.5rem;
 
     .handle-cookie-btn {
         height: 2rem;
@@ -55,4 +56,33 @@ color: $color-primary;
         }
 }
 
+.close-btn {
+    display: flex;
+    justify-content: end;
+    button {
+      cursor: pointer;
+      background-color: white;
+      color: $color-default;
+      font-weight: $primary-font-weight;
+      border-radius: 20px;
+      padding: 0.5rem 0.75rem;
+      border: 1px solid $color-default;
+      transition: 0.2s ease-in-out;
+
+      &:hover {
+        transform: scale(1.1);
+        background: $color-default;
+        color: white;
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .handle-cookie-btn {
+    display: flex;
+    width: 10rem;
+    justify-content: center;
+    align-items: center;
+  }
 }
