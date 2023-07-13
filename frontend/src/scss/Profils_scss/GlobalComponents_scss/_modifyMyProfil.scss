@@ -276,10 +276,6 @@
         .input-fields {
           >label {
             width: 10rem;
-
-            >input {
-              width: 80%;
-            }
           }
 
           .name-inputs-container {
@@ -373,18 +369,6 @@
             border-radius: $space-xxs;
             border: 1px solid $border-color-base;
             cursor: pointer;
-          }
-
-          .role-expert-2 {
-            display: block;
-            margin-top: $space-xs;
-            margin-right: auto;
-
-            input[type="checkbox"] {
-              margin: 0 $space-xs 0 0;
-              border: 1px solid $border-color-base;
-              cursor: pointer;
-            }
           }
         }
       }

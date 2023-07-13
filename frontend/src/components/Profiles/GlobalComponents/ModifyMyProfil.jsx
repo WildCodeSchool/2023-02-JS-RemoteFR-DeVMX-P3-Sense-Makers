@@ -139,7 +139,6 @@ export default function ModifyMyProfil() {
             />
           </label>
         </div>
-
         <div className="input-buttons-container">
           <div className="roles-container-2">
             <div className="role-actuel">
