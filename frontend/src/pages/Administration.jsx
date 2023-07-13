@@ -10,6 +10,7 @@ import StatsAnual from "../components/Profiles/AdminComponents/StatsAnual";
 export default function Administration() {
   const [decisionsData, setDecisionsData] = useState([]);
   const [statsData, setStatsData] = useState([]);
+  // console.log("🚀 - statsData:", statsData);
 
   // statsData.forEach((decision) => console.log(decision.finishedValid));
   // console.log("🚀 - statsData:", decisionsData);
@@ -63,8 +64,9 @@ export default function Administration() {
         if (month === monthArray[i]) {
           const decisionStatus = decision.status_id;
           const isValidatedDecision = decision.is_validated;
+          // console.log("🚀 - isValidatedDecision:", isValidatedDecision);
 
-          switch ((decisionStatus, isValidatedDecision)) {
+          switch (decisionStatus) {
             case 2:
               statsResult.waitingFor += 1;
               break;
@@ -74,10 +76,10 @@ export default function Administration() {
             case 4:
               statsResult.waitingForExpert += 1;
               break;
-            case 5 && isValidatedDecision === 0:
+            case isValidatedDecision === false:
               statsResult.finishedNotValid += 1;
               break;
-            case 5 && isValidatedDecision === 1:
+            case isValidatedDecision === true:
               statsResult.finishedValid += 1;
               break;
             case 6:

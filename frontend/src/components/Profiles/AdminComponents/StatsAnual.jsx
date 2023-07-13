@@ -89,6 +89,6 @@ export default function Stats({ statsData }) {
     ],
   };
 
-  // console.log(data.datasets[0].data);
+  // console.log(data.datasets[3].data);
   return <Bar options={options} data={data} />;
 }
