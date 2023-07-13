@@ -7,7 +7,7 @@
   align-items: center;
   flex-direction: column;
   width: 85%;
-  margin: $space-xxl auto;
+  margin: auto;
   padding: $space-s 0;
   font-family: "Raleway", Helvetica, Arial, sans-serif;
   font-weight: 700;
@@ -63,24 +63,13 @@
       align-items: flex-start;
       flex-direction: column;
 
-      > label {
+      >label {
         margin-top: $space-xs;
-        font-size: $font-size-s;
+        font-size: $font-size-m;
 
-        > input {
-          margin-top: $space-xs;
-          padding: $space-xxs;
-          border-radius: $space-xxs;
-          border: 1px solid $border-color-base;
-        }
-
-        :focus {
-          outline: none;
-          border: 1px solid $border-color-active;
-        }
-
-        input[type="email"] {
-          width: 13rem;
+        p {
+          font-size: $font-size-s;
+          font-weight: 400;
         }
       }
 
@@ -109,11 +98,6 @@
       margin-top: $space-xs;
       font-size: $font-size-s;
 
-      :focus {
-        outline: none;
-        border: 1px solid $border-color-active;
-      }
-
       .role-actuel-container {
         .role {
           display: flex;
@@ -123,6 +107,7 @@
 
           .role-actuel-title {
             margin: 0;
+            font-size: $font-size-m;
           }
 
           .role-actuel-data {
@@ -132,27 +117,6 @@
             font-size: $font-size-xs;
             border: 1px solid $color-default;
             border-radius: $space-xxs;
-          }
-        }
-
-        select {
-          margin-top: $space-xs;
-          margin-right: $space-m;
-          border-radius: $space-xxs;
-          border: 1px solid $border-color-base;
-          cursor: pointer;
-        }
-
-        .role-expert {
-          display: flex;
-          justify-content: flex-start;
-          align-items: center;
-          margin-top: $space-xs;
-
-          input[type="checkbox"] {
-            margin: 0, $space-s, 0, 0;
-            border: 1px solid $border-color-base;
-            cursor: pointer;
           }
         }
       }
@@ -225,53 +189,26 @@
       display: none;
     }
 
-    .add-remove-buttons-container-1 {
-      .add-button-container-1 {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        width: 10rem;
-        height: 2rem;
-        flex-grow: 1;
+    .add-button-container-1 {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 10rem;
+      height: 2rem;
+      flex-grow: 1;
 
-        button {
-          font-weight: 700;
-          font-size: $font-size-xs;
-          padding: $space-xxs;
-          background-color: #70af90;
-          border-radius: $space-s;
-          border: 1px solid $color-default;
-          cursor: pointer;
-          transition: transform 350ms ease-out;
+      button {
+        font-weight: 700;
+        font-size: $font-size-xs;
+        padding: $space-xxs;
+        background-color: #70af90;
+        border-radius: $space-s;
+        border: 1px solid $color-default;
+        cursor: pointer;
+        transition: transform 200ms ease-out;
 
-          &:active {
-            border: none;
-            transform: scale(1.01);
-          }
-        }
-      }
-
-      .remove-button-container-1 {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        width: 10rem;
-        height: 2rem;
-
-        button {
-          font-weight: 700;
-          font-size: $font-size-xs;
-          padding: $space-xxs;
-          background-color: #e36164;
-          border-radius: $space-s;
-          border: 1px solid $color-default;
-          cursor: pointer;
-          transition: transform 350ms ease-out;
-
-          &:active {
-            border: none;
-            transform: scale(1.01);
-          }
+        &:active {
+          transform: scale(1.02);
         }
       }
     }
@@ -285,6 +222,7 @@
 @media screen and (min-width: 768px) {
   .modify-my-profil-management {
     padding: 0 $space-s $space-s $space-s;
+    margin: $space-xxl auto;
 
     .close-modal-button-container {
       top: 4%;
@@ -300,30 +238,6 @@
 
       .add-user-title {
         font-size: $font-size-l;
-      }
-
-      .remove-button-container-2 {
-        display: inline-block;
-        margin-top: $space-xs;
-        margin-right: $space-xxl;
-        width: 5rem;
-        height: 2rem;
-
-        button {
-          font-weight: 700;
-          font-size: $font-size-xs;
-          padding: $space-xxs;
-          background-color: #e36164;
-          border-radius: $space-s;
-          border: 1px solid $color-default;
-          cursor: pointer;
-          transition: transform 350ms ease-out;
-
-          &:active {
-            border: none;
-            transform: scale(1.01);
-          }
-        }
       }
     }
 
@@ -360,12 +274,8 @@
         flex-grow: 1;
 
         .input-fields {
-          > label {
+          >label {
             width: 10rem;
-
-            > input {
-              width: 80%;
-            }
           }
 
           .name-inputs-container {
@@ -376,8 +286,10 @@
           }
 
           label {
-            input[type="email"] {
-              min-width: 180%;
+            font-size: $font-size-l;
+
+            p {
+              font-weight: 400;
             }
           }
 
@@ -395,14 +307,13 @@
         flex-grow: 1;
         padding-left: $space-s;
         border-left: 1px solid $color-default;
+        gap: 4rem;
 
         > :last-child {
           width: 100%;
         }
 
-        .remove-button-container-1 {
-          display: none;
-        }
+
 
         .add-button-container-1 {
           display: flex;
@@ -410,6 +321,10 @@
           align-items: center;
           margin-top: 1rem;
           width: 100%;
+
+          button {
+            margin: $space-s;
+          }
         }
 
         .roles-container-2 {
@@ -454,18 +369,6 @@
             border-radius: $space-xxs;
             border: 1px solid $border-color-base;
             cursor: pointer;
-          }
-
-          .role-expert-2 {
-            display: block;
-            margin-top: $space-xs;
-            margin-right: auto;
-
-            input[type="checkbox"] {
-              margin: 0 $space-xs 0 0;
-              border: 1px solid $border-color-base;
-              cursor: pointer;
-            }
           }
         }
       }
