@@ -37,7 +37,7 @@ export function errorSamePassword() {
   });
 }
 
-export function notifyDecisio() {
+export function notifyDecision() {
   toast.success("décision postée", {
     color: "white",
     backgroundColor: "green",
@@ -111,3 +111,20 @@ export function finalDecisionAdd() {
     icon: "✔️",
   });
 }
+
+export default {
+  emailSend,
+  emailNotSend,
+  dataNotValide,
+  passwordReinit,
+  errorSamePassword,
+  notifyDecision,
+  userAddNotif,
+  userNotAddNotif,
+  userModifNotif,
+  userNotModifyNotif,
+  userDeleteNotif,
+  commentAdd,
+  firstDecisionAdd,
+  finalDecisionAdd,
+};

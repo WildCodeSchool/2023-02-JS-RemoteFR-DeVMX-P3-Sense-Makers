@@ -4,11 +4,7 @@ import { useParams } from "react-router-dom";
 import { Slide, ToastContainer } from "react-toastify";
 import { useTranslation } from "react-i18next";
 import DOMPurify from "dompurify";
-import {
-  commentAdd,
-  firstDecisionAdd,
-  finalDecisionAdd,
-} from "../services/toast";
+import { firstDecisionAdd, finalDecisionAdd } from "../services/toast";
 import PostComments from "../components/PostComments";
 import Timeline from "../components/graphicElements/Timeline";
 import FirstDecisionEditor from "../components/FirstDecisionEditor";
@@ -311,7 +307,6 @@ export default function Decision() {
         {addComment && (
           <div ref={ref}>
             <PostComments
-              commentAdd={commentAdd}
               setAddComment={setAddComment}
               handleComment={handleComment}
             />

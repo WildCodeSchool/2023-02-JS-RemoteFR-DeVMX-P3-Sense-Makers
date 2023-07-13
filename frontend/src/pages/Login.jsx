@@ -3,7 +3,7 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { Slide, ToastContainer } from "react-toastify";
 import { useTranslation } from "react-i18next";
-import dataNotValide from "../services/toast";
+import { dataNotValide } from "../services/toast";
 import Lang from "../components/Lang";
 import userContext from "../contexts/userContext";
 import CookiesConsent from "../components/CookiesConsent";

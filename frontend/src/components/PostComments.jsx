@@ -3,13 +3,10 @@ import axios from "axios";
 import { useParams } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import PropTypes from "prop-types";
+import { commentAdd } from "../services/toast";
 import userContext from "../contexts/userContext";
 
-export default function PostComments({
-  setAddComment,
-  handleComment,
-  commentAdd,
-}) {
+export default function PostComments({ setAddComment, handleComment }) {
   const [comment, setComment] = useState("");
   const { id } = useParams();
   const { user } = useContext(userContext);
@@ -56,5 +53,4 @@ export default function PostComments({
 PostComments.propTypes = {
   setAddComment: PropTypes.func.isRequired,
   handleComment: PropTypes.func.isRequired,
-  commentAdd: PropTypes.func.isRequired,
 };
