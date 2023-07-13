@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import axios from "axios";
 import oeil from "../../../assets/view.png";
 
@@ -14,6 +15,8 @@ function DecisionsList() {
   const records = decisions.slice(firstIndex, lastIndex);
   const npage = Math.ceil(decisions.length / recordsPerPage);
   const numbers = [...Array(npage + 1).keys()].slice(1);
+  const { t } = useTranslation();
+
   useEffect(() => {
     axios
       .get(`${import.meta.env.VITE_BACKEND_URL}/decisions`, {
@@ -43,18 +46,18 @@ function DecisionsList() {
     <div className="display-decisions">
       <input
         type="text"
-        placeholder="recherche decision"
+        placeholder={t("decisionsListAdmin.placeHolderSearch")}
         value={filterDecision}
         onChange={(e) => setFilterDecision(e.target.value)}
       />
       <table>
         <thead>
           <tr>
-            <th>id</th>
-            <th>titre</th>
-            <th>status</th>
-            <th>crée le</th>
-            <th>Crée par</th>
+            <th>{t("decisionsListAdmin.tableTitle.id")}</th>
+            <th>{t("decisionsListAdmin.tableTitle.title")}</th>
+            <th>{t("decisionsListAdmin.tableTitle.status")}</th>
+            <th>{t("decisionsListAdmin.tableTitle.createdOn")}</th>
+            <th>{t("decisionsListAdmin.tableTitle.createdBy")}</th>
           </tr>
         </thead>
         <tbody>
@@ -69,8 +72,14 @@ function DecisionsList() {
                   <tr key={decision.d_id}>
                     <td>{decision.d_id}</td>
                     <td>{decision.title_decision}</td>
-                    <td>{decision.title_status}</td>
-                    <td>{creationDate.toLocaleDateString("fr")}</td>
+                    <td>
+                      {t(`decisionsListAdmin.status.${decision.status_id}`)}
+                    </td>
+                    <td>
+                      {creationDate.toLocaleDateString(
+                        t("decisionsListAdmin.dateDisplay")
+                      )}
+                    </td>
                     <td>
                       {decision.firstname} {decision.lastname}
                     </td>
@@ -82,7 +91,7 @@ function DecisionsList() {
                           return navigate(`/logged/decisions/${decision.d_id}`);
                         }}
                       >
-                        <img src={oeil} alt="" />
+                        <img src={oeil} alt="view icon" />
                       </button>
                     </td>
                   </tr>
@@ -94,7 +103,7 @@ function DecisionsList() {
         <ul className="pagination">
           <li className="page-item">
             <button type="button" onClick={prePage}>
-              Prev
+              {"<"}
             </button>
           </li>
           {numbers.map((n) => (
@@ -111,7 +120,7 @@ function DecisionsList() {
           ))}
           <li className="page-item">
             <button className="page-link" type="button" onClick={nextPage}>
-              Next
+              {">"}
             </button>
           </li>
         </ul>

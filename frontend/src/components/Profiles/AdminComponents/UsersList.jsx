@@ -1,18 +1,11 @@
 import { useEffect, useState } from "react";
-import PropTypes from "prop-types";
 import axios from "axios";
+import { useTranslation } from "react-i18next";
 import AddUser from "./AddUser";
-import oeil from "../../../assets/view.png";
+import modifIcon from "../../../assets/modif_user.png";
 import ModifyUser from "./ModifyUser";
 
-function UsersList({
-  userAddNotif,
-  userNotAddNotif,
-  userModifNotif,
-  userDeleteNotif,
-  emailSend,
-  emailNotSend,
-}) {
+function UsersList() {
   const [showAddUser, setShowAddUser] = useState(false);
   const [showUpdateUser, setShowUpdateUser] = useState(false);
   const [users, setUsers] = useState([]);
@@ -25,6 +18,7 @@ function UsersList({
   const records = users.slice(firstIndex, lastIndex);
   const npage = Math.ceil(users.length / recordsPerPage);
   const numbers = [...Array(npage + 1).keys()].slice(1);
+  const { t } = useTranslation();
 
   useEffect(() => {
     axios
@@ -53,29 +47,19 @@ function UsersList({
   };
   return (
     <div className="display">
-      {showAddUser && (
-        <AddUser
-          setShowAddUser={setShowAddUser}
-          userAddNotif={userAddNotif}
-          userNotAddNotif={userNotAddNotif}
-        />
-      )}
+      {showAddUser && <AddUser setShowAddUser={setShowAddUser} />}
       {showUpdateUser && (
         <ModifyUser
           setShowUpdateUser={setShowUpdateUser}
           setShowAddUser={setShowAddUser}
           setCurrentUser={setCurrentUser}
           currentUser={currentUser}
-          userModifNotif={userModifNotif}
-          userDeleteNotif={userDeleteNotif}
-          emailSend={emailSend}
-          emailNotSend={emailNotSend}
         />
       )}
       <div className="filter-user">
         <input
           type="text"
-          placeholder="recherche utilisateur"
+          placeholder={t("usersListAdmin.placeHolderSearch")}
           value={filterUser}
           onChange={(e) => setFilterUser(e.target.value)}
         />
@@ -84,19 +68,19 @@ function UsersList({
           className="addBtn"
           onClick={() => setShowAddUser(true)}
         >
-          Ajouter un utilisateur
+          {t("usersListAdmin.textButton")}
         </button>
       </div>
       <table>
         <thead>
           <tr>
-            <th>Photo</th>
-            <th>Nom</th>
-            <th>Prénom</th>
-            <th>Email</th>
-            <th>Rôle</th>
-            <th>Expert(e)</th>
-            <th>Crée le</th>
+            <th>{t("usersListAdmin.tableTitle.photo")}</th>
+            <th>{t("usersListAdmin.tableTitle.lastName")}</th>
+            <th>{t("usersListAdmin.tableTitle.firstName")}</th>
+            <th>{t("usersListAdmin.tableTitle.email")}</th>
+            <th>{t("usersListAdmin.tableTitle.role")}</th>
+            <th>{t("usersListAdmin.tableTitle.expert")}</th>
+            <th>{t("usersListAdmin.tableTitle.created")}</th>
           </tr>
         </thead>
         <tbody>
@@ -131,11 +115,23 @@ function UsersList({
                       <td>{user.lastname}</td>
                       <td>{user.firstname}</td>
                       <td>{user.email}</td>
-                      <td>{user.roles.split(", ")[0]}</td>
                       <td>
-                        {user.roles.split(", ").length > 1 ? "oui" : "non"}
+                        {t(
+                          `usersListAdmin.tableContent.${
+                            user.roles.split(", ")[0]
+                          }`
+                        )}
                       </td>
-                      <td>{creationDate.toLocaleDateString("fr")}</td>
+                      <td>
+                        {user.roles.split(", ").length > 1
+                          ? t("usersListAdmin.tableContent.yes")
+                          : t("usersListAdmin.tableContent.no")}
+                      </td>
+                      <td>
+                        {creationDate.toLocaleDateString(
+                          t("usersListAdmin.tableContent.dateDisplay")
+                        )}
+                      </td>
                       <td>
                         <button
                           type="button"
@@ -145,7 +141,7 @@ function UsersList({
                             setCurrentUser(user);
                           }}
                         >
-                          <img src={oeil} alt="" />
+                          <img src={modifIcon} alt="icon update" />
                         </button>
                       </td>
                     </tr>
@@ -158,7 +154,7 @@ function UsersList({
         <ul className="pagination">
           <li className="page-item">
             <button type="button" onClick={prePage}>
-              Prev
+              {"<"}
             </button>
           </li>
           {numbers.map((n) => (
@@ -175,7 +171,7 @@ function UsersList({
           ))}
           <li className="page-item">
             <button className="page-link" type="button" onClick={nextPage}>
-              Next
+              {">"}
             </button>
           </li>
         </ul>
@@ -183,13 +179,5 @@ function UsersList({
     </div>
   );
 }
-UsersList.propTypes = {
-  userAddNotif: PropTypes.func.isRequired,
-  userNotAddNotif: PropTypes.func.isRequired,
-  userModifNotif: PropTypes.func.isRequired,
-  userDeleteNotif: PropTypes.func.isRequired,
-  emailSend: PropTypes.func.isRequired,
-  emailNotSend: PropTypes.func.isRequired,
-};
 
 export default UsersList;

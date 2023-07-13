@@ -1,7 +1,7 @@
 import { useEffect, useState, useRef, useContext } from "react";
 import axios from "axios";
 import { useParams, useNavigate } from "react-router-dom";
-import { Slide, ToastContainer, toast } from "react-toastify";
+import { Slide, ToastContainer } from "react-toastify";
 import { useTranslation } from "react-i18next";
 import DOMPurify from "dompurify";
 import Dialog from "@mui/material/Dialog";
@@ -9,6 +9,11 @@ import DialogTitle from "@mui/material/DialogTitle";
 import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
 import Button from "@mui/material/Button";
+import {
+  commentAdd,
+  firstDecisionAdd,
+  finalDecisionAdd,
+} from "../services/toast";
 import userContext from "../contexts/userContext";
 import FirstDecisionEditor from "../components/FirstDecisionEditor";
 import Timeline from "../components/graphicElements/Timeline";
@@ -30,28 +35,6 @@ export default function Decision() {
   const { id } = useParams();
   const ref = useRef(null);
   const { t } = useTranslation();
-
-  const commentAdd = () => {
-    toast.success("commentaire ajouté", {
-      color: "white",
-      backgroundColor: "green",
-      icon: "✔️",
-    });
-  };
-  const firstDecisionAdd = () => {
-    toast.success("première décision ajoutée", {
-      color: "white",
-      backgroundColor: "green",
-      icon: "✔️",
-    });
-  };
-  const finalDecisionAdd = () => {
-    toast.success("validation prise en compte", {
-      color: "white",
-      backgroundColor: "green",
-      icon: "✔️",
-    });
-  };
 
   function strip(html) {
     return (

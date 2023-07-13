@@ -160,5 +160,83 @@
     },
     "agree": "Accepter",
     "reject": "Refuser"
+},
+  
+  "modifyProfil": {
+    "userModif": "Modification d'utilisateur",
+    "lastname": "Nom",
+    "firstname": "Prénom",
+    "mail": "Email",
+    "resetPassword": "Réinitialiser le mot de passe!",
+    "passReseted": "Mot de passe réinitialisé!!!",
+    "roles": "Rôle(s) actuel(s)",
+    "validation": "Valider les modifications",
+    "modifyUser": {
+      "role": "Rôle",
+      "roleSelect": "Sélectionnez votre rôle",
+      "expert": "Expert(e)",
+      "delete": "Supprimer"
+    }
+  },
+
+  "usersListAdmin": {
+    "placeHolderSearch": "recherche utilisateur",
+    "textButton": "Ajouter un utilisateur",
+    "tableTitle": {
+      "photo": "Photo",
+      "lastName": "Nom",
+      "firstName": "Prénom",
+      "email": "Email",
+      "role": "Rôle",
+      "expert": "Expert(e)",
+      "created": "Crée le"
+    },
+    "tableContent": {
+      "Administrateur": "Administrateur",
+      "Salarié": "Salarié",
+      "yes": "oui",
+      "no": "non",
+      "dateDisplay": "fr"
+    }
+  },
+
+  "decisionsListAdmin": {
+    "placeHolderSearch": "recherche décision",
+    "tableTitle": {
+      "id": "Id",
+      "title": "Titre",
+      "status": "Statut",
+      "createdOn": "Créé le",
+      "createdBy": "créé par"
+    },
+    "status": {
+      "1": "Prise de décision débutée",
+      "2": "Prise de décision en attente",
+      "3": "Première décision prise",
+      "4": "Décision définitive en attente",
+      "5": "Décision définitive",
+      "6": "Décision terminée",
+      "7": "Décision non aboutie"
+    },
+    "dateDisplay": "fr"
+  },
+
+  "admin": {
+    "stats": "Statistiques",
+    "userManagement": "Gestion des utilisateurs",
+    "decisionsManagement": "Gestion des décisions"
+  },
+
+  "addUser": {
+    "add": "Ajout d'utilisateur",
+    "lastname": "Nom",
+    "firstname": "Prénom",
+    "email": "Email",
+    "password": "Mot de passe",
+    "placeholderPassword": "Insérez votre mot de passe",
+    "role": "Rôle",
+    "defaultRole": "Sélectionnez votre rôle",
+    "expert": "Expert",
+    "addUser": "Ajouter l'utilisateur"
   }
 }

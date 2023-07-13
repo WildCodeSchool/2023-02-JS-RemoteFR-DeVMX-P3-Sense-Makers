@@ -1,86 +1,29 @@
-import { Slide, ToastContainer, toast } from "react-toastify";
-import DecisionsDetails from "../components/Profiles/AdminComponents/DecisionsDetails";
+import { Slide, ToastContainer } from "react-toastify";
+import { useTranslation } from "react-i18next";
 import DecisionsList from "../components/Profiles/AdminComponents/DecisionsList";
-import DecisionsManagement from "../components/Profiles/AdminComponents/DecisionsManagement";
 import UsersList from "../components/Profiles/AdminComponents/UsersList";
 
 export default function Administration() {
-  const userAddNotif = () => {
-    toast.success("utilisateur ajouté", {
-      color: "white",
-      backgroundColor: "green",
-      icon: "✔️",
-    });
-    toast.success("email envoyé", {
-      color: "white",
-      backgroundColor: "green",
-      icon: "✔️",
-    });
-  };
+  const { t } = useTranslation();
 
-  const userNotAddNotif = () => {
-    toast.error("l'email existe déjà", {
-      color: "white",
-      backgroundColor: "red",
-      icon: "❌",
-    });
-  };
-
-  const userModifNotif = () => {
-    toast.success("utilisateur modifié", {
-      color: "white",
-      backgroundColor: "green",
-      icon: "✔️",
-    });
-  };
-  const userDeleteNotif = () => {
-    toast.success("utilisateur supprimé", {
-      color: "white",
-      backgroundColor: "green",
-      icon: "✔️",
-    });
-  };
-  const emailSend = () => {
-    toast.success("email envoyé", {
-      color: "white",
-      backgroundColor: "green",
-      icon: "✔️",
-    });
-  };
-  const emailNotSend = () => {
-    toast.error("email non envoyé", {
-      color: "white",
-      backgroundColor: "red",
-      icon: "❌",
-    });
-  };
   return (
     <div className="admin-global-container">
-      <DecisionsDetails />
-      <DecisionsManagement />
       <details className="details-container">
         <summary>
-          Statistiques
+          {t("admin.stats")}
           <hr />
         </summary>
       </details>
       <details className="details-container">
         <summary>
-          Gestion des utilisateurs
+          {t("admin.userManagement")}
           <hr />
         </summary>
-        <UsersList
-          userAddNotif={userAddNotif}
-          userNotAddNotif={userNotAddNotif}
-          userModifNotif={userModifNotif}
-          userDeleteNotif={userDeleteNotif}
-          emailSend={emailSend}
-          emailNotSend={emailNotSend}
-        />
+        <UsersList />
       </details>
       <details className="details-container">
         <summary>
-          Gestion des decisions
+          {t("admin.decisionsManagement")}
           <hr />
         </summary>
         <DecisionsList />
