@@ -1,13 +1,18 @@
 import { useEffect, useState, useRef, useContext } from "react";
 import axios from "axios";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { Slide, ToastContainer, toast } from "react-toastify";
 import { useTranslation } from "react-i18next";
 import DOMPurify from "dompurify";
-import PostComments from "../components/PostComments";
-import Timeline from "../components/graphicElements/Timeline";
-import FirstDecisionEditor from "../components/FirstDecisionEditor";
+import Dialog from "@mui/material/Dialog";
+import DialogTitle from "@mui/material/DialogTitle";
+import DialogActions from "@mui/material/DialogActions";
+import DialogContent from "@mui/material/DialogContent";
+import Button from "@mui/material/Button";
 import userContext from "../contexts/userContext";
+import FirstDecisionEditor from "../components/FirstDecisionEditor";
+import Timeline from "../components/graphicElements/Timeline";
+import PostComments from "../components/PostComments";
 
 export default function Decision() {
   const [decision, setDecison] = useState([]);
@@ -17,7 +22,11 @@ export default function Decision() {
   const [addComment, setAddComment] = useState(false);
   const [displayValidation, setDisplayValidation] = useState(true);
   const [firstDecision, setFirstDecision] = useState("");
+  const [openDecisionModal, setOpenDecisionModal] = useState(false);
+  const [openCommentModal, setOpenCommentModal] = useState();
+  const [commentId, setCommentId] = useState();
   const { user } = useContext(userContext);
+  const navigate = useNavigate();
   const { id } = useParams();
   const ref = useRef(null);
   const { t } = useTranslation();
@@ -132,6 +141,30 @@ export default function Decision() {
       .catch((err) => console.error(err));
   }, []);
 
+  const deleteDecision = () => {
+    axios
+      .delete(`${import.meta.env.VITE_BACKEND_URL}/decisions/${id}`, {
+        withCredentials: true,
+      })
+      .catch((err) => console.error(err));
+    navigate(-1);
+  };
+
+  const deleteComment = (commId) => {
+    axios
+      .delete(
+        `${
+          import.meta.env.VITE_BACKEND_URL
+        }/decisions/${id}/comments/${commId}`,
+        {
+          withCredentials: true,
+        }
+      )
+      .catch((err) => console.error(err));
+    setTimeout(() => {
+      handleComment();
+    }, 500);
+  };
   return (
     <div className="decision">
       <div className="main-content">
@@ -223,14 +256,13 @@ export default function Decision() {
             {comments.map((comment) => (
               <div key={comment.id} className="comment">
                 <div className="comment-info">
-                  {" "}
-                  <img
-                    src={`${import.meta.env.VITE_BACKEND_URL}/uploads/${
-                      comment.photo
-                    }`}
-                    alt={`${comment.firstname} ${comment.lastname}`}
-                  />{" "}
-                  <div className="comment-info">
+                  <div className="info-block">
+                    <img
+                      src={`${import.meta.env.VITE_BACKEND_URL}/uploads/${
+                        comment.photo
+                      }`}
+                      alt={`${comment.firstname} ${comment.lastname}`}
+                    />{" "}
                     <p className="bold-text ">
                       {comment.firstname} {comment.lastname}
                     </p>
@@ -251,6 +283,19 @@ export default function Decision() {
                       {t("decision.comment.on")} {comment.date}
                     </p>
                   </div>
+                  {user.role_id === 1 ||
+                    (user.id === comment.user_id && (
+                      <Button
+                        className="delete-button"
+                        type="button"
+                        onClick={() => {
+                          setOpenCommentModal(true);
+                          setCommentId(comment.id);
+                        }}
+                      >
+                        X
+                      </Button>
+                    ))}
                 </div>
                 <div className="comment-text">
                   <p>{comment.comment}</p>
@@ -258,6 +303,27 @@ export default function Decision() {
               </div>
             ))}
           </div>
+          <Dialog
+            open={openCommentModal}
+            onClose={() => setOpenCommentModal(false)}
+          >
+            <DialogTitle>{t("decision.comment.deleteComm")}</DialogTitle>
+            <DialogContent>{t("decision.modal.carefull")}</DialogContent>
+            <DialogActions>
+              <Button
+                type="button"
+                onClick={() => {
+                  deleteComment(commentId);
+                  setOpenCommentModal(false);
+                }}
+              >
+                {t("decision.modal.confirm")}
+              </Button>
+              <Button type="button" onClick={() => setOpenCommentModal(false)}>
+                {t("decision.modal.cancel")}
+              </Button>
+            </DialogActions>
+          </Dialog>
         </details>
 
         {experts.some((expert) => expert.id === user.id) &&
@@ -336,6 +402,39 @@ export default function Decision() {
         )}
       </div>
       <div className="side-content">
+        {user.role_id === 1 && (
+          <button
+            onClick={() => setOpenDecisionModal(true)}
+            className="comment-button"
+            type="button"
+            value={1}
+          >
+            {t("decision.delete")}
+          </button>
+        )}
+
+        <Dialog
+          open={openDecisionModal}
+          onClose={() => setOpenDecisionModal(false)}
+        >
+          <DialogTitle>{t("decision.deleteDecision")}</DialogTitle>
+          <DialogContent>{t("decision.modal.carefull")}</DialogContent>
+          <DialogActions>
+            <Button
+              type="button"
+              onClick={() => {
+                deleteDecision();
+                setOpenDecisionModal(false);
+              }}
+            >
+              {t("decision.modal.confirm")}
+            </Button>
+            <Button type="button" onClick={() => setOpenDecisionModal(false)}>
+              {t("decision.modal.cancel")}
+            </Button>
+          </DialogActions>
+        </Dialog>
+
         <div className="side-text">
           <h2>{t("decision.dates")}</h2>
           <Timeline decision={decision} />

@@ -57,7 +57,8 @@
     "comment": {
       "expert": "experto",
       "impacted": "impactado por la decisión",
-      "on": "el"
+      "on": "el",
+      "deleteComm": "¿Está seguro de que desea eliminar este comentario?"
     },
     "approve": "Validar esta decisión",
     "reject": "Rechazar esta decisión",
@@ -68,7 +69,14 @@
     "thanks": "¡Gracias por tus comentarios!",
     "dates": "Fechas para recordar",
     "impactedUsers": "Personas impactadas",
-    "expertsUsers": "Gente experta"
+    "expertsUsers": "Gente experta",
+    "deleteDecision": "¿De verdad quieres borrar esta decisión?",
+    "delete": "eliminar esta decisión",
+    "modal": {
+      "carefull": "¡Advertencia, esta acción es irreversible!",
+      "confirm": "Confirmar",
+      "cancel": "Anular"
+    }
   },
 
   "timeline": {
