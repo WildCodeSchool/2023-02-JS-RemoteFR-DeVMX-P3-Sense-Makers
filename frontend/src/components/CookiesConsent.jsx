@@ -23,7 +23,7 @@ function CookiesConsent({ setShowCookieBanner, setCookieValidation }) {
     <div className="cookie-container">
       <p>
         {t("cookieConsent.textPart1")}{" "}
-        <a style={{ color: " rgb(227, 97, 100)" }} href="/loged/privacy">
+        <a style={{ color: " rgb(227, 97, 100)" }} href="/privacypolicy">
           {t("cookieConsent.link")}
         </a>{" "}
         {t("cookieConsent.textPart2")}{" "}

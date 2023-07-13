@@ -2,10 +2,11 @@
 
 .logo-container {
   display: flex;
-  width: 35vw;
+  width: 100%;
   height: 10vh;
   align-items: center;
-  margin-left: 2rem;
+  justify-content: space-between;
+  padding: 0 1rem;
   img {
     width: 10rem;
     @media screen and (min-width: 1024px) {
