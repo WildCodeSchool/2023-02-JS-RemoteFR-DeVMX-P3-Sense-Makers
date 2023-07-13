@@ -93,7 +93,7 @@ CREATE TABLE
 
 CREATE TABLE
     comments (
-        id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
+        id INT PRIMARY KEY NOT NULL AUTO_INCREMENT, 
         user_id INT NOT NULL,
         decision_id INT NOT NULL,
         creation_date DATE DEFAULT (CURRENT_DATE) NOT NULL,
