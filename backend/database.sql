@@ -59,7 +59,7 @@ CREATE TABLE
         negatives_votes INT,
         is_validated TINYINT,
         status_id INT NOT NULL,
-        FOREIGN KEY (status_id) REFERENCES `status`(id)
+        FOREIGN KEY (status_id) REFERENCES `status`(id) ON DELETE CASCADE
     );
 
 CREATE TABLE
@@ -68,7 +68,7 @@ CREATE TABLE
         user_id INT NOT NULL,
         decision_id INT NOT NULL,
         FOREIGN KEY (user_id) REFERENCES users(id),
-        FOREIGN KEY (decision_id) REFERENCES decisions(id)
+        FOREIGN KEY (decision_id) REFERENCES decisions(id) ON DELETE CASCADE
     );
 
 CREATE TABLE
@@ -78,7 +78,7 @@ CREATE TABLE
         decision_id INT NOT NULL,
         is_notif_read TINYINT DEFAULT 1,
         FOREIGN KEY (user_id) REFERENCES users(id),
-        FOREIGN KEY (decision_id) REFERENCES decisions(id)
+        FOREIGN KEY (decision_id) REFERENCES decisions(id) ON DELETE CASCADE
     );
 
 CREATE TABLE
@@ -88,7 +88,7 @@ CREATE TABLE
         decision_id INT NOT NULL,
         is_notif_read TINYINT DEFAULT 1,
         FOREIGN KEY (user_id) REFERENCES users(id),
-        FOREIGN KEY (decision_id) REFERENCES decisions(id)
+        FOREIGN KEY (decision_id) REFERENCES decisions(id) ON DELETE CASCADE
     );
 
 CREATE TABLE
