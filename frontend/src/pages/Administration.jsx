@@ -3,6 +3,7 @@ import DecisionsDetails from "../components/Profiles/AdminComponents/DecisionsDe
 import DecisionsList from "../components/Profiles/AdminComponents/DecisionsList";
 import DecisionsManagement from "../components/Profiles/AdminComponents/DecisionsManagement";
 import UsersList from "../components/Profiles/AdminComponents/UsersList";
+import MonthlyStats from "../components/Profiles/AdminComponents/MonthlyStats";
 
 export default function Administration() {
   const userAddNotif = () => {
@@ -62,6 +63,7 @@ export default function Administration() {
         <summary>
           Statistiques
           <hr />
+          <MonthlyStats />
         </summary>
       </details>
       <details className="details-container">
