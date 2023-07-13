@@ -1,5 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
+import Lang from "../components/Lang";
 import Img404 from "../assets/raton 1.png";
 import logo from "../assets/make_sense.png";
 
@@ -11,6 +12,7 @@ export default function WrongPage() {
     <>
       <div className="logo-container">
         <img src={logo} alt="logo" />
+        <Lang />
       </div>
       <div className="content-container">
         <img className="raccoon" src={Img404} alt="Raccoon" />
