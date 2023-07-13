@@ -21,3 +21,18 @@ export function dataNotValide() {
     icon: "❌",
   });
 }
+
+export function passwordReinit() {
+  toast.success("Mot de passe reinitialisé", {
+    color: "white",
+    backgroundColor: "green",
+    icon: "✔️",
+  });
+}
+export function errorSamePassword() {
+  toast.error("les mot de passe ne sont pas similaires!", {
+    color: "white",
+    backgroundColor: "red",
+    icon: "❌",
+  });
+}

@@ -20,21 +20,6 @@ export default function Login() {
   const navigate = useNavigate();
   const { t } = useTranslation();
 
-  // const emailSend = () => {
-  //   toast.success("email envoyé", {
-  //     color: "white",
-  //     backgroundColor: "green",
-  //     icon: "✔️",
-  //   });
-  // };
-  // const dataNotValide = () => {
-  //   toast.error("email ou mot de passe incorrect", {
-  //     color: "white",
-  //     backgroundColor: "red",
-  //     icon: "❌",
-  //   });
-  // };
-
   const postUserInfos = (e) => {
     e.preventDefault();
     if (localStorage.getItem("conditionsAcceptation")) {
@@ -65,12 +50,7 @@ export default function Login() {
   return (
     <>
       <GraphicElements />
-      {openModal && (
-        <ModalEmail
-          setOpenModal={setOpenModal}
-          //  emailSend={emailSend}
-        />
-      )}
+      {openModal && <ModalEmail setOpenModal={setOpenModal} />}
       <div className="languages-choice-container">
         <Lang />
       </div>
