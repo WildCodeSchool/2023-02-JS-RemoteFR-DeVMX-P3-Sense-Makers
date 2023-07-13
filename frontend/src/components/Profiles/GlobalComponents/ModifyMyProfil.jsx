@@ -1,6 +1,7 @@
 import { useState, useContext, useEffect } from "react";
 import axios from "axios";
 import { Slide, ToastContainer, toast } from "react-toastify";
+import { useTranslation } from "react-i18next";
 import Dropzone from "../../../services/hookDropzone";
 import userContext from "../../../contexts/userContext";
 
@@ -10,6 +11,7 @@ export default function ModifyMyProfil() {
   const [reinicializePassword, setReinicializePassword] = useState(false);
   const [dropzoneImage, setDropzoneImage] = useState([]);
   const [newUploadedFileName, setNewUploadedFileName] = useState("");
+  const { t } = useTranslation();
 
   const userModifNotif = () => {
     toast.success("utilisateur modifié", {
@@ -111,23 +113,23 @@ export default function ModifyMyProfil() {
     <>
       <form className="modify-my-profil-management" onSubmit={submit}>
         <div className="add-user-title-container">
-          <h2 className="add-user-title">Modification d'utilisateur</h2>
+          <h2 className="add-user-title">{t("modifyProfil.userModify")}</h2>
         </div>
         <div className="user-management-container">
           <div className="input-container">
             <div className="input-fields">
               <div className="input-fields name-inputs-container">
                 <label htmlFor="lastName" className="lastName">
-                  Nom <br />
+                  {t("modifyProfil.lastname")} <br />
                   <p>{currentUser.lastname}</p>
                 </label>
                 <label htmlFor="firstName" className="firstName">
-                  Prénom <br />
+                  {t("modifyProfil.firstname")} <br />
                   <p>{currentUser.firstname}</p>
                 </label>
               </div>
               <label htmlFor="email">
-                Email <br />
+                {t("modifyProfil.mail")} <br />
                 <p>{currentUser.email}</p>
               </label>
               <div className="reinicialize-password-container">
@@ -139,16 +141,19 @@ export default function ModifyMyProfil() {
                     className="reinicialize-password"
                     onClick={sendEmailToReinitializePassword}
                   >
-                    Réinitialiser le mot de passe!
+                    {t("modifyProfil.resetPassword")}
                   </span>
                 ) : (
-                  <span> Mot de passe réinitialisée!!!</span>
+                  <span> {t("modifyProfil.passReseted")}</span>
                 )}
               </div>
               <div className="roles-container-1">
                 <div className="role-actuel-container">
                   <div className="role">
-                    <h4 className="role-actuel-title"> Rôle(s) actuel(s) </h4>
+                    <h4 className="role-actuel-title">
+                      {" "}
+                      {t("modifyProfil.roles")}{" "}
+                    </h4>
                     <p className="role-actuel-data">{currentUser?.roles}</p>
                   </div>
                 </div>
@@ -180,12 +185,15 @@ export default function ModifyMyProfil() {
           <div className="input-buttons-container">
             <div className="roles-container-2">
               <div className="role-actuel">
-                <h4 className="role-actuel-title"> Rôle(s) actuel(s) </h4>
+                <h4 className="role-actuel-title">
+                  {" "}
+                  {t("modifyProfil.roles")}{" "}
+                </h4>
                 <span className="role-actuel-data">{currentUser?.roles}</span>
               </div>
             </div>
             <div className="add-button-container-1">
-              <button type="submit">Valider les modifications</button>
+              <button type="submit">{t("modifyProfil.validation")}</button>
             </div>
           </div>
         </div>
