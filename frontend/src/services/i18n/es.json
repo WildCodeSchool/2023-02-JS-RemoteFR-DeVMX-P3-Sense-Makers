@@ -119,5 +119,83 @@
   "postComment": {
     "label": "Mi comentario:",
     "textButton": "Publicar mi comentario"
+  },
+
+  "modifyProfil": {
+    "userModif": "Editar usuario",
+    "lastname": "Apellido",
+    "firstname": "Nombre de pila",
+    "mail": "Correo electrónico",
+    "resetPassword": "¡Restablecer la contraseña!",
+    "passReseted": "¡¡¡Restablecimiento de contraseña!!!",
+    "roles": "Rol(es) actual(es)",
+    "validation": "Validar cambios",
+    "modifyUser": {
+      "role": "Role",
+      "roleSelect": "Selecciona tu rol",
+      "expert": "Experto",
+      "delete": "Borrar"
+    }
+  },
+
+  "usersListAdmin": {
+    "polaceHolderSearch": "búsqueda de usuarios",
+    "textButton": "Agregar un usuario",
+    "tableTitle": {
+      "photo": "Foto",
+      "lastName": "Nombre",
+      "firstName": "Apellido",
+      "email": "Correo electrónico",
+      "role": "Rol",
+      "expert": "Experto(a)",
+      "created": "Creado el"
+    },
+    "tableContent": {
+      "Administrateur": "Administrador",
+      "Salarié": "Empleado",
+      "yes": "si",
+      "no": "no",
+      "dateDisplay": "es"
+    }
+  },
+
+  "decisionsListAdmin": {
+    "placeHolderSearch": "investigación de decisiones",
+    "tableTitle": {
+      "id": "Id",
+      "title": "Título",
+      "status": "Estado",
+      "createdOn": "Creado el",
+      "createdBy": "Creado porr"
+    },
+    "status": {
+      "1": "Toma de decisión comenzó",
+      "2": "Toma de decisión pendiente",
+      "3": "Primera decisión tomada",
+      "4": "Decisión final pendiente",
+      "5": "Decisión definitiva",
+      "6": "Decisión completa",
+      "7": "Decisión no alcanzada"
+    },
+    "dateDisplay": "es"
+  },
+
+  "admin": {
+    "stats": "Estadísticas",
+    "userManagement": "Gestión de usuarios",
+    "decisionsManagement": "Gestión de decisiones"
+  },
+
+  "addUser": {
+    "add": "Agregar usuario",
+    "lastname": "Apellido",
+    "firstname": "Nombre de pila",
+    "email": "Correo electrónico",
+    "password": "Contraseña",
+    "placeholderPassword": "Inserte su contraseña",
+    "role": "Role",
+    "defaultRole": "Selecciona tu rol",
+    "expert": "Experto",
+    "addUser": "Agregar usuario"
   }
 }

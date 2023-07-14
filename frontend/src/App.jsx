@@ -12,6 +12,7 @@ import "./scss/styles.scss";
 import NavLayout from "./layouts/NavLayout";
 import ProtectedLayout from "./layouts/ProtectedLayout";
 import MyProfil from "./pages/MyProfil";
+import PrivacyPolicy from "./pages/PrivacyPolicy";
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
           <Route path="/" element={<Login />} />
           <Route path="*" element={<WrongPage />} />
           <Route path="/resetpassword" element={<ResetPassword />} />
+          <Route path="/privacypolicy" element={<PrivacyPolicy />} />
 
           {/* private routes  */}
           <Route element={<ProtectedLayout />}>
