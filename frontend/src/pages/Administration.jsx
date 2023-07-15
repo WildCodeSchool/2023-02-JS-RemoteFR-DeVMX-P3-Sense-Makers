@@ -5,6 +5,7 @@ import axios from "axios";
 import DecisionsList from "../components/Profiles/AdminComponents/DecisionsList";
 import UsersList from "../components/Profiles/AdminComponents/UsersList";
 import StatsAnual from "../components/Profiles/AdminComponents/StatsAnual";
+import MonthlyStats from "../components/Profiles/AdminComponents/MonthlyStats";
 
 export default function Administration() {
   const [decisionsData, setDecisionsData] = useState([]);
@@ -89,6 +90,7 @@ export default function Administration() {
         <summary>
           {t("admin.stats")}
           <hr />
+          <MonthlyStats />
         </summary>
         <StatsAnual statsData={statsData} />
       </details>
