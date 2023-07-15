@@ -11,7 +11,7 @@ import {
 import { Bar } from "react-chartjs-2";
 
 import { useEffect, useState } from "react";
-import { statsDecisionsGeneratorByMonth } from "../../../services/statsDecisionsGenerator";
+import { statsDecisionsGeneratorByCategory } from "../../../services/statsDecisionsGenerator";
 
 ChartJS.register(
   CategoryScale,
@@ -51,19 +51,19 @@ const labels = [
 ];
 
 export default function Stats() {
-  const [statsData, setStatsData] = useState();
+  const [statsByCategoryData, setStatsByCategoryData] = useState();
   const [createdData, setCreatedData] = useState();
   const [finishedValidData, setFinishedValidData] = useState();
   const [finishedNotValidData, setFinishedNotValidData] = useState();
   const [notFinishedData, setNotFinishedData] = useState();
 
   useEffect(() => {
-    setStatsData(statsDecisionsGeneratorByMonth());
+    setStatsByCategoryData(statsDecisionsGeneratorByCategory());
   }, []);
 
-  const generateDataByMonth = (category) => {
+  const generateDataByMonthLabels = (category) => {
     const categoryArray = [];
-    statsData.forEach((dataPerMonth) => {
+    statsByCategoryData.forEach((dataPerMonth) => {
       if (dataPerMonth[category] > 0) {
         categoryArray.push(dataPerMonth[category]);
       } else {
@@ -74,15 +74,17 @@ export default function Stats() {
   };
 
   useEffect(() => {
-    if (statsData) {
+    if (statsByCategoryData) {
       setTimeout(() => {
-        setCreatedData(() => generateDataByMonth("created"));
-        setFinishedValidData(() => generateDataByMonth("finishedValid"));
-        setFinishedNotValidData(() => generateDataByMonth("finishedNotValid"));
-        setNotFinishedData(() => generateDataByMonth("notFinished"));
+        setCreatedData(() => generateDataByMonthLabels("created"));
+        setFinishedValidData(() => generateDataByMonthLabels("finishedValid"));
+        setFinishedNotValidData(() =>
+          generateDataByMonthLabels("finishedNotValid")
+        );
+        setNotFinishedData(() => generateDataByMonthLabels("notFinished"));
       }, 200);
     }
-  }, [statsData, setStatsData]);
+  }, [statsByCategoryData, setStatsByCategoryData]);
 
   const data = {
     labels,
@@ -93,14 +95,14 @@ export default function Stats() {
         backgroundColor: "rgba(53, 162, 235, 0.5)",
       },
       {
-        label: "Validées",
-        data: finishedValidData,
-        backgroundColor: "rgba(0, 128, 0, 0.5)",
-      },
-      {
         label: "Non validées",
         data: finishedNotValidData,
         backgroundColor: "rgba(255, 99, 132, 0.5)",
+      },
+      {
+        label: "Validées",
+        data: finishedValidData,
+        backgroundColor: "rgba(0, 128, 0, 0.5)",
       },
       {
         label: "Non abouties",

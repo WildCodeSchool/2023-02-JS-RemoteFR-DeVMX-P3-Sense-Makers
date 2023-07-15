@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 import axios from "axios";
 
 const monthArray = [
@@ -42,44 +41,45 @@ export const statsDecisionsGeneratorByCategory = () => {
           const initialDateMonth = initialDate.toLocaleString("default", {
             month: "long",
           });
-          const firstTakeDecisionDate = new Date(decision.first_take_decision);
-          const firstTakeDecisionDateMonth =
-            firstTakeDecisionDate.toLocaleString("default", {
-              month: "long",
-            });
           const deadlineConflict = new Date(decision.deadline_conflict);
-          const deadlineConflictMonth = deadlineConflict.toLocaleString(
-            "default",
-            {
-              month: "long",
-            }
-          );
+
           const finalTakeDecisionDate = new Date(decision.final_take_decision);
+
+          const differenceBetweenDatesByDays =
+            (finalTakeDecisionDate.getTime() - deadlineConflict.getTime()) /
+            (1000 * 3600 * 24);
+
           const finalTakeDecisionDateMonth =
             finalTakeDecisionDate.toLocaleString("default", {
               month: "long",
             });
 
+          //* Category by status - Created
           if (initialDateMonth === monthArray[i]) {
-            const decisionStatus = decision.status_id;
-            const isValidatedDecision = decision.is_validated;
-
-            if (decisionStatus === 2) statsResult.waitingFor += 1;
-            if (decisionStatus === 3) statsResult.firstMadeDecision += 1;
-            if (decisionStatus === 4) statsResult.waitingForExpert += 1;
-            if (isValidatedDecision === 0) statsResult.finishedNotValid += 1;
-            if (isValidatedDecision === 1) statsResult.finishedValid += 1;
-            if (decisionStatus === 6) statsResult.totalFinished += 1;
-            if (decisionStatus === 7) statsResult.notFinished += 1;
-
             statsResult.created += 1;
+          }
+
+          //* Category by status - Finished Not Valid and Finished Valid
+          if (finalTakeDecisionDateMonth === monthArray[i]) {
+            if (decision.is_validated === 0) statsResult.finishedNotValid += 1;
+            if (decision.is_validated === 1) statsResult.finishedValid += 1;
+          }
+
+          // //* Category by status - Not Finished
+          if (finalTakeDecisionDateMonth === monthArray[i]) {
+            if (differenceBetweenDatesByDays >= 15) {
+              if (decision.is_validated === null) statsResult.notFinished += 1;
+            }
           }
         }
         resultByMonth.push(statsResult);
+
         decisionsByMonth.push(resultByMonth[0]);
       }
     })
     .catch((err) => console.error(err));
+
+  return decisionsByMonth;
 };
 
 export const statsDecisionsGeneratorByMonth = () => {
@@ -109,35 +109,15 @@ export const statsDecisionsGeneratorByMonth = () => {
           const initialDateMonth = initialDate.toLocaleString("default", {
             month: "long",
           });
-          const firstTakeDecisionDate = new Date(decision.first_take_decision);
-          const firstTakeDecisionDateMonth =
-            firstTakeDecisionDate.toLocaleString("default", {
-              month: "long",
-            });
-          const deadlineConflict = new Date(decision.deadline_conflict);
-          const deadlineConflictMonth = deadlineConflict.toLocaleString(
-            "default",
-            {
-              month: "long",
-            }
-          );
-          const finalTakeDecisionDate = new Date(decision.final_take_decision);
-          const finalTakeDecisionDateMonth =
-            finalTakeDecisionDate.toLocaleString("default", {
-              month: "long",
-            });
 
           if (initialDateMonth === monthArray[i]) {
-            const decisionStatus = decision.status_id;
-            const isValidatedDecision = decision.is_validated;
-
-            if (decisionStatus === 2) statsResult.waitingFor += 1;
-            if (decisionStatus === 3) statsResult.firstMadeDecision += 1;
-            if (decisionStatus === 4) statsResult.waitingForExpert += 1;
-            if (isValidatedDecision === 0) statsResult.finishedNotValid += 1;
-            if (isValidatedDecision === 1) statsResult.finishedValid += 1;
-            if (decisionStatus === 6) statsResult.totalFinished += 1;
-            if (decisionStatus === 7) statsResult.notFinished += 1;
+            if (decision.status_id === 2) statsResult.waitingFor += 1;
+            if (decision.status_id === 3) statsResult.firstMadeDecision += 1;
+            if (decision.status_id === 4) statsResult.waitingForExpert += 1;
+            if (decision.is_validated === 0) statsResult.finishedNotValid += 1;
+            if (decision.is_validated === 1) statsResult.finishedValid += 1;
+            if (decision.status_id === 6) statsResult.totalFinished += 1;
+            if (decision.status_id === 7) statsResult.notFinished += 1;
 
             statsResult.created += 1;
           }
