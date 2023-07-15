@@ -41,10 +41,14 @@ export const statsDecisionsGeneratorByCategory = () => {
           const initialDateMonth = initialDate.toLocaleString("default", {
             month: "long",
           });
+          const firstTakeDecisionDate = new Date(decision.first_take_decision);
+          const firstTakeDecisionDateMonth =
+            firstTakeDecisionDate.toLocaleString("default", {
+              month: "long",
+            });
+
           const deadlineConflict = new Date(decision.deadline_conflict);
-
           const finalTakeDecisionDate = new Date(decision.final_take_decision);
-
           const differenceBetweenDatesByDays =
             (finalTakeDecisionDate.getTime() - deadlineConflict.getTime()) /
             (1000 * 3600 * 24);
@@ -59,18 +63,38 @@ export const statsDecisionsGeneratorByCategory = () => {
             statsResult.created += 1;
           }
 
+          //* Category by status - First take decision
+          if (firstTakeDecisionDateMonth === monthArray[i]) {
+            statsResult.firstMadeDecision += 1;
+          }
+
+          //! Need to calculate the diference between dates by days
+          //* Category by status - Waiting for decision
+          if (firstTakeDecisionDateMonth === monthArray[i]) {
+            if (decision.status_id === 2) statsResult.waitingFor += 1;
+          }
+
+          //! Need to calculate the diference between dates by days
+          //* Category by status - Waiting for expert decision
+          if (firstTakeDecisionDateMonth === monthArray[i]) {
+            if (decision.status_id === 3) statsResult.waitingForExpert += 1;
+          }
+
           //* Category by status - Finished Not Valid and Finished Valid
           if (finalTakeDecisionDateMonth === monthArray[i]) {
             if (decision.is_validated === 0) statsResult.finishedNotValid += 1;
             if (decision.is_validated === 1) statsResult.finishedValid += 1;
           }
 
-          // //* Category by status - Not Finished
+          //* Category by status - Not Finished
           if (finalTakeDecisionDateMonth === monthArray[i]) {
             if (differenceBetweenDatesByDays >= 15) {
               if (decision.is_validated === null) statsResult.notFinished += 1;
             }
           }
+
+          //* Category by status - Total Finished
+          statsResult.totalFinished += 1;
         }
         resultByMonth.push(statsResult);
 

@@ -51,11 +51,11 @@ const labels = [
 ];
 
 export default function Stats() {
-  const [statsByCategoryData, setStatsByCategoryData] = useState();
-  const [createdData, setCreatedData] = useState();
-  const [finishedValidData, setFinishedValidData] = useState();
-  const [finishedNotValidData, setFinishedNotValidData] = useState();
-  const [notFinishedData, setNotFinishedData] = useState();
+  const [statsByCategoryData, setStatsByCategoryData] = useState([]);
+  const [createdData, setCreatedData] = useState([]);
+  const [finishedValidData, setFinishedValidData] = useState([]);
+  const [finishedNotValidData, setFinishedNotValidData] = useState([]);
+  const [notFinishedData, setNotFinishedData] = useState([]);
 
   useEffect(() => {
     setStatsByCategoryData(statsDecisionsGeneratorByCategory());
