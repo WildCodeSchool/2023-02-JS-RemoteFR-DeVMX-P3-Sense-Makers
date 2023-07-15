@@ -10,6 +10,9 @@ import {
 } from "chart.js";
 import { Bar } from "react-chartjs-2";
 
+import { useEffect, useState } from "react";
+import { statsDecisionsGeneratorByMonth } from "../../../services/statsDecisionsGenerator";
+
 ChartJS.register(
   CategoryScale,
   LinearScale,
@@ -47,7 +50,17 @@ const labels = [
   "Décembre",
 ];
 
-export default function Stats({ statsData }) {
+export default function Stats() {
+  const [statsData, setStatsData] = useState();
+  const [createdData, setCreatedData] = useState();
+  const [finishedValidData, setFinishedValidData] = useState();
+  const [finishedNotValidData, setFinishedNotValidData] = useState();
+  const [notFinishedData, setNotFinishedData] = useState();
+
+  useEffect(() => {
+    setStatsData(statsDecisionsGeneratorByMonth());
+  }, []);
+
   const generateDataByMonth = (category) => {
     const categoryArray = [];
     statsData.forEach((dataPerMonth) => {
@@ -60,31 +73,41 @@ export default function Stats({ statsData }) {
     return categoryArray;
   };
 
+  useEffect(() => {
+    if (statsData) {
+      setTimeout(() => {
+        setCreatedData(() => generateDataByMonth("created"));
+        setFinishedValidData(() => generateDataByMonth("finishedValid"));
+        setFinishedNotValidData(() => generateDataByMonth("finishedNotValid"));
+        setNotFinishedData(() => generateDataByMonth("notFinished"));
+      }, 200);
+    }
+  }, [statsData, setStatsData]);
+
   const data = {
     labels,
     datasets: [
       {
         label: "Crées",
-        data: generateDataByMonth("created"),
+        data: createdData,
         backgroundColor: "rgba(53, 162, 235, 0.5)",
       },
       {
         label: "Validées",
-        data: generateDataByMonth("finishedValid"),
+        data: finishedValidData,
         backgroundColor: "rgba(0, 128, 0, 0.5)",
       },
       {
         label: "Non validées",
-        data: generateDataByMonth("finishedNotValid"),
+        data: finishedNotValidData,
         backgroundColor: "rgba(255, 99, 132, 0.5)",
       },
       {
         label: "Non abouties",
-        data: generateDataByMonth("notFinished"),
+        data: notFinishedData,
         backgroundColor: "rgba(255, 0, 0, 0.5)",
       },
     ],
   };
-
   return <Bar options={options} data={data} />;
 }
