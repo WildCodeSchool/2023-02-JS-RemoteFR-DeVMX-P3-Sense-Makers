@@ -22,7 +22,6 @@ const statsDecisionsGenerator = async () => {
     .get(`${import.meta.env.VITE_BACKEND_URL}/decisions`, {
       withCredentials: true,
     })
-    // .then((response) => setDecisionsData(response.data))
     .then((response) => {
       for (let i = 0; i < monthArray.length; i += 1) {
         const resultByMonth = [];

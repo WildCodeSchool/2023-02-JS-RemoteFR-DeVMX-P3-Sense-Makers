@@ -7,7 +7,6 @@ import {
   Title,
   Tooltip,
   Legend,
-  // Colors,
 } from "chart.js";
 import { Bar } from "react-chartjs-2";
 
@@ -49,8 +48,6 @@ const labels = [
 ];
 
 export default function Stats({ statsData }) {
-  // console.log("🚀 - statsData:", statsData);
-
   const generateDataByMonth = (category) => {
     const categoryArray = [];
     statsData.forEach((dataPerMonth) => {
@@ -89,6 +86,5 @@ export default function Stats({ statsData }) {
     ],
   };
 
-  // console.log(data.datasets[3].data);
   return <Bar options={options} data={data} />;
 }
