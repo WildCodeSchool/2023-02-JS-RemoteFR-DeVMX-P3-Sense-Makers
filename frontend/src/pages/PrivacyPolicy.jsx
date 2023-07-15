@@ -1,8 +1,10 @@
 import { useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import GraphicElements from "../components/graphicElements/GraphicElements";
 
 export default function PrivacyPolicy() {
   const navigate = useNavigate();
+  const { t } = useTranslation();
 
   const handleClickAccept = () => {
     localStorage.setItem("conditionsAcceptation", "true");
@@ -25,93 +27,53 @@ export default function PrivacyPolicy() {
               X{" "}
             </button>
           </div>
-          <h1>POLITIQUE DE CONFIDENTIALITÉ</h1>
+          <h1>{t("privacyPolicy.title")}</h1>
           <div>
-            <h3>DÉFINITIONS :</h3>
+            <h3>{t("privacyPolicy.subTitle.1")}</h3>
             <p>
-              <strong>L'Éditeur</strong> : La personne, physique ou morale, qui
-              édite les services de communication au public en ligne.{" "}
+              <strong>{t("privacyPolicy.strong.1")}</strong>
+              {t("privacyPolicy.paragraphe.1")}
             </p>
             <p>
-              <strong>Le Site</strong> : L'ensemble des sites, pages Internet et
-              services en ligne proposés par l'Éditeur.{" "}
+              <strong>{t("privacyPolicy.strong.2")}</strong>
+              {t("privacyPolicy.paragraphe.2")}
             </p>
             <p>
-              <strong>L'Utilisateur</strong> : La personne utilisant le Site et
-              les services.
+              <strong>{t("privacyPolicy.strong.3")}</strong>
+              {t("privacyPolicy.paragraphe.3")}
             </p>
           </div>
           <div>
-            <h3>1 - COLLECTE DES DONNÉES D'IDENTITÉ :</h3>
+            <h3>{t("privacyPolicy.subTitle.2")}</h3>
             <p>
-              <strong>
-                Inscription et identification préalable pour la fourniture du
-                service
-              </strong>
+              <strong>{t("privacyPolicy.strong.4")}</strong>
             </p>
-            <p>
-              L’utilisation du Site nécessite une inscription et une
-              identification préalable. Vos données nominatives (nom, prénom,
-              e-mail,...) sont utilisées pour exécuter nos obligations légales
-              résultant de la livraison des produits et / ou des services, en
-              vertu du Contrat de licence utilisateur final, de la Limite de
-              garantie, le cas échéant, ou de toute autre condition applicable.
-              Vous ne fournirez pas de fausses informations nominatives et ne
-              créerez pas de compte pour une autre personne sans son
-              autorisation. Vos coordonnées devront toujours être exactes et à
-              jour.
-            </p>
+            <p>{t("privacyPolicy.paragraphe.4")}</p>
           </div>
           <div>
-            <h3>2 - COLLECTE DES DONNÉES D’IDENTIFICATION : </h3>
+            <h3>{t("privacyPolicy.subTitle.3")}</h3>
             <p>
-              <strong>
-                Utilisation de l'identifiant de l’utilisateur uniquement pour
-                l’accès aux services.
-              </strong>
+              <strong>{t("privacyPolicy.strong.5")}</strong>
             </p>
-            <p>
-              Nous utilisons vos identifiants électroniques seulement pour et
-              pendant l'exécution du contrat.
-            </p>
+            <p>{t("privacyPolicy.paragraphe.5")}</p>
           </div>
           <div>
-            <h3>3 - COLLECTE DES DONNÉES DU TERMINAL : </h3>
+            <h3>{t("privacyPolicy.subTitle.4")}</h3>
             <p>
-              <strong>Aucune collecte des données techniques</strong>
+              <strong>{t("privacyPolicy.strong.6")}</strong>
             </p>
-            <p>
-              Nous ne collectons et ne conservons aucune donnée technique de
-              votre appareil (adresse IP, fournisseur d'accès à Internet...).
-            </p>
+            <p>{t("privacyPolicy.paragraphe.6")}</p>
           </div>
           <div>
-            <h3>4 - COOKIES : </h3>
+            <h3>{t("privacyPolicy.subTitle.5")}</h3>
             <p>
-              <strong>
-                Droit de l'Utilisateur de refuser les cookies, la désactivation
-                entraînant un fonctionnement dégradé du service{" "}
-              </strong>
+              <strong>{t("privacyPolicy.strong.7")}</strong>
             </p>
+            <p>{t("privacyPolicy.paragraphe.7")}</p>
             <p>
-              Vous reconnaissez avoir été informé que l'Éditeur peut avoir
-              recours à des cookies, et l'y autorisez. Si vous ne souhaitez pas
-              que des cookies soient utilisés sur votre terminal, la plupart des
-              navigateurs vous permettent de désactiver les cookies en passant
-              par les options de réglage. Toutefois, vous êtes informé que
-              certains services sont susceptibles de ne plus fonctionner
-              correctement.{" "}
+              <strong>{t("privacyPolicy.strong.8")}</strong>
             </p>
-            <p>
-              <strong>
-                Association possible des cookies avec des données personnelles
-                pour permettre le fonctionnement du service{" "}
-              </strong>
-            </p>
-            <p>
-              L'Éditeur peut être amené à recueillir des informations de
-              navigation via l'utilisation de cookies.
-            </p>
+            <p>{t("privacyPolicy.paragraphe.8")}</p>
           </div>
           <div className="container-button">
             <button
@@ -119,14 +81,14 @@ export default function PrivacyPolicy() {
               className="handle-cookie-btn firstBtn"
               onClick={handleClickAccept}
             >
-              Accepter
+              {t("privacyPolicy.agree")}
             </button>
             <button
               type="button"
               className="handle-cookie-btn"
               onClick={handleClickRefuse}
             >
-              Refuser
+              {t("privacyPolicy.reject")}
             </button>
           </div>
         </div>

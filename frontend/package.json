@@ -7,6 +7,9 @@
     "fix": "prettier --write . && eslint --fix --ext .jsx ."
   },
   "dependencies": {
+    "@emotion/react": "^11.11.1",
+    "@emotion/styled": "^11.11.0",
+    "@mui/material": "^5.14.0",
     "@tinymce/tinymce-react": "^4.3.0",
     "@vitejs/plugin-react": "^3.0.1",
     "axios": "^1.4.0",

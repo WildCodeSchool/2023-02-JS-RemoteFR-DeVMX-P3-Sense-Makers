@@ -111,3 +111,20 @@ export function finalDecisionAdd() {
     icon: "✔️",
   });
 }
+
+export default {
+  emailSend,
+  emailNotSend,
+  dataNotValide,
+  passwordReinit,
+  errorSamePassword,
+  notifyDecisio,
+  userAddNotif,
+  userNotAddNotif,
+  userModifNotif,
+  userNotModifyNotif,
+  userDeleteNotif,
+  commentAdd,
+  firstDecisionAdd,
+  finalDecisionAdd,
+};
