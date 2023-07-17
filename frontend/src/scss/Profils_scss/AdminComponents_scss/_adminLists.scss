@@ -7,6 +7,31 @@
   display: flex;
   flex-direction: column;
 
+  .img-spec-container{
+    display: flex;
+    flex-direction: column;
+   
+    .close-modal-button{
+      border: none;
+      align-self: flex-end;
+      cursor: pointer;
+        background-color: white;
+        color: $color-default;
+        font-weight: $primary-font-weight;
+        border-radius: 50%;
+        padding: 0.5rem 0.75rem;
+        border: 1px solid $color-default;
+        transition: 0.2s ease-in-out;
+        margin: 1rem 0;
+
+        &:hover {
+          transform: scale(1.1);
+          background: $color-default;
+          color: white;
+        }
+    }
+  }
+
   .filter-user {
     display: flex;
     flex-direction: column-reverse;
