@@ -171,6 +171,7 @@
     "passReseted": "Password reset!!!",
     "roles": "Current role(s)",
     "validation": "Validate changes",
+    "dropzone": "drop an image file here",
     "modifyUser": {
       "role": "Role",
       "roleSelect": "Select your role",
@@ -180,15 +181,15 @@
   },
 
   "usersListAdmin": {
-    "polaceHolderSearch": "user search",
+    "placeHolderSearch": "user search",
     "textButton": "Add a user",
     "tableTitle": {
       "photo": "Photo",
       "lastName": "Lastname",
       "firstName": "Firstname",
       "email": "Email",
-      "role": "role",
-      "expert": "expert",
+      "role": "Role",
+      "expert": "Expert",
       "created": "Created on"
     },
     "tableContent": {
@@ -238,5 +239,7 @@
     "defaultRole": "Select your role",
     "expert": "Expert",
     "addUser": "Add User"
-  }
+  },
+
+  "notif": "indicated you as impacted on a decision"
 }

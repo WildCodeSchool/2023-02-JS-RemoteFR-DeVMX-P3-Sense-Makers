@@ -1,6 +1,7 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import { useCallback } from "react";
 import { useDropzone } from "react-dropzone";
+import { useTranslation } from "react-i18next";
 import axios from "axios";
 import PropTypes from "prop-types";
 
@@ -41,6 +42,7 @@ export default function Dropzone({
       accept: { "image/*": [".jpeg"], "image/png": [".png"] },
       multiple: false,
     });
+  const { t } = useTranslation();
 
   return (
     <>
@@ -57,7 +59,7 @@ export default function Dropzone({
               : "dropzone-placeholder-text"
           }
         >
-          Déposer un fichier de image ici
+          {t("modifyProfil.dropzone")}
         </p>
       </div>
       {fileRejections && <span>{fileRejections[0]?.errors[0].message}</span>}

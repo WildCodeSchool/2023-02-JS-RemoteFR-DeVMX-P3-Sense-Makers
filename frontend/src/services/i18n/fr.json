@@ -171,6 +171,7 @@
     "passReseted": "Mot de passe réinitialisé!!!",
     "roles": "Rôle(s) actuel(s)",
     "validation": "Valider les modifications",
+    "dropzone": "déposez un fichier image ici",
     "modifyUser": {
       "role": "Rôle",
       "roleSelect": "Sélectionnez votre rôle",
@@ -238,5 +239,7 @@
     "defaultRole": "Sélectionnez votre rôle",
     "expert": "Expert",
     "addUser": "Ajouter l'utilisateur"
-  }
+  },
+
+  "notif": "vous a indiqué comme impacté sur une décision"
 }
