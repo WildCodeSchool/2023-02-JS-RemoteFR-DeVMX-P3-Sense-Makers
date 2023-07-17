@@ -148,7 +148,9 @@ export default function Decision() {
     <div className="decision">
       <div className="main-content">
         <div className="status-hub">
-          <div className="status">{decision.title_status}</div>
+          <div className="status">
+            {t(`decisions.status.${decision.status_id}`)}
+          </div>
           <div className="hub">{decision.concerned_hub}</div>
         </div>
         <h1>{decision.title_decision}</h1>

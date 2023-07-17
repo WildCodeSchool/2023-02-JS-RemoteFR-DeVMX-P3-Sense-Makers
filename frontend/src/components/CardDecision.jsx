@@ -89,7 +89,9 @@ export default function CardDecision({ decision }) {
         ))}
 
       <div className="status-container">
-        <p style={statusColors}>{decision.title_status}</p>
+        <p style={statusColors}>
+          {t(`decisions.status.${decision.status_id}`)}
+        </p>
         <p>{decision.title}</p>
       </div>
       <h1>{decision.title_decision}</h1>
