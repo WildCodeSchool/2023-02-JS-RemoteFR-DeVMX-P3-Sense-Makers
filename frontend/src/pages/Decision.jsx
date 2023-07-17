@@ -154,9 +154,13 @@ export default function Decision() {
         <h1>{decision.title_decision}</h1>
         <div className="author">
           <img
-            src={`${import.meta.env.VITE_BACKEND_URL}/uploads/${
-              decision.photo
-            }`}
+            src={
+              user.photo === "default_avatar.png"
+                ? `${import.meta.env.VITE_BACKEND_URL}/assets/images/${
+                    user.photo
+                  }`
+                : `${import.meta.env.VITE_BACKEND_URL}/uploads/${user.photo}`
+            }
             alt={`${decision.firstname} ${decision.lastname}`}
           />
           <p>

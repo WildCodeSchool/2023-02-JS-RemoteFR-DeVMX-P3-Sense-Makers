@@ -1,10 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import PropTypes from "prop-types";
 import Timeline from "./graphicElements/Timeline";
 import validated from "../assets/icons/verifier.svg";
 import notValidated from "../assets/icons/traverser.svg";
+import userContext from "../contexts/userContext";
 
 export default function CardDecision({ decision }) {
   let statusColors = {
@@ -47,6 +48,7 @@ export default function CardDecision({ decision }) {
       color: "#8294b0",
     };
   }
+  const { user } = useContext(userContext);
   const [show, setShow] = useState("none");
   const { t } = useTranslation();
 
@@ -95,7 +97,13 @@ export default function CardDecision({ decision }) {
       <h1>{decision.title_decision}</h1>
       <div className="card-creator-container">
         <img
-          src={`${import.meta.env.VITE_BACKEND_URL}/uploads/${decision.photo}`}
+          src={
+            user.photo === "default_avatar.png"
+              ? `${import.meta.env.VITE_BACKEND_URL}/assets/images/${
+                  user.photo
+                }`
+              : `${import.meta.env.VITE_BACKEND_URL}/uploads/${user.photo}`
+          }
           alt="img profil creator"
         />
         <p>
