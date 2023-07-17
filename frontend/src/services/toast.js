@@ -37,7 +37,7 @@ export function errorSamePassword() {
   });
 }
 
-export function notifyDecisio() {
+export function notifyDecision() {
   toast.success("décision postée", {
     color: "white",
     backgroundColor: "green",
@@ -118,7 +118,7 @@ export default {
   dataNotValide,
   passwordReinit,
   errorSamePassword,
-  notifyDecisio,
+  notifyDecision,
   userAddNotif,
   userNotAddNotif,
   userModifNotif,

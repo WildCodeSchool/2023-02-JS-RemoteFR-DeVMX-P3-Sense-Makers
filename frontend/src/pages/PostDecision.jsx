@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { Slide, ToastContainer } from "react-toastify";
 import { useTranslation } from "react-i18next";
 import AsyncSelect from "react-select/async";
-import notifyDecision from "../services/toast";
+import { notifyDecision } from "../services/toast";
 import TextEditor from "../components/TextEditor";
 
 /* Style selector */
