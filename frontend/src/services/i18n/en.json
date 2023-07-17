@@ -11,6 +11,7 @@
 
   "postDecision": {
     "title": "Post a decision",
+    "placeholder": "Move to Paris...",
     "button": "Post this decision",
     "inputs": {
       "title": "Decision's title",

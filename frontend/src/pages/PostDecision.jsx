@@ -226,7 +226,7 @@ export default function PostDecision() {
             type="text"
             id="title_decision"
             className="title-decision"
-            placeholder="Déménager hors de Paris..."
+            placeholder={t("postDecision.placeholder")}
             value={state.title}
             onChange={(e) => {
               dispatch({

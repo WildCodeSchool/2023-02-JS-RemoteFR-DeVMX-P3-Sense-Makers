@@ -11,6 +11,7 @@
 
   "postDecision": {
     "title": "Poster une décision",
+    "placeholder": "Déménager hors de Paris...",
     "button": "Poster cette décision",
     "inputs": {
       "title": "Titre de la décision",
