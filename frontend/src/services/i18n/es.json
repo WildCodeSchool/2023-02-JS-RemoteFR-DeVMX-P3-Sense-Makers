@@ -1,0 +1,242 @@
+{
+  "header": {
+    "decision": "Decisiones",
+    "my-decisions": "Mis decisiones",
+    "notif": "Notificaciones",
+    "admin": "Administración",
+    "account": "Mi cuenta",
+    "creation": "Crear una decisión",
+    "disconnect": "Cerrar sesión"
+  },
+
+  "postDecision": {
+    "title": "Publicar una decisión",
+    "button": "Publicar esta decisión",
+    "inputs": {
+      "title": "Título de la decisión",
+      "hub": "Polo preocupado",
+      "impacted": "Personas afectadas",
+      "experts": "Gente experta"
+    },
+
+    "editors": {
+      "desc": "Descripción de la decisión",
+      "usefulness": "Utilidad de esta decisión para la organización",
+      "context": "Contexto en torno a la decisión",
+      "benefit": "Beneficios de la decisión",
+      "disadvantages": "Desventajas de la decisión"
+    }
+  },
+
+  "decisions": {
+    "title": "Todas las decisiones",
+    "myTitle": "Mis decisiones",
+    "create": "Crear decisión",
+    "status": {
+      "1": "Toma de decisión comenzó",
+      "2": "Toma de decisión pendiente",
+      "3": "Primera decisión tomada",
+      "4": "Decisión final pendiente",
+      "5": "Decisión definitiva",
+      "6": "Decisión completa",
+      "7": "Decisión no alcanzada"
+    }
+  },
+
+  "decision": {
+    "by": "Por",
+    "details": {
+      "decisionDetails": "Los detalles de la decisión",
+      "context": "contexto:",
+      "impact": "Impacto en la organización",
+      "benefit": "Beneficios",
+      "risks": "Riesgos potenciales",
+      "firstTake": "Primera toma de decisiones",
+      "comments": "comentarios"
+    },
+    "comment": {
+      "expert": "experto",
+      "impacted": "impactado por la decisión",
+      "on": "el",
+      "deleteComm": "¿Está seguro de que desea eliminar este comentario?"
+    },
+    "approve": "Validar esta decisión",
+    "reject": "Rechazar esta decisión",
+    "postFirstTake": "publicar mi primera toma de decisiones",
+    "commButton": "Dar mi opinión",
+    "closedComment": "¡El período de comentarios ha terminado!",
+    "waitComment": "¡Espera la primera decisión del autor para poder volver a dar tu opinión!",
+    "thanks": "¡Gracias por tus comentarios!",
+    "dates": "Fechas para recordar",
+    "impactedUsers": "Personas impactadas",
+    "expertsUsers": "Gente experta",
+    "deleteDecision": "¿De verdad quieres borrar esta decisión?",
+    "delete": "eliminar esta decisión",
+    "modal": {
+      "carefull": "¡Advertencia, esta acción es irreversible!",
+      "confirm": "Confirmar",
+      "cancel": "Anular"
+    }
+  },
+
+  "timeline": {
+    "firstDeadline": "Fecha límite para emitir opinión",
+    "secondDeadline": "Primera decisión tomada",
+    "firstTake": "Fecha límite para el conflicto",
+    "decisionOpen": "Toma de decisiones comenzó",
+    "finalDecision": "Decisión definitiva",
+    "dateDisplay": "es"
+  },
+
+  "login": {
+    "banner": {
+      "textForAcceptation": "Debes aceptar los términos"
+    },
+    "email": "Correo electrónico",
+    "password": "Contraseña",
+    "connectionButton": "Inicia sesión",
+    "forgotPassword": "¿Olvidó su contraseña?"
+  },
+
+  "resetPassword": {
+    "newPassword": "Nueva contraseña",
+    "confirmationPassword": "Confirmar contraseña",
+    "validate": "Validar"
+  },
+
+  "wrongPage": {
+    "title": "Error 404",
+    "subTitle": "Oye, pero ¿qué estás haciendo aquí?",
+    "text": "Si se pierde, puede volver a la página principal en",
+    "textButton": "¡Haga clic aquí!"
+  },
+
+  "modalEmail": {
+    "email": "Introduce tu email",
+    "validate": "Validar"
+  },
+
+  "cookieConsent": {
+    "textPart1": "Este sitio web utiliza datos de inicio de sesión. Lea nuestro",
+    "link": "Política de privacidad",
+    "textPart2": "para más información",
+    "agreement": "Acuerdo",
+    "refusal": "Negativa"
+  },
+
+  "postComment": {
+    "label": "Mi comentario:",
+    "textButton": "Publicar mi comentario"
+  },
+
+  "privacyPolicy": {
+    "title": "POLÍTICA DE CONFIDENCIALIDAD",
+    "subTitle": {
+      "1": "DEFINICIONES:",
+      "2": "1 - RECOGIDA DE DATOS DE IDENTIDAD:",
+      "3": "2 - RECOGIDA DE DATOS IDENTIFICATIVOS:",
+      "4": "3 - RECOPILACIÓN DE DATOS DEL TERMINAL:",
+      "5": "4 - COOKIES :"
+    },
+    "strong": {
+      "1": "El editor",
+      "2": "El sitio",
+      "3": "El usuario",
+      "4": "Registro e identificación previa para la prestación del servicio",
+      "5": "Uso de identificación de usuario sólo para el acceso a los servicios.",
+      "6": "Sin recopilación de datos técnicos",
+      "7": "Derecho del usuario a rechazar las cookies, la desactivación da como resultado un funcionamiento degradado del servicio",
+      "8": "Posible asociación de cookies con datos personales para permitir el funcionamiento del servicio"
+    },
+    "paragraphe": {
+      "1": " : La persona física o jurídica que publique servicios públicos de comunicación en línea.",
+      "2": ": Todos los sitios, páginas de Internet y servicios en línea ofrecidos por el Editor.",
+      "3": " : La persona que utiliza el Sitio y los servicios.",
+      "4": "El uso del Sitio requiere registro e identificación previa. Sus datos personales (apellidos, nombre, correo electrónico, etc.) son utilizados para cumplir con nuestras obligaciones legales derivadas de la entrega de productos y/o servicios, en virtud del Usuario Final Acuerdo de licencia, la Limitación de la garantía, si corresponde, o cualquier otro término aplicable. No proporcionará información de identificación personal falsa ni creará una cuenta para otra persona sin su permiso. Sus datos de contacto deben ser siempre precisos y actualizados.",
+      "5": "Usamos sus identificadores electrónicos solo para y durante la ejecución del contrato.",
+      "6": "No recopilamos ni almacenamos ningún dato técnico de su dispositivo (dirección IP, proveedor de servicios de Internet, etc.).",
+      "7": "Usted reconoce haber sido informado de que el Editor puede usar cookies y lo autoriza a hacerlo. Si no desea que se usen cookies en su dispositivo, la mayoría de los navegadores le permiten deshabilitar las cookies a través de las opciones de configuración. Sin embargo, usted está informado de que es posible que algunos servicios ya no funcionen correctamente.",
+      "8": "El Editor puede recopilar información de navegación mediante el uso de cookies."
+    },
+    "agree": "Aceptar",
+    "reject": "Rechazar"
+},
+  
+  "modifyProfil": {
+    "userModif": "Editar usuario",
+    "lastname": "Apellido",
+    "firstname": "Nombre de pila",
+    "mail": "Correo electrónico",
+    "resetPassword": "¡Restablecer la contraseña!",
+    "passReseted": "¡¡¡Restablecimiento de contraseña!!!",
+    "roles": "Rol(es) actual(es)",
+    "validation": "Validar cambios",
+    "modifyUser": {
+      "role": "Role",
+      "roleSelect": "Selecciona tu rol",
+      "expert": "Experto",
+      "delete": "Borrar"
+    }
+  },
+
+  "usersListAdmin": {
+    "polaceHolderSearch": "búsqueda de usuarios",
+    "textButton": "Agregar un usuario",
+    "tableTitle": {
+      "photo": "Foto",
+      "lastName": "Nombre",
+      "firstName": "Apellido",
+      "email": "Correo electrónico",
+      "role": "Rol",
+      "expert": "Experto(a)",
+      "created": "Creado el"
+    },
+    "tableContent": {
+      "Administrateur": "Administrador",
+      "Salarié": "Empleado",
+      "yes": "si",
+      "no": "no",
+      "dateDisplay": "es"
+    }
+  },
+
+  "decisionsListAdmin": {
+    "placeHolderSearch": "investigación de decisiones",
+    "tableTitle": {
+      "id": "Id",
+      "title": "Título",
+      "status": "Estado",
+      "createdOn": "Creado el",
+      "createdBy": "Creado porr"
+    },
+    "status": {
+      "1": "Toma de decisión comenzó",
+      "2": "Toma de decisión pendiente",
+      "3": "Primera decisión tomada",
+      "4": "Decisión final pendiente",
+      "5": "Decisión definitiva",
+      "6": "Decisión completa",
+      "7": "Decisión no alcanzada"
+    },
+    "dateDisplay": "es"
+  },
+
+  "admin": {
+    "stats": "Estadísticas",
+    "userManagement": "Gestión de usuarios",
+    "decisionsManagement": "Gestión de decisiones"
+  },
+
+  "addUser": {
+    "add": "Agregar usuario",
+    "lastname": "Apellido",
+    "firstname": "Nombre de pila",
+    "email": "Correo electrónico",
+    "password": "Contraseña",
+    "placeholderPassword": "Inserte su contraseña",
+    "role": "Role",
+    "defaultRole": "Selecciona tu rol",
+    "expert": "Experto",
+    "addUser": "Agregar usuario"
+  }
+}

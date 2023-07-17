@@ -1,7 +1,9 @@
 import { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
 import PropTypes from "prop-types";
 import axios from "axios";
 import Dropzone from "../../../services/hookDropzone";
+import { userAddNotif, userNotAddNotif } from "../../../services/toast";
 import inputValidationRules from "../../../services/inputValidationRules";
 
 export default function AddUser({ setShowAddUser }) {
@@ -9,6 +11,7 @@ export default function AddUser({ setShowAddUser }) {
   const [newUploadedFileName, setNewUploadedFileName] = useState("");
   const [rolesData, setRolesData] = useState([]);
   const [requireSelect, setRequiredSelect] = useState(false);
+  const { t } = useTranslation();
 
   const [targetValues, setTargetValues] = useState({
     firstName: "",
@@ -117,8 +120,20 @@ export default function AddUser({ setShowAddUser }) {
                   withCredentials: true,
                 }
               )
-              .catch((err) => console.error(err));
+              .then((resp) => {
+                if (resp.status === 200) {
+                  setShowAddUser(false);
+                  userAddNotif();
+                }
+              })
+              .catch((err) => {
+                console.error(err);
+              });
           }
+        })
+        .catch((err) => {
+          console.error(err);
+          return userNotAddNotif();
         });
     } else {
       const invalidInputsTargets = inputValidationRules(targetValues);
@@ -130,7 +145,7 @@ export default function AddUser({ setShowAddUser }) {
   return (
     <form className="add-user-management" onSubmit={submit}>
       <div className="add-user-title-container">
-        <h2 className="add-user-title">Ajout d'utilisateur</h2>
+        <h2 className="add-user-title">{t("addUser.add")}</h2>
         <div className="close-modal-button-container">
           <button
             type="button"
@@ -160,7 +175,7 @@ export default function AddUser({ setShowAddUser }) {
           <div className="input-fields">
             <div className="input-fields name-inputs-container">
               <label htmlFor="lastName" className="lastName">
-                Nom <br />
+                {t("addUser.lastname")} <br />
                 <input
                   type="text"
                   name="lastName"
@@ -170,7 +185,7 @@ export default function AddUser({ setShowAddUser }) {
                 />
               </label>
               <label htmlFor="firstName" className="firstName">
-                Prénom <br />
+                {t("addUser.firstname")} <br />
                 <input
                   type="text"
                   name="firstName"
@@ -181,7 +196,7 @@ export default function AddUser({ setShowAddUser }) {
               </label>
             </div>
             <label htmlFor="email">
-              Email <br />
+              {t("addUser.email")} <br />
               <input
                 type="email"
                 name="email"
@@ -192,11 +207,11 @@ export default function AddUser({ setShowAddUser }) {
               />
             </label>
             <label htmlFor="password">
-              Mot de passe <br />
+              {t("addUser.password")} <br />
               <input
                 type="password"
                 name="password"
-                placeholder="Insérez votre mot de passe"
+                placeholder={t("addUser.placeholderPassword")}
                 onChange={update}
                 required
                 minLength="8"
@@ -204,15 +219,18 @@ export default function AddUser({ setShowAddUser }) {
             </label>
             <div className="roles-container-1">
               <label htmlFor="role">
-                Rôle <br />
+                {t("addUser.role")} <br />
                 <select
                   className={requireSelect ? "require-select" : ""}
                   name="role"
-                  defaultValue="Sélectionne votre rôle"
+                  defaultValue={t("addUser.defaultRole")}
                   onChange={update}
                   onClick={() => setRequiredSelect(false)}
                 >
-                  <option disabled>Sélectionne votre rôle</option>
+                  <option disabled>
+                    {t("addUser.")}
+                    {t("addUser.defaultRole")}
+                  </option>
                   {rolesData
                     .filter((roleExpert) => roleExpert.role_name !== "Expert")
                     .map((role) => (
@@ -223,7 +241,7 @@ export default function AddUser({ setShowAddUser }) {
                 </select>
               </label>
               <label htmlFor="role-expert" className="role-expert">
-                Expert <br />
+                {t("addUser.expert")} <br />
                 <input type="checkbox" name="roleExpert" onChange={update} />
               </label>
             </div>
@@ -254,15 +272,15 @@ export default function AddUser({ setShowAddUser }) {
         <div className="input-buttons-container">
           <div className="roles-container-2">
             <label htmlFor="role">
-              Rôle <br />
+              {t("addUser.role")} <br />
               <select
                 className={requireSelect ? "require-select" : ""}
                 name="role"
-                defaultValue="Sélectionne votre rôle"
+                defaultValue={t("addUser.defaultRole")}
                 onChange={update}
                 onClick={() => setRequiredSelect(false)}
               >
-                <option disabled>Sélectionne votre rôle</option>
+                <option disabled>{t("addUser.defaultRole")}</option>
                 {rolesData
                   .filter((roleExpert) => roleExpert.role_name !== "Expert")
                   .map((role) => (
@@ -274,11 +292,11 @@ export default function AddUser({ setShowAddUser }) {
             </label>
             <label htmlFor="role-expert" className="role-expert-2">
               <input type="checkbox" name="roleExpert" onChange={update} />
-              Expert(e)
+              {t("addUser.expert")}
             </label>
           </div>
           <div className="add-button-container">
-            <button type="submit">Ajouter l'utilisateur</button>
+            <button type="submit">{t("addUser.addUser")}</button>
           </div>
         </div>
       </div>

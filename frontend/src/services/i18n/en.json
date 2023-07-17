@@ -1,0 +1,242 @@
+{
+  "header": {
+    "decision": "Decisions",
+    "my-decisions": "My decisions",
+    "notif": "Notifications",
+    "admin": "Administration",
+    "account": "My account",
+    "creation": "Create a decision",
+    "disconnect": "Disconnect"
+  },
+
+  "postDecision": {
+    "title": "Post a decision",
+    "button": "Post this decision",
+    "inputs": {
+      "title": "Decision's title",
+      "hub": "Concerned hub",
+      "impacted": " Concerned persons",
+      "experts": "Expert persons"
+    },
+
+    "editors": {
+      "desc": "Description of decision",
+      "usefulness": "Usefulness of this decision for the organization",
+      "context": "Context around the decision",
+      "benefit": "Benefits of decision",
+      "disadvantages": "Disadvantages of the decision"
+    }
+  },
+
+  "decisions": {
+    "title": "All Decisions",
+    "myTitle": "My Decisions",
+    "create": "Create Decision",
+    "status": {
+      "1": "Decision making started",
+      "2": "Pending decision making",
+      "3": "First decision made",
+      "4": "Final decision pending",
+      "5": "Final Decision",
+      "6": "Decision Complete",
+      "7": "Unsuccessful decision"
+    }
+  },
+
+  "decision": {
+    "by": "By",
+    "details": {
+      "decisionDetails": "Details of the Decision",
+      "context": "context:",
+      "impact": "Impact on the organization",
+      "benefit": "Benefits",
+      "risks": "Potential risks",
+      "firstTake": "First decision making",
+      "comments": "comments"
+    },
+    "comment": {
+      "expert": "expert",
+      "impacted": "impacted by the decision",
+      "on": "at",
+      "deleteComm": "Are you sure you want to delete this comment?"
+    },
+    "approve": "Validate this decision",
+    "reject": "Reject this decision",
+    "postFirstTake": "post my first decision making",
+    "commButton": "Give my opinion",
+    "closedComment": "The comment period is now over!",
+    "waitComment": "Wait for the author's first decision to be able to give your opinion again!",
+    "thanks": "Thank you for your feedback!",
+    "dates": "Dates to Remember",
+    "impactedUsers": "People impacted",
+    "expertsUsers": "Expert people",
+    "deleteDecision": "Do you really want to delete this decision?",
+    "delete": "delete this decision",
+    "modal": {
+      "carefull": "Warning, this action is irreversible!",
+      "confirm": "Confirm",
+      "cancel": "Cancel"
+    }
+  },
+
+  "timeline": {
+    "firstDeadline": "Deadline to give opinion",
+    "secondDeadline": "First Decision Made",
+    "firstTake": "Deadline to Conflict",
+    "decisionOpen": "Decision making started",
+    "finalDecision": "Final Decision",
+    "dateDisplay": "en"
+  },
+
+  "login": {
+    "banner": {
+      "textForAcceptation": "You must accept the terms"
+    },
+    "email": "Email",
+    "password": "Password",
+    "connectionButton": "Sign in",
+    "forgotPassword": "Forgot your password ?"
+  },
+
+  "resetPassword": {
+    "newPassword": "New password",
+    "confirmationPassword": "Confirm password",
+    "validate": "Validate"
+  },
+
+  "wrongPage": {
+    "title": "Error 404",
+    "subTitle": "Hey, but what are you doing here?",
+    "text": "If you are lost, you can return to the main page on",
+    "textButton": "click here!"
+  },
+
+  "modalEmail": {
+    "email": "Enter your email",
+    "validate": "Validate"
+  },
+
+  "cookieConsent": {
+    "textPart1": "This website uses login data. Read our",
+    "link": "Privacy Policy",
+    "textPart2": "for more info",
+    "agreement": "Accord",
+    "refusal": "Refus"
+  },
+
+  "postComment": {
+    "label": "My comment:",
+    "textButton": "Post my comment"
+  },
+
+  "privacyPolicy": {
+    "title": "PRIVACY POLICY",
+    "subTitle": {
+      "1": "DEFINITIONS:",
+      "2": "1 - COLLECTION OF IDENTITY DATA:",
+      "3": "2 - COLLECTION OF IDENTIFICATION DATA:",
+      "4": "3 - TERMINAL DATA COLLECTION:",
+      "5": "4 - COOKIES :"
+    },
+    "strong": {
+      "1": "The Editor",
+      "2": "The Site",
+      "3": "The user",
+      "4": "Registration and prior identification for the provision of the service",
+      "5": "Use of user ID only for access to services.",
+      "6": "No collection of technical data",
+      "7": "User's right to refuse cookies, deactivation resulting in degraded operation of the service",
+      "8": "Possible association of cookies with personal data to allow the operation of the service"
+    },
+    "paragraphe": {
+      "1": " : The natural or legal person who publishes online public communication services.",
+      "2": ": All sites, Internet pages and online services offered by the Publisher.",
+      "3": " : The person using the Site and services.",
+      "4": "Use of the Site requires registration and prior identification. Your personal data (surname, first name, e-mail, etc.) are used to perform our legal obligations resulting from the delivery of products and/or services, in under the End User License Agreement, the Limitation of Warranty, if any, or any other applicable term. You will not provide false personally identifiable information or create an account for another person without their permission. Your contact details must be always be accurate and up-to-date.",
+      "5": "We use your electronic identifiers only for and during the execution of the contract.",
+      "6": "We do not collect or store any technical data from your device (IP address, Internet service provider, etc.).",
+      "7": "You acknowledge having been informed that the Publisher may use cookies, and authorize it. If you do not want cookies to be used on your device, most browsers allow you to disable cookies by going through settings options. However, you are informed that some services may no longer work properly.",
+      "8": "The Publisher may collect browsing information through the use of cookies."
+    },
+    "agree": "Accept",
+    "reject": "Refuse"
+},
+
+  "modifyProfil": {
+    "userModif": "Edit User",
+    "lastname": "Lastame",
+    "firstname": "First name",
+    "mail": "Email",
+    "resetPassword": "Reset password!",
+    "passReseted": "Password reset!!!",
+    "roles": "Current role(s)",
+    "validation": "Validate changes",
+    "modifyUser": {
+      "role": "Role",
+      "roleSelect": "Select your role",
+      "expert": "Expert",
+      "delete": "Delete"
+    }
+  },
+
+  "usersListAdmin": {
+    "polaceHolderSearch": "user search",
+    "textButton": "Add a user",
+    "tableTitle": {
+      "photo": "Photo",
+      "lastName": "Lastname",
+      "firstName": "Firstname",
+      "email": "Email",
+      "role": "role",
+      "expert": "expert",
+      "created": "Created on"
+    },
+    "tableContent": {
+      "Administrateur": "Administrator",
+      "Salarié": "Employee",
+      "yes": "yes",
+      "no": "no",
+      "dateDisplay": "en"
+    }
+  },
+
+  "decisionsListAdmin": {
+    "placeHolderSearch": "decision research",
+    "tableTitle": {
+      "id": "Id",
+      "title": "Title",
+      "status": "Status",
+      "createdOn": "Created on",
+      "createdBy": "Created by"
+    },
+    "status": {
+      "1": "Decision making started",
+      "2": "Pending decision making",
+      "3": "First decision made",
+      "4": "Final decision pending",
+      "5": "Final Decision",
+      "6": "Decision Complete",
+      "7": "Unsuccessful decision"
+    },
+    "dateDisplay": "en"
+  },
+
+  "admin": {
+    "stats": "Statistics",
+    "userManagement": "User Management",
+    "decisionsManagement": "Decision Management"
+  },
+
+  "addUser": {
+    "add": "Add user",
+    "lastname": "Lastame",
+    "firstname": "Firstname",
+    "email": "Email",
+    "password": "Password",
+    "placeholderPassword": "Insert your password",
+    "role": "Role",
+    "defaultRole": "Select your role",
+    "expert": "Expert",
+    "addUser": "Add User"
+  }
+}

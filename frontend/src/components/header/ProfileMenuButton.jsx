@@ -1,8 +1,10 @@
 import { useContext, useEffect, useRef } from "react";
 import { Link, useLocation } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import PropTypes from "prop-types";
 import NotificationButton from "./NotificationsMenu";
 import userContext from "../../contexts/userContext";
+import Lang from "../Lang";
 
 export default function LoginButton({
   showLoginMenu,
@@ -18,15 +20,18 @@ export default function LoginButton({
   const menuRef = useRef();
   const { pathname } = useLocation();
   const { setUser, setToken, user } = useContext(userContext);
+  const { t } = useTranslation();
 
   useEffect(() => {
     const handler = (e) => {
-      if (!menuRef.current.contains(e.target)) {
+      if (menuRef.current && !menuRef.current.contains(e.target)) {
         setShowLoginMenu(false);
       }
     };
-    document.addEventListener("mousedown", handler);
-  }, []);
+    document.addEventListener("click", handler);
+
+    return () => document.removeEventListener("click", handler);
+  }, [setShowLoginMenu]);
 
   const disconnect = () => {
     setUser(null);
@@ -73,6 +78,10 @@ export default function LoginButton({
       <div className={showLoginMenu ? "login-menu" : "login-menu-hidden"}>
         <ul className="login-menu-app">
           <li>
+            {" "}
+            <Lang />
+          </li>
+          <li>
             <Link
               className={
                 pathname === "/logged/decisions"
@@ -97,7 +106,7 @@ export default function LoginButton({
                 <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
                 <polyline points="9 22 9 12 15 12 15 22" />
               </svg>
-              <div className="li-text">Décisions</div>
+              <div className="li-text">{t("header.decision")}</div>
             </Link>
           </li>
           <li>
@@ -128,7 +137,7 @@ export default function LoginButton({
                 <rect x="3" y="14" width="7" height="7" />
               </svg>
 
-              <div className="li-text">Mes décisions</div>
+              <div className="li-text">{t("header.my-decisions")}</div>
             </Link>
           </li>
           <li>
@@ -157,18 +166,18 @@ export default function LoginButton({
                 <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9" />
                 <path d="M13.73 21a2 2 0 0 1-3.46 0" />
               </svg>
-              <div className="notification-icon-title">Notifications</div>
+              <div className="notification-icon-title">{t("header.notif")}</div>
             </div>
           </li>
           {userRoleId === 1 && (
             <li>
               <Link
                 className={
-                  pathname === "/logged/profile"
+                  pathname === "/logged/administration"
                     ? "link-style active"
                     : "link-style"
                 }
-                to="/logged/profile"
+                to="/logged/administration"
                 onClick={() => handleShowLoginMenu()}
               >
                 <svg
@@ -185,7 +194,7 @@ export default function LoginButton({
                 >
                   <path d="M9 3H5a2 2 0 0 0-2 2v4m6-6h10a2 2 0 0 1 2 2v4M9 3v18m0 0h10a2 2 0 0 0 2-2V9M9 21H5a2 2 0 0 1-2-2V9m0 0h18" />
                 </svg>
-                <div className="li-text">Administration</div>
+                <div className="li-text">{t("header.admin")}</div>
               </Link>
             </li>
           )}
@@ -194,14 +203,14 @@ export default function LoginButton({
           <li>
             <Link
               className={
-                pathname === "/logged/profile"
+                pathname === "/logged/myprofil"
                   ? "link-style active"
                   : "link-style"
               }
-              to="/logged/profile"
+              to="/logged/myprofil"
               onClick={() => handleShowLoginMenu()}
             >
-              <div className="li-text">Mon compte</div>
+              <div className="li-text">{t("header.account")}</div>
             </Link>
           </li>
           <li>
@@ -214,7 +223,7 @@ export default function LoginButton({
               to="/logged/postdecision"
               onClick={() => handleShowLoginMenu()}
             >
-              <div className="li-text">Créer une décision</div>{" "}
+              <div className="li-text">{t("header.creation")}</div>{" "}
             </Link>
           </li>
           <li>
@@ -223,7 +232,7 @@ export default function LoginButton({
               to="/"
               onClick={disconnect}
             >
-              <div className="li-text">Déconnexion</div>{" "}
+              <div className="li-text">{t("header.disconnect")}</div>{" "}
             </Link>
           </li>
         </ul>

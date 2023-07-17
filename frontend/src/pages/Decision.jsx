@@ -1,11 +1,23 @@
 import { useEffect, useState, useRef, useContext } from "react";
 import axios from "axios";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
+import { Slide, ToastContainer } from "react-toastify";
+import { useTranslation } from "react-i18next";
 import DOMPurify from "dompurify";
-import PostComments from "../components/PostComments";
-import Timeline from "../components/graphicElements/Timeline";
-import FirstDecisionEditor from "../components/FirstDecisionEditor";
+import Dialog from "@mui/material/Dialog";
+import DialogTitle from "@mui/material/DialogTitle";
+import DialogActions from "@mui/material/DialogActions";
+import DialogContent from "@mui/material/DialogContent";
+import Button from "@mui/material/Button";
+import {
+  commentAdd,
+  firstDecisionAdd,
+  finalDecisionAdd,
+} from "../services/toast";
 import userContext from "../contexts/userContext";
+import FirstDecisionEditor from "../components/FirstDecisionEditor";
+import Timeline from "../components/graphicElements/Timeline";
+import PostComments from "../components/PostComments";
 
 export default function Decision() {
   const [decision, setDecison] = useState([]);
@@ -15,9 +27,14 @@ export default function Decision() {
   const [addComment, setAddComment] = useState(false);
   const [displayValidation, setDisplayValidation] = useState(true);
   const [firstDecision, setFirstDecision] = useState("");
+  const [openDecisionModal, setOpenDecisionModal] = useState(false);
+  const [openCommentModal, setOpenCommentModal] = useState();
+  const [commentId, setCommentId] = useState();
   const { user } = useContext(userContext);
+  const navigate = useNavigate();
   const { id } = useParams();
   const ref = useRef(null);
+  const { t } = useTranslation();
 
   function strip(html) {
     return (
@@ -44,6 +61,7 @@ export default function Decision() {
         { withCredentials: true }
       )
       .catch((err) => console.error(err));
+    firstDecisionAdd();
     setTimeout(() => {
       getDecision();
     }, 500);
@@ -61,6 +79,7 @@ export default function Decision() {
       },
       { withCredentials: true }
     );
+    finalDecisionAdd();
     setDisplayValidation(false);
   };
 
@@ -105,6 +124,30 @@ export default function Decision() {
       .catch((err) => console.error(err));
   }, []);
 
+  const deleteDecision = () => {
+    axios
+      .delete(`${import.meta.env.VITE_BACKEND_URL}/decisions/${id}`, {
+        withCredentials: true,
+      })
+      .catch((err) => console.error(err));
+    navigate(-1);
+  };
+
+  const deleteComment = (commId) => {
+    axios
+      .delete(
+        `${
+          import.meta.env.VITE_BACKEND_URL
+        }/decisions/${id}/comments/${commId}`,
+        {
+          withCredentials: true,
+        }
+      )
+      .catch((err) => console.error(err));
+    setTimeout(() => {
+      handleComment();
+    }, 500);
+  };
   return (
     <div className="decision">
       <div className="main-content">
@@ -121,7 +164,7 @@ export default function Decision() {
             alt={`${decision.firstname} ${decision.lastname}`}
           />
           <p>
-            par{" "}
+            {t("decision.by")}{" "}
             <span className="bold-text">
               {decision.firstname} {decision.lastname}
             </span>
@@ -130,13 +173,14 @@ export default function Decision() {
 
         <details>
           <summary>
-            Les details de la décison
+            {t("decision.details.decisionDetails")}
             <hr />
           </summary>
 
           <div className="summary-content">
             <div className="context">
-              <p className="bold-text">context:</p> {strip(decision.context)}
+              <p className="bold-text">{t("decision.details.context")}</p>{" "}
+              {strip(decision.context)}
             </div>
             <p>{strip(decision.content)}</p>
           </div>
@@ -144,7 +188,7 @@ export default function Decision() {
 
         <details>
           <summary>
-            Impact sur l'organisation
+            {t("decision.details.impact")}
             <hr />
           </summary>
           <div className="summary-content">
@@ -154,7 +198,7 @@ export default function Decision() {
 
         <details>
           <summary>
-            Bénéfices
+            {t("decision.details.benefit")}
             <hr />
           </summary>
           <div className="summary-content">
@@ -164,7 +208,7 @@ export default function Decision() {
 
         <details>
           <summary>
-            Risques potentiels
+            {t("decision.details.risks")}
             <hr />
           </summary>
 
@@ -176,7 +220,7 @@ export default function Decision() {
         {decision.first_decision_content && (
           <details>
             <summary>
-              Première prise de décision
+              {t("decision.details.firstTake")}
               <hr />
             </summary>
             <div className="summary-content">
@@ -187,7 +231,7 @@ export default function Decision() {
 
         <details>
           <summary>
-            Avis
+            {t("decision.details.comments")}
             <hr />
           </summary>
 
@@ -195,26 +239,46 @@ export default function Decision() {
             {comments.map((comment) => (
               <div key={comment.id} className="comment">
                 <div className="comment-info">
-                  {" "}
-                  <img
-                    src={`${import.meta.env.VITE_BACKEND_URL}/uploads/${
-                      comment.photo
-                    }`}
-                    alt={`${comment.firstname} ${comment.lastname}`}
-                  />{" "}
-                  <div className="comment-info">
+                  <div className="info-block">
+                    <img
+                      src={`${import.meta.env.VITE_BACKEND_URL}/uploads/${
+                        comment.photo
+                      }`}
+                      alt={`${comment.firstname} ${comment.lastname}`}
+                    />{" "}
                     <p className="bold-text ">
                       {comment.firstname} {comment.lastname}
                     </p>
                     {experts.some((expert) => expert.id === comment.user_id) ? (
-                      <p className="bold-text">expert</p>
+                      <p className="bold-text">
+                        {t("decision.comment.expert")}
+                      </p>
                     ) : (
                       impactedUsers.some(
                         (impactedUser) => impactedUser.id === comment.user_id
-                      ) && <p className="bold-text ">impacté par la décision</p>
+                      ) && (
+                        <p className="bold-text ">
+                          {t("decision.comment.impacted")}
+                        </p>
+                      )
                     )}{" "}
-                    <p>le {comment.date}</p>
+                    <p>
+                      {t("decision.comment.on")} {comment.date}
+                    </p>
                   </div>
+                  {user.role_id === 1 ||
+                    (user.id === comment.user_id && (
+                      <Button
+                        className="delete-button"
+                        type="button"
+                        onClick={() => {
+                          setOpenCommentModal(true);
+                          setCommentId(comment.id);
+                        }}
+                      >
+                        X
+                      </Button>
+                    ))}
                 </div>
                 <div className="comment-text">
                   <p>{comment.comment}</p>
@@ -222,6 +286,27 @@ export default function Decision() {
               </div>
             ))}
           </div>
+          <Dialog
+            open={openCommentModal}
+            onClose={() => setOpenCommentModal(false)}
+          >
+            <DialogTitle>{t("decision.comment.deleteComm")}</DialogTitle>
+            <DialogContent>{t("decision.modal.carefull")}</DialogContent>
+            <DialogActions>
+              <Button
+                type="button"
+                onClick={() => {
+                  deleteComment(commentId);
+                  setOpenCommentModal(false);
+                }}
+              >
+                {t("decision.modal.confirm")}
+              </Button>
+              <Button type="button" onClick={() => setOpenCommentModal(false)}>
+                {t("decision.modal.cancel")}
+              </Button>
+            </DialogActions>
+          </Dialog>
         </details>
 
         {experts.some((expert) => expert.id === user.id) &&
@@ -234,7 +319,7 @@ export default function Decision() {
                 value={1}
                 onClick={handleExpertChoice}
               >
-                Valider cette décision
+                {t("decision.approve")}
               </button>
 
               <button
@@ -243,7 +328,7 @@ export default function Decision() {
                 value={0}
                 onClick={handleExpertChoice}
               >
-                Rejeter cette décision
+                {t("decision.reject")}
               </button>
             </div>
           )}
@@ -253,48 +338,46 @@ export default function Decision() {
           !decision.first_decision_content && (
             <div>
               {" "}
-              <FirstDecisionEditor setFirstDecision={setFirstDecision} />
+              <FirstDecisionEditor
+                setFirstDecision={setFirstDecision}
+                firstDecisionAdd={firstDecisionAdd}
+              />
               <button
                 type="button"
                 className="comment-button"
                 onClick={postFirstDecision}
               >
-                poster ma première prise de décision
+                {t("decision.postFirstTake")}
               </button>
             </div>
           )}
 
-        {!addComment && user.id !== decision.userId && (
+        {!addComment && (
           <button
             type="button"
             className="comment-button"
             onClick={handleAddComment}
-            disabled={
-              (decision.status_id !== 1 && decision.status_id !== 3) ||
-              user.id === decision.userId
-            }
+            disabled={decision.status_id !== 1 && decision.status_id !== 3}
           >
-            Donner mon avis
+            {t("decision.commButton")}
           </button>
         )}
         {decision.status_id === 2 && (
           <div className="closed-comment">
-            <p> La période de commentaire est à present terminée!</p>
-            <p>
-              Attendez la première prise de décision de l'auteur pour a nouveau
-              pouvoir donner votre avis!
-            </p>
+            <p>{t("decision.closedComment")}</p>
+            <p>{t("decision.waitComment")}</p>
           </div>
         )}
         {decision.status_id === 4 && (
           <div className="closed-comment">
-            <p> La période de commentaire est à present terminée!</p>
-            <p>Merci pour vos retours!</p>
+            <p>{t("decision.closedComment")}</p>
+            <p>{t("decision.thanks")}</p>
           </div>
         )}
         {addComment && (
           <div ref={ref}>
             <PostComments
+              commentAdd={commentAdd}
               setAddComment={setAddComment}
               handleComment={handleComment}
             />
@@ -302,10 +385,43 @@ export default function Decision() {
         )}
       </div>
       <div className="side-content">
+        {user.role_id === 1 && (
+          <button
+            onClick={() => setOpenDecisionModal(true)}
+            className="comment-button"
+            type="button"
+            value={1}
+          >
+            {t("decision.delete")}
+          </button>
+        )}
+
+        <Dialog
+          open={openDecisionModal}
+          onClose={() => setOpenDecisionModal(false)}
+        >
+          <DialogTitle>{t("decision.deleteDecision")}</DialogTitle>
+          <DialogContent>{t("decision.modal.carefull")}</DialogContent>
+          <DialogActions>
+            <Button
+              type="button"
+              onClick={() => {
+                deleteDecision();
+                setOpenDecisionModal(false);
+              }}
+            >
+              {t("decision.modal.confirm")}
+            </Button>
+            <Button type="button" onClick={() => setOpenDecisionModal(false)}>
+              {t("decision.modal.cancel")}
+            </Button>
+          </DialogActions>
+        </Dialog>
+
         <div className="side-text">
-          <h2>Dates à retenir</h2>
+          <h2>{t("decision.dates")}</h2>
           <Timeline decision={decision} />
-          <h2>Personnes impactées</h2>
+          <h2>{t("decision.impactedUsers")}</h2>
           <div className="tagged" data-count={impactedUsers.length}>
             {impactedUsers.map((impactedUser) => (
               <img
@@ -318,7 +434,7 @@ export default function Decision() {
               />
             ))}
           </div>
-          <h2>Personnes expertes</h2>
+          <h2>{t("decision.expertsUsers")}</h2>
           <div className="tagged">
             {experts.map((expert) => (
               <img
@@ -332,17 +448,17 @@ export default function Decision() {
             ))}
           </div>
         </div>
-        {user.id !== decision.userId && (
-          <button
-            type="button"
-            className="comment-button"
-            onClick={handleAddComment}
-            disabled={decision.status_id !== 1 && decision.status_id !== 3}
-          >
-            Donner mon avis
-          </button>
-        )}
+
+        <button
+          type="button"
+          className="comment-button"
+          onClick={handleAddComment}
+          disabled={decision.status_id !== 1 && decision.status_id !== 3}
+        >
+          {t("decision.commButton")}
+        </button>
       </div>
+      <ToastContainer autoClose={1500} transition={Slide} />
     </div>
   );
 }

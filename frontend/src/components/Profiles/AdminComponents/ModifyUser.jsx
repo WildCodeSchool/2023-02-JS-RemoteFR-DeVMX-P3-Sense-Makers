@@ -1,6 +1,13 @@
 import { useState, useEffect } from "react";
+import { useTranslation } from "react-i18next";
 import PropTypes from "prop-types";
 import axios from "axios";
+import {
+  userModifNotif,
+  userDeleteNotif,
+  emailSend,
+  emailNotSend,
+} from "../../../services/toast";
 import Dropzone from "../../../services/hookDropzone";
 
 export default function ModifyUser({
@@ -13,6 +20,7 @@ export default function ModifyUser({
   const [rolesData, setRolesData] = useState([]);
   const [rolesFromUser, setRolesFromUser] = useState([]);
   const [reinicializePassword, setReinicializePassword] = useState(false);
+  const { t } = useTranslation();
 
   const [targetValues, setTargetValues] = useState({
     firstname: "",
@@ -105,6 +113,8 @@ export default function ModifyUser({
         }
       })
       .then(() => {
+        userModifNotif();
+        setShowUpdateUser(false);
         setTimeout(() => {
           axios
             .get(
@@ -133,9 +143,34 @@ export default function ModifyUser({
           withCredentials: true,
         }
       )
-      .then((response) => console.info(response))
+      .then((response) => {
+        if (response.status === 200) {
+          setShowUpdateUser(false);
+          emailSend();
+        } else {
+          emailNotSend();
+        }
+      })
+      .catch((err) => {
+        console.error(err);
+        return setReinicializePassword(false);
+      });
+  };
+
+  const deactivateUser = () => {
+    axios
+      .put(
+        `${import.meta.env.VITE_BACKEND_URL}/users/${currentUser.id}/isactive`,
+        { isActive: false },
+        {
+          withCredentials: true,
+        }
+      )
+      .then(() => {
+        userDeleteNotif();
+      })
       .catch((err) => console.error(err));
-    setReinicializePassword(true);
+    setShowUpdateUser(false);
   };
 
   useEffect(() => {
@@ -155,7 +190,7 @@ export default function ModifyUser({
   return (
     <form className="modify-user-management" onSubmit={submit}>
       <div className="add-user-title-container">
-        <h2 className="add-user-title">Modification d'utilisateur</h2>
+        <h2 className="add-user-title">{t("modifyProfil.userModif")}</h2>
         <div className="close-modal-button-container">
           <button
             type="button"
@@ -180,7 +215,9 @@ export default function ModifyUser({
           </button>
         </div>
         <div className="remove-button-container-2">
-          <button type="button">Supprimer</button>
+          <button type="button" onClick={deactivateUser}>
+            {t("modifyProfil.modifyUser.delete")}
+          </button>
         </div>
       </div>
       <div className="user-management-container">
@@ -188,7 +225,7 @@ export default function ModifyUser({
           <div className="input-fields">
             <div className="input-fields name-inputs-container">
               <label htmlFor="lastName" className="lastName">
-                Nom <br />
+                {t("modifyProfil.lastname")} <br />
                 <input
                   type="text"
                   name="lastname"
@@ -197,7 +234,7 @@ export default function ModifyUser({
                 />
               </label>
               <label htmlFor="firstName" className="firstName">
-                Prénom <br />
+                {t("modifyProfil.firstname")} <br />
                 <input
                   type="text"
                   name="firstname"
@@ -207,7 +244,7 @@ export default function ModifyUser({
               </label>
             </div>
             <label htmlFor="email">
-              Email <br />
+              {t("modifyProfil.mail")} <br />
               <input
                 type="email"
                 name="email"
@@ -225,22 +262,27 @@ export default function ModifyUser({
                   className="reinicialize-password"
                   onClick={sendEmailToReinitializePassword}
                 >
-                  Réinitialiser le mot de passe!
+                  {t("modifyProfil.resetPassword")}
                 </span>
               ) : (
-                <span> Mot de passe réinitialisée!!!</span>
+                <span> {t("modifyProfil.passReseted")}</span>
               )}
             </div>
             <div className="roles-container-1">
               <div className="role-actuel-container">
                 <div className="role">
-                  <h4 className="role-actuel-title"> Rôle(s) actuel(s) </h4>
+                  <h4 className="role-actuel-title">
+                    {" "}
+                    {t("modifyProfil.roles")}{" "}
+                  </h4>
                   <p className="role-actuel-data">{currentUser?.roles}</p>
                 </div>
                 <label htmlFor="role">
-                  Rôle <br />
+                  {t("modifyProfil.modifyUser.role")} <br />
                   <select name="role" onChange={update}>
-                    <option value="0">Sélectionne votre rôle</option>
+                    <option value="0">
+                      {t("modifyProfil.modifyUser.roleSelect")}
+                    </option>
                     {rolesData
                       .filter((roleExpert) => roleExpert.role_name !== "Expert")
                       .map((role) => (
@@ -261,7 +303,7 @@ export default function ModifyUser({
                   ) : (
                     <input type="checkbox" name="roleExpert" onClick={update} />
                   )}
-                  Expert(e)
+                  {t("modifyProfil.modifyUser.expert")}
                 </label>
               </div>
             </div>
@@ -289,16 +331,17 @@ export default function ModifyUser({
             />
           </label>
         </div>
-
         <div className="input-buttons-container">
           <div className="roles-container-2">
             <div className="role-actuel">
-              <h4 className="role-actuel-title"> Rôle(s) actuel(s) </h4>
+              <h4 className="role-actuel-title">{t("modifyProfil.roles")}</h4>
               <span className="role-actuel-data">{currentUser?.roles}</span>
               <label htmlFor="role">
-                Rôle <br />
+                {t("modifyProfil.modifyUser.role")} <br />
                 <select name="role" onChange={update}>
-                  <option value="0">Sélectionne votre rôle</option>
+                  <option value="0">
+                    {t("modifyProfil.modifyUser.roleSelect")}
+                  </option>
                   {rolesData
                     .filter((roleExpert) => roleExpert.role_name !== "Expert")
                     .map((role) => (
@@ -319,16 +362,18 @@ export default function ModifyUser({
                 ) : (
                   <input type="checkbox" name="roleExpert" onClick={update} />
                 )}
-                Expert(e)
+                {t("modifyProfil.modifyUser.expert")}
               </label>
             </div>
           </div>
           <div className="add-remove-buttons-container-1">
             <div className="add-button-container-1">
-              <button type="submit">Valider les modifications</button>
+              <button type="submit">{t("modifyProfil.validation")}</button>
             </div>
             <div className="remove-button-container-1">
-              <button type="button">Supprimer</button>
+              <button type="button" onClick={deactivateUser}>
+                {t("modifyProfil.modifyUser.delete")}
+              </button>
             </div>
           </div>
         </div>

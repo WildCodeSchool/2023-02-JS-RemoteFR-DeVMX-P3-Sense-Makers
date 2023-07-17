@@ -32,7 +32,7 @@
         border-radius: 20px;
         padding: 0.5rem 0.75rem;
         border: 1px solid $color-default;
-        transition: 0.3s ease-in-out;
+        transition: 0.2s ease-in-out;
 
         &:hover {
           transform: scale(1.1);
@@ -55,7 +55,6 @@
         label {
           color: $color-default;
           font-size: $font-size-m;
-          margin: 0 auto;
           font-family: $primary-font;
           font-weight: $primary-font-weight;
         }
@@ -66,7 +65,7 @@
           height: 2rem;
           width: 18rem;
           padding: 0 1rem;
-          margin: 0 auto;
+          margin-top: 1rem;
           font-family: $primary-font;
           border: 1px solid $color-default;
         }
@@ -82,13 +81,19 @@
           padding: 0 10%;
           margin: 1rem auto;
           cursor: pointer;
+          transition: 0.2s ease-in-out;
+        }
+        :hover {
+          color: #196c84;
+          background-color: $background-color-base;
+          transition: 0.2s ease-in-out;
         }
       }
     }
   }
   @media screen and (min-width: 768px) {
     .modal-container {
-      max-width: 40rem;
+      max-width: 30rem;
     }
   }
 }
