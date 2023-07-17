@@ -1,4 +1,6 @@
 import { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
+
 import statsDecisionsGeneratorByCategory from "../../../services/statsDecisionsGenerator";
 
 export default function MonthlyStats() {
@@ -13,17 +15,19 @@ export default function MonthlyStats() {
 
   const currentMonth = new Date().getMonth();
 
+  const { t } = useTranslation();
+
   return (
     <div className="global-monthly-stats-container">
       <div className="round-container">
         <p className="total-decisions text">
           {statsByCategoryData[currentMonth]?.totalFinished}
         </p>
-        <p className="round-text text">décisions au total, dont</p>
+        <p className="round-text text">{t("monthlyStats.totalDecisions")}</p>
         <p className="decisions-created text">
           {statsByCategoryData[currentMonth]?.created}
         </p>
-        <p className="round-text text">débutées ce mois</p>
+        <p className="round-text text">{t("monthlyStats.startedDecisions")}</p>
       </div>
       <div className="first-square-container card">
         <div className="top-div-in-square-containers">
@@ -47,7 +51,7 @@ export default function MonthlyStats() {
               {statsByCategoryData[currentMonth]?.waitingFor}
             </p>
           </div>
-          <p className="title text">prises de décisions en attente</p>
+          <p className="title text">{t("monthlyStats.pendingDecisions")}</p>
         </div>
         <div className="icon-and-number-container">
           <svg
@@ -68,7 +72,7 @@ export default function MonthlyStats() {
             {statsByCategoryData[currentMonth]?.firstMadeDecision}
           </p>
         </div>
-        <p className="title text">premières décisions prises</p>
+        <p className="title text">{t("monthlyStats.firstTakeDecisions")}</p>
       </div>
       <div className="second-square-container card">
         <div className="top-div-in-square-containers">
@@ -92,9 +96,7 @@ export default function MonthlyStats() {
               {statsByCategoryData[currentMonth]?.waitingForExpert}
             </p>
           </div>
-          <p className="title text">
-            décisions définitives en attente d'experts
-          </p>
+          <p className="title text">{t("monthlyStats.waitingForExperts")}</p>
         </div>
         <div className="icon-and-number-container">
           <svg
@@ -116,7 +118,7 @@ export default function MonthlyStats() {
             {statsByCategoryData[currentMonth]?.notFinished}
           </p>
         </div>
-        <p className="title text">décisions non abouties</p>
+        <p className="title text">{t("monthlyStats.unsuccessfulDecisions")}</p>
       </div>
       <div className="third-square-container card">
         <div className="top-div-in-square-containers">
@@ -139,7 +141,7 @@ export default function MonthlyStats() {
               {statsByCategoryData[currentMonth]?.finishedValid}
             </p>
           </div>
-          <p className="title text">décisions définitives validées</p>
+          <p className="title text">{t("monthlyStats.validatedDecisions")}</p>
         </div>
         <div className="icon-and-number-container">
           <svg
@@ -161,7 +163,7 @@ export default function MonthlyStats() {
             {statsByCategoryData[currentMonth]?.finishedNotValid}
           </p>
         </div>
-        <p className="title text">décisions définitives non validées</p>
+        <p className="title text">{t("monthlyStats.notValidatedDecisions")}</p>
       </div>
     </div>
   );

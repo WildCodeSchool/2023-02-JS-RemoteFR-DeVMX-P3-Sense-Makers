@@ -44,7 +44,7 @@ export default function NotificationButton({
               handleShowNotificationsMenu();
             }}
           >
-            {impact.sender} vous a indiqué comme impacté sur une décision
+            {impact.sender} {t("notif")}
           </Link>
         );
       });

@@ -165,7 +165,7 @@
   "modifyProfil": {
     "userModif": "Edit User",
     "lastname": "Lastame",
-    "firstname": "First name",
+    "firstname": "Firstname",
     "mail": "Email",
     "resetPassword": "Reset password!",
     "passReseted": "Password reset!!!",
@@ -241,5 +241,23 @@
     "addUser": "Add User"
   },
 
-  "notif": "indicated you as impacted on a decision"
+  "notif": "indicated you as impacted on a decision",
+
+  "annualStats": {
+    "created": "Created",
+    "notValidated": "Not validated",
+    "validated": "Validated",
+    "unsuccessful": "Unsuccessful"
+  },
+
+  "monthlyStats": {
+    "totalDecisions": "total decisions, including",
+    "startedDecisions": "started this month",
+    "pendingDecisions": "pending decision making",
+    "firstTakeDecisions": "first decision made",
+    "waitingForExperts": "final decision pending",
+    "unsuccessfulDecisions": "unsuccessful decision",
+    "validatedDecisions": "validated decisions",
+    "notValidatedDecisions": "not validated decisions"
+  }
 }

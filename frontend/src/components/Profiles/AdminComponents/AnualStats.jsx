@@ -85,7 +85,7 @@ export default function Stats() {
     labels,
     datasets: [
       {
-        label: "Crées",
+        label: "Created",
         data: createdData,
         backgroundColor: "rgba(53, 162, 235, 0.5)",
       },
