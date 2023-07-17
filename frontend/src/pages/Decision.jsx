@@ -155,11 +155,13 @@ export default function Decision() {
         <div className="author">
           <img
             src={
-              user.photo === "default_avatar.png"
+              decision.photo === "default_avatar.png"
                 ? `${import.meta.env.VITE_BACKEND_URL}/assets/images/${
-                    user.photo
+                    decision.photo
                   }`
-                : `${import.meta.env.VITE_BACKEND_URL}/uploads/${user.photo}`
+                : `${import.meta.env.VITE_BACKEND_URL}/uploads/${
+                    decision.photo
+                  }`
             }
             alt={`${decision.firstname} ${decision.lastname}`}
           />
