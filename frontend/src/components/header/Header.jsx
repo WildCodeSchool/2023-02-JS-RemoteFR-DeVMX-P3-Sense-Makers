@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useState, useCallback } from "react";
 import axios from "axios";
 import { Link, useLocation } from "react-router-dom";
 import { useTranslation } from "react-i18next";
@@ -27,54 +27,47 @@ export default function Header() {
   const [impacts, setImpacts] = useState([]);
   const [experts, setExperts] = useState([]);
 
-  const ReadNotif = (concerned, Id) => {
+  const ReadNotif = useCallback(
+    (concerned, Id) => {
+      axios
+        .put(
+          `${import.meta.env.VITE_BACKEND_URL}/users/${user.id}/${concerned}`,
+          { decicionsId: Id },
+          {
+            withCredentials: true,
+          }
+        )
+        .catch((err) => console.error(err));
+    },
+    [showNotificationsMenu]
+  );
+  useEffect(() => {
     axios
-      .put(
-        `${import.meta.env.VITE_BACKEND_URL}/users/${user.id}/${concerned}`,
-        { decicionsId: Id },
+      .get(
+        `${import.meta.env.VITE_BACKEND_URL}/users/${user.id}/taggedexperts`,
         {
           withCredentials: true,
         }
       )
-
+      .then((response) => {
+        setExperts(response.data);
+      })
       .catch((err) => console.error(err));
-  };
-  useEffect(() => {
-    if (user.role_id === 3 || user.role_id === 1) {
-      axios
-        .get(
-          `${import.meta.env.VITE_BACKEND_URL}/users/${user.id}/taggedexperts`,
-          {
-            withCredentials: true,
-          }
-        )
-        .then((response) => {
-          setExperts(response.data);
-        })
-        .catch((err) => console.error(err));
-    }
-    if (user.role_id === 2 || user.role_id === 1) {
-      axios
-        .get(
-          `${import.meta.env.VITE_BACKEND_URL}/users/${user.id}/taggedimpacted`,
-          {
-            withCredentials: true,
-          }
-        )
-        .then((response) => {
-          setImpacts(response.data);
-        })
-        .catch((err) => console.error(err));
-    }
+    axios
+      .get(
+        `${import.meta.env.VITE_BACKEND_URL}/users/${user.id}/taggedimpacted`,
+        {
+          withCredentials: true,
+        }
+      )
+      .then((response) => {
+        setImpacts(response.data);
+      })
+      .catch((err) => console.error(err));
   }, [ReadNotif]);
 
   function NotificationNumber() {
-    if ((user.role_id === 3 || user.role_id === 1) && experts.lenght > 0) {
-      return experts.length;
-    }
-    if ((user.role_id === 2 || user.role_id === 1) && impacts.length > 0) {
-      return impacts.length;
-    }
+    return experts.length + impacts.length;
   }
 
   return (

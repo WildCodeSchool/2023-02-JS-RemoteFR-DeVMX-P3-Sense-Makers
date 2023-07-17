@@ -2,8 +2,6 @@ import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 
 import { useTranslation } from "react-i18next";
-import { useContext } from "react";
-import userContext from "../../contexts/userContext";
 
 export default function NotificationButton({
   handleShowNotificationsMenu,
@@ -13,10 +11,8 @@ export default function NotificationButton({
 }) {
   const { t } = useTranslation();
 
-  const { user } = useContext(userContext);
-
   function ShowNotif() {
-    if ((user.role_id === 3 || user.role_id === 1) && experts.lenght > 0) {
+    if (experts.length > 0) {
       return experts.map((expert) => {
         return (
           <Link
@@ -25,6 +21,7 @@ export default function NotificationButton({
             to={`/logged/decisions/${expert.decisionID}`}
             onClick={() => {
               ReadNotif("taggedexperts", expert.decisionID, "Experts");
+              handleShowNotificationsMenu();
             }}
           >
             {expert.sender} {t("notif")}
@@ -32,7 +29,7 @@ export default function NotificationButton({
         );
       });
     }
-    if ((user.role_id === 2 || user.role_id === 1) && impacts.length > 0) {
+    if (impacts.length > 0) {
       return impacts.map((impact) => {
         return (
           <Link

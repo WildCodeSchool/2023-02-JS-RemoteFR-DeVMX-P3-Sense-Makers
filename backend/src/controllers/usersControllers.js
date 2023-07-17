@@ -287,7 +287,7 @@ const getUserByEmail = (req, res, next) => {
 };
 
 const getExpertUsersForNotif = (req, res) => {
-  const userId = req.params.id;
+  const userId = parseInt(req.params.id, 10);
   models.users
     .findExpertOnDecisionByUserId(userId)
     .then(([result]) => {
@@ -323,9 +323,9 @@ const getImpactedUsersForNotif = (req, res) => {
 
 const modifyImpactNotifRead = (req, res) => {
   const { decicionsId } = req.body;
-
+  const userId = parseInt(req.params.id, 10);
   models.users
-    .updateisReadNotifImpact(decicionsId)
+    .updateisReadNotifImpact(decicionsId, userId)
     .then(([result]) => {
       if (result.affectedRows === 0) {
         res.sendStatus(404);
@@ -341,9 +341,9 @@ const modifyImpactNotifRead = (req, res) => {
 
 const modifyExpertNotifRead = (req, res) => {
   const { decicionsId } = req.body;
-
+  const userId = parseInt(req.params.id, 10);
   models.users
-    .updateisReadNotifExpert(decicionsId)
+    .updateisReadNotifExpert(decicionsId, userId)
     .then(([result]) => {
       if (result.affectedRows === 0) {
         res.sendStatus(404);
