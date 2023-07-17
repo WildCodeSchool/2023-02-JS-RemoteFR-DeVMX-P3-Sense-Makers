@@ -173,7 +173,7 @@
     "validation": "Validar cambios",
     "dropzone": "suelte un archivo de imagen aquí",
     "modifyUser": {
-      "role": "Role",
+      "role": "Rol",
       "roleSelect": "Selecciona tu rol",
       "expert": "Experto",
       "delete": "Borrar"
