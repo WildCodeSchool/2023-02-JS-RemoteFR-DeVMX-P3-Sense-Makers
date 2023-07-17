@@ -171,6 +171,7 @@
     "passReseted": "¡¡¡Restablecimiento de contraseña!!!",
     "roles": "Rol(es) actual(es)",
     "validation": "Validar cambios",
+    "dropzone": "suelte un archivo de imagen aquí",
     "modifyUser": {
       "role": "Role",
       "roleSelect": "Selecciona tu rol",
@@ -180,7 +181,7 @@
   },
 
   "usersListAdmin": {
-    "polaceHolderSearch": "búsqueda de usuarios",
+    "placeHolderSearch": "búsqueda de usuarios",
     "textButton": "Agregar un usuario",
     "tableTitle": {
       "photo": "Foto",
@@ -238,5 +239,7 @@
     "defaultRole": "Selecciona tu rol",
     "expert": "Experto",
     "addUser": "Agregar usuario"
-  }
+  },
+
+  "notif": "lo indicó como afectado en una decisión"
 }
