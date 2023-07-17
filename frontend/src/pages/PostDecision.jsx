@@ -207,8 +207,6 @@ export default function PostDecision() {
   const editors = [
     [t("postDecision.editors.desc"), "content"],
     [t("postDecision.editors.usefulness"), "usefulness"],
-    [t("postDecision.editors.desc"), "content"],
-    [t("postDecision.editors.usefulness"), "usefulness"],
     [t("postDecision.editors.context"), "context"],
     [t("postDecision.editors.benefit"), "benefit"],
     [t("postDecision.editors.disadvantages"), "disadvantages"],
@@ -241,7 +239,7 @@ export default function PostDecision() {
 
         <div className="hub-container">
           <label htmlFor="hub_decision">
-            {t("postDecision.inputs.hub")} *{t("postDecision.inputs.hub")} *
+            {t("postDecision.inputs.hub")} *
             <select
               id="hub_decision"
               value={selectedHub}
@@ -266,7 +264,6 @@ export default function PostDecision() {
         <div className="impacted-people">
           <label htmlFor="concerned_decision">
             {t("postDecision.inputs.impacted")} *
-            {t("postDecision.inputs.impacted")} *
             <AsyncSelect
               id="concerned_decision"
               styles={customStyles}
@@ -279,7 +276,6 @@ export default function PostDecision() {
           </label>
 
           <label htmlFor="expert_decision">
-            {t("postDecision.inputs.experts")} *
             {t("postDecision.inputs.experts")} *
             <AsyncSelect
               id="expert_decision"
@@ -316,10 +312,8 @@ export default function PostDecision() {
           }}
         >
           {t("postDecision.button")}
-          {t("postDecision.button")}
         </button>
       </div>
-      <ToastContainer autoClose={1500} transition={Slide} />
       <ToastContainer autoClose={1500} transition={Slide} />
     </div>
   );
