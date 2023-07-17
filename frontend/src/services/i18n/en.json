@@ -160,7 +160,7 @@
     },
     "agree": "Accept",
     "reject": "Refuse"
-},
+  },
 
   "modifyProfil": {
     "userModif": "Edit User",

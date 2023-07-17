@@ -55,6 +55,23 @@
   flex-direction: column;
   color: $color-default;
   cursor: pointer;
+  .bell-container {
+    position: relative;
+    display: flex;
+    flex-direction: row-reverse;
+    .notif-number {
+      position: absolute;
+      top: -0.5rem;
+      right: -0.5rem;
+      height: 1rem;
+      width: 1rem;
+      border-radius: 1rem;
+      background-color: red;
+      text-align: center;
+      color: $background-color-base;
+      font-size: $font-size-s;
+    }
+  }
 }
 
 .login-button {
@@ -258,6 +275,23 @@
   align-items: center;
   color: $color-default;
 
+  .bell-container-button {
+    position: relative;
+    display: flex;
+    flex-direction: row-reverse;
+    .notif-number {
+      position: absolute;
+      top: 0.2rem;
+      right: -0.2rem;
+      height: 0.75rem;
+      width: 0.75rem;
+      border-radius: 0.75rem;
+      background-color: red;
+      text-align: center;
+      color: $background-color-base;
+      font-size: $font-size-xxs;
+    }
+  }
   .notification-icon-title {
     color: $color-default;
     padding: $space-xs 0 0 $space-xs;
@@ -295,6 +329,14 @@
     border-radius: $border-radius-m;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.13);
 
+    .notification-text {
+      text-decoration: none;
+      list-style-type: none;
+      color: $color-default;
+      font-family: $primary-font;
+      font-weight: $primary-font-weight;
+    }
+
     .notifications-title {
       pointer-events: none;
       font-size: $font-size-xl;
@@ -314,6 +356,7 @@
       flex-direction: column;
       padding: 0;
       list-style-type: none;
+      gap: 0.8rem;
 
       :last-child {
         border-bottom: 1px solid $color-default;

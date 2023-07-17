@@ -96,7 +96,7 @@ export default function Decision() {
 
   useEffect(() => {
     getDecision();
-  }, []);
+  }, [id]);
 
   useEffect(() => {
     handleComment();
@@ -262,19 +262,18 @@ export default function Decision() {
                       {t("decision.comment.on")} {comment.date}
                     </p>
                   </div>
-                  {user.role_id === 1 ||
-                    (user.id === comment.user_id && (
-                      <Button
-                        className="delete-button"
-                        type="button"
-                        onClick={() => {
-                          setOpenCommentModal(true);
-                          setCommentId(comment.id);
-                        }}
-                      >
-                        X
-                      </Button>
-                    ))}
+                  {(user.role_id === 1 || user.id === comment.user_id) && (
+                    <Button
+                      className="delete-button"
+                      type="button"
+                      onClick={() => {
+                        setOpenCommentModal(true);
+                        setCommentId(comment.id);
+                      }}
+                    >
+                      X
+                    </Button>
+                  )}
                 </div>
                 <div className="comment-text">
                   <p>{comment.comment}</p>
