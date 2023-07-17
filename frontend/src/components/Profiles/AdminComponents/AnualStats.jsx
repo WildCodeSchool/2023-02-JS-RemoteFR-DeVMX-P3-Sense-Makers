@@ -23,14 +23,11 @@ ChartJS.register(
 );
 
 export const options = {
-  responsive: true,
+  // responsive: true,
+  maintainAspectRatio: false,
   plugins: {
     legend: {
       position: "top",
-    },
-    title: {
-      display: true,
-      text: "Decisions Count",
     },
   },
 };
