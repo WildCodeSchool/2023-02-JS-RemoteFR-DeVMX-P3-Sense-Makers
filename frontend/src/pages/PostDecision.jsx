@@ -198,7 +198,6 @@ export default function PostDecision() {
           });
         }
         notifyDecision();
-        notifyDecision();
         setTimeout(() => {
           navigate(`/logged/decisions/${response.data[0].insertId}`);
         }, 2500);
@@ -208,9 +207,6 @@ export default function PostDecision() {
   const editors = [
     [t("postDecision.editors.desc"), "content"],
     [t("postDecision.editors.usefulness"), "usefulness"],
-    [t("postDecision.editors.context"), "context"],
-    [t("postDecision.editors.benefit"), "benefit"],
-    [t("postDecision.editors.disadvantages"), "disadvantages"],
     [t("postDecision.editors.desc"), "content"],
     [t("postDecision.editors.usefulness"), "usefulness"],
     [t("postDecision.editors.context"), "context"],
@@ -222,12 +218,11 @@ export default function PostDecision() {
     <div className="post-container">
       <div className="title-container">
         <h1 className="post-decision">{t("postDecision.title")}</h1>
-        <h1 className="post-decision">{t("postDecision.title")}</h1>
       </div>
 
       <div className="decision-information">
         <label htmlFor="title_decision">
-          {t("postDecision.inputs.title")} *{t("postDecision.inputs.title")} *
+          {t("postDecision.inputs.title")} *
           <input
             type="text"
             id="title_decision"
