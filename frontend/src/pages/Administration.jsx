@@ -16,7 +16,7 @@ export default function Administration() {
           <hr />
         </summary>
         <MonthlyStats />
-        <div className="stats-chart" style={{ height: "60vh" }}>
+        <div className="stats-chart">
           <StatsAnual />
         </div>
       </details>
