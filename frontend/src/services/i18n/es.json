@@ -241,5 +241,23 @@
     "addUser": "Agregar usuario"
   },
 
-  "notif": "lo indicó como afectado en una decisión"
+  "notif": "lo indicó como afectado en una decisión",
+
+  "annualStats": {
+    "created": "creado",
+    "notValidated": "No validado",
+    "validated": "Validado",
+    "Unsuccessful": "Inconcluso"
+  },
+
+  "monthlyStats": {
+    "totalDecisions": "decisiones totales, incluidas",
+    "startedDecisions": "creadas este mes",
+    "pendingDecisions": "toma de decisión pendiente",
+    "firstTakeDecisions": "primera decisiónes tomadas",
+    "waitingForExperts": "decisión final pendiente",
+    "unsuccessfulDecisions": "decisiónes no alcanzada",
+    "validatedDecisions": "decisiones finales validadas",
+    "notValidatedDecisions": "decisiones finales no validadas"
+  }
 }
