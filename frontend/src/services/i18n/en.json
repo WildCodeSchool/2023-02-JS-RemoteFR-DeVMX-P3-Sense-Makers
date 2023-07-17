@@ -165,7 +165,7 @@
   "modifyProfil": {
     "userModif": "Edit User",
     "lastname": "Lastame",
-    "firstname": "First name",
+    "firstname": "Firstname",
     "mail": "Email",
     "resetPassword": "Reset password!",
     "passReseted": "Password reset!!!",
