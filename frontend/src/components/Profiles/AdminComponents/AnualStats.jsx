@@ -1,4 +1,3 @@
-/* eslint-disable react/prop-types */
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -11,7 +10,7 @@ import {
 import { Bar } from "react-chartjs-2";
 
 import { useEffect, useState } from "react";
-import { statsDecisionsGeneratorByCategory } from "../../../services/statsDecisionsGenerator";
+import statsDecisionsGeneratorByCategory from "../../../services/statsDecisionsGenerator";
 
 ChartJS.register(
   CategoryScale,
@@ -23,14 +22,10 @@ ChartJS.register(
 );
 
 export const options = {
-  responsive: true,
+  maintainAspectRatio: false,
   plugins: {
     legend: {
       position: "top",
-    },
-    title: {
-      display: true,
-      text: "Decisions Count",
     },
   },
 };
