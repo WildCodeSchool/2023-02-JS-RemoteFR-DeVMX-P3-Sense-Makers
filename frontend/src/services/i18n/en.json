@@ -244,10 +244,10 @@
   "notif": "indicated you as impacted on a decision",
 
   "annualStats": {
-    "created": "created",
+    "created": "Created",
     "notValidated": "Not validated",
     "validated": "Validated",
-    "Unsuccessful": "Unsuccessful"
+    "unsuccessful": "Unsuccessful"
   },
 
   "monthlyStats": {

@@ -244,10 +244,10 @@
   "notif": "lo indicó como afectado en una decisión",
 
   "annualStats": {
-    "created": "creado",
+    "created": "Creado",
     "notValidated": "No validado",
     "validated": "Validado",
-    "Unsuccessful": "Inconcluso"
+    "unsuccessful": "Inconcluso"
   },
 
   "monthlyStats": {

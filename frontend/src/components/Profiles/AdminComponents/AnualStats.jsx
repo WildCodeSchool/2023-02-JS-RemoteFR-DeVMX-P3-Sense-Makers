@@ -9,7 +9,6 @@ import {
 } from "chart.js";
 import { Bar } from "react-chartjs-2";
 
-// import { useTranslation } from "react-i18next";
 import { useEffect, useState } from "react";
 import statsDecisionsGeneratorByCategory from "../../../services/statsDecisionsGenerator";
 
@@ -45,8 +44,6 @@ const labels = [
   "Novembre",
   "Décembre",
 ];
-
-// const { t } = useTranslation();
 
 export default function Stats() {
   const [statsByCategoryData, setStatsByCategoryData] = useState([]);
@@ -88,7 +85,7 @@ export default function Stats() {
     labels,
     datasets: [
       {
-        label: "Crées",
+        label: "Created",
         data: createdData,
         backgroundColor: "rgba(53, 162, 235, 0.5)",
       },
