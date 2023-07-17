@@ -160,8 +160,8 @@
     },
     "agree": "Accepter",
     "reject": "Refuser"
-},
-  
+  },
+
   "modifyProfil": {
     "userModif": "Modification d'utilisateur",
     "lastname": "Nom",

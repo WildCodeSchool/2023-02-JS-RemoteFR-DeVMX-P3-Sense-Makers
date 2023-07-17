@@ -9,11 +9,7 @@ import DialogTitle from "@mui/material/DialogTitle";
 import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
 import Button from "@mui/material/Button";
-import {
-  commentAdd,
-  firstDecisionAdd,
-  finalDecisionAdd,
-} from "../services/toast";
+import { firstDecisionAdd, finalDecisionAdd } from "../services/toast";
 import userContext from "../contexts/userContext";
 import FirstDecisionEditor from "../components/FirstDecisionEditor";
 import Timeline from "../components/graphicElements/Timeline";
@@ -266,19 +262,18 @@ export default function Decision() {
                       {t("decision.comment.on")} {comment.date}
                     </p>
                   </div>
-                  {user.role_id === 1 ||
-                    (user.id === comment.user_id && (
-                      <Button
-                        className="delete-button"
-                        type="button"
-                        onClick={() => {
-                          setOpenCommentModal(true);
-                          setCommentId(comment.id);
-                        }}
-                      >
-                        X
-                      </Button>
-                    ))}
+                  {(user.role_id === 1 || user.id === comment.user_id) && (
+                    <Button
+                      className="delete-button"
+                      type="button"
+                      onClick={() => {
+                        setOpenCommentModal(true);
+                        setCommentId(comment.id);
+                      }}
+                    >
+                      X
+                    </Button>
+                  )}
                 </div>
                 <div className="comment-text">
                   <p>{comment.comment}</p>
@@ -377,7 +372,6 @@ export default function Decision() {
         {addComment && (
           <div ref={ref}>
             <PostComments
-              commentAdd={commentAdd}
               setAddComment={setAddComment}
               handleComment={handleComment}
             />

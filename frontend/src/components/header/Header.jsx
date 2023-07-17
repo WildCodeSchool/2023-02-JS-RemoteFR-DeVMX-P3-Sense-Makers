@@ -229,6 +229,7 @@ export default function Header() {
         setImpacts={setImpacts}
         setExperts={setExperts}
         ReadNotif={ReadNotif}
+        NotificationNumber={NotificationNumber()}
       />
     </div>
   );
