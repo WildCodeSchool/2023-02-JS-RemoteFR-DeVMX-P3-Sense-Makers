@@ -72,7 +72,13 @@ export default function LoginButton({
         </div>
         <img
           className="img-avatar"
-          src={`${import.meta.env.VITE_BACKEND_URL}/uploads/${user.photo}`}
+          src={
+            user.photo === "default_avatar.png"
+              ? `${import.meta.env.VITE_BACKEND_URL}/assets/images/${
+                  user.photo
+                }`
+              : `${import.meta.env.VITE_BACKEND_URL}/uploads/${user.photo}`
+          }
           alt="avatar"
         />
       </div>
