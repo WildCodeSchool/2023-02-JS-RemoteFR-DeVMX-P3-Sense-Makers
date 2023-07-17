@@ -118,7 +118,7 @@
 
   "cookieConsent": {
     "textPart1": "This website uses login data. Read our",
-    "link": "Privacy Policy",
+    "link": "privacy policy",
     "textPart2": "for more info",
     "agreement": "Accept",
     "refusal": "Deny"
