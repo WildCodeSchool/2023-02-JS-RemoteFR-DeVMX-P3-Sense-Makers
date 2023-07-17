@@ -95,7 +95,13 @@ export default function CardDecision({ decision }) {
       <h1>{decision.title_decision}</h1>
       <div className="card-creator-container">
         <img
-          src={`${import.meta.env.VITE_BACKEND_URL}/uploads/${decision.photo}`}
+          src={
+            decision.photo === "default_avatar.png"
+              ? `${import.meta.env.VITE_BACKEND_URL}/assets/images/${
+                  decision.photo
+                }`
+              : `${import.meta.env.VITE_BACKEND_URL}/uploads/${decision.photo}`
+          }
           alt="img profil creator"
         />
         <p>

@@ -154,9 +154,15 @@ export default function Decision() {
         <h1>{decision.title_decision}</h1>
         <div className="author">
           <img
-            src={`${import.meta.env.VITE_BACKEND_URL}/uploads/${
-              decision.photo
-            }`}
+            src={
+              decision.photo === "default_avatar.png"
+                ? `${import.meta.env.VITE_BACKEND_URL}/assets/images/${
+                    decision.photo
+                  }`
+                : `${import.meta.env.VITE_BACKEND_URL}/uploads/${
+                    decision.photo
+                  }`
+            }
             alt={`${decision.firstname} ${decision.lastname}`}
           />
           <p>
@@ -237,9 +243,15 @@ export default function Decision() {
                 <div className="comment-info">
                   <div className="info-block">
                     <img
-                      src={`${import.meta.env.VITE_BACKEND_URL}/uploads/${
-                        comment.photo
-                      }`}
+                      src={
+                        comment.photo === "default_avatar.png"
+                          ? `${
+                              import.meta.env.VITE_BACKEND_URL
+                            }/assets/images/${comment.photo}`
+                          : `${import.meta.env.VITE_BACKEND_URL}/uploads/${
+                              comment.photo
+                            }`
+                      }
                       alt={`${comment.firstname} ${comment.lastname}`}
                     />{" "}
                     <p className="bold-text ">
@@ -420,9 +432,15 @@ export default function Decision() {
             {impactedUsers.map((impactedUser) => (
               <img
                 key={impactedUser.id}
-                src={`${import.meta.env.VITE_BACKEND_URL}/uploads/${
-                  impactedUser.photo
-                }`}
+                src={
+                  impactedUser.photo === "default_avatar.png"
+                    ? `${import.meta.env.VITE_BACKEND_URL}/assets/images/${
+                        impactedUser.photo
+                      }`
+                    : `${import.meta.env.VITE_BACKEND_URL}/uploads/${
+                        impactedUser.photo
+                      }`
+                }
                 alt={`${impactedUser.firstname} ${impactedUser.lastname}`}
                 title={`${impactedUser.firstname} ${impactedUser.lastname}`}
               />
@@ -433,9 +451,15 @@ export default function Decision() {
             {experts.map((expert) => (
               <img
                 key={expert.id}
-                src={`${import.meta.env.VITE_BACKEND_URL}/uploads/${
-                  expert.photo
-                }`}
+                src={
+                  expert.photo === "default_avatar.png"
+                    ? `${import.meta.env.VITE_BACKEND_URL}/assets/images/${
+                        expert.photo
+                      }`
+                    : `${import.meta.env.VITE_BACKEND_URL}/uploads/${
+                        expert.photo
+                      }`
+                }
                 alt={`${expert.firstname} ${expert.lastname}`}
                 title={`${expert.firstname} ${expert.lastname}`}
               />
