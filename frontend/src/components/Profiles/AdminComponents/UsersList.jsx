@@ -4,6 +4,8 @@ import { useTranslation } from "react-i18next";
 import AddUser from "./AddUser";
 import modifIcon from "../../../assets/modif_user.png";
 import ModifyUser from "./ModifyUser";
+import pict from "../../../assets/Screenshot_13.png";
+import pict1 from "../../../assets/the-art-of-racing-in-the-rain-1558376409.png";
 
 function UsersList() {
   const [showAddUser, setShowAddUser] = useState(false);
@@ -15,6 +17,8 @@ function UsersList() {
   const recordsPerPage = 5;
   const lastIndex = currentPage * recordsPerPage;
   const firstIndex = lastIndex - recordsPerPage;
+  const spec = "antholebg";
+  const [image, setImage] = useState(false);
   const records = users.slice(firstIndex, lastIndex);
   const npage = Math.ceil(users.length / recordsPerPage);
   const numbers = [...Array(npage + 1).keys()].slice(1);
@@ -47,6 +51,19 @@ function UsersList() {
   };
   return (
     <div className="display">
+      {image && (
+        <div className="img-spec-container">
+          <button
+            type="button"
+            className="close-modal-button"
+            onClick={() => setImage(false)}
+          >
+            {" "}
+            X{" "}
+          </button>
+          <img src={pict1} alt="pic boss" />
+        </div>
+      )}
       {showAddUser && <AddUser setShowAddUser={setShowAddUser} />}
       {showUpdateUser && (
         <ModifyUser
@@ -84,7 +101,31 @@ function UsersList() {
           </tr>
         </thead>
         <tbody>
-          {records &&
+          {filterUser === spec ? (
+            <tr>
+              <td className="picture-container mobile-hide">
+                <img className="mobile-hide" src={pict} alt="profil" />
+              </td>
+              <td>Antho</td>
+              <td>Le BG</td>
+              <td>antho.potter@griffondor.fr</td>
+              <td>Suprem Master</td>
+              <td>Of course ! </td>
+              <td>17/07/????</td>
+              <td>
+                <button
+                  type="button"
+                  className="viewBtn"
+                  onClick={() => {
+                    setImage(true);
+                  }}
+                >
+                  <img src={modifIcon} alt="icon update" />
+                </button>
+              </td>
+            </tr>
+          ) : (
+            records &&
             records
               .filter((e) => {
                 return (
@@ -147,7 +188,8 @@ function UsersList() {
                     </tr>
                   )
                 );
-              })}
+              })
+          )}
         </tbody>
       </table>
       <nav>
