@@ -11,6 +11,9 @@ export default function LoginButton({
   showNotificationsMenu,
   handleShowNotificationsMenu,
   userRoleId,
+  impacts,
+  experts,
+  ReadNotif,
 }) {
   const menuRef = useRef();
   const { pathname } = useLocation();
@@ -228,6 +231,9 @@ export default function LoginButton({
       {showNotificationsMenu && (
         <NotificationButton
           handleShowNotificationsMenu={handleShowNotificationsMenu}
+          impacts={impacts}
+          experts={experts}
+          ReadNotif={ReadNotif}
         />
       )}
     </div>
@@ -241,4 +247,7 @@ LoginButton.propTypes = {
   showNotificationsMenu: PropTypes.bool.isRequired,
   handleShowNotificationsMenu: PropTypes.func.isRequired,
   userRoleId: PropTypes.number.isRequired,
+  impacts: PropTypes.arrayOf.isRequired,
+  experts: PropTypes.arrayOf.isRequired,
+  ReadNotif: PropTypes.func.isRequired,
 };

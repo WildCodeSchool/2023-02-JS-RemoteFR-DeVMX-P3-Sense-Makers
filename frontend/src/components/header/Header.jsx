@@ -1,4 +1,5 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
+import axios from "axios";
 import { Link, useLocation } from "react-router-dom";
 import LoginButton from "./ProfileMenuButton";
 import NotificationButton from "./NotificationsMenu";
@@ -19,6 +20,60 @@ export default function Header() {
   const handleShowLoginMenu = () => {
     setShowLoginMenu(!showLoginMenu);
   };
+
+  const [impacts, setImpacts] = useState([]);
+  const [experts, setExperts] = useState([]);
+
+  const ReadNotif = (concerned, Id) => {
+    axios
+      .put(
+        `${import.meta.env.VITE_BACKEND_URL}/users/${user.id}/${concerned}`,
+        { decicionsId: Id },
+        {
+          withCredentials: true,
+        }
+      )
+
+      .catch((err) => console.error(err));
+  };
+  useEffect(() => {
+    if (user.role_id === 3 || user.role_id === 1) {
+      axios
+        .get(
+          `${import.meta.env.VITE_BACKEND_URL}/users/${user.id}/taggedexperts`,
+          {
+            withCredentials: true,
+          }
+        )
+        .then((response) => {
+          setExperts(response.data);
+        })
+        .catch((err) => console.error(err));
+    }
+    if (user.role_id === 2 || user.role_id === 1) {
+      axios
+        .get(
+          `${import.meta.env.VITE_BACKEND_URL}/users/${user.id}/taggedimpacted`,
+          {
+            withCredentials: true,
+          }
+        )
+        .then((response) => {
+          setImpacts(response.data);
+        })
+        .catch((err) => console.error(err));
+    }
+  }, [ReadNotif]);
+
+  function NotificationNumber() {
+    if ((user.role_id === 3 || user.role_id === 1) && experts.lenght > 0) {
+      return experts.length;
+    }
+    if ((user.role_id === 2 || user.role_id === 1) && impacts.length > 0) {
+      return impacts.length;
+    }
+  }
+
   return (
     <div className="header">
       <div className="logo-container">
@@ -91,21 +146,26 @@ export default function Header() {
               onKeyDown={() => {}}
               onClick={handleShowNotificationsMenu}
             >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="20"
-                height="20"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                className="feather feather-bell"
-              >
-                <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9" />
-                <path d="M13.73 21a2 2 0 0 1-3.46 0" />
-              </svg>
+              <div className="bell-container">
+                {(experts.length > 0 || impacts.length > 0) && (
+                  <div className="notif-number">{NotificationNumber()}</div>
+                )}
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  className="feather feather-bell"
+                >
+                  <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9" />
+                  <path d="M13.73 21a2 2 0 0 1-3.46 0" />
+                </svg>
+              </div>
               <div className="notification-icon-title">Notifications</div>
             </div>
 
@@ -114,6 +174,9 @@ export default function Header() {
                 showNotificationsMenu={showNotificationsMenu}
                 setShowNotificationsMenu={setShowNotificationsMenu}
                 handleShowNotificationsMenu={handleShowNotificationsMenu}
+                impacts={impacts}
+                experts={experts}
+                ReadNotif={ReadNotif}
               />
             )}
           </li>
@@ -155,6 +218,11 @@ export default function Header() {
         setShowNotificationsMenu={setShowNotificationsMenu}
         handleShowNotificationsMenu={handleShowNotificationsMenu}
         userRoleId={user.role_id}
+        impacts={impacts}
+        experts={experts}
+        setImpacts={setImpacts}
+        setExperts={setExperts}
+        ReadNotif={ReadNotif}
       />
     </div>
   );

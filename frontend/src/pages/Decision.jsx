@@ -81,7 +81,7 @@ export default function Decision() {
 
   useEffect(() => {
     getDecision();
-  }, []);
+  }, [id]);
 
   useEffect(() => {
     handleComment();
