@@ -11,7 +11,7 @@ import {
 import { Bar } from "react-chartjs-2";
 
 import { useEffect, useState } from "react";
-import { statsDecisionsGeneratorByCategory } from "../../../services/statsDecisionsGenerator";
+import statsDecisionsGeneratorByCategory from "../../../services/statsDecisionsGenerator";
 
 ChartJS.register(
   CategoryScale,
