@@ -128,6 +128,53 @@ class UsersManager extends AbstractManager {
       userId,
     ]);
   }
+
+  updateUserMyProfil(photo, userId) {
+    return this.database.query(`update users set photo = ? where id = ?`, [
+      photo,
+      userId,
+    ]);
+  }
+
+  findImpactedOnDecisionByUserId(id) {
+    return this.database.query(
+      `SELECT ti.is_notif_read, u.firstname AS sender, d.id AS decisionID, d.title FROM tagged_as_impacted ti
+      LEFT JOIN decisions d ON d.id = ti.decision_id
+      RIGHT JOIN users_decisions ud ON ud.decision_id = d.id
+      JOIN users u ON ud.user_id = u.id 
+      WHERE ti.is_notif_read = ?
+      AND ti.user_id = ?`,
+      [1, id]
+    );
+  }
+
+  findExpertOnDecisionByUserId(id) {
+    return this.database.query(
+      `SELECT te.is_notif_read, u.firstname AS sender, d.id AS decisionID, d.title FROM tagged_as_experts te
+      LEFT JOIN decisions d ON d.id = te.decision_id
+      RIGHT JOIN users_decisions ud ON ud.decision_id = d.id
+      JOIN users u ON ud.user_id = u.id 
+      WHERE te.user_id = ? 
+      AND te.is_notif_read = ?`,
+      [1, id]
+    );
+  }
+
+  updateisReadNotifImpact(id) {
+    return this.database.query(
+      `update tagged_as_impacted set is_notif_read = ?
+      WHERE decision_id = ?`,
+      [0, id]
+    );
+  }
+
+  updateisReadNotifExpert(id) {
+    return this.database.query(
+      `update tagged_as_experts set is_notif_read = ?
+      WHERE decision_id = ?`,
+      [0, id]
+    );
+  }
 }
 
 module.exports = UsersManager;

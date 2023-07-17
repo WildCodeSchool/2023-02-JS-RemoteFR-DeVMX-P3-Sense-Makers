@@ -1,22 +1,28 @@
 import { useState, useContext } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { Slide, ToastContainer } from "react-toastify";
+import { useTranslation } from "react-i18next";
+import { dataNotValide } from "../services/toast";
+import Lang from "../components/Lang";
 import userContext from "../contexts/userContext";
 import CookiesConsent from "../components/CookiesConsent";
 import ModalEmail from "../components/ModalEmail";
+import GraphicElements from "../components/graphicElements/GraphicElements";
 
 export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [openModal, setOpenModal] = useState(false);
-  const { setUser, setToken } = useContext(userContext);
+  const { setUser } = useContext(userContext);
   const [showCookieBanner, setShowCookieBanner] = useState(true);
   const [cookieValidation, setCookieValidation] = useState("hide");
   const navigate = useNavigate();
+  const { t } = useTranslation();
 
   const postUserInfos = (e) => {
     e.preventDefault();
-    if (localStorage.getItem("cookieBannerDisplayed")) {
+    if (localStorage.getItem("conditionsAcceptation")) {
       axios
         .post(
           `${import.meta.env.VITE_BACKEND_URL}/login`,
@@ -27,13 +33,15 @@ export default function Login() {
           { withCredentials: true }
         )
         .then((res) => {
-          console.info(res.data);
           setUser(res.data.user);
           setTimeout(() => {
             navigate("/logged/decisions");
           }, 500);
         })
-        .catch((err) => console.error(err));
+        .catch((err) => {
+          console.error(err);
+          return dataNotValide();
+        });
     } else {
       setCookieValidation("cookie-obligation");
     }
@@ -41,16 +49,20 @@ export default function Login() {
 
   return (
     <>
+      <GraphicElements />
       {openModal && <ModalEmail setOpenModal={setOpenModal} />}
+      <div className="languages-choice-container">
+        <Lang />
+      </div>
       <div className="logInContainer">
         <form onSubmit={postUserInfos}>
           <div className="logIn-input">
             <div className="inputsContainer">
               <p className={cookieValidation}>
-                Vous devez accepter les cookies
+                {t("login.banner.textForAcceptation")}
               </p>
               <label htmlFor="logInUsername">
-                <p>Email</p>
+                <p>{t("login.email")}</p>
               </label>
               <input
                 autoComplete="nom d'utilisateur"
@@ -59,7 +71,7 @@ export default function Login() {
                 onChange={(e) => setEmail(e.target.value)}
               />
               <label htmlFor="logInPassword">
-                <p>Mot de passe</p>
+                <p>{t("login.password")}</p>
               </label>
               <input
                 autoComplete="mot de passe"
@@ -69,7 +81,7 @@ export default function Login() {
               />
             </div>
             <button type="submit">
-              <h2>Se connecter</h2>
+              <h2>{t("login.connectionButton")}</h2>
             </button>
             <span
               role="button"
@@ -78,7 +90,7 @@ export default function Login() {
               className="reinicialize-password"
               onClick={() => setOpenModal(true)}
             >
-              Mot de passe oublié ?
+              {t("login.forgotPassword")}
             </span>
           </div>
         </form>
@@ -89,6 +101,7 @@ export default function Login() {
           />
         )}
       </div>
+      <ToastContainer autoClose={1500} transition={Slide} />
     </>
   );
 }

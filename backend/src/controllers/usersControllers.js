@@ -180,6 +180,25 @@ const editUserPassword = (req, res) => {
   });
 };
 
+const editUserMyProfil = (req, res) => {
+  const userId = parseInt(req.params.id, 10);
+  const { photo } = req.body;
+
+  models.users
+    .updateUserMyProfil(photo, userId)
+    .then(([result]) => {
+      if (result.affectedRows === 0) {
+        res.sendStatus(404);
+      } else {
+        res.sendStatus(204);
+      }
+    })
+    .catch((error) => {
+      console.error(error);
+      res.sendStatus(500);
+    });
+};
+
 const addUser = (req, res) => {
   const user = req.body;
 
@@ -267,6 +286,77 @@ const getUserByEmail = (req, res, next) => {
     });
 };
 
+const getExpertUsersForNotif = (req, res) => {
+  const userId = req.params.id;
+  models.users
+    .findExpertOnDecisionByUserId(userId)
+    .then(([result]) => {
+      if (result.affectedRows === 0) {
+        res.sendStatus(404);
+      } else {
+        res.status(201).json(result);
+      }
+    })
+    .catch((err) => {
+      console.error(err);
+      res.sendStatus(500);
+    });
+};
+
+const getImpactedUsersForNotif = (req, res) => {
+  const userId = parseInt(req.params.id, 10);
+
+  models.users
+    .findImpactedOnDecisionByUserId(userId)
+    .then(([result]) => {
+      if (result.affectedRows === 0) {
+        res.sendStatus(404);
+      } else {
+        res.status(201).json(result);
+      }
+    })
+    .catch((err) => {
+      console.error(err);
+      res.sendStatus(500);
+    });
+};
+
+const modifyImpactNotifRead = (req, res) => {
+  const { decicionsId } = req.body;
+
+  models.users
+    .updateisReadNotifImpact(decicionsId)
+    .then(([result]) => {
+      if (result.affectedRows === 0) {
+        res.sendStatus(404);
+      } else {
+        res.sendStatus(204);
+      }
+    })
+    .catch((err) => {
+      console.error(err);
+      res.sendStatus(500);
+    });
+};
+
+const modifyExpertNotifRead = (req, res) => {
+  const { decicionsId } = req.body;
+
+  models.users
+    .updateisReadNotifExpert(decicionsId)
+    .then(([result]) => {
+      if (result.affectedRows === 0) {
+        res.sendStatus(404);
+      } else {
+        res.sendStatus(204);
+      }
+    })
+    .catch((err) => {
+      console.error(err);
+      res.sendStatus(500);
+    });
+};
+
 module.exports = {
   browseUsers,
   browseUsersWithRoles,
@@ -276,6 +366,7 @@ module.exports = {
   editUser,
   editUserIsActive,
   editUserRole,
+  editUserMyProfil,
   addUser,
   addRoleToUser,
   destroyUser,
@@ -284,4 +375,8 @@ module.exports = {
   editUserPassword,
   destroyUserRoleExpert,
   getUserByEmail,
+  getImpactedUsersForNotif,
+  getExpertUsersForNotif,
+  modifyImpactNotifRead,
+  modifyExpertNotifRead,
 };

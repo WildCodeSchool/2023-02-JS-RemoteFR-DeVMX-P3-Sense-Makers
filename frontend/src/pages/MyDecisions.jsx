@@ -1,6 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import { useTranslation } from "react-i18next";
 import CardDecision from "../components/CardDecision";
 import userContext from "../contexts/userContext";
 
@@ -9,6 +10,7 @@ export default function MyDecisions() {
   const { user } = useContext(userContext);
   const [allDecisions, setAllDecision] = useState([]);
   const [allStatus, setAllStatus] = useState([]);
+  const { t } = useTranslation();
 
   useEffect(() => {
     axios
@@ -35,17 +37,17 @@ export default function MyDecisions() {
   return (
     <div className="all-decisions-container">
       <div className="title-container">
-        <h1>Mes décisions</h1>
+        <h1>{t("decisions.myTitle")}</h1>
         <button type="button" onClick={() => navigate("/logged/postdecision")}>
           <i className="fa-solid fa-plus" />
-          Créer une décision
+          {t("decisions.create")}
         </button>
       </div>
       {allStatus.map((statut) => (
         <div className="infos-status-container" key={statut.id}>
           <details className="details-container">
             <summary>
-              {statut.title}
+              {t(`decisions.status.${statut.id}`)}
               <hr />
             </summary>
             <div className="cards-decision-container">

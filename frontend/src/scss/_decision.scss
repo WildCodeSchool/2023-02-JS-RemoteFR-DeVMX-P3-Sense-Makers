@@ -3,6 +3,7 @@
 .decision {
   padding: 1rem;
   color: $color-default;
+  font-family: $primary-font;
 
   img {
     height: 40px;
@@ -93,8 +94,16 @@
       overflow-wrap: break-word;
       .comment-info {
         display: flex;
-        align-items: center;
-        gap: 1rem;
+        justify-content: space-between;
+        .info-block {
+          display: flex;
+          align-items: center;
+          gap: 1rem;
+        }
+        .delete-button {
+          font-size: 1.6rem;
+          color: $color-default;
+        }
       }
     }
   }
