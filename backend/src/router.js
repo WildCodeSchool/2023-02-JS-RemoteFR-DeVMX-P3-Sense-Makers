@@ -91,4 +91,12 @@ router.post("/roles", rolesControllers.addRole);
 router.put("/roles/:id", rolesControllers.editRole);
 router.delete("/roles/:id", rolesControllers.destroyRole);
 
+router.get(
+  "/users/:id/taggedimpacted",
+  usersControllers.getImpactedUsersForNotif
+);
+router.get("/users/:id/taggedexperts", usersControllers.getExpertUsersForNotif);
+
+router.put("/users/:id/taggedimpacted", usersControllers.modifyImpactNotifRead);
+router.put("/users/:id/taggedexperts", usersControllers.modifyExpertNotifRead);
 module.exports = router;

@@ -2,6 +2,7 @@ import { Slide, ToastContainer } from "react-toastify";
 import { useTranslation } from "react-i18next";
 import DecisionsList from "../components/Profiles/AdminComponents/DecisionsList";
 import UsersList from "../components/Profiles/AdminComponents/UsersList";
+import StatsAnual from "../components/Profiles/AdminComponents/AnualStats";
 import MonthlyStats from "../components/Profiles/AdminComponents/MonthlyStats";
 
 export default function Administration() {
@@ -13,8 +14,9 @@ export default function Administration() {
         <summary>
           {t("admin.stats")}
           <hr />
-          <MonthlyStats />
         </summary>
+        <MonthlyStats />
+        <StatsAnual />
       </details>
       <details className="details-container">
         <summary>

@@ -1,10 +1,28 @@
+import { useEffect, useState } from "react";
+import { statsDecisionsGeneratorByCategory } from "../../../services/statsDecisionsGenerator";
+
 export default function MonthlyStats() {
+  const [statsByCategoryData, setStatsByCategoryData] = useState([]);
+
+  useEffect(() => {
+    const stats = statsDecisionsGeneratorByCategory();
+    setTimeout(() => {
+      setStatsByCategoryData(stats);
+    }, 500);
+  }, []);
+
+  const currentMonth = new Date().getMonth();
+
   return (
     <div className="global-monthly-stats-container">
       <div className="round-container">
-        <p className="total-decisions text">146</p>
+        <p className="total-decisions text">
+          {statsByCategoryData[currentMonth]?.totalFinished}
+        </p>
         <p className="round-text text">décisions au total, dont</p>
-        <p className="decisions-created text">24</p>
+        <p className="decisions-created text">
+          {statsByCategoryData[currentMonth]?.created}
+        </p>
         <p className="round-text text">débutées ce mois</p>
       </div>
       <div className="first-square-container card">
@@ -25,7 +43,9 @@ export default function MonthlyStats() {
               <circle cx="12" cy="12" r="10" />
               <polyline points="12 6 12 12 16 14" />
             </svg>
-            <p className="total-numbers text">12</p>
+            <p className="total-numbers text">
+              {statsByCategoryData[currentMonth]?.waitingFor}
+            </p>
           </div>
           <p className="title text">prises de décisions en attente</p>
         </div>
@@ -44,7 +64,9 @@ export default function MonthlyStats() {
           >
             <polyline points="20 6 9 17 4 12" />
           </svg>
-          <p className="total-numbers text">3</p>
+          <p className="total-numbers text">
+            {statsByCategoryData[currentMonth]?.firstMadeDecision}
+          </p>
         </div>
         <p className="title text">premières décisions prises</p>
       </div>
@@ -66,7 +88,9 @@ export default function MonthlyStats() {
               <circle cx="12" cy="12" r="10" />
               <polyline points="12 6 12 12 16 14" />
             </svg>
-            <p className="total-numbers text">12</p>
+            <p className="total-numbers text">
+              {statsByCategoryData[currentMonth]?.waitingForExpert}
+            </p>
           </div>
           <p className="title text">
             décisions définitives en attente d'experts
@@ -88,7 +112,9 @@ export default function MonthlyStats() {
             <line x1="18" y1="6" x2="6" y2="18" />
             <line x1="6" y1="6" x2="18" y2="18" />
           </svg>
-          <p className="total-numbers text">3</p>
+          <p className="total-numbers text">
+            {statsByCategoryData[currentMonth]?.notFinished}
+          </p>
         </div>
         <p className="title text">décisions non abouties</p>
       </div>
@@ -109,7 +135,9 @@ export default function MonthlyStats() {
             >
               <polyline points="20 6 9 17 4 12" />
             </svg>
-            <p className="total-numbers text">12</p>
+            <p className="total-numbers text">
+              {statsByCategoryData[currentMonth]?.finishedValid}
+            </p>
           </div>
           <p className="title text">décisions définitives validées</p>
         </div>
@@ -129,7 +157,9 @@ export default function MonthlyStats() {
             <line x1="18" y1="6" x2="6" y2="18" />
             <line x1="6" y1="6" x2="18" y2="18" />
           </svg>
-          <p className="total-numbers text">3</p>
+          <p className="total-numbers text">
+            {statsByCategoryData[currentMonth]?.finishedNotValid}
+          </p>
         </div>
         <p className="title text">décisions définitives non validées</p>
       </div>
