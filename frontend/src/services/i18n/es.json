@@ -120,8 +120,8 @@
     "textPart1": "Este sitio web utiliza datos de inicio de sesión. Lea nuestro",
     "link": "Política de privacidad",
     "textPart2": "para más información",
-    "agreement": "Acuerdo",
-    "refusal": "Negativa"
+    "agreement": "Aceptar",
+    "refusal": "Rechazar"
   },
 
   "postComment": {

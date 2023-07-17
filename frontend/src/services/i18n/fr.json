@@ -120,8 +120,8 @@
     "textPart1": "Ce site utilise des données de connexion. Lisez notre",
     "link": "politique de confidentialité",
     "textPart2": "pour plus d'infos",
-    "agreement": "Accord",
-    "refusal": "Refus"
+    "agreement": "Accepter",
+    "refusal": "Refuser"
   },
 
   "postComment": {

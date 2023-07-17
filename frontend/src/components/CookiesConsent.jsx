@@ -41,7 +41,7 @@ function CookiesConsent({ setShowCookieBanner, setCookieValidation }) {
           className="cookie-btn"
           onClick={handleClickRefuse}
         >
-          Refus
+          {t("cookieConsent.refusal")}
         </button>
       </div>
     </div>

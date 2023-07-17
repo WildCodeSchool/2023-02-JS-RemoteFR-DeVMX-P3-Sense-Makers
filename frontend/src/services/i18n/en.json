@@ -120,8 +120,8 @@
     "textPart1": "This website uses login data. Read our",
     "link": "Privacy Policy",
     "textPart2": "for more info",
-    "agreement": "Accord",
-    "refusal": "Refus"
+    "agreement": "Accept",
+    "refusal": "Deny"
   },
 
   "postComment": {
