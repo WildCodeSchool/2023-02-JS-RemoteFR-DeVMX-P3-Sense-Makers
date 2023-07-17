@@ -177,7 +177,8 @@
       "roleSelect": "Selecciona tu rol",
       "expert": "Experto",
       "delete": "Borrar"
-    }
+    },
+    "myProfile": "Mi perfil"
   },
 
   "usersListAdmin": {
