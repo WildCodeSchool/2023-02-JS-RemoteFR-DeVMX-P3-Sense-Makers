@@ -188,8 +188,8 @@
       "lastName": "Lastname",
       "firstName": "Firstname",
       "email": "Email",
-      "role": "role",
-      "expert": "expert",
+      "role": "Role",
+      "expert": "Expert",
       "created": "Created on"
     },
     "tableContent": {

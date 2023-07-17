@@ -27,7 +27,7 @@ export default function NotificationButton({
               ReadNotif("taggedexperts", expert.decisionID, "Experts");
             }}
           >
-            {expert.sender} vous a indiqué comme impacté sur une décision
+            {expert.sender} {t("notif")}
           </Link>
         );
       });
