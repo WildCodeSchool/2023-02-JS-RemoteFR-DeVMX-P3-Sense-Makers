@@ -101,7 +101,7 @@ class DecisionManager extends AbstractManager {
   }
 
   findConcernedHub() {
-    return this.database.query(`SELECT * FROM concernedhub c`);
+    return this.database.query(`SELECT * FROM concernedhub`);
   }
 }
 
