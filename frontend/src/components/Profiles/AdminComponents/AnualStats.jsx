@@ -1,4 +1,3 @@
-/* eslint-disable react/prop-types */
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -23,7 +22,6 @@ ChartJS.register(
 );
 
 export const options = {
-  // responsive: true,
   maintainAspectRatio: false,
   plugins: {
     legend: {
