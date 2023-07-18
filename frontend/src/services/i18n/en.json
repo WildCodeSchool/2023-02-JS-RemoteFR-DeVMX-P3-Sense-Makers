@@ -11,6 +11,7 @@
 
   "postDecision": {
     "title": "Post a decision",
+    "placeholder": "Move to Paris...",
     "button": "Post this decision",
     "inputs": {
       "title": "Decision's title",
@@ -52,7 +53,7 @@
       "benefit": "Benefits",
       "risks": "Potential risks",
       "firstTake": "First decision making",
-      "comments": "comments"
+      "comments": "Comments"
     },
     "comment": {
       "expert": "expert",
@@ -118,10 +119,10 @@
 
   "cookieConsent": {
     "textPart1": "This website uses login data. Read our",
-    "link": "Privacy Policy",
+    "link": "privacy policy",
     "textPart2": "for more info",
-    "agreement": "Accord",
-    "refusal": "Refus"
+    "agreement": "Accept",
+    "refusal": "Deny"
   },
 
   "postComment": {
@@ -177,7 +178,8 @@
       "roleSelect": "Select your role",
       "expert": "Expert",
       "delete": "Delete"
-    }
+    },
+    "myProfile": "My profile"
   },
 
   "usersListAdmin": {

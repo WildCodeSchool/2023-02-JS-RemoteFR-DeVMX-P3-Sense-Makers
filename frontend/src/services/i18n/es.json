@@ -11,6 +11,7 @@
 
   "postDecision": {
     "title": "Publicar una decisión",
+    "placeholder": "Mudarse a París...",
     "button": "Publicar esta decisión",
     "inputs": {
       "title": "Título de la decisión",
@@ -52,7 +53,7 @@
       "benefit": "Beneficios",
       "risks": "Riesgos potenciales",
       "firstTake": "Primera toma de decisiones",
-      "comments": "comentarios"
+      "comments": "Comentarios"
     },
     "comment": {
       "expert": "experto",
@@ -118,10 +119,10 @@
 
   "cookieConsent": {
     "textPart1": "Este sitio web utiliza datos de inicio de sesión. Lea nuestro",
-    "link": "Política de privacidad",
+    "link": "política de privacidad",
     "textPart2": "para más información",
-    "agreement": "Acuerdo",
-    "refusal": "Negativa"
+    "agreement": "Aceptar",
+    "refusal": "Rechazar"
   },
 
   "postComment": {
@@ -173,11 +174,12 @@
     "validation": "Validar cambios",
     "dropzone": "suelte un archivo de imagen aquí",
     "modifyUser": {
-      "role": "Role",
+      "role": "Rol",
       "roleSelect": "Selecciona tu rol",
       "expert": "Experto",
       "delete": "Borrar"
-    }
+    },
+    "myProfile": "Mi perfil"
   },
 
   "usersListAdmin": {
@@ -208,7 +210,7 @@
       "title": "Título",
       "status": "Estado",
       "createdOn": "Creado el",
-      "createdBy": "Creado porr"
+      "createdBy": "Creado por"
     },
     "status": {
       "1": "Toma de decisión comenzó",

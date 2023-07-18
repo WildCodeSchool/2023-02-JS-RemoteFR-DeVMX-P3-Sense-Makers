@@ -11,6 +11,7 @@
 
   "postDecision": {
     "title": "Poster une décision",
+    "placeholder": "Déménager hors de Paris...",
     "button": "Poster cette décision",
     "inputs": {
       "title": "Titre de la décision",
@@ -120,8 +121,8 @@
     "textPart1": "Ce site utilise des données de connexion. Lisez notre",
     "link": "politique de confidentialité",
     "textPart2": "pour plus d'infos",
-    "agreement": "Accord",
-    "refusal": "Refus"
+    "agreement": "Accepter",
+    "refusal": "Refuser"
   },
 
   "postComment": {
@@ -177,7 +178,8 @@
       "roleSelect": "Sélectionnez votre rôle",
       "expert": "Expert(e)",
       "delete": "Supprimer"
-    }
+    },
+    "myProfile": "Mon profil"
   },
 
   "usersListAdmin": {
@@ -208,7 +210,7 @@
       "title": "Titre",
       "status": "Statut",
       "createdOn": "Créé le",
-      "createdBy": "créé par"
+      "createdBy": "Créé par"
     },
     "status": {
       "1": "Prise de décision débutée",
