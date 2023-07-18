@@ -154,25 +154,27 @@ class UsersManager extends AbstractManager {
       LEFT JOIN decisions d ON d.id = te.decision_id
       RIGHT JOIN users_decisions ud ON ud.decision_id = d.id
       JOIN users u ON ud.user_id = u.id 
-      WHERE te.user_id = ? 
-      AND te.is_notif_read = ?`,
+      WHERE te.is_notif_read = ? 
+      AND te.user_id = ?`,
       [1, id]
     );
   }
 
-  updateisReadNotifImpact(id) {
+  updateisReadNotifImpact(id, userId) {
     return this.database.query(
       `update tagged_as_impacted set is_notif_read = ?
-      WHERE decision_id = ?`,
-      [0, id]
+      WHERE decision_id = ?
+      AND user_id = ?`,
+      [0, id, userId]
     );
   }
 
-  updateisReadNotifExpert(id) {
+  updateisReadNotifExpert(id, userId) {
     return this.database.query(
       `update tagged_as_experts set is_notif_read = ?
-      WHERE decision_id = ?`,
-      [0, id]
+      WHERE decision_id = ?
+      AND user_id = ?`,
+      [0, id, userId]
     );
   }
 }

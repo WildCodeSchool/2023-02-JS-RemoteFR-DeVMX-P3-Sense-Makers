@@ -1,13 +1,21 @@
+import { useState } from "react";
 import { useTranslation } from "react-i18next";
+import InputLabel from "@mui/material/InputLabel";
+import MenuItem from "@mui/material/MenuItem";
+import FormControl from "@mui/material/FormControl";
+import Select from "@mui/material/Select";
 import { Languages } from "../services/Languages.ts";
 
 export default function Lang() {
   const { i18n } = useTranslation();
+  let language = Languages.FR;
+  const [lang, setLang] = useState(language);
 
   const changeLanguage = (event) => {
-    const languages = event.target.value;
+    setLang(event.target.value);
+    language = event.target.value;
 
-    switch (languages) {
+    switch (language) {
       case Languages.EN:
         i18n.changeLanguage(Languages.EN);
         break;
@@ -23,13 +31,25 @@ export default function Lang() {
 
   return (
     <div>
-      <div>
-        <select name="languages" onChange={changeLanguage}>
-          <option value={Languages.FR}>FR</option>
-          <option value={Languages.EN}>EN</option>
-          <option value={Languages.ES}>ES</option>
-        </select>
-      </div>
+      <FormControl
+        sx={{
+          m: 0,
+          minWidth: 100,
+        }}
+        size="small"
+      >
+        <InputLabel>Langue</InputLabel>
+        <Select
+          onChange={changeLanguage}
+          value={lang}
+          autoWidth
+          label="language"
+        >
+          <MenuItem value={Languages.FR}>FR</MenuItem>
+          <MenuItem value={Languages.EN}>EN</MenuItem>
+          <MenuItem value={Languages.ES}>ES</MenuItem>
+        </Select>
+      </FormControl>
     </div>
   );
 }
