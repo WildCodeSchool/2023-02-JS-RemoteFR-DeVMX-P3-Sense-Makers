@@ -254,5 +254,24 @@
     "unsuccessfulDecisions": "décisions non abouties",
     "validatedDecisions": "décisions définitives validées",
     "notValidatedDecisions": "décisions définitives non validées"
+  },
+
+  "anualStats": {
+    "january": "Janvier",
+    "february": "Février",
+    "march": "Mars",
+    "april": "Avril",
+    "may": "Mai",
+    "june": "Juin",
+    "july": "Juillet",
+    "august": "Août",
+    "september": "Septembre",
+    "october": "Octobre",
+    "november": "Novembre",
+    "december": "Décembre",
+    "created": "Créées",
+    "notValidated": "Non validées",
+    "validated": "Validées",
+    "notFinished": "Non abouties"
   }
 }
