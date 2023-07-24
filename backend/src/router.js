@@ -96,6 +96,10 @@ router.get(
   usersControllers.getImpactedUsersForNotif
 );
 router.get("/users/:id/taggedexperts", usersControllers.getExpertUsersForNotif);
+router.get(
+  "/users/:id/validationexpert",
+  usersControllers.getExpertForValidationNotif
+);
 
 router.put("/users/:id/taggedimpacted", usersControllers.modifyImpactNotifRead);
 router.put("/users/:id/taggedexperts", usersControllers.modifyExpertNotifRead);
