@@ -20,7 +20,7 @@ function TextEditor({ name, title, dispatch }) {
       {title} *
       <Editor
         id={`${name}_decision`}
-        apiKey={`${import.meta.env.API_KEY}`}
+        apiKey="kj8hy39rl1nje7nh6kf3etgbl37lrjlvhsxindvx30h9hskr"
         onChange={functionChange}
         onInit={(evt, editor) => {
           refInit.current = editor;
@@ -70,7 +70,7 @@ TextEditor.propTypes = {
   title: PropTypes.string.isRequired,
   dispatch: PropTypes.shape({
     type: PropTypes.string.isRequired,
-    value: PropTypes.func.isRequired,
+    value: PropTypes.objectOf.isRequired,
     key: PropTypes.string.isRequired,
   }).isRequired,
 };

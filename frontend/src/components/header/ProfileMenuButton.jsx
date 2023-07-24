@@ -271,5 +271,5 @@ LoginButton.propTypes = {
   impacts: PropTypes.arrayOf.isRequired,
   experts: PropTypes.arrayOf.isRequired,
   ReadNotif: PropTypes.func.isRequired,
-  NotificationNumber: PropTypes.func.isRequired,
+  NotificationNumber: PropTypes.number.isRequired,
 };
