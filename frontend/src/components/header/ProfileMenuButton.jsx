@@ -272,6 +272,7 @@ LoginButton.propTypes = {
   userRoleId: PropTypes.number.isRequired,
   impacts: PropTypes.arrayOf.isRequired,
   experts: PropTypes.arrayOf.isRequired,
+  notifValidation: PropTypes.arrayOf.isRequired,
   ReadNotif: PropTypes.func.isRequired,
   NotificationNumber: PropTypes.number.isRequired,
 };

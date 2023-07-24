@@ -86,4 +86,5 @@ NotificationButton.propTypes = {
   impacts: PropTypes.arrayOf.isRequired,
   experts: PropTypes.arrayOf.isRequired,
   ReadNotif: PropTypes.func.isRequired,
+  notifValidation: PropTypes.arrayOf.isRequired,
 };
