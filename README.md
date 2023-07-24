@@ -46,21 +46,21 @@
 
 ### Login Data
 
-- Role Admin:
+- Role Admin and Expert:
   - Email: place.holder@placeholder.com
-  - Password: place.holder@placeholder.com
+  - Password: test
     
-- Role Admin:
-  - Email: place.holder@placeholder.com
-  - Password: place.holder@placeholder.com
+- Role User:
+  - Email: jean.mich@michel.com
+  - Password: test
     
-- Role Admin:
-  - Email: place.holder@placeholder.com
-  - Password: place.holder@placeholder.com
+- Role User:
+  - Email: Harry.Potter@poudlard.com
+  - Password: test
     
-- Role Admin:
-  - Email: place.holder@placeholder.com
-  - Password: place.holder@placeholder.com
+- Role User Expert:
+  - Email: lorem@ipsum.com
+  - Password: test
     
 </details>
 
