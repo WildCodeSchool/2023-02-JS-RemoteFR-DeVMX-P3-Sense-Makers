@@ -72,7 +72,7 @@
     "impactedUsers": "Personas impactadas",
     "expertsUsers": "Gente experta",
     "deleteDecision": "¿De verdad quieres borrar esta decisión?",
-    "delete": "eliminar esta decisión",
+    "delete": "Eliminar esta decisión",
     "modal": {
       "carefull": "¡Advertencia, esta acción es irreversible!",
       "confirm": "Confirmar",
@@ -183,7 +183,7 @@
   },
 
   "usersListAdmin": {
-    "placeHolderSearch": "búsqueda de usuarios",
+    "placeHolderSearch": "Búsqueda de usuarios",
     "textButton": "Agregar un usuario",
     "tableTitle": {
       "photo": "Foto",
