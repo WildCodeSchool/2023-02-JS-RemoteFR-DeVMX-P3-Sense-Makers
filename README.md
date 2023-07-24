@@ -44,6 +44,24 @@
 - `lint` : Runs validation tools, and refuses unclean code (will be executed on every _commit_)
 - `fix` : Fixes linter errors (run it if `lint` growls on your code !)
 
+### Login Data
+
+- Role Admin:
+- - Email: place.holder@placeholder.com
+- - Password: place.holder@placeholder.com
+    
+- Role Admin:
+- - Email: place.holder@placeholder.com
+- - Password: place.holder@placeholder.com
+    
+- Role Admin:
+- - Email: place.holder@placeholder.com
+- - Password: place.holder@placeholder.com
+    
+- Role Admin:
+- - Email: place.holder@placeholder.com
+- - Password: place.holder@placeholder.com
+    
 </details>
 
 <details>
