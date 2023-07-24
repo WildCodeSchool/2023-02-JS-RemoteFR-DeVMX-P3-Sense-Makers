@@ -124,10 +124,10 @@ INSERT INTO
         creation_date
     )
 VALUES (
-        "Place",
-        "holder",
+        "Bernard",
+        "Duran",
         "Alaric.jpg",
-        "place.holder@placeholder.com",
+        "bernard@makesense.com",
         "$argon2id$v=19$m=65536,t=3,p=4$G86ilaHqcIdB1K7i9aW7qw$MY6SjY1R4irmD8qIJCIAZ+R65DslW1Pdb6l7X/FYAxM",
         1,
         "2023-03-03"
@@ -135,23 +135,23 @@ VALUES (
         "Jean",
         "Michel",
         "Nicolas.jpg",
-        "jean.mich@michel.com",
+        "jean@makesense.com",
         "$argon2id$v=19$m=65536,t=3,p=4$G86ilaHqcIdB1K7i9aW7qw$MY6SjY1R4irmD8qIJCIAZ+R65DslW1Pdb6l7X/FYAxM",
         1,
         "2025-12-08"
     ), (
         "Harry",
-        "Potter",
+        "Poitier",
         "photo-frederico_cassola_.jpg",
-        "Harry.Potter@poudlard.com",
+        "harry@makesense.com",
         "$argon2id$v=19$m=65536,t=3,p=4$G86ilaHqcIdB1K7i9aW7qw$MY6SjY1R4irmD8qIJCIAZ+R65DslW1Pdb6l7X/FYAxM",
         1,
         "1905-05-25"
     ), (
-        "Lore",
-        "M",
+        "Laure",
+        "Majax",
         "Photo_Charlotte.jpg",
-        "lorem@ipsum.com",
+        "laure@makesense.com",
         "$argon2id$v=19$m=65536,t=3,p=4$G86ilaHqcIdB1K7i9aW7qw$MY6SjY1R4irmD8qIJCIAZ+R65DslW1Pdb6l7X/FYAxM",
         1,
         "8674-02-05"
@@ -864,11 +864,11 @@ VALUES (1, 1), (1, 3), (2, 2), (3, 2), (4, 2), (4, 3);
 
 INSERT INTO
     users_decisions (user_id, decision_id)
-VALUES (2, 1), (3, 2), (1, 4), (4, 3), (1, 5), (1, 6), (4, 7), (3, 8), (2, 9), (2, 10);
+VALUES (2, 1), (3, 2), (1, 4), (4, 3), (4, 5), (1, 6), (4, 7), (3, 8), (1, 9), (2, 10);
 
 INSERT INTO
     tagged_as_experts (user_id, decision_id)
-VALUES (1, 1), (1, 3), (4, 4), (4, 2), (1, 4), (4, 3), (4, 5), (4, 6), (1, 7), (1, 8), (4, 9), (1, 10);
+VALUES (1, 1), (1, 3), (4, 4), (4, 2), (1, 4), (4, 3), (1, 5), (4, 6), (1, 7), (1, 8), (4, 9), (1, 10);
 
 INSERT INTO
     tagged_as_impacted (user_id, decision_id)
@@ -884,18 +884,18 @@ INSERT INTO
 VALUES (
         1,
         2,
-        "2023-06-08",
-        "PLACEHOLDER PLACEHOLDER PLACEHOLDER PLACEHOLDER PLACEHOLDER PLACEHOLDER PLACEHOLDER PLACEHOLDER PLACEHOLDER PLACEHOLDER PLACEHOLDER PLACEHOLDER PLACEHOLDER PLACEHOLDER PLACEHOLDER PLACEHOLDER PLACEHOLDER PLACEHOLDER PLACEHOLDER PLACEHOLDER PLACEHOLDER PLACEHOLDER PLACEHOLDER PLACEHOLDER PLACEHOLDER PLACEHOLDER PLACEHOLDER PLACEHOLDER PLACEHOLDER PLACEHOLDER PLACEHOLDER PLACEHOLDER PLACEHOLDER PLACEHOLDER PLACEHOLDER PLACEHOLDER "
+        "2023-07-08",
+        "Habitasse platea dictumst vestibulum rhoncus est pellentesque elit ullamcorper dignissim. Pharetra massa massa ultricies mi quis hendrerit dolor magna. Quam vulputate dignissim suspendisse in est ante. Velit scelerisque in dictum non consectetur a erat nam at. Tellus pellentesque eu tincidunt tortor aliquam nulla. Pharetra sit amet aliquam id diam maecenas ultricies mi eget. Phasellus vestibulum lorem sed risus ultricies tristique nulla. Sed turpis tincidunt id aliquet risus feugiat in ante. Purus gravida quis blandit turpis. Tincidunt vitae semper quis lectus nulla at volutpat diam. Tristique et egestas quis ipsum suspendisse ultrices gravida. Placerat duis ultricies lacus sed. Purus in massa tempor nec feugiat nisl pretium fusce. Tristique magna sit amet purus gravida. Turpis egestas pretium aenean pharetra magna. Blandit turpis cursus in hac habitasse platea dictumst quisque sagittis. Porttitor lacus luctus accumsan tortor posuere ac ut consequat semper."
     ), (
         1,
         3,
-        "2023-06-09",
-        "PLACEHOLDER PLACEHOLDER PLACEHOLDER PLACEHOLDER PLACEHOLDER PLACEHOLDER PLACEHOLDER PLACEHOLDER PLACEHOLDER PLACEHOLDER PLACEHOLDER PLACEHOLDER PLACEHOLDER PLACEHOLDER PLACEHOLDER PLACEHOLDER PLACEHOLDER PLACEHOLDER PLACEHOLDER PLACEHOLDER PLACEHOLDER PLACEHOLDER PLACEHOLDER PLACEHOLDER PLACEHOLDER PLACEHOLDER PLACEHOLDER PLACEHOLDER "
+        "2023-07-09",
+        "Habitasse platea dictumst vestibulum rhoncus est pellentesque elit ullamcorper dignissim. Pharetra massa massa ultricies mi quis hendrerit dolor magna. Quam vulputate dignissim suspendisse in est ante. Velit scelerisque in dictum non consectetur a erat nam at. Tellus pellentesque eu tincidunt tortor aliquam nulla. Pharetra sit amet aliquam id diam maecenas ultricies mi eget. Phasellus vestibulum lorem sed risus ultricies tristique nulla. Sed turpis tincidunt id aliquet risus feugiat in ante. Purus gravida quis blandit turpis. Tincidunt vitae semper quis lectus nulla at volutpat diam. Tristique et egestas quis ipsum suspendisse ultrices gravida. Placerat duis ultricies lacus sed. Purus in massa tempor nec feugiat nisl pretium fusce. Tristique magna sit amet purus gravida. Turpis egestas pretium aenean pharetra magna. Blandit turpis cursus in hac habitasse platea dictumst quisque sagittis. Porttitor lacus luctus accumsan tortor posuere ac ut consequat semper."
     ), (
         1,
         4,
-        "2023-06-11",
-        "PLACEHOLDER PLACEHOLDER PLACEHOLDER PLACEHOLDER PLACEHOLDER PLACEHOLDER PLACEHOLDER PLACEHOLDER PLACEHOLDER PLACEHOLDER PLACEHOLDER PLACEHOLDER PLACEHOLDER PLACEHOLDER PLACEHOLDER PLACEHOLDER PLACEHOLDER PLACEHOLDER PLACEHOLDER PLACEHOLDER PLACEHOLDER PLACEHOLDER PLACEHOLDER PLACEHOLDER PLACEHOLDER PLACEHOLDER PLACEHOLDER PLACEHOLDER PLACEHOLDER PLACEHOLDER PLACEHOLDER PLACEHOLDER PLACEHOLDER PLACEHOLDER PLACEHOLDER PLACEHOLDER PLACEHOLDER PLACEHOLDER PLACEHOLDER PLACEHOLDER PLACEHOLDER PLACEHOLDER PLACEHOLDER PLACEHOLDER PLACEHOLDER "
+        "2023-07-11",
+        "Habitasse platea dictumst vestibulum rhoncus est pellentesque elit ullamcorper dignissim. Pharetra massa massa ultricies mi quis hendrerit dolor magna. Quam vulputate dignissim suspendisse in est ante. Velit scelerisque in dictum non consectetur a erat nam at. Tellus pellentesque eu tincidunt tortor aliquam nulla. Pharetra sit amet aliquam id diam maecenas ultricies mi eget. Phasellus vestibulum lorem sed risus ultricies tristique nulla. Sed turpis tincidunt id aliquet risus feugiat in ante. Purus gravida quis blandit turpis. Tincidunt vitae semper quis lectus nulla at volutpat diam. Tristique et egestas quis ipsum suspendisse ultrices gravida. Placerat duis ultricies lacus sed. Purus in massa tempor nec feugiat nisl pretium fusce. Tristique magna sit amet purus gravida. Turpis egestas pretium aenean pharetra magna. Blandit turpis cursus in hac habitasse platea dictumst quisque sagittis. Porttitor lacus luctus accumsan tortor posuere ac ut consequat semper."
     ), (
         2,
         1,

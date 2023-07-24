@@ -166,8 +166,9 @@ class UsersManager extends AbstractManager {
       LEFT JOIN decisions d ON d.id = te.decision_id
       RIGHT JOIN users_decisions ud ON ud.decision_id = d.id
       JOIN users u ON ud.user_id = u.id 
+      WHERE d.status_id = ?
       AND te.user_id = ?`,
-      [id]
+      [4, id]
     );
   }
 
