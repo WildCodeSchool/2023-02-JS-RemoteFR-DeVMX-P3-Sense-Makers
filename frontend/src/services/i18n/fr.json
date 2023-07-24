@@ -204,7 +204,7 @@
   },
 
   "decisionsListAdmin": {
-    "placeHolderSearch": "recherche décision",
+    "placeHolderSearch": "Recherche décision",
     "tableTitle": {
       "id": "Id",
       "title": "Titre",
