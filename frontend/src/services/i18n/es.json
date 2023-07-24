@@ -246,6 +246,7 @@
 
   "notifImpacted": "Te indicó como afectado en una decisión",
   "notifExpert": "Te indicó como experto en una decisión",
+  "notifValid": "Una decisión espera su validación",
 
   "annualStats": {
     "created": "Creado",

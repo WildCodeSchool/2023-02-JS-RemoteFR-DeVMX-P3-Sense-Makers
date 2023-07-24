@@ -17,6 +17,7 @@ export default function LoginButton({
   experts,
   ReadNotif,
   NotificationNumber,
+  notifValidation,
 }) {
   const menuRef = useRef();
   const { pathname } = useLocation();
@@ -255,6 +256,7 @@ export default function LoginButton({
           impacts={impacts}
           experts={experts}
           ReadNotif={ReadNotif}
+          notifValidation={notifValidation}
         />
       )}
     </div>
