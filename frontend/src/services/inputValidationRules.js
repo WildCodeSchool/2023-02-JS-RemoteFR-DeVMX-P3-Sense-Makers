@@ -12,10 +12,7 @@ export default function inputValidationRules(targetValues) {
     lastName:
       !!targetValues.lastName && targetValues.lastName.match(/^ *$/) === null,
     email: isValidEmail(targetValues.email),
-    password:
-      !!targetValues.password &&
-      targetValues.password.length > 8 &&
-      targetValues.password.match(/^ *$/) === null,
+    password: true,
     photo: true,
     role: targetValues.role !== "",
     roleExperts: true,

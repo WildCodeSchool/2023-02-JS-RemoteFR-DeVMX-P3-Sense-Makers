@@ -13,6 +13,13 @@ export default function AddUser({ setShowAddUser }) {
   const [requireSelect, setRequiredSelect] = useState(false);
   const { t } = useTranslation();
 
+  const generatePassword = () => {
+    const pwd =
+      Math.random().toString(36).slice(2) + Math.random().toString(36).slice(2);
+
+    return pwd;
+  };
+
   const [targetValues, setTargetValues] = useState({
     firstName: "",
     lastName: "",
@@ -55,7 +62,6 @@ export default function AddUser({ setShowAddUser }) {
     const isValidForm = Object.values(inputValidationRules(targetValues)).every(
       (key) => key
     );
-
     if (isValidForm) {
       axios
         .post(
@@ -65,7 +71,7 @@ export default function AddUser({ setShowAddUser }) {
             lastname: targetValues.lastName,
             photo: newUploadedFileName || "default_avatar.png",
             email: targetValues.email,
-            password: targetValues.password,
+            password: generatePassword(),
           },
           {
             withCredentials: true,
@@ -206,17 +212,7 @@ export default function AddUser({ setShowAddUser }) {
                 required
               />
             </label>
-            <label htmlFor="password">
-              {t("addUser.password")} <br />
-              <input
-                type="password"
-                name="password"
-                placeholder={t("addUser.placeholderPassword")}
-                onChange={update}
-                required
-                minLength="8"
-              />
-            </label>
+            <p>Mot de passe généré automatiquement</p>
             <div className="roles-container-1">
               <label htmlFor="role">
                 {t("addUser.role")} <br />
