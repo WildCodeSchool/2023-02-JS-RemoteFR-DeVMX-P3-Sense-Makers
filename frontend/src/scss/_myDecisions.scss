@@ -33,13 +33,13 @@
       font-size: 1.3rem;
       padding: 0.2rem;
     }
+    &:hover {
+      color: #196c84;
+      background-color: $background-color-base;
+      transition: 0.2s ease-in-out;
+      border: 1px solid $color-default;
   }
-  :hover {
-    color: #196c84;
-    background-color: $background-color-base;
-    transition: 0.2s ease-in-out;
-    border: 1px solid $color-default;
-  } 
+  }
   @media screen and (min-width: 768px) {
     flex-direction: row;
     align-items: center;
