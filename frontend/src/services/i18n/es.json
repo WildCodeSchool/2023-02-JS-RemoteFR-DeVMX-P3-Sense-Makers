@@ -243,7 +243,8 @@
     "addUser": "Agregar usuario"
   },
 
-  "notif": "lo indicó como afectado en una decisión",
+  "notifImpacted": "Te indicó como afectado en una decisión",
+  "notifExpert": "Te indicó como experto en una decisión",
 
   "annualStats": {
     "created": "Creado",
@@ -262,7 +263,7 @@
     "validatedDecisions": "decisiones finales validadas",
     "notValidatedDecisions": "decisiones finales no validadas"
   },
-  
+
   "anualStats": {
     "january": "Enero",
     "february": "Febrero",
