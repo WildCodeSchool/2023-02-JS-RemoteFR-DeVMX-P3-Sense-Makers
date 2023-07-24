@@ -32,7 +32,7 @@ const verifyPassword = (req, res) => {
         const token = jwt.sign(payload, process.env.TOKEN_SECRET, {
           expiresIn: "1h",
         });
-        delete req.user.hpassword;
+        delete req.user.password;
         res
           .status(200)
           .cookie("user_token", token, {

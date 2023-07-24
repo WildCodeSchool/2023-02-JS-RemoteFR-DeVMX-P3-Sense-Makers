@@ -237,6 +237,7 @@
     "email": "Email",
     "password": "Password",
     "placeholderPassword": "Insert your password",
+    "passwordAuto": "Automatically generated password",
     "role": "Role",
     "defaultRole": "Select your role",
     "expert": "Expert",

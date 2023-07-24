@@ -33,7 +33,7 @@ function UsersList() {
         setUsers(res.data);
       })
       .catch((err) => console.error(err));
-  }, [records, showAddUser, setShowAddUser, showUpdateUser]);
+  }, [showAddUser, setShowAddUser, showUpdateUser]);
 
   const prePage = () => {
     if (currentPage !== 1) {
