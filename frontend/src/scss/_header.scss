@@ -15,6 +15,12 @@
       width: 7.8rem;
     }
   }
+
+  .navBar-and-loginButton{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
 }
 
 .navBar-icons {
@@ -240,7 +246,7 @@
   margin: 0.2rem;
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 890px) {
   .navBar-icons {
     display: none;
   }
