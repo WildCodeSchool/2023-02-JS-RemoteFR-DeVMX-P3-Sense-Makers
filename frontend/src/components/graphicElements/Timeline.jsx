@@ -103,22 +103,11 @@ function Timeline({ decision }) {
 
 Timeline.propTypes = {
   decision: PropTypes.shape({
-    // benefit: PropTypes.string.isRequired,
-    // concerned_hub: PropTypes.string.isRequired,
-    // content: PropTypes.string.isRequired,
-    // context: PropTypes.string.isRequired,
-    // disadvantages: PropTypes.string.isRequired,
     deadline_comment: PropTypes.string.isRequired,
     deadline_conflict: PropTypes.string.isRequired,
     final_take_decision: PropTypes.string.isRequired,
     first_take_decision: PropTypes.string.isRequired,
-    // firstname: PropTypes.string.isRequired,
     initial_date: PropTypes.string.isRequired,
-    // lastname: PropTypes.string.isRequired,
-    // photo: PropTypes.string.isRequired,
-    // title_decision: PropTypes.string.isRequired,
-    // title_status: PropTypes.string.isRequired,
-    // usefulness: PropTypes.string.isRequired,
   }).isRequired,
 };
 
