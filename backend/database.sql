@@ -59,6 +59,8 @@ CREATE TABLE
         negatives_votes INT,
         is_validated TINYINT,
         status_id INT NOT NULL,
+        is_first_read TINYINT DEFAULT 1,
+        is_expert_read TINYINT DEFAULT 1,
         FOREIGN KEY (status_id) REFERENCES `status`(id) ON DELETE CASCADE
     );
 
@@ -246,7 +248,7 @@ VALUES (
         6
     ), (
         "test non aboutie",
-          ' <h1>Lorem ipsum dolor sit amet</h1>
+        ' <h1>Lorem ipsum dolor sit amet</h1>
 <h2><em><span style="color: rgb(35, 111, 161);">consectetur adipiscing elit. </span></em></h2>
 <ul>
 <li style="text-align: justify; font-variant-ligatures: normal; font-variant-caps: normal; letter-spacing: normal; text-indent: 0px; text-transform: none; word-spacing: 0px; -webkit-text-stroke-width: 0px; white-space: normal; background-color: rgb(255, 255, 255); text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial;">Nunc ut imperdiet justo, in finibus mi. Etiam a ligula eu tortor consectetur vulputate. Maecenas in enim ullamcorper, porttitor velit eu, porttitor elit. Cras aliquet lectus a ipsum mollis, ut iaculis mauris dignissim. Duis maximus scelerisque dapibus. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Nullam interdum sagittis sem eu dictum. Nulla facilisi. Maecenas fermentum diam eu elit cursus scelerisque. Nulla euismod, tellus in faucibus elementum, diam leo sollicitudin magna, sed tincidunt arcu diam nec tellus. Duis mattis aliquet nibh at blandit.</li>
@@ -314,7 +316,7 @@ VALUES (
         7
     ), (
         "test définitive non validée",
-              ' <h1>Lorem ipsum dolor sit amet</h1>
+        ' <h1>Lorem ipsum dolor sit amet</h1>
 <h2><em><span style="color: rgb(35, 111, 161);">consectetur adipiscing elit. </span></em></h2>
 <ul>
 <li style="text-align: justify; font-variant-ligatures: normal; font-variant-caps: normal; letter-spacing: normal; text-indent: 0px; text-transform: none; word-spacing: 0px; -webkit-text-stroke-width: 0px; white-space: normal; background-color: rgb(255, 255, 255); text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial;">Nunc ut imperdiet justo, in finibus mi. Etiam a ligula eu tortor consectetur vulputate. Maecenas in enim ullamcorper, porttitor velit eu, porttitor elit. Cras aliquet lectus a ipsum mollis, ut iaculis mauris dignissim. Duis maximus scelerisque dapibus. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Nullam interdum sagittis sem eu dictum. Nulla facilisi. Maecenas fermentum diam eu elit cursus scelerisque. Nulla euismod, tellus in faucibus elementum, diam leo sollicitudin magna, sed tincidunt arcu diam nec tellus. Duis mattis aliquet nibh at blandit.</li>
@@ -382,7 +384,7 @@ VALUES (
         5
     ), (
         "test definitive validée",
-              ' <h1>Lorem ipsum dolor sit amet</h1>
+        ' <h1>Lorem ipsum dolor sit amet</h1>
 <h2><em><span style="color: rgb(35, 111, 161);">consectetur adipiscing elit. </span></em></h2>
 <ul>
 <li style="text-align: justify; font-variant-ligatures: normal; font-variant-caps: normal; letter-spacing: normal; text-indent: 0px; text-transform: none; word-spacing: 0px; -webkit-text-stroke-width: 0px; white-space: normal; background-color: rgb(255, 255, 255); text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial;">Nunc ut imperdiet justo, in finibus mi. Etiam a ligula eu tortor consectetur vulputate. Maecenas in enim ullamcorper, porttitor velit eu, porttitor elit. Cras aliquet lectus a ipsum mollis, ut iaculis mauris dignissim. Duis maximus scelerisque dapibus. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Nullam interdum sagittis sem eu dictum. Nulla facilisi. Maecenas fermentum diam eu elit cursus scelerisque. Nulla euismod, tellus in faucibus elementum, diam leo sollicitudin magna, sed tincidunt arcu diam nec tellus. Duis mattis aliquet nibh at blandit.</li>
@@ -450,7 +452,7 @@ VALUES (
         5
     ), (
         "test en attente definitive",
-               ' <h1>Lorem ipsum dolor sit amet</h1>
+        ' <h1>Lorem ipsum dolor sit amet</h1>
 <h2><em><span style="color: rgb(35, 111, 161);">consectetur adipiscing elit. </span></em></h2>
 <ul>
 <li style="text-align: justify; font-variant-ligatures: normal; font-variant-caps: normal; letter-spacing: normal; text-indent: 0px; text-transform: none; word-spacing: 0px; -webkit-text-stroke-width: 0px; white-space: normal; background-color: rgb(255, 255, 255); text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial;">Nunc ut imperdiet justo, in finibus mi. Etiam a ligula eu tortor consectetur vulputate. Maecenas in enim ullamcorper, porttitor velit eu, porttitor elit. Cras aliquet lectus a ipsum mollis, ut iaculis mauris dignissim. Duis maximus scelerisque dapibus. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Nullam interdum sagittis sem eu dictum. Nulla facilisi. Maecenas fermentum diam eu elit cursus scelerisque. Nulla euismod, tellus in faucibus elementum, diam leo sollicitudin magna, sed tincidunt arcu diam nec tellus. Duis mattis aliquet nibh at blandit.</li>
@@ -518,7 +520,7 @@ VALUES (
         4
     ), (
         "test en attente definitive",
-               ' <h1>Lorem ipsum dolor sit amet</h1>
+        ' <h1>Lorem ipsum dolor sit amet</h1>
 <h2><em><span style="color: rgb(35, 111, 161);">consectetur adipiscing elit. </span></em></h2>
 <ul>
 <li style="text-align: justify; font-variant-ligatures: normal; font-variant-caps: normal; letter-spacing: normal; text-indent: 0px; text-transform: none; word-spacing: 0px; -webkit-text-stroke-width: 0px; white-space: normal; background-color: rgb(255, 255, 255); text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial;">Nunc ut imperdiet justo, in finibus mi. Etiam a ligula eu tortor consectetur vulputate. Maecenas in enim ullamcorper, porttitor velit eu, porttitor elit. Cras aliquet lectus a ipsum mollis, ut iaculis mauris dignissim. Duis maximus scelerisque dapibus. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Nullam interdum sagittis sem eu dictum. Nulla facilisi. Maecenas fermentum diam eu elit cursus scelerisque. Nulla euismod, tellus in faucibus elementum, diam leo sollicitudin magna, sed tincidunt arcu diam nec tellus. Duis mattis aliquet nibh at blandit.</li>
@@ -586,7 +588,7 @@ VALUES (
         4
     ), (
         "test  première decision prise",
-             ' <h1>Lorem ipsum dolor sit amet</h1>
+        ' <h1>Lorem ipsum dolor sit amet</h1>
 <h2><em><span style="color: rgb(35, 111, 161);">consectetur adipiscing elit. </span></em></h2>
 <ul>
 <li style="text-align: justify; font-variant-ligatures: normal; font-variant-caps: normal; letter-spacing: normal; text-indent: 0px; text-transform: none; word-spacing: 0px; -webkit-text-stroke-width: 0px; white-space: normal; background-color: rgb(255, 255, 255); text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial;">Nunc ut imperdiet justo, in finibus mi. Etiam a ligula eu tortor consectetur vulputate. Maecenas in enim ullamcorper, porttitor velit eu, porttitor elit. Cras aliquet lectus a ipsum mollis, ut iaculis mauris dignissim. Duis maximus scelerisque dapibus. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Nullam interdum sagittis sem eu dictum. Nulla facilisi. Maecenas fermentum diam eu elit cursus scelerisque. Nulla euismod, tellus in faucibus elementum, diam leo sollicitudin magna, sed tincidunt arcu diam nec tellus. Duis mattis aliquet nibh at blandit.</li>
@@ -654,7 +656,7 @@ VALUES (
         3
     ), (
         "test en attente de premiere prise de décision",
-           ' <h1>Lorem ipsum dolor sit amet</h1>
+        ' <h1>Lorem ipsum dolor sit amet</h1>
 <h2><em><span style="color: rgb(35, 111, 161);">consectetur adipiscing elit. </span></em></h2>
 <ul>
 <li style="text-align: justify; font-variant-ligatures: normal; font-variant-caps: normal; letter-spacing: normal; text-indent: 0px; text-transform: none; word-spacing: 0px; -webkit-text-stroke-width: 0px; white-space: normal; background-color: rgb(255, 255, 255); text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial;">Nunc ut imperdiet justo, in finibus mi. Etiam a ligula eu tortor consectetur vulputate. Maecenas in enim ullamcorper, porttitor velit eu, porttitor elit. Cras aliquet lectus a ipsum mollis, ut iaculis mauris dignissim. Duis maximus scelerisque dapibus. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Nullam interdum sagittis sem eu dictum. Nulla facilisi. Maecenas fermentum diam eu elit cursus scelerisque. Nulla euismod, tellus in faucibus elementum, diam leo sollicitudin magna, sed tincidunt arcu diam nec tellus. Duis mattis aliquet nibh at blandit.</li>
@@ -722,7 +724,7 @@ VALUES (
         2
     ), (
         "test en attente de premiere prise de décision",
-            ' <h1>Lorem ipsum dolor sit amet</h1>
+        ' <h1>Lorem ipsum dolor sit amet</h1>
 <h2><em><span style="color: rgb(35, 111, 161);">consectetur adipiscing elit. </span></em></h2>
 <ul>
 <li style="text-align: justify; font-variant-ligatures: normal; font-variant-caps: normal; letter-spacing: normal; text-indent: 0px; text-transform: none; word-spacing: 0px; -webkit-text-stroke-width: 0px; white-space: normal; background-color: rgb(255, 255, 255); text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial;">Nunc ut imperdiet justo, in finibus mi. Etiam a ligula eu tortor consectetur vulputate. Maecenas in enim ullamcorper, porttitor velit eu, porttitor elit. Cras aliquet lectus a ipsum mollis, ut iaculis mauris dignissim. Duis maximus scelerisque dapibus. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Nullam interdum sagittis sem eu dictum. Nulla facilisi. Maecenas fermentum diam eu elit cursus scelerisque. Nulla euismod, tellus in faucibus elementum, diam leo sollicitudin magna, sed tincidunt arcu diam nec tellus. Duis mattis aliquet nibh at blandit.</li>
@@ -790,7 +792,7 @@ VALUES (
         2
     ), (
         "test création",
-             ' <h1>Lorem ipsum dolor sit amet</h1>
+        ' <h1>Lorem ipsum dolor sit amet</h1>
 <h2><em><span style="color: rgb(35, 111, 161);">consectetur adipiscing elit. </span></em></h2>
 <ul>
 <li style="text-align: justify; font-variant-ligatures: normal; font-variant-caps: normal; letter-spacing: normal; text-indent: 0px; text-transform: none; word-spacing: 0px; -webkit-text-stroke-width: 0px; white-space: normal; background-color: rgb(255, 255, 255); text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial;">Nunc ut imperdiet justo, in finibus mi. Etiam a ligula eu tortor consectetur vulputate. Maecenas in enim ullamcorper, porttitor velit eu, porttitor elit. Cras aliquet lectus a ipsum mollis, ut iaculis mauris dignissim. Duis maximus scelerisque dapibus. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Nullam interdum sagittis sem eu dictum. Nulla facilisi. Maecenas fermentum diam eu elit cursus scelerisque. Nulla euismod, tellus in faucibus elementum, diam leo sollicitudin magna, sed tincidunt arcu diam nec tellus. Duis mattis aliquet nibh at blandit.</li>
