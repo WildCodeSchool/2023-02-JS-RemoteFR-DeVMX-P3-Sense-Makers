@@ -25,7 +25,6 @@
     font-family: $primary-font;
     font-weight: $primary-font-weight;
     border-radius: $border-radius-xxl;
-    
 
     i {
       border: 1px solid white;
@@ -35,6 +34,12 @@
       padding: 0.2rem;
     }
   }
+  :hover {
+    color: #196c84;
+    background-color: $background-color-base;
+    transition: 0.2s ease-in-out;
+    border: 1px solid $color-default;
+  } 
   @media screen and (min-width: 768px) {
     flex-direction: row;
     align-items: center;
