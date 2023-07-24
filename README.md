@@ -20,6 +20,8 @@
   </div>
 </div>
 
+
+
 <details>
   <summary>ℹ️ Installation Steps</summary>
   
@@ -44,8 +46,6 @@
 
 <details>
   <summary>🧐 FAQ</summary>
-
-## FAQ
 
 ### Tools
 
