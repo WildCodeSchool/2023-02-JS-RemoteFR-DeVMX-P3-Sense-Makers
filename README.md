@@ -47,20 +47,20 @@
 ### Login Data
 
 - Role Admin:
-- - Email: place.holder@placeholder.com
-- - Password: place.holder@placeholder.com
+  - Email: place.holder@placeholder.com
+  - Password: place.holder@placeholder.com
     
 - Role Admin:
-- - Email: place.holder@placeholder.com
-- - Password: place.holder@placeholder.com
+  - Email: place.holder@placeholder.com
+  - Password: place.holder@placeholder.com
     
 - Role Admin:
-- - Email: place.holder@placeholder.com
-- - Password: place.holder@placeholder.com
+  - Email: place.holder@placeholder.com
+  - Password: place.holder@placeholder.com
     
 - Role Admin:
-- - Email: place.holder@placeholder.com
-- - Password: place.holder@placeholder.com
+  - Email: place.holder@placeholder.com
+  - Password: place.holder@placeholder.com
     
 </details>
 
