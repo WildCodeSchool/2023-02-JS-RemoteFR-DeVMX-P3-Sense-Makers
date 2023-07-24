@@ -61,11 +61,10 @@ export default function CardDecision({ decision }) {
         setShow("none");
       }}
     >
-      <div
-        className="Timeline-container-decision"
-        style={{ display: `${show}` }}
-      >
-        <Timeline decision={decision} />
+      <div className="Timeline-wrapper-decision" style={{ display: `${show}` }}>
+        <div className="Timeline-container-decision">
+          <Timeline decision={decision} />
+        </div>
       </div>
       {decision.title_status === "Décision définitive" &&
         (decision.is_validated === 1 ? (

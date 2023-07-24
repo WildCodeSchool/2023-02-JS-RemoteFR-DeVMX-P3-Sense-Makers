@@ -11,42 +11,6 @@ export default function NotificationButton({
 }) {
   const { t } = useTranslation();
 
-  function ShowNotif() {
-    if (experts.length > 0) {
-      return experts.map((expert) => {
-        return (
-          <Link
-            className="notification-text"
-            key={expert.decisionID}
-            to={`/logged/decisions/${expert.decisionID}`}
-            onClick={() => {
-              ReadNotif("taggedexperts", expert.decisionID, "Experts");
-              handleShowNotificationsMenu();
-            }}
-          >
-            {expert.sender} {t("notif")}
-          </Link>
-        );
-      });
-    }
-    if (impacts.length > 0) {
-      return impacts.map((impact) => {
-        return (
-          <Link
-            className="notification-text"
-            key={impact.decisionID}
-            to={`/logged/decisions/${impact.decisionID}`}
-            onClick={() => {
-              ReadNotif("taggedimpacted", impact.decisionID, "Impacts");
-              handleShowNotificationsMenu();
-            }}
-          >
-            {impact.sender} {t("notif")}
-          </Link>
-        );
-      });
-    }
-  }
   return (
     <div className="notifications-modal">
       <div className="notifications-container">
@@ -67,7 +31,37 @@ export default function NotificationButton({
           <line x1="6" y1="6" x2="18" y2="18" />
         </svg>
         <div className="notifications-title">{t("header.notif")}</div>
-        <ul>{(experts.length > 0 || impacts.length > 0) && ShowNotif()}</ul>
+
+        <ul>
+          {experts.length > 0 &&
+            experts.map((expert) => (
+              <Link
+                className="notification-text"
+                key={expert.decisionID}
+                to={`/logged/decisions/${expert.decisionID}`}
+                onClick={() => {
+                  ReadNotif("taggedexperts", expert.decisionID, "Experts");
+                  handleShowNotificationsMenu();
+                }}
+              >
+                {expert.sender} {t("notifExpert")}
+              </Link>
+            ))}
+          {impacts.length > 0 &&
+            impacts.map((impact) => (
+              <Link
+                className="notification-text"
+                key={impact.decisionID}
+                to={`/logged/decisions/${impact.decisionID}`}
+                onClick={() => {
+                  ReadNotif("taggedimpacted", impact.decisionID, "Impacts");
+                  handleShowNotificationsMenu();
+                }}
+              >
+                {impact.sender} {t("notifImpacted")}
+              </Link>
+            ))}
+        </ul>
       </div>
     </div>
   );

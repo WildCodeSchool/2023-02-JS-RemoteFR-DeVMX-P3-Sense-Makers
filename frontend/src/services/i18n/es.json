@@ -243,7 +243,8 @@
     "addUser": "Agregar usuario"
   },
 
-  "notif": "lo indicó como afectado en una decisión",
+  "notifImpacted": "Te indicó como afectado en una decisión",
+  "notifExpert": "Te indicó como experto en una decisión",
 
   "annualStats": {
     "created": "Creado",
@@ -261,5 +262,24 @@
     "unsuccessfulDecisions": "decisiónes no alcanzada",
     "validatedDecisions": "decisiones finales validadas",
     "notValidatedDecisions": "decisiones finales no validadas"
+  },
+
+  "anualStats": {
+    "january": "Enero",
+    "february": "Febrero",
+    "march": "Marzo",
+    "april": "Abril",
+    "may": "Mayo",
+    "june": "Junio",
+    "july": "Julio",
+    "august": "Agosto",
+    "september": "Septiembre",
+    "october": "Octubre",
+    "november": "Noviembre",
+    "december": "Diciembre",
+    "created": "Creadas",
+    "notValidated": "No validadas",
+    "validated": "Validadas",
+    "notFinished": "Inconclusa"
   }
 }
