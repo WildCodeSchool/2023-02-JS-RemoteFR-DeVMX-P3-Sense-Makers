@@ -18,7 +18,7 @@ export default function TimelineDate({
 
   const totalTime = parseFinalDate - parseInitialDate;
 
-  const Progress = Math.round((situation / totalTime) * 100) - 3;
+  const Progress = Math.round((situation / totalTime) * 100) - 1;
 
   const verificationDate = () => {
     if (parseDayDate >= parstDateI) {
