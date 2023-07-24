@@ -237,6 +237,7 @@
     "email": "Correo electrónico",
     "password": "Contraseña",
     "placeholderPassword": "Inserte su contraseña",
+    "passwordAuto": "Contraseña generada automáticamente",
     "role": "Role",
     "defaultRole": "Selecciona tu rol",
     "expert": "Experto",

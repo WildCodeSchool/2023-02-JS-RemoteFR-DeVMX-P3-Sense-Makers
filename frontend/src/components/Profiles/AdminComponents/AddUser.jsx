@@ -212,7 +212,7 @@ export default function AddUser({ setShowAddUser }) {
                 required
               />
             </label>
-            <p>Mot de passe généré automatiquement</p>
+            <p>{t("addUser.passwordAuto")}</p>
             <div className="roles-container-1">
               <label htmlFor="role">
                 {t("addUser.role")} <br />
