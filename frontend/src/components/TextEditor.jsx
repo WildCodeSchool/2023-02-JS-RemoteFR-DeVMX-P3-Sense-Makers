@@ -74,4 +74,5 @@ TextEditor.propTypes = {
     key: PropTypes.string.isRequired,
   }).isRequired,
 };
+
 export default TextEditor;
