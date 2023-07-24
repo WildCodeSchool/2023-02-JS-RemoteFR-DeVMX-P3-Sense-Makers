@@ -322,7 +322,8 @@
     align-items: center;
     flex-direction: column;
     width: 200px;
-    height: 400px;
+    min-height: fit-content;
+    max-height: 400px;
     margin: $space-m 0;
     padding: $space-m;
     background-color: $background-color-base;
@@ -350,11 +351,12 @@
     }
 
     ul {
+      overflow-y: auto;
       display: flex;
-      justify-content: center;
+      justify-content: flex-start;
       align-items: center;
       flex-direction: column;
-      padding: 0;
+      padding-left: 0;
       list-style-type: none;
       gap: 0.8rem;
 

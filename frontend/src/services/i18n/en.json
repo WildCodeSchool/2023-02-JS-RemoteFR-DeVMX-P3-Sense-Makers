@@ -243,7 +243,8 @@
     "addUser": "Add User"
   },
 
-  "notif": "indicated you as impacted on a decision",
+  "notifImpacted": "indicated you as impacted on a decision",
+  "notifExpert": "Indicated you as an expert on a decision",
 
   "annualStats": {
     "created": "Created",
