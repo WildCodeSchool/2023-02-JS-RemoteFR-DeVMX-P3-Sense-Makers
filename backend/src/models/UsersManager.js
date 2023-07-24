@@ -160,6 +160,17 @@ class UsersManager extends AbstractManager {
     );
   }
 
+  findExpertForDemandeNotif(id) {
+    return this.database.query(
+      `SELECT  d.id AS decisionID, d.title, d.status_id FROM tagged_as_experts te
+      LEFT JOIN decisions d ON d.id = te.decision_id
+      RIGHT JOIN users_decisions ud ON ud.decision_id = d.id
+      JOIN users u ON ud.user_id = u.id 
+      AND te.user_id = ?`,
+      [id]
+    );
+  }
+
   updateisReadNotifImpact(id, userId) {
     return this.database.query(
       `update tagged_as_impacted set is_notif_read = ?

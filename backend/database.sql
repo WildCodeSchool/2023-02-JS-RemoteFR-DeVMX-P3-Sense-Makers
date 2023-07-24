@@ -59,8 +59,6 @@ CREATE TABLE
         negatives_votes INT,
         is_validated TINYINT,
         status_id INT NOT NULL,
-        is_first_read TINYINT DEFAULT 1,
-        is_expert_read TINYINT DEFAULT 1,
         FOREIGN KEY (status_id) REFERENCES `status`(id) ON DELETE CASCADE
     );
 

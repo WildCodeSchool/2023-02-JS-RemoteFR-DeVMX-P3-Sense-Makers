@@ -302,6 +302,22 @@ const getExpertUsersForNotif = (req, res) => {
       res.sendStatus(500);
     });
 };
+const getExpertForValidationNotif = (req, res) => {
+  const userId = parseInt(req.params.id, 10);
+  models.users
+    .findExpertForDemandeNotif(userId)
+    .then(([result]) => {
+      if (result.affectedRows === 0) {
+        res.sendStatus(404);
+      } else {
+        res.status(201).json(result);
+      }
+    })
+    .catch((err) => {
+      console.error(err);
+      res.sendStatus(500);
+    });
+};
 
 const getImpactedUsersForNotif = (req, res) => {
   const userId = parseInt(req.params.id, 10);
@@ -379,4 +395,5 @@ module.exports = {
   getExpertUsersForNotif,
   modifyImpactNotifRead,
   modifyExpertNotifRead,
+  getExpertForValidationNotif,
 };
