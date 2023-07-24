@@ -20,7 +20,9 @@
   </div>
 </div>
 
-
+<details>
+  <summary>ℹ️ Installation Steps</summary>
+  
 ### Project Initialization
 
 - In VSCode, install plugins **Prettier - Code formatter** and **ESLint** and configure them
@@ -38,6 +40,11 @@
 - `lint` : Runs validation tools, and refuses unclean code (will be executed on every _commit_)
 - `fix` : Fixes linter errors (run it if `lint` growls on your code !)
 
+</details>
+
+<details>
+  <summary>🧐 FAQ</summary>
+
 ## FAQ
 
 ### Tools
@@ -49,3 +56,6 @@
 - _Prettier_ : "Quality of code" tool as well, focuses on the styleguide
 - _ Airbnb Standard_ : One of the most known "standards", even though it's not officially linked to ES/JS
 - _Nodemon_ : Allows to restart the server everytime a .js file is udated
+
+</details>
+
