@@ -6,6 +6,7 @@
 </div>
 <br>
 
+<div>
 <p>Frederico Cassola</p>
   <a href="https://www.linkedin.com/in/frederico-cassola-08b01a59/">
     <img src="https://img.shields.io/badge/linkedin-%230077B5.svg?&style=for-the-badge&logo=linkedin&logoColor=white" />
@@ -26,4 +27,4 @@
   <a href="https://www.linkedin.com/in/alarichenrot/">
     <img src="https://img.shields.io/badge/linkedin-%230077B5.svg?&style=for-the-badge&logo=linkedin&logoColor=white" />
   </a>&nbsp;&nbsp;
- 
+ </div>
