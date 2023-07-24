@@ -26,6 +26,7 @@ export default function Header() {
 
   const [impacts, setImpacts] = useState([]);
   const [experts, setExperts] = useState([]);
+  const [decisions, setDecisions] = useState([]);
 
   const ReadNotif = useCallback(
     (concerned, Id) => {
@@ -66,8 +67,19 @@ export default function Header() {
       .catch((err) => console.error(err));
   }, [ReadNotif]);
 
+  useEffect(() => {
+    axios
+      .get(`${import.meta.env.VITE_BACKEND_URL}/users/${user.id}/decisions`, {
+        withCredentials: true,
+      })
+      .then((response) => {
+        setDecisions(response.data.filter((data) => data.status_id === 2));
+      })
+      .catch((err) => console.error(err));
+  }, []);
+
   function NotificationNumber() {
-    return experts.length + impacts.length;
+    return experts.length + impacts.length + decisions.length;
   }
 
   return (
@@ -177,6 +189,7 @@ export default function Header() {
                   impacts={impacts}
                   experts={experts}
                   ReadNotif={ReadNotif}
+                  decisions={decisions}
                 />
               )}
             </li>
@@ -223,6 +236,7 @@ export default function Header() {
           setImpacts={setImpacts}
           setExperts={setExperts}
           ReadNotif={ReadNotif}
+          decisions={decisions}
           NotificationNumber={NotificationNumber()}
         />
       </div>

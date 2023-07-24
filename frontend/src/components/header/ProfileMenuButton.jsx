@@ -17,6 +17,7 @@ export default function LoginButton({
   experts,
   ReadNotif,
   NotificationNumber,
+  decisions,
 }) {
   const menuRef = useRef();
   const { pathname } = useLocation();
@@ -255,6 +256,7 @@ export default function LoginButton({
           impacts={impacts}
           experts={experts}
           ReadNotif={ReadNotif}
+          decisions={decisions}
         />
       )}
     </div>
@@ -270,6 +272,7 @@ LoginButton.propTypes = {
   userRoleId: PropTypes.number.isRequired,
   impacts: PropTypes.arrayOf.isRequired,
   experts: PropTypes.arrayOf.isRequired,
+  decisions: PropTypes.arrayOf.isRequired,
   ReadNotif: PropTypes.func.isRequired,
   NotificationNumber: PropTypes.number.isRequired,
 };

@@ -8,6 +8,7 @@ export default function NotificationButton({
   impacts,
   experts,
   ReadNotif,
+  decisions,
 }) {
   const { t } = useTranslation();
 
@@ -61,6 +62,19 @@ export default function NotificationButton({
                 {impact.sender} {t("notifImpacted")}
               </Link>
             ))}
+
+          {decisions.map((decision) => (
+            <Link
+              className="notification-text"
+              key={decision.d_id}
+              to={`/logged/decisions/${decision.d_id}`}
+              onClick={() => {
+                handleShowNotificationsMenu();
+              }}
+            >
+              {t("notifFirst")}
+            </Link>
+          ))}
         </ul>
       </div>
     </div>
@@ -72,4 +86,5 @@ NotificationButton.propTypes = {
   impacts: PropTypes.arrayOf.isRequired,
   experts: PropTypes.arrayOf.isRequired,
   ReadNotif: PropTypes.func.isRequired,
+  decisions: PropTypes.arrayOf.isRequired,
 };

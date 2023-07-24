@@ -246,6 +246,7 @@
 
   "notifImpacted": "Te indicó como afectado en una decisión",
   "notifExpert": "Te indicó como experto en una decisión",
+  "notifFirst" : "Tienes una primera decisión para publicar",
 
   "annualStats": {
     "created": "Creado",
