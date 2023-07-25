@@ -69,9 +69,9 @@
       position: absolute;
       top: -0.5rem;
       right: -0.5rem;
-      height: 1rem;
-      width: 1rem;
-      border-radius: 1rem;
+      height: 1.15rem;
+      width: 1.15rem;
+      border-radius: 1.1rem;
       background-color: red;
       text-align: center;
       color: $background-color-base;
@@ -312,6 +312,7 @@
 
 .notifications-modal {
   position: fixed;
+  border:none;
   top: 1vh;
   left: 2vw;
   display: flex;
