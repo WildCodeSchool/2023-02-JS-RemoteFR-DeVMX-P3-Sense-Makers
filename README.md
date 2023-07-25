@@ -39,7 +39,7 @@
 </div>
 
 <details>
-  <summary>ℹ️ Installation Steps</summary>
+  <summary>Installation Steps</summary>
   
 ### Project Initialization
 

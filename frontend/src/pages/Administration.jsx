@@ -10,6 +10,8 @@ export default function Administration() {
 
   return (
     <div className="admin-global-container">
+      <div className="timeline-zone" />
+      <h1> {t("admin.title")}</h1>
       <details className="details-container">
         <summary>
           {t("admin.stats")}
