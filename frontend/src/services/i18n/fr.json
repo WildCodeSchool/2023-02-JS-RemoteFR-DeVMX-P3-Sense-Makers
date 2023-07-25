@@ -72,7 +72,7 @@
     "impactedUsers": "Personnes impactées",
     "expertsUsers": "Personnes expertes",
     "deleteDecision": "Voulez-vous vraiment supprimer cette décision?",
-    "delete": "supprimer cette décision",
+    "delete": "Supprimer cette décision",
     "modal": {
       "carefull": "Attention, cette action est irréversible!",
       "confirm": "Confirmer",
@@ -183,7 +183,7 @@
   },
 
   "usersListAdmin": {
-    "placeHolderSearch": "recherche utilisateur",
+    "placeHolderSearch": "Recherche utilisateur",
     "textButton": "Ajouter un utilisateur",
     "tableTitle": {
       "photo": "Photo",
@@ -204,7 +204,7 @@
   },
 
   "decisionsListAdmin": {
-    "placeHolderSearch": "recherche décision",
+    "placeHolderSearch": "Recherche décision",
     "tableTitle": {
       "id": "Id",
       "title": "Titre",
