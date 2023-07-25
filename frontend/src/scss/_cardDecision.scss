@@ -25,7 +25,7 @@
     left: 0;
     top: 0;
     z-index: 999;
-    background: rgba(255, 255, 255, 0.7);
+    background: rgba(255, 255, 255, 0.85);
     border-radius: 16px;
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
     backdrop-filter: blur(5px);
@@ -44,13 +44,13 @@
       transform: rotate(-90deg);
       -moz-transform: rotate(-90deg);
       border-radius: 5px;
-      height: 36rem;
+      height: 25rem;
       width: 20rem;
       z-index: 999;
 
       .timeline-container {
-        height: 36rem;
-        width: 36rem;
+        height: 25rem;
+        width: 25rem;
         progress {
           width: 46rem;
         }
@@ -78,15 +78,16 @@
             font-size: $font-size-xxs;
           }
           .date-point {
-            height: 1.1rem;
-            width: 1.4rem;
-            border-radius: 1.1rem;
+            height: 0.9rem;
+            width: 1.7rem;
+            border-radius: 50%;
           }
 
           .date-point-similar {
-            height: 1.1rem;
-            width: 1.4rem;
-            border-radius: 1.3rem;
+            height: 0.9rem;
+            width: 1.7rem;
+            border-radius: 50%;
+
           }
         }
       }

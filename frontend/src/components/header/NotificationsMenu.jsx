@@ -14,7 +14,11 @@ export default function NotificationButton({
   const { t } = useTranslation();
 
   return (
-    <div className="notifications-modal">
+    <button
+      type="button"
+      className="notifications-modal"
+      onClick={handleShowNotificationsMenu}
+    >
       <div className="notifications-container">
         <svg
           onClick={handleShowNotificationsMenu}
@@ -90,7 +94,7 @@ export default function NotificationButton({
             ))}
         </ul>
       </div>
-    </div>
+    </button>
   );
 }
 
