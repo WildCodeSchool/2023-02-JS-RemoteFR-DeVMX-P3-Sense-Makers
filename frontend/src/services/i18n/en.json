@@ -63,7 +63,7 @@
     },
     "approve": "Validate this decision",
     "reject": "Reject this decision",
-    "postFirstTake": "post my first decision making",
+    "postFirstTake": "Post my first decision making",
     "commButton": "Give my opinion",
     "closedComment": "The comment period is now over!",
     "waitComment": "Wait for the author's first decision to be able to give your opinion again!",
@@ -172,7 +172,7 @@
     "passReseted": "Password reset!!!",
     "roles": "Current role(s)",
     "validation": "Validate changes",
-    "dropzone": "drop an image file here",
+    "dropzone": "Drop an image file here",
     "modifyUser": {
       "role": "Role",
       "roleSelect": "Select your role",
@@ -245,7 +245,7 @@
   },
 
   "notifImpacted": "indicated you as impacted on a decision",
-  "notifExpert": "Indicated you as an expert on a decision",
+  "notifExpert": "indicated you as an expert on a decision",
   "notifFirst": "You have a first decision to post",
   "notifValid": "A decision awaits your validation",
 
