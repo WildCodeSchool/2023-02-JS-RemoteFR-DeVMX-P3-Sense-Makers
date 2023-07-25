@@ -90,7 +90,10 @@ export default function Header() {
   }, []);
 
   function NotificationNumber() {
-    return experts.length + impacts.length + notifValidation.length + decisions.length;
+    return experts.length
+      + impacts.length
+      + notifValidation.length
+      + decisions.length;
   }
 
   return (
