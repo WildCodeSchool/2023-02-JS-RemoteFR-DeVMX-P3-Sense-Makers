@@ -246,6 +246,7 @@
 
   "notifImpacted": "indicated you as impacted on a decision",
   "notifExpert": "Indicated you as an expert on a decision",
+  "notifValid": "A decision awaits your validation",
 
   "annualStats": {
     "created": "Created",

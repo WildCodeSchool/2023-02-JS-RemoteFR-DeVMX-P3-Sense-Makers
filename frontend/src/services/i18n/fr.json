@@ -246,6 +246,7 @@
 
   "notifImpacted": "vous a indiqué comme impacté sur une décision",
   "notifExpert": "Vous a indiqué comme expert sur une décision",
+  "notifValid": "Une décision attend votre validation",
 
   "monthlyStats": {
     "totalDecisions": "décisions au total, dont",

@@ -11,9 +11,11 @@ import Lang from "../Lang";
 export default function Header() {
   const [showLoginMenu, setShowLoginMenu] = useState(false);
   const [showNotificationsMenu, setShowNotificationsMenu] = useState(false);
-
-  const { pathname } = useLocation();
+  const [impacts, setImpacts] = useState([]);
+  const [experts, setExperts] = useState([]);
+  const [notifValidation, setNotifValidation] = useState([]);
   const { user } = useContext(userContext);
+  const { pathname } = useLocation();
   const { t } = useTranslation();
 
   const handleShowNotificationsMenu = () => {
@@ -23,9 +25,6 @@ export default function Header() {
   const handleShowLoginMenu = () => {
     setShowLoginMenu(!showLoginMenu);
   };
-
-  const [impacts, setImpacts] = useState([]);
-  const [experts, setExperts] = useState([]);
 
   const ReadNotif = useCallback(
     (concerned, Id) => {
@@ -64,10 +63,22 @@ export default function Header() {
         setImpacts(response.data);
       })
       .catch((err) => console.error(err));
+
+    axios
+      .get(
+        `${import.meta.env.VITE_BACKEND_URL}/users/${user.id}/validationexpert`,
+        {
+          withCredentials: true,
+        }
+      )
+      .then((res) => {
+        setNotifValidation(res.data);
+      })
+      .catch((err) => console.error(err));
   }, [ReadNotif]);
 
   function NotificationNumber() {
-    return experts.length + impacts.length;
+    return experts.length + impacts.length + notifValidation.length;
   }
 
   return (
@@ -177,6 +188,7 @@ export default function Header() {
                   impacts={impacts}
                   experts={experts}
                   ReadNotif={ReadNotif}
+                  notifValidation={notifValidation}
                 />
               )}
             </li>
@@ -224,6 +236,7 @@ export default function Header() {
           setExperts={setExperts}
           ReadNotif={ReadNotif}
           NotificationNumber={NotificationNumber()}
+          notifValidation={notifValidation}
         />
       </div>
     </div>
