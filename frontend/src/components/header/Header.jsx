@@ -22,11 +22,11 @@ export default function Header() {
   const handleShowNotificationsMenu = () => {
     setShowNotificationsMenu(!showNotificationsMenu);
   };
-  
+
   const handleShowLoginMenu = () => {
     setShowLoginMenu(!showLoginMenu);
   };
-  
+
   const ReadNotif = useCallback(
     (concerned, Id) => {
       axios
@@ -90,11 +90,12 @@ export default function Header() {
   }, []);
 
   function NotificationNumber() {
-    return
+    return (
       experts.length +
       impacts.length +
       notifValidation.length +
-      decisions.length;
+      decisions.length
+    );
   }
 
   return (

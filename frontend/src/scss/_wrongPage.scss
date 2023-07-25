@@ -1,90 +1,90 @@
 @import "./variables.scss";
-.wrong-page-container{
+.wrong-page-container {
   padding: 0 2rem;
-.logo-container {
-  display: flex;
-  width: 100%;
-  height: 10vh;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0;
-  img {
-    width: 10rem;
-    @media screen and (min-width: 1024px) {
-      max-width: 20rem;
-    }
-  }
-}
-
-.content-container {
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-  justify-content: space-around;
-  height: 80vh;
-  margin: 2rem;
-  @media screen and (min-width: 1024px) {
-    flex-direction: row;
-  }
-
-  .raccoon {
-    width: 20rem;
-    height: auto;
-    @media screen and (min-width: 1024px) {
-      width: 35rem;
-    }
-  }
-
-  .text-container {
+  .logo-container {
     display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    width: 20rem;
-    @media screen and (min-width: 1024px) {
-      width: 35rem;
-    }
-    h1 {
-      color: #243b43;
-      text-align: center;
-      text-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
-      font-family: $primary-font;
-      font-size: $font-size-xxxxxl;
-      font-weight: $primary-font-weight;
+    width: 100%;
+    height: 10vh;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0;
+    img {
+      width: 10rem;
       @media screen and (min-width: 1024px) {
-        font-size: $font-size-xxxxxl;
+        max-width: 20rem;
       }
     }
-    h2 {
-      color: #243b44;
-      font-family: $primary-font;
-      font-size: $font-size-xxxl;
-      font-weight: $primary-font-weight;
-      @media screen and (min-width: 1024px) {
-        font-size: $font-size-xxxxl;
-      }
-    }
-    p {
-      color: #253c44;
-      font-family: $primary-font;
-      font-size: $font-size-xxl;
-      font-weight: $primary-font-weight;
-      @media screen and (min-width: 1024px) {
-        font-size: $font-size-xxxxl;
-      }
+  }
 
-      button {
-        background: none;
-        border: none;
-        text-align: left;
-        color: $color-primary;
+  .content-container {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: space-around;
+    height: 80vh;
+    margin: 2rem;
+    @media screen and (min-width: 1024px) {
+      flex-direction: row;
+    }
+
+    .raccoon {
+      width: 20rem;
+      height: auto;
+      @media screen and (min-width: 1024px) {
+        width: 35rem;
+      }
+    }
+
+    .text-container {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      width: 20rem;
+      @media screen and (min-width: 1024px) {
+        width: 35rem;
+      }
+      h1 {
+        color: #243b43;
+        text-align: center;
+        text-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+        font-family: $primary-font;
+        font-size: $font-size-xxxxxl;
+        font-weight: $primary-font-weight;
+        @media screen and (min-width: 1024px) {
+          font-size: $font-size-xxxxxl;
+        }
+      }
+      h2 {
+        color: #243b44;
+        font-family: $primary-font;
+        font-size: $font-size-xxxl;
+        font-weight: $primary-font-weight;
+        @media screen and (min-width: 1024px) {
+          font-size: $font-size-xxxxl;
+        }
+      }
+      p {
+        color: #253c44;
         font-family: $primary-font;
         font-size: $font-size-xxl;
         font-weight: $primary-font-weight;
         @media screen and (min-width: 1024px) {
           font-size: $font-size-xxxxl;
         }
+
+        button {
+          background: none;
+          border: none;
+          text-align: left;
+          color: $color-primary;
+          font-family: $primary-font;
+          font-size: $font-size-xxl;
+          font-weight: $primary-font-weight;
+          @media screen and (min-width: 1024px) {
+            font-size: $font-size-xxxxl;
+          }
+        }
       }
     }
   }
-}
 }

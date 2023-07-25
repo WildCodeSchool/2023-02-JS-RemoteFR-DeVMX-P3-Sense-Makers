@@ -31,11 +31,10 @@
     backdrop-filter: blur(5px);
     -webkit-backdrop-filter: blur(5px);
     border: 1px solid rgba(255, 255, 255, 0.3);
-    
+
     @media screen and (min-width: 768px) {
       visibility: visible;
     }
-
 
     .Timeline-container-decision {
       display: flex;
@@ -48,7 +47,6 @@
       height: 36rem;
       width: 20rem;
       z-index: 999;
-
 
       .timeline-container {
         height: 36rem;
