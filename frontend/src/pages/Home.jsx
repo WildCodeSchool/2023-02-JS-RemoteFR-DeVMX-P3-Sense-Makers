@@ -33,7 +33,9 @@ export default function Home() {
   return (
     <div className="all-decisions-container">
       <div className="timeline-zone" />
-      <h1>{t("decisions.title")}</h1>
+      <div className="title-container">
+        <h1>{t("decisions.title")}</h1>
+      </div>
       {allStatus.map((statut) => (
         <div className="infos-status-container" key={statut.id}>
           <details className="details-container">

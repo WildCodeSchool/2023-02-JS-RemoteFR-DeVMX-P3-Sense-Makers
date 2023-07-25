@@ -123,8 +123,16 @@ NotificationButton.propTypes = {
   ).isRequired,
   notifValidation: PropTypes.arrayOf(
     PropTypes.shape({
-      d_id: PropTypes.number.isRequired,
+      d_id: PropTypes.number,
     })
-  ).isRequired,
+  ),
   ReadNotif: PropTypes.func.isRequired,
+};
+
+NotificationButton.defaultProps = {
+  notifValidation: PropTypes.arrayOf(
+    PropTypes.shape({
+      d_id: null,
+    })
+  ),
 };

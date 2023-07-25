@@ -294,9 +294,17 @@ LoginButton.propTypes = {
   ).isRequired,
   notifValidation: PropTypes.arrayOf(
     PropTypes.shape({
-      d_id: PropTypes.number.isRequired,
+      d_id: PropTypes.number,
     })
-  ).isRequired,
+  ),
   ReadNotif: PropTypes.func.isRequired,
   NotificationNumber: PropTypes.number.isRequired,
+};
+
+LoginButton.defaultProps = {
+  notifValidation: PropTypes.arrayOf(
+    PropTypes.shape({
+      d_id: null,
+    })
+  ),
 };
