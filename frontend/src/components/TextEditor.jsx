@@ -68,11 +68,7 @@ function TextEditor({ name, title, dispatch }) {
 TextEditor.propTypes = {
   name: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
-  dispatch: PropTypes.shape({
-    type: PropTypes.string.isRequired,
-    value: PropTypes.objectOf.isRequired,
-    key: PropTypes.string.isRequired,
-  }).isRequired,
+  dispatch: PropTypes.func.isRequired,
 };
 
 export default TextEditor;

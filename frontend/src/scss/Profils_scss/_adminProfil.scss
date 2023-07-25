@@ -3,10 +3,21 @@
 .admin-global-container {
   display: flex;
   flex-direction: column;
-  width: 90%;
-  margin: $space-0 auto;
-  gap: 1rem;
+  padding: 2rem;
+  gap: 2rem;
   font-family: $primary-font;
+
+  h1 {
+    color: $color-default;
+    width: 100%;
+    margin: $space-0;
+    text-align: start;
+    font-size: 3rem;
+  }
+
+  .timeline-zone {
+    height: 15vh;
+  }
 
   .stats-chart {
     display: none;
@@ -37,6 +48,7 @@
   .admin-global-container {
     .stats-chart {
       display: block;
+      margin: 2rem;
     }
   }
 

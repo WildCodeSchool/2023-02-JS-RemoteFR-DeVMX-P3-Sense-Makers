@@ -15,10 +15,7 @@
     gap: 1rem;
 
     .status {
-      background-color: rgba(32, 136, 167, 0.25);
-      border: 1px solid #2088a7;
       border-radius: 10px;
-      color: #2088a7;
       padding: 2px 10px;
     }
     .hub {
@@ -67,7 +64,7 @@
       font-weight: bold;
     }
   }
-  
+
   .comment-button {
     cursor: pointer;
     display: flex;
@@ -80,8 +77,8 @@
     padding: 0.6rem 2.6rem;
     border-radius: 5px;
   }
-  
-  .delete-button {
+
+  .delete-btn {
     background-color: $color-primary;
   }
 
