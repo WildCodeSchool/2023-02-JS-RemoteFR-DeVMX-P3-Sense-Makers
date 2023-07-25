@@ -15,6 +15,12 @@
       width: 7.8rem;
     }
   }
+
+  .navBar-and-loginButton {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
 }
 
 .navBar-icons {
@@ -63,9 +69,9 @@
       position: absolute;
       top: -0.5rem;
       right: -0.5rem;
-      height: 1rem;
-      width: 1rem;
-      border-radius: 1rem;
+      height: 1.15rem;
+      width: 1.15rem;
+      border-radius: 1.1rem;
       background-color: red;
       text-align: center;
       color: $background-color-base;
@@ -240,13 +246,13 @@
   margin: 0.2rem;
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 890px) {
   .navBar-icons {
     display: none;
   }
 }
 
-@media screen and (min-width: 768px) {
+@media screen and (min-width: 890px) {
   .login-menu-app {
     display: none;
   }
@@ -306,6 +312,7 @@
 
 .notifications-modal {
   position: fixed;
+  border:none;
   top: 1vh;
   left: 2vw;
   display: flex;
@@ -322,7 +329,8 @@
     align-items: center;
     flex-direction: column;
     width: 200px;
-    height: 400px;
+    min-height: fit-content;
+    max-height: 400px;
     margin: $space-m 0;
     padding: $space-m;
     background-color: $background-color-base;
@@ -350,11 +358,12 @@
     }
 
     ul {
+      overflow-y: auto;
       display: flex;
-      justify-content: center;
+      justify-content: flex-start;
       align-items: center;
       flex-direction: column;
-      padding: 0;
+      padding-left: 0;
       list-style-type: none;
       gap: 0.8rem;
 

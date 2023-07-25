@@ -1,4 +1,4 @@
-import { useEffect, useReducer, useState } from "react";
+import { useEffect, useReducer, useState, useContext } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { Slide, ToastContainer } from "react-toastify";
@@ -6,6 +6,7 @@ import { useTranslation } from "react-i18next";
 import AsyncSelect from "react-select/async";
 import { notifyDecision } from "../services/toast";
 import TextEditor from "../components/TextEditor";
+import userContext from "../contexts/userContext";
 
 /* Style selector */
 const customStyles = {
@@ -57,7 +58,7 @@ export default function PostDecision() {
   const [experts, setExperts] = useState([]);
   const [hub, setHub] = useState([]);
   const [selectedHub, setSelectedHub] = useState();
-  const context = 1;
+  const { user } = useContext(userContext);
   const { t } = useTranslation();
 
   /*  reducer initialisation */
@@ -126,8 +127,8 @@ export default function PostDecision() {
 
   /* Fonction for experts & impacted selection */
   const filterUsers = (inputValue) => {
-    return users.filter((user) =>
-      user.label.toLowerCase().includes(inputValue.toLowerCase())
+    return users.filter((u) =>
+      u.label.toLowerCase().includes(inputValue.toLowerCase())
     );
   };
 
@@ -170,7 +171,7 @@ export default function PostDecision() {
           axios.post(
             `${import.meta.env.VITE_BACKEND_URL}/decisions/:id/user`,
             {
-              userId: context,
+              userId: user.id,
               decisionId: response.data[0].insertId,
             },
             { withCredentials: true }
@@ -225,7 +226,7 @@ export default function PostDecision() {
             type="text"
             id="title_decision"
             className="title-decision"
-            placeholder="Déménager hors de Paris..."
+            placeholder={t("postDecision.placeholder")}
             value={state.title}
             onChange={(e) => {
               dispatch({

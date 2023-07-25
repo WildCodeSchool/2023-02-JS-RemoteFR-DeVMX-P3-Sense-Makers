@@ -316,9 +316,15 @@ export default function ModifyUser({
                 <img src={dropzoneImage[0]?.preview} alt="profil" />
               ) : (
                 <img
-                  src={`${import.meta.env.VITE_BACKEND_URL}/uploads/${
-                    currentUser?.photo
-                  }`}
+                  src={
+                    currentUser.photo === "default_avatar.png"
+                      ? `${import.meta.env.VITE_BACKEND_URL}/assets/images/${
+                          currentUser.photo
+                        }`
+                      : `${import.meta.env.VITE_BACKEND_URL}/uploads/${
+                          currentUser.photo
+                        }`
+                  }
                   alt="profil"
                 />
               )}

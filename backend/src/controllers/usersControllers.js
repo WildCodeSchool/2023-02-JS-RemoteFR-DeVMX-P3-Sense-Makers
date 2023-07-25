@@ -287,9 +287,25 @@ const getUserByEmail = (req, res, next) => {
 };
 
 const getExpertUsersForNotif = (req, res) => {
-  const userId = req.params.id;
+  const userId = parseInt(req.params.id, 10);
   models.users
     .findExpertOnDecisionByUserId(userId)
+    .then(([result]) => {
+      if (result.affectedRows === 0) {
+        res.sendStatus(404);
+      } else {
+        res.status(201).json(result);
+      }
+    })
+    .catch((err) => {
+      console.error(err);
+      res.sendStatus(500);
+    });
+};
+const getExpertForValidationNotif = (req, res) => {
+  const userId = parseInt(req.params.id, 10);
+  models.users
+    .findExpertForDemandeNotif(userId)
     .then(([result]) => {
       if (result.affectedRows === 0) {
         res.sendStatus(404);
@@ -323,9 +339,9 @@ const getImpactedUsersForNotif = (req, res) => {
 
 const modifyImpactNotifRead = (req, res) => {
   const { decicionsId } = req.body;
-
+  const userId = parseInt(req.params.id, 10);
   models.users
-    .updateisReadNotifImpact(decicionsId)
+    .updateisReadNotifImpact(decicionsId, userId)
     .then(([result]) => {
       if (result.affectedRows === 0) {
         res.sendStatus(404);
@@ -341,9 +357,9 @@ const modifyImpactNotifRead = (req, res) => {
 
 const modifyExpertNotifRead = (req, res) => {
   const { decicionsId } = req.body;
-
+  const userId = parseInt(req.params.id, 10);
   models.users
-    .updateisReadNotifExpert(decicionsId)
+    .updateisReadNotifExpert(decicionsId, userId)
     .then(([result]) => {
       if (result.affectedRows === 0) {
         res.sendStatus(404);
@@ -379,4 +395,5 @@ module.exports = {
   getExpertUsersForNotif,
   modifyImpactNotifRead,
   modifyExpertNotifRead,
+  getExpertForValidationNotif,
 };

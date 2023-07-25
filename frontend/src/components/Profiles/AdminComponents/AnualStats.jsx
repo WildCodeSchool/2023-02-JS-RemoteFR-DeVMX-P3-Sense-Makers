@@ -1,3 +1,5 @@
+import { useTranslation } from "react-i18next";
+
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -30,27 +32,29 @@ export const options = {
   },
 };
 
-const labels = [
-  "Janvier",
-  "Février",
-  "Mars",
-  "Avril",
-  "Mai",
-  "Juin",
-  "Juillet",
-  "Août",
-  "Septembre",
-  "Octobre",
-  "Novembre",
-  "Décembre",
-];
-
 export default function Stats() {
   const [statsByCategoryData, setStatsByCategoryData] = useState([]);
   const [createdData, setCreatedData] = useState([]);
   const [finishedValidData, setFinishedValidData] = useState([]);
   const [finishedNotValidData, setFinishedNotValidData] = useState([]);
   const [notFinishedData, setNotFinishedData] = useState([]);
+
+  const { t } = useTranslation();
+
+  const labels = [
+    t("anualStats.january"),
+    t("anualStats.february"),
+    t("anualStats.march"),
+    t("anualStats.april"),
+    t("anualStats.may"),
+    t("anualStats.june"),
+    t("anualStats.july"),
+    t("anualStats.august"),
+    t("anualStats.september"),
+    t("anualStats.october"),
+    t("anualStats.november"),
+    t("anualStats.december"),
+  ];
 
   useEffect(() => {
     setStatsByCategoryData(statsDecisionsGeneratorByCategory());
@@ -85,22 +89,22 @@ export default function Stats() {
     labels,
     datasets: [
       {
-        label: "Crées",
+        label: t("anualStats.created"),
         data: createdData,
         backgroundColor: "rgba(53, 162, 235, 0.5)",
       },
       {
-        label: "Non validées",
+        label: t("anualStats.notValidated"),
         data: finishedNotValidData,
         backgroundColor: "rgba(255, 99, 132, 0.5)",
       },
       {
-        label: "Validées",
+        label: t("anualStats.validated"),
         data: finishedValidData,
         backgroundColor: "rgba(0, 128, 0, 0.5)",
       },
       {
-        label: "Non abouties",
+        label: t("anualStats.notFinished"),
         data: notFinishedData,
         backgroundColor: "rgba(255, 0, 0, 0.5)",
       },

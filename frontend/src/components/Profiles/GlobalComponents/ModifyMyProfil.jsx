@@ -113,7 +113,7 @@ export default function ModifyMyProfil() {
     <>
       <form className="modify-my-profil-management" onSubmit={submit}>
         <div className="add-user-title-container">
-          <h2 className="add-user-title">{t("modifyProfil.userModif")}</h2>
+          <h2 className="add-user-title">{t("modifyProfil.myProfile")}</h2>
         </div>
         <div className="user-management-container">
           <div className="input-container">
@@ -167,9 +167,15 @@ export default function ModifyMyProfil() {
                   <img src={dropzoneImage[0]?.preview} alt="profil" />
                 ) : (
                   <img
-                    src={`${import.meta.env.VITE_BACKEND_URL}/uploads/${
-                      currentUser?.photo
-                    }`}
+                    src={
+                      currentUser.photo === "default_avatar.png"
+                        ? `${import.meta.env.VITE_BACKEND_URL}/assets/images/${
+                            currentUser.photo
+                          }`
+                        : `${import.meta.env.VITE_BACKEND_URL}/uploads/${
+                            currentUser.photo
+                          }`
+                    }
                     alt="profil"
                   />
                 )}

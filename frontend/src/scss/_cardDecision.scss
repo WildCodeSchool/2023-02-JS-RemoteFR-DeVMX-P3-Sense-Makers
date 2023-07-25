@@ -14,73 +14,81 @@
   font-family: "Raleway", Helvetica, Arial, sans-serif;
 
   /**********************************/
-
-  .Timeline-container-decision {
+  .Timeline-wrapper-decision {
     display: flex;
-    visibility: hidden;
-    flex-direction: column;
-    justify-content: center;
     align-items: center;
-    transform: rotate(-90deg);
-    -moz-transform: rotate(-90deg);
-    background-color: white;
+    visibility: hidden;
+    justify-content: center;
+    position: relative;
+    width: 100vw;
     position: fixed;
-    border-radius: 5px;
-    left: 35vw;
-    top: -5vh;
-    height: 40rem;
-    width: 20rem;
+    left: 0;
+    top: 0;
     z-index: 999;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    background: rgba(255, 255, 255, 0.85);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
 
     @media screen and (min-width: 768px) {
       visibility: visible;
     }
 
-    @media screen and (min-width: 1024px) {
-      left: 50vw;
-      top: -7vh;
-    }
+    .Timeline-container-decision {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      transform: rotate(-90deg);
+      -moz-transform: rotate(-90deg);
+      border-radius: 5px;
+      height: 25rem;
+      width: 20rem;
+      z-index: 999;
 
-    .timeline-container {
-      height: 36rem;
-      width: 36rem;
-      progress {
-        width: 47rem;
-      }
-      .date-container {
-        justify-content: center;
-        width: 60%;
-        .date-text {
-          transform: rotate(45deg);
-          -moz-transform: rotate(45deg);
-          font-size: $font-size-xxs;
+      .timeline-container {
+        height: 25rem;
+        width: 25rem;
+        progress {
+          width: 46rem;
         }
-        .date-text-similar {
-          transform: rotate(45deg);
-          -moz-transform: rotate(45deg);
-          font-size: $font-size-xxs;
-        }
-        .date-infos {
-          transform: rotate(45deg);
-          -moz-transform: rotate(45deg);
-          font-size: $font-size-xxs;
-        }
-        .date-infos-similar {
-          transform: rotate(45deg);
-          -moz-transform: rotate(45deg);
-          font-size: $font-size-xxs;
-        }
-        .date-point {
-          height: 1.1rem;
-          width: 1.4rem;
-          border-radius: 1.1rem;
-        }
+        .date-container {
+          justify-content: center;
+          width: 60%;
+          .date-text {
+            transform: rotate(45deg);
+            -moz-transform: rotate(45deg);
+            font-size: $font-size-xxs;
+          }
+          .date-text-similar {
+            transform: rotate(45deg);
+            -moz-transform: rotate(45deg);
+            font-size: $font-size-xxs;
+          }
+          .date-infos {
+            transform: rotate(45deg);
+            -moz-transform: rotate(45deg);
+            font-size: $font-size-xxs;
+          }
+          .date-infos-similar {
+            transform: rotate(45deg);
+            -moz-transform: rotate(45deg);
+            font-size: $font-size-xxs;
+          }
+          .date-point {
+            height: 0.9rem;
+            width: 1.7rem;
+            border-radius: 50%;
+          }
 
-        .date-point-similar {
-          height: 1.1rem;
-          width: 1.4rem;
-          border-radius: 1.3rem;
+          .date-point-similar {
+            height: 0.9rem;
+            width: 1.7rem;
+            border-radius: 50%;
+
+          }
         }
       }
     }

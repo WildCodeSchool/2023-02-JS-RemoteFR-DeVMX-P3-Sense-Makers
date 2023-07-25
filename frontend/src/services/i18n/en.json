@@ -11,6 +11,7 @@
 
   "postDecision": {
     "title": "Post a decision",
+    "placeholder": "Move to Paris...",
     "button": "Post this decision",
     "inputs": {
       "title": "Decision's title",
@@ -52,7 +53,7 @@
       "benefit": "Benefits",
       "risks": "Potential risks",
       "firstTake": "First decision making",
-      "comments": "comments"
+      "comments": "Comments"
     },
     "comment": {
       "expert": "expert",
@@ -71,7 +72,7 @@
     "impactedUsers": "People impacted",
     "expertsUsers": "Expert people",
     "deleteDecision": "Do you really want to delete this decision?",
-    "delete": "delete this decision",
+    "delete": "Delete this decision",
     "modal": {
       "carefull": "Warning, this action is irreversible!",
       "confirm": "Confirm",
@@ -118,10 +119,10 @@
 
   "cookieConsent": {
     "textPart1": "This website uses login data. Read our",
-    "link": "Privacy Policy",
+    "link": "privacy policy",
     "textPart2": "for more info",
-    "agreement": "Accord",
-    "refusal": "Refus"
+    "agreement": "Accept",
+    "refusal": "Deny"
   },
 
   "postComment": {
@@ -165,7 +166,7 @@
   "modifyProfil": {
     "userModif": "Edit User",
     "lastname": "Lastame",
-    "firstname": "First name",
+    "firstname": "Firstname",
     "mail": "Email",
     "resetPassword": "Reset password!",
     "passReseted": "Password reset!!!",
@@ -177,11 +178,12 @@
       "roleSelect": "Select your role",
       "expert": "Expert",
       "delete": "Delete"
-    }
+    },
+    "myProfile": "My profile"
   },
 
   "usersListAdmin": {
-    "placeHolderSearch": "user search",
+    "placeHolderSearch": "User search",
     "textButton": "Add a user",
     "tableTitle": {
       "photo": "Photo",
@@ -202,7 +204,7 @@
   },
 
   "decisionsListAdmin": {
-    "placeHolderSearch": "decision research",
+    "placeHolderSearch": "Decision research",
     "tableTitle": {
       "id": "Id",
       "title": "Title",
@@ -235,11 +237,52 @@
     "email": "Email",
     "password": "Password",
     "placeholderPassword": "Insert your password",
+    "passwordAuto": "Automatically generated password",
     "role": "Role",
     "defaultRole": "Select your role",
     "expert": "Expert",
     "addUser": "Add User"
   },
 
-  "notif": "indicated you as impacted on a decision"
+  "notifImpacted": "indicated you as impacted on a decision",
+  "notifExpert": "Indicated you as an expert on a decision",
+  "notifFirst": "You have a first decision to post",
+  "notifValid": "A decision awaits your validation",
+
+  "annualStats": {
+    "created": "Created",
+    "notValidated": "Not validated",
+    "validated": "Validated",
+    "unsuccessful": "Unsuccessful"
+  },
+
+  "monthlyStats": {
+    "totalDecisions": "total decisions, including",
+    "startedDecisions": "started this month",
+    "pendingDecisions": "pending decision making",
+    "firstTakeDecisions": "first decision made",
+    "waitingForExperts": "final decision pending",
+    "unsuccessfulDecisions": "unsuccessful decision",
+    "validatedDecisions": "validated decisions",
+    "notValidatedDecisions": "not validated decisions"
+  },
+
+  "anualStats": {
+    "january": "January",
+    "february": "February",
+    "march": "March",
+    "april": "April",
+    "may": "May",
+    "june": "June",
+    "july": "July",
+    "august": "August",
+    "september": "September",
+    "october": "October",
+    "november": "November",
+    "december": "December",
+    "created": "Created",
+    "notValidated": "Not Validated",
+    "validated": "Validated",
+    "notFinished": "Not Finished"
+  }
 }

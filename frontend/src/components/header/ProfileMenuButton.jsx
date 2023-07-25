@@ -17,6 +17,8 @@ export default function LoginButton({
   experts,
   ReadNotif,
   NotificationNumber,
+  decisions,
+  notifValidation,
 }) {
   const menuRef = useRef();
   const { pathname } = useLocation();
@@ -72,7 +74,13 @@ export default function LoginButton({
         </div>
         <img
           className="img-avatar"
-          src={`${import.meta.env.VITE_BACKEND_URL}/uploads/${user.photo}`}
+          src={
+            user.photo === "default_avatar.png"
+              ? `${import.meta.env.VITE_BACKEND_URL}/assets/images/${
+                  user.photo
+                }`
+              : `${import.meta.env.VITE_BACKEND_URL}/uploads/${user.photo}`
+          }
           alt="avatar"
         />
       </div>
@@ -249,6 +257,8 @@ export default function LoginButton({
           impacts={impacts}
           experts={experts}
           ReadNotif={ReadNotif}
+          decisions={decisions}
+          notifValidation={notifValidation}
         />
       )}
     </div>
@@ -264,6 +274,8 @@ LoginButton.propTypes = {
   userRoleId: PropTypes.number.isRequired,
   impacts: PropTypes.arrayOf.isRequired,
   experts: PropTypes.arrayOf.isRequired,
+  decisions: PropTypes.arrayOf.isRequired,
+  notifValidation: PropTypes.arrayOf.isRequired,
   ReadNotif: PropTypes.func.isRequired,
-  NotificationNumber: PropTypes.func.isRequired,
+  NotificationNumber: PropTypes.number.isRequired,
 };

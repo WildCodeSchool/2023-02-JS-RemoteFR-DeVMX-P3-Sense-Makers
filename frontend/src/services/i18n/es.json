@@ -11,6 +11,7 @@
 
   "postDecision": {
     "title": "Publicar una decisión",
+    "placeholder": "Mudarse a París...",
     "button": "Publicar esta decisión",
     "inputs": {
       "title": "Título de la decisión",
@@ -52,7 +53,7 @@
       "benefit": "Beneficios",
       "risks": "Riesgos potenciales",
       "firstTake": "Primera toma de decisiones",
-      "comments": "comentarios"
+      "comments": "Comentarios"
     },
     "comment": {
       "expert": "experto",
@@ -71,7 +72,7 @@
     "impactedUsers": "Personas impactadas",
     "expertsUsers": "Gente experta",
     "deleteDecision": "¿De verdad quieres borrar esta decisión?",
-    "delete": "eliminar esta decisión",
+    "delete": "Eliminar esta decisión",
     "modal": {
       "carefull": "¡Advertencia, esta acción es irreversible!",
       "confirm": "Confirmar",
@@ -118,10 +119,10 @@
 
   "cookieConsent": {
     "textPart1": "Este sitio web utiliza datos de inicio de sesión. Lea nuestro",
-    "link": "Política de privacidad",
+    "link": "política de privacidad",
     "textPart2": "para más información",
-    "agreement": "Acuerdo",
-    "refusal": "Negativa"
+    "agreement": "Aceptar",
+    "refusal": "Rechazar"
   },
 
   "postComment": {
@@ -173,15 +174,16 @@
     "validation": "Validar cambios",
     "dropzone": "suelte un archivo de imagen aquí",
     "modifyUser": {
-      "role": "Role",
+      "role": "Rol",
       "roleSelect": "Selecciona tu rol",
       "expert": "Experto",
       "delete": "Borrar"
-    }
+    },
+    "myProfile": "Mi perfil"
   },
 
   "usersListAdmin": {
-    "placeHolderSearch": "búsqueda de usuarios",
+    "placeHolderSearch": "Búsqueda de usuarios",
     "textButton": "Agregar un usuario",
     "tableTitle": {
       "photo": "Foto",
@@ -202,13 +204,13 @@
   },
 
   "decisionsListAdmin": {
-    "placeHolderSearch": "investigación de decisiones",
+    "placeHolderSearch": "Investigación de decisiones",
     "tableTitle": {
       "id": "Id",
       "title": "Título",
       "status": "Estado",
       "createdOn": "Creado el",
-      "createdBy": "Creado porr"
+      "createdBy": "Creado por"
     },
     "status": {
       "1": "Toma de decisión comenzó",
@@ -235,11 +237,52 @@
     "email": "Correo electrónico",
     "password": "Contraseña",
     "placeholderPassword": "Inserte su contraseña",
+    "passwordAuto": "Contraseña generada automáticamente",
     "role": "Role",
     "defaultRole": "Selecciona tu rol",
     "expert": "Experto",
     "addUser": "Agregar usuario"
   },
 
-  "notif": "lo indicó como afectado en una decisión"
+  "notifImpacted": "Te indicó como afectado en una decisión",
+  "notifExpert": "Te indicó como experto en una decisión",
+  "notifFirst": "Tienes una primera decisión para publicar",
+  "notifValid": "Una decisión espera su validación",
+
+  "annualStats": {
+    "created": "Creado",
+    "notValidated": "No validado",
+    "validated": "Validado",
+    "unsuccessful": "Inconcluso"
+  },
+
+  "monthlyStats": {
+    "totalDecisions": "decisiones totales, incluidas",
+    "startedDecisions": "creadas este mes",
+    "pendingDecisions": "toma de decisión pendiente",
+    "firstTakeDecisions": "primera decisiónes tomadas",
+    "waitingForExperts": "decisión final pendiente",
+    "unsuccessfulDecisions": "decisiónes no alcanzada",
+    "validatedDecisions": "decisiones finales validadas",
+    "notValidatedDecisions": "decisiones finales no validadas"
+  },
+
+  "anualStats": {
+    "january": "Enero",
+    "february": "Febrero",
+    "march": "Marzo",
+    "april": "Abril",
+    "may": "Mayo",
+    "june": "Junio",
+    "july": "Julio",
+    "august": "Agosto",
+    "september": "Septiembre",
+    "october": "Octubre",
+    "november": "Noviembre",
+    "december": "Diciembre",
+    "created": "Creadas",
+    "notValidated": "No validadas",
+    "validated": "Validadas",
+    "notFinished": "Inconclusa"
+  }
 }

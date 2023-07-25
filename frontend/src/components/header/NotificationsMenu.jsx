@@ -2,56 +2,23 @@ import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 
 import { useTranslation } from "react-i18next";
-import { useContext } from "react";
-import userContext from "../../contexts/userContext";
 
 export default function NotificationButton({
   handleShowNotificationsMenu,
   impacts,
   experts,
   ReadNotif,
+  decisions,
+  notifValidation,
 }) {
   const { t } = useTranslation();
 
-  const { user } = useContext(userContext);
-
-  function ShowNotif() {
-    if ((user.role_id === 3 || user.role_id === 1) && experts.lenght > 0) {
-      return experts.map((expert) => {
-        return (
-          <Link
-            className="notification-text"
-            key={expert.decisionID}
-            to={`/logged/decisions/${expert.decisionID}`}
-            onClick={() => {
-              ReadNotif("taggedexperts", expert.decisionID, "Experts");
-            }}
-          >
-            {expert.sender} {t("notif")}
-          </Link>
-        );
-      });
-    }
-    if ((user.role_id === 2 || user.role_id === 1) && impacts.length > 0) {
-      return impacts.map((impact) => {
-        return (
-          <Link
-            className="notification-text"
-            key={impact.decisionID}
-            to={`/logged/decisions/${impact.decisionID}`}
-            onClick={() => {
-              ReadNotif("taggedimpacted", impact.decisionID, "Impacts");
-              handleShowNotificationsMenu();
-            }}
-          >
-            {impact.sender} vous a indiqué comme impacté sur une décision
-          </Link>
-        );
-      });
-    }
-  }
   return (
-    <div className="notifications-modal">
+    <button
+      type="button"
+      className="notifications-modal"
+      onClick={handleShowNotificationsMenu}
+    >
       <div className="notifications-container">
         <svg
           onClick={handleShowNotificationsMenu}
@@ -70,9 +37,64 @@ export default function NotificationButton({
           <line x1="6" y1="6" x2="18" y2="18" />
         </svg>
         <div className="notifications-title">{t("header.notif")}</div>
-        <ul>{(experts.length > 0 || impacts.length > 0) && ShowNotif()}</ul>
+
+        <ul>
+          {experts.length > 0 &&
+            experts.map((expert) => (
+              <Link
+                className="notification-text"
+                key={expert.decisionID}
+                to={`/logged/decisions/${expert.decisionID}`}
+                onClick={() => {
+                  ReadNotif("taggedexperts", expert.decisionID, "Experts");
+                  handleShowNotificationsMenu();
+                }}
+              >
+                {expert.sender} {t("notifExpert")}
+              </Link>
+            ))}
+          {impacts.length > 0 &&
+            impacts.map((impact) => (
+              <Link
+                className="notification-text"
+                key={impact.decisionID}
+                to={`/logged/decisions/${impact.decisionID}`}
+                onClick={() => {
+                  ReadNotif("taggedimpacted", impact.decisionID, "Impacts");
+                  handleShowNotificationsMenu();
+                }}
+              >
+                {impact.sender} {t("notifImpacted")}
+              </Link>
+            ))}
+          {decisions.map((decision) => (
+            <Link
+              className="notification-text"
+              key={decision.d_id}
+              to={`/logged/decisions/${decision.d_id}`}
+              onClick={() => {
+                handleShowNotificationsMenu();
+              }}
+            >
+              {t("notifFirst")}
+            </Link>
+          ))}
+          {notifValidation.length > 0 &&
+            notifValidation.map((notifValid) => (
+              <Link
+                className="notification-text"
+                key={notifValid.decisionID}
+                to={`/logged/decisions/${notifValid.decisionID}`}
+                onClick={() => {
+                  handleShowNotificationsMenu();
+                }}
+              >
+                {t("notifValid")}
+              </Link>
+            ))}
+        </ul>
       </div>
-    </div>
+    </button>
   );
 }
 
@@ -81,4 +103,6 @@ NotificationButton.propTypes = {
   impacts: PropTypes.arrayOf.isRequired,
   experts: PropTypes.arrayOf.isRequired,
   ReadNotif: PropTypes.func.isRequired,
+  decisions: PropTypes.arrayOf.isRequired,
+  notifValidation: PropTypes.arrayOf.isRequired,
 };

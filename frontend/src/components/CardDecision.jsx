@@ -61,11 +61,10 @@ export default function CardDecision({ decision }) {
         setShow("none");
       }}
     >
-      <div
-        className="Timeline-container-decision"
-        style={{ display: `${show}` }}
-      >
-        <Timeline decision={decision} />
+      <div className="Timeline-wrapper-decision" style={{ display: `${show}` }}>
+        <div className="Timeline-container-decision">
+          <Timeline decision={decision} />
+        </div>
       </div>
       {decision.title_status === "Décision définitive" &&
         (decision.is_validated === 1 ? (
@@ -89,13 +88,21 @@ export default function CardDecision({ decision }) {
         ))}
 
       <div className="status-container">
-        <p style={statusColors}>{decision.title_status}</p>
+        <p style={statusColors}>
+          {t(`decisions.status.${decision.status_id}`)}
+        </p>
         <p>{decision.title}</p>
       </div>
       <h1>{decision.title_decision}</h1>
       <div className="card-creator-container">
         <img
-          src={`${import.meta.env.VITE_BACKEND_URL}/uploads/${decision.photo}`}
+          src={
+            decision.photo === "default_avatar.png"
+              ? `${import.meta.env.VITE_BACKEND_URL}/assets/images/${
+                  decision.photo
+                }`
+              : `${import.meta.env.VITE_BACKEND_URL}/uploads/${decision.photo}`
+          }
           alt="img profil creator"
         />
         <p>

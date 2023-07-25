@@ -9,7 +9,7 @@ export default function WrongPage() {
   const { t } = useTranslation();
 
   return (
-    <>
+    <div className="wrong-page-container">
       <div className="logo-container">
         <img src={logo} alt="logo" />
         <Lang />
@@ -34,6 +34,6 @@ export default function WrongPage() {
           </p>
         </div>
       </div>
-    </>
+    </div>
   );
 }
