@@ -23,6 +23,8 @@ export default function TimelineDate({
   const verificationDate = () => {
     if (parseDayDate >= parstDateI) {
       setDateInitial("-similar");
+    } else {
+      setDateInitial("");
     }
   };
 
@@ -47,8 +49,15 @@ TimelineDate.propTypes = {
     date: PropTypes.string,
     title: PropTypes.string.isRequired,
   }).isRequired,
-  initialDate: PropTypes.string.isRequired,
-  parseInitialDate: PropTypes.number.isRequired,
-  parseFinalDate: PropTypes.number.isRequired,
-  parseDayDate: PropTypes.number.isRequired,
+  initialDate: PropTypes.string,
+  parseInitialDate: PropTypes.number,
+  parseFinalDate: PropTypes.number,
+  parseDayDate: PropTypes.number,
+};
+
+TimelineDate.defaultProps = {
+  initialDate: "",
+  parseInitialDate: 0,
+  parseFinalDate: 0,
+  parseDayDate: 0,
 };

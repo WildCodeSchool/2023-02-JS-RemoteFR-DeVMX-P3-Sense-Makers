@@ -100,9 +100,31 @@ export default function NotificationButton({
 
 NotificationButton.propTypes = {
   handleShowNotificationsMenu: PropTypes.func.isRequired,
-  impacts: PropTypes.arrayOf.isRequired,
-  experts: PropTypes.arrayOf.isRequired,
+  impacts: PropTypes.arrayOf(
+    PropTypes.shape({
+      decisionID: PropTypes.number.isRequired,
+      is_notif_read: PropTypes.number.isRequired,
+      sender: PropTypes.string.isRequired,
+      title: PropTypes.string.isRequired,
+    })
+  ).isRequired,
+  experts: PropTypes.arrayOf(
+    PropTypes.shape({
+      decisionID: PropTypes.number.isRequired,
+      is_notif_read: PropTypes.number.isRequired,
+      sender: PropTypes.string.isRequired,
+      title: PropTypes.string.isRequired,
+    })
+  ).isRequired,
+  decisions: PropTypes.arrayOf(
+    PropTypes.shape({
+      d_id: PropTypes.number.isRequired,
+    })
+  ).isRequired,
+  notifValidation: PropTypes.arrayOf(
+    PropTypes.shape({
+      d_id: PropTypes.number.isRequired,
+    })
+  ).isRequired,
   ReadNotif: PropTypes.func.isRequired,
-  decisions: PropTypes.arrayOf.isRequired,
-  notifValidation: PropTypes.arrayOf.isRequired,
 };

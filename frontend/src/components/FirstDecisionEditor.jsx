@@ -6,7 +6,7 @@ function TextEditor({ setFirstDecision }) {
     <label htmlFor="first_decision">
       <Editor
         id="first_decision"
-        apiKey={`${import.meta.env.API_KEY}`}
+        apiKey="kj8hy39rl1nje7nh6kf3etgbl37lrjlvhsxindvx30h9hskr"
         onEditorChange={(content) => setFirstDecision(content)}
         initialValue="<p>première prise de décision</p>"
         init={{
