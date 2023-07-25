@@ -22,7 +22,7 @@ export default function Header() {
   const handleShowNotificationsMenu = () => {
     setShowNotificationsMenu(!showNotificationsMenu);
   };
-
+  
   const handleShowLoginMenu = () => {
     setShowLoginMenu(!showLoginMenu);
   };
@@ -90,10 +90,11 @@ export default function Header() {
   }, []);
 
   function NotificationNumber() {
-    return experts.length
-      + impacts.length
-      + notifValidation.length
-      + decisions.length;
+    return
+      experts.length +
+      impacts.length +
+      notifValidation.length +
+      decisions.length;
   }
 
   return (
