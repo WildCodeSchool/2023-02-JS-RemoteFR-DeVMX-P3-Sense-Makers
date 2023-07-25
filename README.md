@@ -61,19 +61,19 @@
 ### Login Data
 
 - Role Admin and Expert:
-  - Email: place.holder@placeholder.com
+  - Email: bernard@makesense.com
   - Password: test
     
 - Role User:
-  - Email: jean.mich@michel.com
+  - Email: jean@makesense.com
   - Password: test
     
 - Role User:
-  - Email: Harry.Potter@poudlard.com
+  - Email: harry@makesense.com
   - Password: test
     
 - Role User Expert:
-  - Email: lorem@ipsum.com
+  - Email: laure@makesense.com
   - Password: test
     
 </details>
