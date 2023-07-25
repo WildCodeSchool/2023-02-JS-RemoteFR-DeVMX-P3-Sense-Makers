@@ -67,7 +67,7 @@
       font-weight: bold;
     }
   }
-
+  
   .comment-button {
     cursor: pointer;
     display: flex;
@@ -79,6 +79,10 @@
     border: none;
     padding: 0.6rem 2.6rem;
     border-radius: 5px;
+  }
+  
+  .delete-button {
+    background-color: $color-primary;
   }
 
   button:disabled,

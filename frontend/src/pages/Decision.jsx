@@ -396,7 +396,7 @@ export default function Decision() {
         {user.role_id === 1 && (
           <button
             onClick={() => setOpenDecisionModal(true)}
-            className="comment-button"
+            className="comment-button delete-button"
             type="button"
             value={1}
           >
