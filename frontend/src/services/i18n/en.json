@@ -227,7 +227,8 @@
   "admin": {
     "stats": "Statistics",
     "userManagement": "User Management",
-    "decisionsManagement": "Decision Management"
+    "decisionsManagement": "Decision Management",
+    "title": "Administration"
   },
 
   "addUser": {
