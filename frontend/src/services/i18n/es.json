@@ -63,7 +63,7 @@
     },
     "approve": "Validar esta decisión",
     "reject": "Rechazar esta decisión",
-    "postFirstTake": "publicar mi primera toma de decisiones",
+    "postFirstTake": "Publicar mi primera toma de decisiones",
     "commButton": "Dar mi opinión",
     "closedComment": "¡El período de comentarios ha terminado!",
     "waitComment": "¡Espera la primera decisión del autor para poder volver a dar tu opinión!",
@@ -172,7 +172,7 @@
     "passReseted": "¡¡¡Restablecimiento de contraseña!!!",
     "roles": "Rol(es) actual(es)",
     "validation": "Validar cambios",
-    "dropzone": "suelte un archivo de imagen aquí",
+    "dropzone": "Suelte un archivo de imagen aquí",
     "modifyUser": {
       "role": "Rol",
       "roleSelect": "Selecciona tu rol",
@@ -244,8 +244,8 @@
     "addUser": "Agregar usuario"
   },
 
-  "notifImpacted": "Te indicó como afectado en una decisión",
-  "notifExpert": "Te indicó como experto en una decisión",
+  "notifImpacted": "te indicó como afectado en una decisión",
+  "notifExpert": "te indicó como experto en una decisión",
   "notifFirst": "Tienes una primera decisión para publicar",
   "notifValid": "Una decisión espera su validación",
 

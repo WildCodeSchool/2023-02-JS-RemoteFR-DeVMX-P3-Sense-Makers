@@ -54,19 +54,21 @@ function Timeline({ decision }) {
     100
   );
 
-  const verificationDate = () => {
+  const verificationFinaleDate = () => {
     if (parseDayDate >= parseFinalDate) {
       setFinaleSameInitial("-similar");
+    } else {
+      setFinaleSameInitial("");
     }
   };
 
   useEffect(() => {
-    verificationDate();
+    verificationFinaleDate();
   }, [{ decision }]);
 
   return (
     <div className="timeline-container">
-      <progress id="file" max="100" value={progressBar} />
+      <progress id="file" max="100" value={progressBar.toString()} />
       <div className="date-container" style={{ top: "0%" }}>
         <div className="date-infos-similar">
           {initialDate.toLocaleDateString(t("timeline.dateDisplay"))}
@@ -103,12 +105,22 @@ function Timeline({ decision }) {
 
 Timeline.propTypes = {
   decision: PropTypes.shape({
-    deadline_comment: PropTypes.string.isRequired,
-    deadline_conflict: PropTypes.string.isRequired,
-    final_take_decision: PropTypes.string.isRequired,
-    first_take_decision: PropTypes.string.isRequired,
-    initial_date: PropTypes.string.isRequired,
-  }).isRequired,
+    deadline_comment: PropTypes.string,
+    deadline_conflict: PropTypes.string,
+    final_take_decision: PropTypes.string,
+    first_take_decision: PropTypes.string,
+    initial_date: PropTypes.string,
+  }),
+};
+
+Timeline.defaultProps = {
+  decision: PropTypes.shape({
+    deadline_comment: "2023-07-31T00:00:00.000Z",
+    deadline_conflict: "2023-07-31T00:00:00.000Z",
+    final_take_decision: "2023-07-31T00:00:00.000Z",
+    first_take_decision: "2023-07-31T00:00:00.000Z",
+    initial_date: "2023-07-31T00:00:00.000Z",
+  }),
 };
 
 export default Timeline;

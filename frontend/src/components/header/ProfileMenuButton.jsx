@@ -44,7 +44,6 @@ export default function LoginButton({
       "user_token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
     handleShowLoginMenu();
   };
-
   return (
     <div ref={menuRef}>
       <div
@@ -272,10 +271,40 @@ LoginButton.propTypes = {
   showNotificationsMenu: PropTypes.bool.isRequired,
   handleShowNotificationsMenu: PropTypes.func.isRequired,
   userRoleId: PropTypes.number.isRequired,
-  impacts: PropTypes.arrayOf.isRequired,
-  experts: PropTypes.arrayOf.isRequired,
-  decisions: PropTypes.arrayOf.isRequired,
-  notifValidation: PropTypes.arrayOf.isRequired,
+  impacts: PropTypes.arrayOf(
+    PropTypes.shape({
+      decisionID: PropTypes.number.isRequired,
+      is_notif_read: PropTypes.number.isRequired,
+      sender: PropTypes.string.isRequired,
+      title: PropTypes.string.isRequired,
+    })
+  ).isRequired,
+  experts: PropTypes.arrayOf(
+    PropTypes.shape({
+      decisionID: PropTypes.number.isRequired,
+      is_notif_read: PropTypes.number.isRequired,
+      sender: PropTypes.string.isRequired,
+      title: PropTypes.string.isRequired,
+    })
+  ).isRequired,
+  decisions: PropTypes.arrayOf(
+    PropTypes.shape({
+      d_id: PropTypes.number.isRequired,
+    })
+  ).isRequired,
+  notifValidation: PropTypes.arrayOf(
+    PropTypes.shape({
+      d_id: PropTypes.number,
+    })
+  ),
   ReadNotif: PropTypes.func.isRequired,
   NotificationNumber: PropTypes.number.isRequired,
+};
+
+LoginButton.defaultProps = {
+  notifValidation: PropTypes.arrayOf(
+    PropTypes.shape({
+      d_id: null,
+    })
+  ),
 };

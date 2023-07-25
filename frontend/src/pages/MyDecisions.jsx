@@ -36,6 +36,7 @@ export default function MyDecisions() {
 
   return (
     <div className="all-decisions-container">
+      <div className="timeline-zone" />
       <div className="title-container">
         <h1>{t("decisions.myTitle")}</h1>
         <button type="button" onClick={() => navigate("/logged/postdecision")}>

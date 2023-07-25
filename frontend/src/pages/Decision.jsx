@@ -16,7 +16,7 @@ import Timeline from "../components/graphicElements/Timeline";
 import PostComments from "../components/PostComments";
 
 export default function Decision() {
-  const [decision, setDecison] = useState([]);
+  const [decision, setDecison] = useState({});
   const [comments, setComments] = useState([]);
   const [impactedUsers, setimpactedUsers] = useState([]);
   const [experts, setExperts] = useState([]);
@@ -24,7 +24,7 @@ export default function Decision() {
   const [displayValidation, setDisplayValidation] = useState(true);
   const [firstDecision, setFirstDecision] = useState("");
   const [openDecisionModal, setOpenDecisionModal] = useState(false);
-  const [openCommentModal, setOpenCommentModal] = useState();
+  const [openCommentModal, setOpenCommentModal] = useState(false);
   const [commentId, setCommentId] = useState();
   const { user } = useContext(userContext);
   const navigate = useNavigate();
@@ -128,7 +128,6 @@ export default function Decision() {
       .catch((err) => console.error(err));
     navigate(-1);
   };
-
   const deleteComment = (commId) => {
     axios
       .delete(
@@ -186,7 +185,7 @@ export default function Decision() {
               <p className="bold-text">{t("decision.details.context")}</p>{" "}
               {strip(decision.context)}
             </div>
-            <p>{strip(decision.content)}</p>
+            {strip(decision.content)}
           </div>
         </details>
 
@@ -195,9 +194,7 @@ export default function Decision() {
             {t("decision.details.impact")}
             <hr />
           </summary>
-          <div className="summary-content">
-            <p>{strip(decision.usefulness)}</p>
-          </div>
+          <div className="summary-content">{strip(decision.usefulness)}</div>
         </details>
 
         <details>
@@ -205,9 +202,7 @@ export default function Decision() {
             {t("decision.details.benefit")}
             <hr />
           </summary>
-          <div className="summary-content">
-            <p>{strip(decision.benefit)}</p>
-          </div>
+          <div className="summary-content">{strip(decision.benefit)}</div>
         </details>
 
         <details>
@@ -216,9 +211,7 @@ export default function Decision() {
             <hr />
           </summary>
 
-          <div className="summary-content">
-            <p>{strip(decision.disadvantages)}</p>
-          </div>
+          <div className="summary-content">{strip(decision.disadvantages)}</div>
         </details>
 
         {decision.first_decision_content && (
@@ -228,7 +221,7 @@ export default function Decision() {
               <hr />
             </summary>
             <div className="summary-content">
-              <p>{strip(decision.first_decision_content)}</p>
+              {strip(decision.first_decision_content)}
             </div>
           </details>
         )}
@@ -396,7 +389,7 @@ export default function Decision() {
         {user.role_id === 1 && (
           <button
             onClick={() => setOpenDecisionModal(true)}
-            className="comment-button"
+            className="comment-button delete-button"
             type="button"
             value={1}
           >
