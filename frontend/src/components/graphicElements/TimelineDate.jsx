@@ -23,6 +23,8 @@ export default function TimelineDate({
   const verificationDate = () => {
     if (parseDayDate >= parstDateI) {
       setDateInitial("-similar");
+    } else {
+      setDateInitial("");
     }
   };
 
