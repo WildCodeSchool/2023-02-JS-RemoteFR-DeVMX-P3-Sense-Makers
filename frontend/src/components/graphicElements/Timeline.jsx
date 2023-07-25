@@ -54,14 +54,16 @@ function Timeline({ decision }) {
     100
   );
 
-  const verificationDate = () => {
+  const verificationFinaleDate = () => {
     if (parseDayDate >= parseFinalDate) {
       setFinaleSameInitial("-similar");
+    } else {
+      setFinaleSameInitial("");
     }
   };
 
   useEffect(() => {
-    verificationDate();
+    verificationFinaleDate();
   }, [{ decision }]);
 
   return (
