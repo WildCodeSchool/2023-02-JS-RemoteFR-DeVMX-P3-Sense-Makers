@@ -247,6 +247,7 @@
   "notifImpacted": "indicated you as impacted on a decision",
   "notifExpert": "Indicated you as an expert on a decision",
   "notifFirst" : "You have a first decision to post",
+  "notifValid": "A decision awaits your validation",
 
   "annualStats": {
     "created": "Created",

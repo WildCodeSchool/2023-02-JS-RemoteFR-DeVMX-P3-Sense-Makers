@@ -9,6 +9,7 @@ export default function NotificationButton({
   experts,
   ReadNotif,
   decisions,
+  notifValidation,
 }) {
   const { t } = useTranslation();
 
@@ -62,7 +63,6 @@ export default function NotificationButton({
                 {impact.sender} {t("notifImpacted")}
               </Link>
             ))}
-
           {decisions.map((decision) => (
             <Link
               className="notification-text"
@@ -75,6 +75,19 @@ export default function NotificationButton({
               {t("notifFirst")}
             </Link>
           ))}
+          {notifValidation.length > 0 &&
+            notifValidation.map((notifValid) => (
+              <Link
+                className="notification-text"
+                key={notifValid.decisionID}
+                to={`/logged/decisions/${notifValid.decisionID}`}
+                onClick={() => {
+                  handleShowNotificationsMenu();
+                }}
+              >
+                {t("notifValid")}
+              </Link>
+            ))}
         </ul>
       </div>
     </div>
@@ -87,4 +100,5 @@ NotificationButton.propTypes = {
   experts: PropTypes.arrayOf.isRequired,
   ReadNotif: PropTypes.func.isRequired,
   decisions: PropTypes.arrayOf.isRequired,
+  notifValidation: PropTypes.arrayOf.isRequired,
 };

@@ -11,9 +11,12 @@ import Lang from "../Lang";
 export default function Header() {
   const [showLoginMenu, setShowLoginMenu] = useState(false);
   const [showNotificationsMenu, setShowNotificationsMenu] = useState(false);
-
-  const { pathname } = useLocation();
+  const [impacts, setImpacts] = useState([]);
+  const [experts, setExperts] = useState([]);
+  const [decisions, setDecisions] = useState([]);
+  const [notifValidation, setNotifValidation] = useState([]);
   const { user } = useContext(userContext);
+  const { pathname } = useLocation();
   const { t } = useTranslation();
 
   const handleShowNotificationsMenu = () => {
@@ -23,11 +26,7 @@ export default function Header() {
   const handleShowLoginMenu = () => {
     setShowLoginMenu(!showLoginMenu);
   };
-
-  const [impacts, setImpacts] = useState([]);
-  const [experts, setExperts] = useState([]);
-  const [decisions, setDecisions] = useState([]);
-
+  
   const ReadNotif = useCallback(
     (concerned, Id) => {
       axios
@@ -65,6 +64,18 @@ export default function Header() {
         setImpacts(response.data);
       })
       .catch((err) => console.error(err));
+
+    axios
+      .get(
+        `${import.meta.env.VITE_BACKEND_URL}/users/${user.id}/validationexpert`,
+        {
+          withCredentials: true,
+        }
+      )
+      .then((res) => {
+        setNotifValidation(res.data);
+      })
+      .catch((err) => console.error(err));
   }, [ReadNotif]);
 
   useEffect(() => {
@@ -79,7 +90,7 @@ export default function Header() {
   }, []);
 
   function NotificationNumber() {
-    return experts.length + impacts.length + decisions.length;
+    return experts.length + impacts.length + notifValidation.length + decisions.length;
   }
 
   return (
@@ -190,6 +201,7 @@ export default function Header() {
                   experts={experts}
                   ReadNotif={ReadNotif}
                   decisions={decisions}
+                  notifValidation={notifValidation}
                 />
               )}
             </li>
@@ -238,6 +250,7 @@ export default function Header() {
           ReadNotif={ReadNotif}
           decisions={decisions}
           NotificationNumber={NotificationNumber()}
+          notifValidation={notifValidation}
         />
       </div>
     </div>

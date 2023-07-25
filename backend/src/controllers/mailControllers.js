@@ -1,9 +1,10 @@
 const nodemailer = require("nodemailer");
 const { google } = require("googleapis");
 const jwt = require("jsonwebtoken");
+const path = require("path");
 
 const REFRESH_TOKEN =
-  "1//04Z5vxk0ZqZ7DCgYIARAAGAQSNwF-L9IrmwOZ41pl5Mt7oIAwNIjQVqTmW3JHfiZB5F_HSVDqJ7EZVPW-8-L1iWopjUnkZbnhTV0";
+  "1//04E_VyliBohIXCgYIARAAGAQSNwF-L9IruRj91s1A7wpIWudkHkyjgHJWzPucQ4rm1TOAHh4eddFUvPSXtG3xKP27YSGWbZfuIEU";
 
 const secret = process.env.SECRET_MAIL;
 const payload = { sub: "okkkk" }; // recup data from user where email = email saisie sur la demande
@@ -34,7 +35,18 @@ const sendMailById = (req, res) => {
       from: "Admin <nlopes93600@gmail.com>",
       to: `${req.body.email}`, // put the email of user depuis le payload//
       subject: "Reinitialisation du mot de passe",
-      html: `Veuillez cliquer sur le lien si vous souhaitez mettre à jour votre mot de passe, si vous n'êtes pas à l'origine de la demande contactez dans les plus brefs délais votre administrateur.<a href="http://localhost:3000/resetpassword?token=${token}&id=${req.body.id}">Cliquez ici</a>`,
+      html: `Veuillez cliquer sur le lien si vous souhaitez mettre à jour votre mot de passe, si vous n'êtes pas à l'origine de la demande contactez dans les plus brefs délais votre administrateur.<a href="http://localhost:3000/resetpassword?token=${token}&id=${req.body.id}">Cliquez ici</a>.
+      Vous trouverez ci joint un tutoriel en PDF pour vous accompagner dans vos premiers pas.`,
+      attachments: [
+        {
+          filename: "documentation utilisateur.pdf",
+          path: path.join(
+            __dirname,
+            "../../public/uploads/documentation_utilisateur.pdf"
+          ),
+          contentType: "application/pdf",
+        },
+      ],
     },
     (err) => {
       if (err) console.error(err);
