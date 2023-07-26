@@ -22,6 +22,14 @@ export function dataNotValide() {
   });
 }
 
+export function undeletable() {
+  toast.error("Vous ne pouvez pas supprimer cet utilisateur", {
+    color: "white",
+    backgroundColor: "red",
+    icon: "❌",
+  });
+}
+
 export function passwordReinit() {
   toast.success("Mot de passe reinitialisé", {
     color: "white",
