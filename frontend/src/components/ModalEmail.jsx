@@ -50,7 +50,7 @@ export default function ModalEmail({ setOpenModal }) {
                 type="email"
                 id="verifemail"
                 name="verifemail"
-                placeholder="Insérez votre email"
+                placeholder={t("modalEmail.placeholderEmail")}
                 onChange={(e) => setEmail(e.target.value)}
                 required
               />

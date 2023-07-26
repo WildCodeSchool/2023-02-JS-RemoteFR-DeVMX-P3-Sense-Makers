@@ -114,7 +114,8 @@
 
   "modalEmail": {
     "email": "Introduce tu email",
-    "validate": "Validar"
+    "validate": "Validar",
+    "placeholderEmail" : "Inserte su correo electrónico"
   },
 
   "cookieConsent": {
@@ -242,7 +243,10 @@
     "role": "Role",
     "defaultRole": "Selecciona tu rol",
     "expert": "Experto",
-    "addUser": "Agregar usuario"
+    "addUser": "Agregar usuario",
+    "placeholderFirstname" : "Inserte su nombre de pila",
+    "placeholderLastname" : "Inserte su apellido",
+    "placeholderEmail" : "Inserte su correo electrónico"
   },
 
   "notifImpacted": "te indicó como afectado en una decisión",

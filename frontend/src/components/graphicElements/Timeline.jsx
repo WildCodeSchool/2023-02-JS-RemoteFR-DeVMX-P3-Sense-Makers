@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import TimelineDate from "./TimelineDate";
 
-function Timeline({ decision }) {
+export default function Timeline({ decision }) {
   const { t } = useTranslation();
   const status = [
     { id: 1, title: t("timeline.firstDeadline") },
@@ -54,16 +54,12 @@ function Timeline({ decision }) {
     100
   );
 
-  const verificationFinaleDate = () => {
+  useEffect(() => {
     if (parseDayDate >= parseFinalDate) {
       setFinaleSameInitial("-similar");
     } else {
       setFinaleSameInitial("");
     }
-  };
-
-  useEffect(() => {
-    verificationFinaleDate();
   }, [{ decision }]);
 
   return (
@@ -122,5 +118,3 @@ Timeline.defaultProps = {
     initial_date: "2023-07-31T00:00:00.000Z",
   }),
 };
-
-export default Timeline;

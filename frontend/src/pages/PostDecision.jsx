@@ -77,7 +77,7 @@ export default function PostDecision() {
   const [state, dispatch] = useReducer(reducer, initialState);
 
   /* Add the  Hub id to send in the Back */
-  const addID = () => {
+  useEffect(() => {
     for (let i = 0; i < hub.length; i += 1) {
       if (hub[i].title === selectedHub) {
         dispatch({
@@ -87,9 +87,6 @@ export default function PostDecision() {
         });
       }
     }
-  };
-  useEffect(() => {
-    addID();
   }, [selectedHub]);
 
   /* import users & experts for select */
@@ -148,15 +145,6 @@ export default function PostDecision() {
     setTimeout(() => {
       callback(filterExperts(inputValue));
     }, 500);
-  };
-
-  /* Update  experts & impacted on the decision */
-  const onChangeExpert = (inputValue) => {
-    setExperts(inputValue);
-  };
-
-  const onChangeImpacted = (inputValue) => {
-    setImpacted(inputValue);
   };
 
   /* Post decision to the back */
@@ -272,7 +260,7 @@ export default function PostDecision() {
               defaultOptions={users}
               loadOptions={loadOptionsUsers}
               isMulti
-              onChange={onChangeImpacted}
+              onChange={(inputValue) => setImpacted(inputValue)}
             />
           </label>
 
@@ -285,7 +273,7 @@ export default function PostDecision() {
               defaultOptions={expertUsers}
               loadOptions={loadOptionExperts}
               isMulti
-              onChange={onChangeExpert}
+              onChange={(inputValue) => setExperts(inputValue)}
             />
           </label>
         </div>

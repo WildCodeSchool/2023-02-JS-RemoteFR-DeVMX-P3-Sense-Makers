@@ -2,9 +2,9 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import axios from "axios";
-import oeil from "../../../assets/view.png";
+import eye from "../../assets/view.png";
 
-function DecisionsList() {
+export default function DecisionsList() {
   const navigate = useNavigate();
   const [decisions, setDecisions] = useState([]);
   const [filterDecision, setFilterDecision] = useState("");
@@ -32,9 +32,6 @@ function DecisionsList() {
     if (currentPage !== 1) {
       setCurrentPage(currentPage - 1);
     }
-  };
-  const changeCpage = (id) => {
-    setCurrentPage(id);
   };
 
   const nextPage = () => {
@@ -91,7 +88,7 @@ function DecisionsList() {
                           return navigate(`/logged/decisions/${decision.d_id}`);
                         }}
                       >
-                        <img src={oeil} alt="view icon" />
+                        <img src={eye} alt="view icon" />
                       </button>
                     </td>
                   </tr>
@@ -113,7 +110,7 @@ function DecisionsList() {
               }`}
               key={n}
             >
-              <button type="button" onClick={() => changeCpage(n)}>
+              <button type="button" onClick={() => setCurrentPage(n)}>
                 {n}
               </button>
             </li>
@@ -128,5 +125,3 @@ function DecisionsList() {
     </div>
   );
 }
-
-export default DecisionsList;

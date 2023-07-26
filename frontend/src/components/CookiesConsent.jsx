@@ -1,7 +1,10 @@
 import PropTypes from "prop-types";
 import { useTranslation } from "react-i18next";
 
-function CookiesConsent({ setShowCookieBanner, setCookieValidation }) {
+export default function CookiesConsent({
+  setShowCookieBanner,
+  setCookieValidation,
+}) {
   const { t } = useTranslation();
 
   const handleClickAccept = () => {
@@ -51,4 +54,3 @@ CookiesConsent.propTypes = {
   setShowCookieBanner: PropTypes.func.isRequired,
   setCookieValidation: PropTypes.func.isRequired,
 };
-export default CookiesConsent;

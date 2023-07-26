@@ -7,7 +7,7 @@
   align-items: center;
   flex-direction: column;
   width: 85%;
-  margin: auto;
+  margin: 1rem auto;
   padding: $space-s 0;
   font-family: "Raleway", Helvetica, Arial, sans-serif;
   font-weight: 700;
@@ -20,22 +20,29 @@
 
   .close-modal-button-container {
     position: absolute;
-    top: 3%;
-    right: 10%;
+    top: 2%;
+    right: 2%;
 
-    button {
-      width: 1rem;
-      height: 1rem;
-      padding: 0;
-      color: $color-default;
-      border: none;
-      cursor: pointer;
-      transition: all 250ms ease-out;
-    }
+    .close-btn {
+      display: flex;
+      justify-content: end;
+      
+      button {
+        cursor: pointer;
+        background-color: white;
+        color: $color-default;
+        font-weight: $primary-font-weight;
+        border-radius: 20px;
+        padding: 0.5rem 0.75rem;
+        border: 1px solid $color-default;
+        transition: 0.2s ease-in-out;
 
-    > :hover {
-      color: $border-color-active;
-      transform: scale(1.1);
+        &:hover {
+          transform: scale(1.1);
+          background: $color-default;
+          color: white;
+        }
+      }
     }
   }
 
@@ -287,8 +294,8 @@
     padding: 0 $space-s $space-s $space-s;
 
     .close-modal-button-container {
-      top: 4%;
-      right: 3%;
+      top: 2%;
+      right: 0.5%;
     }
 
     .add-user-title-container {

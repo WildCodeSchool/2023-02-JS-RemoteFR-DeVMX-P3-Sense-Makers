@@ -312,7 +312,7 @@
 
 .notifications-modal {
   position: fixed;
-  border:none;
+  border: none;
   top: 1vh;
   left: 2vw;
   display: flex;
@@ -336,6 +336,28 @@
     background-color: $background-color-base;
     border-radius: $border-radius-m;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.13);
+
+    .close-btn {
+      display: flex;
+      justify-content: end;
+      width: 100%;
+      button {
+        cursor: pointer;
+        background-color: white;
+        color: $color-default;
+        font-weight: $primary-font-weight;
+        border-radius: 20px;
+        padding: 0.5rem 0.75rem;
+        border: 1px solid $color-default;
+        transition: 0.2s ease-in-out;
+
+        &:hover {
+          transform: scale(1.1);
+          background: $color-default;
+          color: white;
+        }
+      }
+    }
 
     .notification-text {
       text-decoration: none;

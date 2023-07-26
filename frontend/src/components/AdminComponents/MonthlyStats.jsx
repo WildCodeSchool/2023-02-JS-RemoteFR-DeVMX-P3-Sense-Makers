@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 
-import statsDecisionsGeneratorByCategory from "../../../services/statsDecisionsGenerator";
+import statsDecisionsGeneratorByCategory from "../../services/statsDecisionsGenerator";
 
 export default function MonthlyStats() {
   const [statsByCategoryData, setStatsByCategoryData] = useState([]);

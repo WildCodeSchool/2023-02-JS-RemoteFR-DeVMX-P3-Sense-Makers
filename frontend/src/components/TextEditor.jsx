@@ -2,7 +2,7 @@ import { Editor } from "@tinymce/tinymce-react";
 import PropTypes from "prop-types";
 import { useRef } from "react";
 
-function TextEditor({ name, title, dispatch }) {
+export default function TextEditor({ name, title, dispatch }) {
   const refInit = useRef(null);
 
   const functionChange = () => {
@@ -70,5 +70,3 @@ TextEditor.propTypes = {
   title: PropTypes.string.isRequired,
   dispatch: PropTypes.func.isRequired,
 };
-
-export default TextEditor;

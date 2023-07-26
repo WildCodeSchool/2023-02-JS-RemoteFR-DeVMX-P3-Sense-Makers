@@ -1,7 +1,7 @@
 import { Editor } from "@tinymce/tinymce-react";
 import PropTypes from "prop-types";
 
-function TextEditor({ setFirstDecision }) {
+export default function FirstDecisionEditor({ setFirstDecision }) {
   return (
     <label htmlFor="first_decision">
       <Editor
@@ -48,7 +48,6 @@ function TextEditor({ setFirstDecision }) {
   );
 }
 
-TextEditor.propTypes = {
+FirstDecisionEditor.propTypes = {
   setFirstDecision: PropTypes.func.isRequired,
 };
-export default TextEditor;

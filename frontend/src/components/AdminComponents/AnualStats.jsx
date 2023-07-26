@@ -12,7 +12,7 @@ import {
 import { Bar } from "react-chartjs-2";
 
 import { useEffect, useState } from "react";
-import statsDecisionsGeneratorByCategory from "../../../services/statsDecisionsGenerator";
+import statsDecisionsGeneratorByCategory from "../../services/statsDecisionsGenerator";
 
 ChartJS.register(
   CategoryScale,
@@ -32,7 +32,7 @@ export const options = {
   },
 };
 
-export default function Stats() {
+export default function AnualStats() {
   const [statsByCategoryData, setStatsByCategoryData] = useState([]);
   const [createdData, setCreatedData] = useState([]);
   const [finishedValidData, setFinishedValidData] = useState([]);
