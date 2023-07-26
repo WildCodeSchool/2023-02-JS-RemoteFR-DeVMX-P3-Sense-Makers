@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { useTranslation } from "react-i18next";
 import PropTypes from "prop-types";
 import axios from "axios";
@@ -7,8 +7,10 @@ import {
   userDeleteNotif,
   emailSend,
   emailNotSend,
+  undeletable,
 } from "../../services/toast";
 import Dropzone from "../../services/hookDropzone";
+import userContext from "../../contexts/userContext";
 
 export default function ModifyUser({
   setShowUpdateUser,
@@ -21,6 +23,7 @@ export default function ModifyUser({
   const [rolesFromUser, setRolesFromUser] = useState([]);
   const [reinicializePassword, setReinicializePassword] = useState(false);
   const { t } = useTranslation();
+  const { user } = useContext(userContext);
 
   const [targetValues, setTargetValues] = useState({
     firstname: "",
@@ -158,19 +161,25 @@ export default function ModifyUser({
   };
 
   const deactivateUser = () => {
-    axios
-      .put(
-        `${import.meta.env.VITE_BACKEND_URL}/users/${currentUser.id}/isactive`,
-        { isActive: false },
-        {
-          withCredentials: true,
-        }
-      )
-      .then(() => {
-        userDeleteNotif();
-      })
-      .catch((err) => console.error(err));
-    setShowUpdateUser(false);
+    if (currentUser.id === user.id) {
+      undeletable();
+    } else {
+      axios
+        .put(
+          `${import.meta.env.VITE_BACKEND_URL}/users/${
+            currentUser.id
+          }/isactive`,
+          { isActive: false },
+          {
+            withCredentials: true,
+          }
+        )
+        .then(() => {
+          userDeleteNotif();
+        })
+        .catch((err) => console.error(err));
+      setShowUpdateUser(false);
+    }
   };
 
   useEffect(() => {

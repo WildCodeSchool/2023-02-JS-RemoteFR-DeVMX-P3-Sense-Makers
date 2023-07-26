@@ -33,10 +33,14 @@ export default function Login() {
           { withCredentials: true }
         )
         .then((res) => {
-          setUser(res.data.user);
-          setTimeout(() => {
-            navigate("/logged/decisions");
-          }, 500);
+          if (res.data.user.is_active === 0) {
+            dataNotValide();
+          } else {
+            setUser(res.data.user);
+            setTimeout(() => {
+              navigate("/logged/decisions");
+            }, 500);
+          }
         })
         .catch((err) => {
           console.error(err);
