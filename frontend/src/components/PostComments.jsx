@@ -1,9 +1,9 @@
 import { useContext, useState } from "react";
 import axios from "axios";
+import { toast } from "react-toastify";
 import { useParams } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import PropTypes from "prop-types";
-import { commentAdd } from "../services/toast";
 import userContext from "../contexts/userContext";
 
 export default function PostComments({ setAddComment, handleComment }) {
@@ -30,7 +30,11 @@ export default function PostComments({ setAddComment, handleComment }) {
 
   const handleClick = () => {
     postComment();
-    commentAdd();
+    toast.success(t("Toast.commentAdd"), {
+      color: "white",
+      backgroundColor: "green",
+      icon: "✔️",
+    });
     setTimeout(handleComment, 500);
   };
 

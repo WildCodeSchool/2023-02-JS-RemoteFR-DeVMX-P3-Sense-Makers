@@ -13,35 +13,6 @@ export default function MyProfil() {
   const [newUploadedFileName, setNewUploadedFileName] = useState("");
   const { t } = useTranslation();
 
-  const userModifNotif = () => {
-    toast.success("utilisateur modifié", {
-      color: "white",
-      backgroundColor: "green",
-      icon: "✔️",
-    });
-  };
-  const userNotModifyNotif = () => {
-    toast.error("Aucune modification effectué", {
-      color: "white",
-      backgroundColor: "red",
-      icon: "❌",
-    });
-  };
-  const emailSend = () => {
-    toast.success("email envoyé", {
-      color: "white",
-      backgroundColor: "green",
-      icon: "✔️",
-    });
-  };
-  const emailNotSend = () => {
-    toast.error("email non envoyé", {
-      color: "white",
-      backgroundColor: "red",
-      icon: "❌",
-    });
-  };
-
   useEffect(() => {
     axios
       .get(`${import.meta.env.VITE_BACKEND_URL}/users/${user.id}`, {
@@ -53,7 +24,12 @@ export default function MyProfil() {
 
   const submit = (event) => {
     event.preventDefault();
-    if (newUploadedFileName === "") return userNotModifyNotif();
+    if (newUploadedFileName === "")
+      toast.error(t("Toast.userNotModifyNotif"), {
+        color: "white",
+        backgroundColor: "red",
+        icon: "❌",
+      });
 
     return axios
       .put(
@@ -69,7 +45,11 @@ export default function MyProfil() {
         }
       )
       .then(() => {
-        userModifNotif();
+        toast.success(t("Toast.userModifNotif"), {
+          color: "white",
+          backgroundColor: "green",
+          icon: "✔️",
+        });
         setTimeout(() => {
           axios
             .get(
@@ -101,9 +81,13 @@ export default function MyProfil() {
           withCredentials: true,
         }
       )
-      .then(() => emailSend())
+      .then(() => toast.success(t("Toast.send")))
       .catch((err) => {
-        emailNotSend();
+        toast.error(t("Toast.notSend"), {
+          color: "white",
+          backgroundColor: "red",
+          icon: "❌",
+        });
         console.error(err);
       });
     setReinicializePassword(true);
