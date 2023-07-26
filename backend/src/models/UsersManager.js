@@ -99,7 +99,7 @@ class UsersManager extends AbstractManager {
 
   selectByEmail(email) {
     return this.database.query(
-      `SELECT u.id, firstname, lastname, photo, email, password, role_id FROM ${this.table} u
+      `SELECT u.id, firstname, lastname, photo, email, password, is_active, role_id FROM ${this.table} u
       INNER JOIN users_roles ur ON ur.user_id = u.id
       WHERE email = ?`,
       [email]
