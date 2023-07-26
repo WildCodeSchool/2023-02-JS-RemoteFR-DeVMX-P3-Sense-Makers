@@ -1,6 +1,6 @@
 @import "../../variables";
 
-.display {
+.display-decisions {
   width: 100%;
   margin: 0 auto;
   font-family: $primary-font;
@@ -8,66 +8,16 @@
   flex-direction: column;
   cursor: default;
 
-  .img-spec-container {
-    display: flex;
-    flex-direction: column;
-
-    .close-modal-button {
-      border: none;
-      align-self: flex-end;
-      cursor: pointer;
-      background-color: white;
-      color: $color-default;
-      font-weight: $primary-font-weight;
-      border-radius: 50%;
-      padding: 0.5rem 0.75rem;
-      border: 1px solid $color-default;
-      transition: 0.2s ease-in-out;
-      margin: 1rem 0;
-
-      &:hover {
-        transform: scale(1.1);
-        background: $color-default;
-        color: white;
-      }
-    }
-  }
-
-  .filter-user {
-    display: flex;
-    flex-direction: column-reverse;
-    align-items: center;
-    input {
-      border-radius: 40px;
-      padding: 0.2rem 0.7rem;
-      margin: 1rem;
-      background-color: #d9d9d97f;
-      border: 1px solid rgb(78, 78, 78);
-      width: 100%;
-      max-width: 11rem;
-      outline: none;
-      height: 1.3rem;
-    }
-    .addBtn {
-      cursor: pointer;
-      width: 100%;
-      max-width: 12.5rem;
-      height: 2rem;
-      color: white;
-      font-weight: $primary-font-weight;
-      background-color: $color-default;
-      border-radius: $border-radius-xxl;
-      border: 1px solid var(--lightBleuColor);
-      padding: 0.2rem 0.7rem;
-      margin: 1rem;
-      transition: 0.3s ease-in-out;
-      &:hover {
-        color: #196c84;
-        background-color: $background-color-base;
-        transition: 0.2s ease-in-out;
-        border: 1px solid $color-default;
-      }
-    }
+  input {
+    border-radius: 40px;
+    padding: 0.2rem 0.7rem;
+    margin: 1rem;
+    background-color: #d9d9d97f;
+    border: 1px solid rgb(78, 78, 78);
+    width: 100%;
+    max-width: 12.5rem;
+    outline: none;
+    height: 1.3rem;
   }
   table {
     width: 100%;
@@ -75,8 +25,10 @@
     border-collapse: collapse;
     thead {
       tr {
-        :nth-child(4),
         :nth-child(1),
+        :nth-child(3),
+        :nth-child(4),
+        :nth-child(5),
         :nth-child(7) {
           display: none;
         }
@@ -91,20 +43,22 @@
       }
       tr {
         height: 3rem;
+        border: 1px solid var(--bleuColor);
         text-align: center;
         vertical-align: middle;
         color: black;
-        border: 1px solid var(--bleuColor);
         backdrop-filter: blur(3px);
 
-        :nth-child(4),
         :nth-child(1),
+        :nth-child(3),
+        :nth-child(4),
+        :nth-child(5),
         :nth-child(7) {
           display: none;
         }
 
         td {
-          font-size: 1rem;
+          font-size: $font-size-m;
           .viewBtn {
             cursor: pointer;
             display: block;
@@ -168,45 +122,25 @@
       }
     }
   }
-}
 
-@media screen and (min-width: 768px) {
-  .display {
+  @media screen and (min-width: 768px) {
     max-width: 80rem;
-    .filter-user {
-      display: flex;
-      flex-direction: row;
-      justify-content: space-between;
-    }
-    .nav {
-      button {
-        font-size: $font-size-l;
-      }
-    }
-  }
-}
-@media screen and (min-width: 1024px) {
-  .display {
-    .addBtn {
-      width: 10rem;
-      padding: 10px 13px;
-      margin: 15px;
-    }
     table {
+      margin: 0 auto;
       max-width: 140rem;
       height: fit-content;
-      margin: 0 auto;
       thead {
         tr {
           :nth-child(4),
           :nth-child(1),
+          :nth-child(3),
+          :nth-child(5),
           :nth-child(7) {
             display: table-cell;
           }
           th {
             padding: 5px 0 5px 20px;
             text-align: center;
-            font-size: $font-size-m;
           }
         }
       }
@@ -215,20 +149,23 @@
           display: flex;
           justify-content: center;
           align-items: center;
-          width: 5rem;
-          height: 5rem;
           padding: 5px 0 5px 20px;
+          height: 5rem;
+          width: 5rem;
 
           img {
+            display: block;
             object-fit: cover;
-            height: 100%;
-            width: 100%;
+            height: 1rem;
+            width: 1rem;
             border-radius: 50%;
           }
         }
         tr {
           :nth-child(4),
           :nth-child(1),
+          :nth-child(5),
+          :nth-child(3),
           :nth-child(7) {
             display: table-cell;
           }
@@ -236,15 +173,19 @@
           td {
             text-align: center;
             padding: 5px 0 5px 20px;
-            font-size: $font-size-m;
             .viewBtn {
               border-radius: $border-radius-xxl;
-              padding: $space-xs $space-xs;
+              padding: 10px 10px;
               margin: $space-s;
             }
           }
         }
       }
+    }
+  }
+  .nav {
+    button {
+      font-size: $font-size-xl;
     }
   }
 }

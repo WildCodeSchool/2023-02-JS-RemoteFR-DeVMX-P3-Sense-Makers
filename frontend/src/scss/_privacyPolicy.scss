@@ -78,13 +78,14 @@
       }
     }
   }
-}
-
-@media screen and (min-width: 1024px) {
-  .handle-cookie-btn {
-    display: flex;
-    width: 10rem;
-    justify-content: center;
-    align-items: center;
+  @media screen and (min-width: 1024px) {
+    .container-button {
+      .handle-cookie-btn {
+        display: flex;
+        width: 10rem;
+        justify-content: center;
+        align-items: center;
+      }
+    }
   }
 }

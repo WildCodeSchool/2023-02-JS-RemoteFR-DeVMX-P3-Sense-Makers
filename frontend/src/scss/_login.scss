@@ -3,7 +3,7 @@
   height: 3rem;
   display: flex;
   align-items: center;
-  padding: 0 2rem;
+  padding: 2rem;
   justify-content: end;
 }
 .logInContainer {
@@ -50,6 +50,7 @@
       margin: 5% 0 15% 0;
       font-family: $primary-font;
       border: 1px solid $color-default;
+      padding: 0.5rem;
     }
   }
 
@@ -85,14 +86,12 @@
     background-color: $background-color-base;
     transition: 0.2s ease-in-out;
   }
-}
 
-@media screen and (min-width: 768px) {
-  .logInContainer {
-    left: 30%;
+  @media screen and (min-width: 768px) {
     top: 30vh;
     width: 45vw;
     height: 35vh;
+    left: 30%;
 
     input {
       width: 25vw;
@@ -110,10 +109,8 @@
       background-color: transparent;
     }
   }
-}
 
-@media screen and (min-width: 1024px) {
-  .logInContainer {
+  @media screen and (min-width: 1024px) {
     top: 25vh;
     width: 35vw;
     height: 55vh;

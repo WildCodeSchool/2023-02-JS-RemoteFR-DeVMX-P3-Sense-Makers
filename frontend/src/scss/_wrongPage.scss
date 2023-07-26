@@ -10,9 +10,6 @@
     padding: 0;
     img {
       width: 10rem;
-      @media screen and (min-width: 1024px) {
-        max-width: 20rem;
-      }
     }
   }
 
@@ -23,16 +20,10 @@
     justify-content: space-around;
     height: 80vh;
     margin: 2rem;
-    @media screen and (min-width: 1024px) {
-      flex-direction: row;
-    }
 
     .raccoon {
       width: 20rem;
       height: auto;
-      @media screen and (min-width: 1024px) {
-        width: 35rem;
-      }
     }
 
     .text-container {
@@ -40,9 +31,8 @@
       flex-direction: column;
       align-items: flex-start;
       width: 20rem;
-      @media screen and (min-width: 1024px) {
-        width: 35rem;
-      }
+      padding: 2rem;
+
       h1 {
         color: #243b43;
         text-align: center;
@@ -50,27 +40,18 @@
         font-family: $primary-font;
         font-size: $font-size-xxxxxl;
         font-weight: $primary-font-weight;
-        @media screen and (min-width: 1024px) {
-          font-size: $font-size-xxxxxl;
-        }
       }
       h2 {
         color: #243b44;
         font-family: $primary-font;
         font-size: $font-size-xxxl;
         font-weight: $primary-font-weight;
-        @media screen and (min-width: 1024px) {
-          font-size: $font-size-xxxxl;
-        }
       }
       p {
         color: #253c44;
         font-family: $primary-font;
         font-size: $font-size-xxl;
         font-weight: $primary-font-weight;
-        @media screen and (min-width: 1024px) {
-          font-size: $font-size-xxxxl;
-        }
 
         button {
           background: none;
@@ -80,7 +61,34 @@
           font-family: $primary-font;
           font-size: $font-size-xxl;
           font-weight: $primary-font-weight;
-          @media screen and (min-width: 1024px) {
+          cursor: pointer;
+        }
+      }
+    }
+  }
+  @media screen and (min-width: 1024px) {
+    .logo-container {
+      img {
+        max-width: 20rem;
+      }
+    }
+    .content-container {
+      flex-direction: row;
+      .raccoon {
+        width: 35rem;
+      }
+
+      .text-container {
+        width: 35rem;
+        h1 {
+          font-size: $font-size-xxxxxl;
+        }
+        h2 {
+          font-size: $font-size-xxxxl;
+        }
+        p {
+          font-size: $font-size-xxxxl;
+          button {
             font-size: $font-size-xxxxl;
           }
         }
