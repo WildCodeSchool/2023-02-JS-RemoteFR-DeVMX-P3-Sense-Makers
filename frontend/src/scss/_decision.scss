@@ -140,10 +140,7 @@
       grid-template-columns: repeat(5, 1fr);
     }
   }
-}
-
-@media screen and (min-width: 768px) {
-  .decision {
+  @media screen and (min-width: 768px) {
     display: flex;
     flex-direction: row;
 
@@ -164,10 +161,8 @@
       top: 0;
     }
   }
-}
 
-@media screen and (min-width: 1024px) {
-  .decision {
+  @media screen and (min-width: 1024px) {
     padding-left: 10%;
     .side-content {
       flex: 0 0 20vw;

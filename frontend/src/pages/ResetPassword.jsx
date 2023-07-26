@@ -58,7 +58,7 @@ export default function resetPassword() {
               type="password"
               id="newpassword"
               name="newpassword"
-              placeholder=" Insérez votre mot de passe"
+              placeholder={t("resetPassword.newPassword")}
               onChange={(e) => setPassword(e.target.value)}
               required
             />
@@ -69,7 +69,7 @@ export default function resetPassword() {
               type="password"
               id="verifypassword"
               name="verifypassword"
-              placeholder=" Votre mot de passe"
+              placeholder={t("resetPassword.confirmationPassword")}
               onChange={(e) => setVerifPassword(e.target.value)}
               required
             />

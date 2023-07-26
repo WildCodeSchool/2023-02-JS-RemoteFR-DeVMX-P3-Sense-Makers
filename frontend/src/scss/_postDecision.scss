@@ -7,9 +7,6 @@
   justify-content: space-around;
   align-items: center;
   max-width: 90vw;
-  @media screen and (min-width: 1280px) {
-    max-width: 70vw;
-  }
 
   .title-container {
     width: 100%;
@@ -57,9 +54,7 @@
         border: 1px #bdbdbd solid;
         box-shadow: 5px 5px 8px #bdbdbd;
         width: 35vw;
-        @media screen and (min-width: 1024px) {
-          width: 25vw;
-        }
+
         option {
           text-align: center;
           color: #bdbdbd;
@@ -84,9 +79,6 @@
       flex-direction: column;
       justify-content: space-between;
       gap: 1.5rem;
-      @media screen and (min-width: 1024px) {
-        flex-direction: row;
-      }
     }
   }
   .decision-write {
@@ -117,8 +109,10 @@
     width: 90%;
     justify-content: center;
     @media screen and (min-width: 1024px) {
-      width: 100%;
-      justify-content: flex-end;
+      .button-container {
+        width: 100%;
+        justify-content: flex-end;
+      }
     }
 
     button {
@@ -143,5 +137,23 @@
         transform: translate(0px, 2px);
       }
     }
+  }
+
+  @media screen and (min-width: 1280px) {
+    max-width: 70vw;
+    .decision-information {
+      .hub-container {
+        #hub_decision {
+          width: 25vw;
+        }
+      }
+      .impacted-people {
+        flex-direction: row;
+      }
+    }
+  }
+  .button-container {
+    width: 100%;
+    justify-content: flex-end;
   }
 }

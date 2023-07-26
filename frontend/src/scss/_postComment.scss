@@ -24,10 +24,7 @@
     padding: 0.6rem 2.6rem;
     border-radius: 5px;
   }
-}
-
-@media screen and (min-width: 768px) {
-  .post-comment {
+  @media screen and (min-width: 768px) {
     textarea {
       width: 50vw;
     }
