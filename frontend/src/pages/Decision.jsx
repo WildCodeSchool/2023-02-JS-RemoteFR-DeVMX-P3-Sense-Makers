@@ -10,7 +10,7 @@ import DialogContent from "@mui/material/DialogContent";
 import Button from "@mui/material/Button";
 import { firstDecisionAdd, finalDecisionAdd } from "../services/toast";
 import userContext from "../contexts/userContext";
-import FirstDecisionEditor from "../components/FirstDecisionEditor";
+import FirstDecisionEditor from "../components/TextEditors/FirstDecisionEditor";
 import Timeline from "../components/graphicElements/Timeline";
 import PostComments from "../components/PostComments";
 import Details from "../components/Details";
