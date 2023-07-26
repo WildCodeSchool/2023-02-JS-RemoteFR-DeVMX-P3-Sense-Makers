@@ -20,16 +20,12 @@ export default function TimelineDate({
 
   const Progress = Math.round((situation / totalTime) * 100) - 1;
 
-  const verificationDate = () => {
+  useEffect(() => {
     if (parseDayDate >= parstDateI) {
       setDateInitial("-similar");
     } else {
       setDateInitial("");
     }
-  };
-
-  useEffect(() => {
-    verificationDate();
   }, [initialDate]);
 
   return (

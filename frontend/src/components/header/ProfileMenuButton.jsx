@@ -2,11 +2,11 @@ import { useContext, useEffect, useRef } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import PropTypes from "prop-types";
-import NotificationButton from "./NotificationsMenu";
+import NotificationsMenu from "./NotificationsMenu";
 import userContext from "../../contexts/userContext";
 import Lang from "../Lang";
 
-export default function LoginButton({
+export default function ProfileMenuButton({
   showLoginMenu,
   setShowLoginMenu,
   handleShowLoginMenu,
@@ -34,7 +34,7 @@ export default function LoginButton({
     document.addEventListener("click", handler);
 
     return () => document.removeEventListener("click", handler);
-  }, [setShowLoginMenu]);
+  }, []);
 
   const disconnect = () => {
     setUser(null);
@@ -251,7 +251,7 @@ export default function LoginButton({
         </ul>
       </div>
       {showNotificationsMenu && (
-        <NotificationButton
+        <NotificationsMenu
           handleShowNotificationsMenu={handleShowNotificationsMenu}
           impacts={impacts}
           experts={experts}
@@ -264,7 +264,7 @@ export default function LoginButton({
   );
 }
 
-LoginButton.propTypes = {
+ProfileMenuButton.propTypes = {
   showLoginMenu: PropTypes.bool.isRequired,
   setShowLoginMenu: PropTypes.func.isRequired,
   handleShowLoginMenu: PropTypes.func.isRequired,
@@ -301,7 +301,7 @@ LoginButton.propTypes = {
   NotificationNumber: PropTypes.number.isRequired,
 };
 
-LoginButton.defaultProps = {
+ProfileMenuButton.defaultProps = {
   notifValidation: PropTypes.arrayOf(
     PropTypes.shape({
       d_id: null,

@@ -3,7 +3,7 @@ import axios from "axios";
 import { useTranslation } from "react-i18next";
 import CardDecision from "../components/CardDecision";
 
-export default function Home() {
+export default function AllDecisions() {
   const [allDecisions, setAllDecision] = useState([]);
   const [allStatus, setAllStatus] = useState([]);
   const { t } = useTranslation();

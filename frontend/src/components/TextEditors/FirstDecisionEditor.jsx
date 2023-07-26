@@ -1,31 +1,14 @@
 import { Editor } from "@tinymce/tinymce-react";
 import PropTypes from "prop-types";
-import { useRef } from "react";
 
-function TextEditor({ name, title, dispatch }) {
-  const refInit = useRef(null);
-
-  const functionChange = () => {
-    if (refInit.current) {
-      return dispatch({
-        type: "update_input",
-        value: refInit.current.getContent(),
-        key: `${name}`,
-      });
-    }
-    return console.error("Content not saved");
-  };
+export default function FirstDecisionEditor({ setFirstDecision }) {
   return (
-    <label htmlFor={`${name}_decision`}>
-      {title} *
+    <label htmlFor="first_decision">
       <Editor
-        id={`${name}_decision`}
+        id="first_decision"
         apiKey="kj8hy39rl1nje7nh6kf3etgbl37lrjlvhsxindvx30h9hskr"
-        onChange={functionChange}
-        onInit={(evt, editor) => {
-          refInit.current = editor;
-        }}
-        initialValue={`<p>${name}</p>`}
+        onEditorChange={(content) => setFirstDecision(content)}
+        initialValue="<p>première prise de décision</p>"
         init={{
           statusbar: false,
           toolbar_location: "bottom",
@@ -65,10 +48,6 @@ function TextEditor({ name, title, dispatch }) {
   );
 }
 
-TextEditor.propTypes = {
-  name: PropTypes.string.isRequired,
-  title: PropTypes.string.isRequired,
-  dispatch: PropTypes.func.isRequired,
+FirstDecisionEditor.propTypes = {
+  setFirstDecision: PropTypes.func.isRequired,
 };
-
-export default TextEditor;

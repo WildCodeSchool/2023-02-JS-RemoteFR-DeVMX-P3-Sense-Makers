@@ -2,9 +2,9 @@ import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import PropTypes from "prop-types";
 import axios from "axios";
-import Dropzone from "../../../services/hookDropzone";
-import { userAddNotif, userNotAddNotif } from "../../../services/toast";
-import inputValidationRules from "../../../services/inputValidationRules";
+import Dropzone from "../../services/hookDropzone";
+import { userAddNotif, userNotAddNotif } from "../../services/toast";
+import inputValidationRules from "../../services/inputValidationRules";
 
 export default function AddUser({ setShowAddUser }) {
   const [dropzoneImage, setDropzoneImage] = useState([]);
@@ -153,27 +153,12 @@ export default function AddUser({ setShowAddUser }) {
       <div className="add-user-title-container">
         <h2 className="add-user-title">{t("addUser.add")}</h2>
         <div className="close-modal-button-container">
-          <button
-            type="button"
-            className="close-modal-button"
-            onClick={() => setShowAddUser(false)}
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              className="feather feather-x"
-            >
-              <line x1="18" y1="6" x2="6" y2="18" />
-              <line x1="6" y1="6" x2="18" y2="18" />
-            </svg>
-          </button>
+          <div className="close-btn">
+            <button type="button" onClick={() => setShowAddUser(false)}>
+              {" "}
+              X{" "}
+            </button>
+          </div>
         </div>
       </div>
       <div className="user-management-container">
@@ -185,7 +170,7 @@ export default function AddUser({ setShowAddUser }) {
                 <input
                   type="text"
                   name="lastName"
-                  placeholder="Insérez votre nom"
+                  placeholder={t("addUser.placeholderLastname")}
                   onChange={update}
                   required
                 />
@@ -195,7 +180,7 @@ export default function AddUser({ setShowAddUser }) {
                 <input
                   type="text"
                   name="firstName"
-                  placeholder="Insérez votre prénom"
+                  placeholder={t("addUser.placeholderFirstname")}
                   onChange={update}
                   required
                 />
@@ -207,7 +192,7 @@ export default function AddUser({ setShowAddUser }) {
                 type="email"
                 name="email"
                 className="input-email"
-                placeholder="Insérez votre email"
+                placeholder={t("addUser.placeholderEmail")}
                 onChange={update}
                 required
               />

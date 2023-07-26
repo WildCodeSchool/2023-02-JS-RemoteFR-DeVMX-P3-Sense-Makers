@@ -1,6 +1,6 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Login from "./pages/Login";
-import Home from "./pages/Home";
+import AllDecisions from "./pages/AllDecisions";
 import Decision from "./pages/Decision";
 import MyDecisions from "./pages/MyDecisions";
 import PostDecision from "./pages/PostDecision";
@@ -28,7 +28,7 @@ function App() {
           {/* private routes  */}
           <Route element={<ProtectedLayout />}>
             <Route path="/logged" element={<NavLayout />}>
-              <Route path="decisions" element={<Home />} />
+              <Route path="decisions" element={<AllDecisions />} />
               <Route path="users/mydecisions" element={<MyDecisions />} />
               <Route path="postdecision" element={<PostDecision />} />
               <Route path="decisions/:id" element={<Decision />} />

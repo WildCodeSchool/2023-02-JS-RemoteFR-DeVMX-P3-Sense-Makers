@@ -1,9 +1,9 @@
 import { Slide, ToastContainer } from "react-toastify";
 import { useTranslation } from "react-i18next";
-import DecisionsList from "../components/Profiles/AdminComponents/DecisionsList";
-import UsersList from "../components/Profiles/AdminComponents/UsersList";
-import StatsAnual from "../components/Profiles/AdminComponents/AnualStats";
-import MonthlyStats from "../components/Profiles/AdminComponents/MonthlyStats";
+import DecisionsList from "../components/AdminComponents/DecisionsList";
+import UsersList from "../components/AdminComponents/UsersList";
+import AnualStats from "../components/AdminComponents/AnualStats";
+import MonthlyStats from "../components/AdminComponents/MonthlyStats";
 
 export default function Administration() {
   const { t } = useTranslation();
@@ -19,7 +19,7 @@ export default function Administration() {
         </summary>
         <MonthlyStats />
         <div className="stats-chart">
-          <StatsAnual />
+          <AnualStats />
         </div>
       </details>
       <details className="details-container">

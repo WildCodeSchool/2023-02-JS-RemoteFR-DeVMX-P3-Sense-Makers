@@ -7,6 +7,9 @@ import validated from "../assets/icons/verifier.svg";
 import notValidated from "../assets/icons/traverser.svg";
 
 export default function CardDecision({ decision }) {
+  const [show, setShow] = useState("none");
+  const { t } = useTranslation();
+
   let statusColors = {
     border: "1px solid #2088a7",
     background: "rgba(32, 136, 167, 0.25)",
@@ -47,8 +50,6 @@ export default function CardDecision({ decision }) {
       color: "#8294b0",
     };
   }
-  const [show, setShow] = useState("none");
-  const { t } = useTranslation();
 
   return (
     <Link

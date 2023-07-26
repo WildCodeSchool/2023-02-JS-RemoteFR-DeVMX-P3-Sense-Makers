@@ -114,7 +114,8 @@
 
   "modalEmail": {
     "email": "Enter your email",
-    "validate": "Validate"
+    "validate": "Validate",
+    "placeholderEmail" : "Insert your email"
   },
 
   "cookieConsent": {
@@ -233,7 +234,7 @@
 
   "addUser": {
     "add": "Add user",
-    "lastname": "Lastame",
+    "lastname": "Lastname",
     "firstname": "Firstname",
     "email": "Email",
     "password": "Password",
@@ -242,7 +243,10 @@
     "role": "Role",
     "defaultRole": "Select your role",
     "expert": "Expert",
-    "addUser": "Add User"
+    "addUser": "Add User",
+    "placeholderFirstname" : "Insert your firstname",
+    "placeholderLastname" : "Insert your lastname",
+    "placeholderEmail" : "Insert your email"
   },
 
   "notifImpacted": "indicated you as impacted on a decision",

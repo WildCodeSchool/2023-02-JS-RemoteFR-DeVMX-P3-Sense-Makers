@@ -2,12 +2,12 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { useTranslation } from "react-i18next";
 import AddUser from "./AddUser";
-import modifIcon from "../../../assets/modif_user.png";
+import modifIcon from "../../assets/modif_user.png";
 import ModifyUser from "./ModifyUser";
-import pict from "../../../assets/Screenshot_13.png";
-import pict1 from "../../../assets/the-art-of-racing-in-the-rain-1558376409.png";
+import pict from "../../assets/Screenshot_13.png";
+import pict1 from "../../assets/the-art-of-racing-in-the-rain-1558376409.png";
 
-function UsersList() {
+export default function UsersList() {
   const [showAddUser, setShowAddUser] = useState(false);
   const [showUpdateUser, setShowUpdateUser] = useState(false);
   const [users, setUsers] = useState([]);
@@ -39,9 +39,6 @@ function UsersList() {
     if (currentPage !== 1) {
       setCurrentPage(currentPage - 1);
     }
-  };
-  const changeCpage = (id) => {
-    setCurrentPage(id);
   };
 
   const nextPage = () => {
@@ -206,7 +203,7 @@ function UsersList() {
               }`}
               key={n}
             >
-              <button type="button" onClick={() => changeCpage(n)}>
+              <button type="button" onClick={() => setCurrentPage(n)}>
                 {n}
               </button>
             </li>
@@ -221,5 +218,3 @@ function UsersList() {
     </div>
   );
 }
-
-export default UsersList;

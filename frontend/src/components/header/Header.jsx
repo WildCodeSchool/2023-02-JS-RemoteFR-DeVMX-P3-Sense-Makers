@@ -2,8 +2,8 @@ import { useContext, useEffect, useState, useCallback } from "react";
 import axios from "axios";
 import { Link, useLocation } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-import LoginButton from "./ProfileMenuButton";
-import NotificationButton from "./NotificationsMenu";
+import ProfileMenuButton from "./ProfileMenuButton";
+import NotificationsMenu from "./NotificationsMenu";
 import makeSenseLogo from "../../assets/make_sense.png";
 import userContext from "../../contexts/userContext";
 import Lang from "../Lang";
@@ -198,7 +198,7 @@ export default function Header() {
               </div>
 
               {showNotificationsMenu && (
-                <NotificationButton
+                <NotificationsMenu
                   showNotificationsMenu={showNotificationsMenu}
                   setShowNotificationsMenu={setShowNotificationsMenu}
                   handleShowNotificationsMenu={handleShowNotificationsMenu}
@@ -240,7 +240,7 @@ export default function Header() {
             )}
           </ul>
         </nav>
-        <LoginButton
+        <ProfileMenuButton
           setShowLoginMenu={setShowLoginMenu}
           handleShowLoginMenu={handleShowLoginMenu}
           showLoginMenu={showLoginMenu}
