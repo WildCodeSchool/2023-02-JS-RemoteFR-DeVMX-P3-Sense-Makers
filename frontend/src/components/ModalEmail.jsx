@@ -1,9 +1,8 @@
 import axios from "axios";
 import { useState } from "react";
 import PropTypes from "prop-types";
-import { Slide, ToastContainer } from "react-toastify";
+import { Slide, ToastContainer, toast } from "react-toastify";
 import { useTranslation } from "react-i18next";
-import { emailSend, emailNotSend } from "../services/toast";
 
 export default function ModalEmail({ setOpenModal }) {
   const [email, setEmail] = useState();
@@ -24,12 +23,20 @@ export default function ModalEmail({ setOpenModal }) {
       .then((response) => {
         if (response.status === 200) {
           setOpenModal(false);
-          emailSend();
+          toast.success(t("Toast.send"), {
+            color: "white",
+            backgroundColor: "green",
+            icon: "✔️",
+          });
         }
       })
       .catch((err) => {
         console.error(err);
-        return emailNotSend();
+        toast.error(t("Toast.notSend"), {
+          color: "white",
+          backgroundColor: "red",
+          icon: "❌",
+        });
       });
   };
 

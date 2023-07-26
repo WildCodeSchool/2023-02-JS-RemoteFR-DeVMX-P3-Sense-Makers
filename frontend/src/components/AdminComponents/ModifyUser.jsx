@@ -1,14 +1,8 @@
 import { useState, useEffect, useContext } from "react";
 import { useTranslation } from "react-i18next";
+import { toast } from "react-toastify";
 import PropTypes from "prop-types";
 import axios from "axios";
-import {
-  userModifNotif,
-  userDeleteNotif,
-  emailSend,
-  emailNotSend,
-  undeletable,
-} from "../../services/toast";
 import Dropzone from "../../services/hookDropzone";
 import userContext from "../../contexts/userContext";
 
@@ -116,7 +110,7 @@ export default function ModifyUser({
         }
       })
       .then(() => {
-        userModifNotif();
+        toast.success(t("Toast.userModifNotif"));
         setShowUpdateUser(false);
         setTimeout(() => {
           axios
@@ -149,9 +143,17 @@ export default function ModifyUser({
       .then((response) => {
         if (response.status === 200) {
           setShowUpdateUser(false);
-          emailSend();
+          toast.success(t("Toast.send"), {
+            color: "white",
+            backgroundColor: "green",
+            icon: "✔️",
+          });
         } else {
-          emailNotSend();
+          toast.error(t("Toast.notSend"), {
+            color: "white",
+            backgroundColor: "red",
+            icon: "❌",
+          });
         }
       })
       .catch((err) => {
@@ -162,7 +164,11 @@ export default function ModifyUser({
 
   const deactivateUser = () => {
     if (currentUser.id === user.id) {
-      undeletable();
+      toast.error(t("Toast.undeletable"), {
+        color: "white",
+        backgroundColor: "red",
+        icon: "❌",
+      });
     } else {
       axios
         .put(
@@ -175,7 +181,11 @@ export default function ModifyUser({
           }
         )
         .then(() => {
-          userDeleteNotif();
+          toast.success(t("Toast.userDeleteNotif"), {
+            color: "white",
+            backgroundColor: "green",
+            icon: "✔️",
+          });
         })
         .catch((err) => console.error(err));
       setShowUpdateUser(false);

@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
+import { toast } from "react-toastify";
 import PropTypes from "prop-types";
 import axios from "axios";
 import Dropzone from "../../services/hookDropzone";
-import { userAddNotif, userNotAddNotif } from "../../services/toast";
 import inputValidationRules from "../../services/inputValidationRules";
 
 export default function AddUser({ setShowAddUser }) {
@@ -129,7 +129,11 @@ export default function AddUser({ setShowAddUser }) {
               .then((resp) => {
                 if (resp.status === 200) {
                   setShowAddUser(false);
-                  userAddNotif();
+                  toast.success(t("Toast.userAddNotif"), {
+                    color: "white",
+                    backgroundColor: "green",
+                    icon: "✔️",
+                  });
                 }
               })
               .catch((err) => {
@@ -139,7 +143,11 @@ export default function AddUser({ setShowAddUser }) {
         })
         .catch((err) => {
           console.error(err);
-          return userNotAddNotif();
+          toast.error(t("Toast.userNotAddNotif"), {
+            color: "white",
+            backgroundColor: "red",
+            icon: "❌",
+          });
         });
     } else {
       const invalidInputsTargets = inputValidationRules(targetValues);

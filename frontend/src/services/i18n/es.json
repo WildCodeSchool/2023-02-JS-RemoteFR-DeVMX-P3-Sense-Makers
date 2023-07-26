@@ -289,5 +289,23 @@
     "notValidated": "No validadas",
     "validated": "Validadas",
     "notFinished": "Inconclusa"
+  },
+  "Toast": {
+    "send":"Email enviado",
+    "notSend":"El correo electrónico no existe",
+    "dataNotValid":"Correo o contraseña incorrectos",
+    "undeletable":"No puedes eliminar este usuario",
+    "passwordReinit":"Restablecimiento de contraseña",
+    "errorSamePassword":"¡Las contraseñas no son las mismas!",
+    "notifyDecision":"Decisión publicada",
+    "userAddNotif":"Usuario añadido",
+    "userAddNotifMail":"Email enviado",
+    "userNotAddNotif":"El correo ya existe",
+    "userModifNotif" : "Cambiado de usuario",
+    "userNotModifyNotif":"No se han realizado cambios",
+    "userDeleteNotif":"Usuario eliminado",
+    "commentAdd":"Comentario añadido",
+    "firstDecisionAdd":"Primera decisión añadida",
+    "finalDecisionAdd":"Validación tenida en cuenta"
   }
 }

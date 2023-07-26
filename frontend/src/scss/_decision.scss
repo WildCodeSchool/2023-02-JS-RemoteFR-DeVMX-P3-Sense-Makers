@@ -69,13 +69,19 @@
     cursor: pointer;
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: flex-end;
     margin: 1rem auto;
     background-color: $color-default;
     color: $background-color-base;
     border: none;
     padding: 0.6rem 2.6rem;
     border-radius: 5px;
+    &:hover {
+      color: #196c84;
+      background-color: $background-color-base;
+      transition: 0.2s ease-in-out;
+      border: 1px solid $color-default;
+    }
   }
 
   .delete-btn {

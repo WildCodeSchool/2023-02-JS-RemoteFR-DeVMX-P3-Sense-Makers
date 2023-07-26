@@ -1,14 +1,13 @@
 import { useEffect, useState, useRef, useContext } from "react";
 import axios from "axios";
 import { useParams, useNavigate } from "react-router-dom";
-import { Slide, ToastContainer } from "react-toastify";
+import { Slide, ToastContainer, toast } from "react-toastify";
 import { useTranslation } from "react-i18next";
 import Dialog from "@mui/material/Dialog";
 import DialogTitle from "@mui/material/DialogTitle";
 import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
 import Button from "@mui/material/Button";
-import { firstDecisionAdd, finalDecisionAdd } from "../services/toast";
 import userContext from "../contexts/userContext";
 import FirstDecisionEditor from "../components/TextEditors/FirstDecisionEditor";
 import Timeline from "../components/graphicElements/Timeline";
@@ -91,7 +90,11 @@ export default function Decision() {
         { withCredentials: true }
       )
       .catch((err) => console.error(err));
-    firstDecisionAdd();
+    toast.success(t("Toast.firstDecisionAdd"), {
+      color: "white",
+      backgroundColor: "green",
+      icon: "✔️",
+    });
     setTimeout(() => {
       getDecision();
     }, 500);
@@ -109,7 +112,12 @@ export default function Decision() {
       },
       { withCredentials: true }
     );
-    finalDecisionAdd();
+    toast.success(t("Toast.finalDecisionAdd"), {
+      color: "white",
+      backgroundColor: "green",
+      icon: "✔️",
+    });
+
     setDisplayValidation(false);
   };
 
@@ -231,10 +239,7 @@ export default function Decision() {
           !decision.first_decision_content && (
             <div>
               {" "}
-              <FirstDecisionEditor
-                setFirstDecision={setFirstDecision}
-                firstDecisionAdd={firstDecisionAdd}
-              />
+              <FirstDecisionEditor setFirstDecision={setFirstDecision} />
               <button
                 type="button"
                 className="comment-button"

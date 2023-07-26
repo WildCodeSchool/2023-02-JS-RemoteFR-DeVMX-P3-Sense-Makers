@@ -1,10 +1,9 @@
 import { useEffect, useReducer, useState, useContext } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import { Slide, ToastContainer } from "react-toastify";
+import { Slide, ToastContainer, toast } from "react-toastify";
 import { useTranslation } from "react-i18next";
 import AsyncSelect from "react-select/async";
-import { notifyDecision } from "../services/toast";
 import TextEditor from "../components/TextEditors/TextEditor";
 import userContext from "../contexts/userContext";
 
@@ -186,7 +185,11 @@ export default function PostDecision() {
             );
           });
         }
-        notifyDecision();
+        toast.success(t("Toast.notifyDecision"), {
+          color: "white",
+          backgroundColor: "green",
+          icon: "✔️",
+        });
         setTimeout(() => {
           navigate(`/logged/decisions/${response.data[0].insertId}`);
         }, 2500);
