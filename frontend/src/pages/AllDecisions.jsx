@@ -38,7 +38,7 @@ export default function AllDecisions() {
       </div>
       {allStatus.map((statut) => (
         <div className="infos-status-container" key={statut.id}>
-          <details className="details-container">
+          <details className="details-container" open={statut.id === 1 && true}>
             <summary>
               {t(`decisions.status.${statut.id}`)}
               <hr />
