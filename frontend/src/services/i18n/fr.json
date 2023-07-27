@@ -299,6 +299,8 @@
     "userDeleteNotif":"Utilisateur supprimé",
     "commentAdd":"Commentaire ajouté",
     "firstDecisionAdd":"Première décision ajoutée",
-    "finalDecisionAdd":"Validation prise en compte"
+    "finalDecisionAdd":"Validation prise en compte",
+    "decisionRemoved":"Décision supprimée",
+    "commentdeleted":"Commentaire supprimé"
   }
 }

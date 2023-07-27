@@ -9,6 +9,7 @@ import Button from "@mui/material/Button";
 import { useState } from "react";
 import { useParams } from "react-router-dom";
 import PropTypes from "prop-types";
+import { toast } from "react-toastify";
 
 export default function Details({
   decision,
@@ -38,6 +39,13 @@ export default function Details({
         {
           withCredentials: true,
         }
+      )
+      .then(() =>
+        toast.success(t("Toast.commentdeleted"), {
+          color: "white",
+          backgroundColor: "green",
+          icon: "✔️",
+        })
       )
       .catch((err) => console.error(err));
     setTimeout(() => {

@@ -167,6 +167,13 @@ export default function Decision() {
       .delete(`${import.meta.env.VITE_BACKEND_URL}/decisions/${id}`, {
         withCredentials: true,
       })
+      .then(() =>
+        toast.success(t("Toast.decisionRemoved"), {
+          color: "white",
+          backgroundColor: "green",
+          icon: "✔️",
+        })
+      )
       .catch((err) => console.error(err));
     navigate(-1);
   };

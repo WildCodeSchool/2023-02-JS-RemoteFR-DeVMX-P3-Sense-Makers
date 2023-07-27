@@ -306,6 +306,8 @@
     "userDeleteNotif":"Deleted user",
     "commentAdd":"Comment added",
     "firstDecisionAdd":"First decision added",
-    "finalDecisionAdd":"Validation taken into account"
+    "finalDecisionAdd":"Validation taken into account",
+    "decisionRemoved":"Decision removed",
+    "commentdeleted":"Comment deleted"
   }
 }
