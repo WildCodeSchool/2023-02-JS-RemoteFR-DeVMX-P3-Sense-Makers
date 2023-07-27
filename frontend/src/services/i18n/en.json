@@ -114,7 +114,8 @@
 
   "modalEmail": {
     "email": "Enter your email",
-    "validate": "Validate"
+    "validate": "Validate",
+    "placeholderEmail" : "Insert your email"
   },
 
   "cookieConsent": {
@@ -233,7 +234,7 @@
 
   "addUser": {
     "add": "Add user",
-    "lastname": "Lastame",
+    "lastname": "Lastname",
     "firstname": "Firstname",
     "email": "Email",
     "password": "Password",
@@ -242,7 +243,10 @@
     "role": "Role",
     "defaultRole": "Select your role",
     "expert": "Expert",
-    "addUser": "Add User"
+    "addUser": "Add User",
+    "placeholderFirstname" : "Insert your firstname",
+    "placeholderLastname" : "Insert your lastname",
+    "placeholderEmail" : "Insert your email"
   },
 
   "notifImpacted": "indicated you as impacted on a decision",
@@ -285,5 +289,25 @@
     "notValidated": "Not Validated",
     "validated": "Validated",
     "notFinished": "Not Finished"
+  },
+  "Toast": {
+    "send":"Email sent",
+    "notSend":"Email does not exist",
+    "dataNotValid":"Incorrect email or password",
+    "undeletable":"You cannot delete this user",
+    "passwordReinit":"Password reset",
+    "errorSamePassword":"Passwords are not the same!",
+    "notifyDecision":"Posted decision",
+    "userAddNotif":"User added",
+    "userAddNotifMail":"Email sent",
+    "userNotAddNotif":"Email does not exist",
+    "userModifNotif" : "Modified user",
+    "userNotModifyNotif":"No changes made",
+    "userDeleteNotif":"Deleted user",
+    "commentAdd":"Comment added",
+    "firstDecisionAdd":"First decision added",
+    "finalDecisionAdd":"Validation taken into account",
+    "decisionRemoved":"Decision removed",
+    "commentdeleted":"Comment deleted"
   }
 }

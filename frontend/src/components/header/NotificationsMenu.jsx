@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 import { useTranslation } from "react-i18next";
 
-export default function NotificationButton({
+export default function NotificationsMenu({
   handleShowNotificationsMenu,
   impacts,
   experts,
@@ -20,22 +20,12 @@ export default function NotificationButton({
       onClick={handleShowNotificationsMenu}
     >
       <div className="notifications-container">
-        <svg
-          onClick={handleShowNotificationsMenu}
-          xmlns="http://www.w3.org/2000/svg"
-          width="24"
-          height="24"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          strokeWidth="2"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          className="feather feather-x icon-close-modal"
-        >
-          <line x1="18" y1="6" x2="6" y2="18" />
-          <line x1="6" y1="6" x2="18" y2="18" />
-        </svg>
+        <div className="close-btn">
+          <button type="button" onClick={handleShowNotificationsMenu}>
+            {" "}
+            X{" "}
+          </button>
+        </div>
         <div className="notifications-title">{t("header.notif")}</div>
 
         <ul>
@@ -98,7 +88,7 @@ export default function NotificationButton({
   );
 }
 
-NotificationButton.propTypes = {
+NotificationsMenu.propTypes = {
   handleShowNotificationsMenu: PropTypes.func.isRequired,
   impacts: PropTypes.arrayOf(
     PropTypes.shape({
@@ -129,7 +119,7 @@ NotificationButton.propTypes = {
   ReadNotif: PropTypes.func.isRequired,
 };
 
-NotificationButton.defaultProps = {
+NotificationsMenu.defaultProps = {
   notifValidation: PropTypes.arrayOf(
     PropTypes.shape({
       d_id: null,

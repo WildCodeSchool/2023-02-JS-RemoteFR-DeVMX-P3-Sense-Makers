@@ -32,10 +32,6 @@
     -webkit-backdrop-filter: blur(5px);
     border: 1px solid rgba(255, 255, 255, 0.3);
 
-    @media screen and (min-width: 768px) {
-      visibility: visible;
-    }
-
     .Timeline-container-decision {
       display: flex;
       flex-direction: column;
@@ -87,7 +83,6 @@
             height: 0.9rem;
             width: 1.7rem;
             border-radius: 50%;
-
           }
         }
       }
@@ -148,11 +143,6 @@
       padding: 0.5rem;
       text-align: center;
     }
-    @media screen and (min-width: 420px) {
-      p {
-        width: 10rem;
-      }
-    }
 
     :nth-child(2) {
       border: 1px solid #c10b63;
@@ -170,23 +160,37 @@
     font-weight: $primary-font-weight;
     color: $color-default;
   }
-}
 
-.card-creator-container {
-  display: flex;
-  align-items: center;
-  gap: 2rem;
+  .card-creator-container {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
 
-  img {
-    width: 3rem;
-    height: 3rem;
-    border-radius: 50%;
+    img {
+      width: 3rem;
+      height: 3rem;
+      border-radius: 50%;
+    }
+    p {
+      color: $color-default;
+      font-size: $font-size-l;
+      span {
+        font-weight: $primary-font-weight;
+      }
+    }
   }
-  p {
-    color: $color-default;
-    font-size: $font-size-l;
-    span {
-      font-weight: $primary-font-weight;
+  
+  @media screen and (min-width: 420px) {
+    .status-container {
+      p {
+        width: 10rem;
+      }
+    }
+  }
+
+  @media screen and (min-width: 768px) {
+    .Timeline-wrapper-decision {
+      visibility: visible;
     }
   }
 }

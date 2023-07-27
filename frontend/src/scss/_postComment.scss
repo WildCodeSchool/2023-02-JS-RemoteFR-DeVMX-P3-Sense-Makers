@@ -23,11 +23,14 @@
     border: none;
     padding: 0.6rem 2.6rem;
     border-radius: 5px;
+    &:hover {
+      color: #196c84;
+      background-color: $background-color-base;
+      transition: 0.2s ease-in-out;
+      border: 1px solid $color-default;
+    }
   }
-}
-
-@media screen and (min-width: 768px) {
-  .post-comment {
+  @media screen and (min-width: 768px) {
     textarea {
       width: 50vw;
     }

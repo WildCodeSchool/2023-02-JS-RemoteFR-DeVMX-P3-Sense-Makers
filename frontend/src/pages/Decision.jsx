@@ -1,19 +1,18 @@
 import { useEffect, useState, useRef, useContext } from "react";
 import axios from "axios";
 import { useParams, useNavigate } from "react-router-dom";
-import { Slide, ToastContainer } from "react-toastify";
+import { Slide, ToastContainer, toast } from "react-toastify";
 import { useTranslation } from "react-i18next";
-import DOMPurify from "dompurify";
 import Dialog from "@mui/material/Dialog";
 import DialogTitle from "@mui/material/DialogTitle";
 import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
 import Button from "@mui/material/Button";
-import { firstDecisionAdd, finalDecisionAdd } from "../services/toast";
 import userContext from "../contexts/userContext";
-import FirstDecisionEditor from "../components/FirstDecisionEditor";
+import FirstDecisionEditor from "../components/TextEditors/FirstDecisionEditor";
 import Timeline from "../components/graphicElements/Timeline";
 import PostComments from "../components/PostComments";
+import Details from "../components/Details";
 
 export default function Decision() {
   const [decision, setDecison] = useState({});
@@ -24,8 +23,6 @@ export default function Decision() {
   const [displayValidation, setDisplayValidation] = useState(true);
   const [firstDecision, setFirstDecision] = useState("");
   const [openDecisionModal, setOpenDecisionModal] = useState(false);
-  const [openCommentModal, setOpenCommentModal] = useState(false);
-  const [commentId, setCommentId] = useState();
   const { user } = useContext(userContext);
   const navigate = useNavigate();
   const { id } = useParams();
@@ -73,11 +70,6 @@ export default function Decision() {
     };
   }
 
-  function strip(html) {
-    return (
-      <div dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(html) }} />
-    );
-  }
   const getDecision = () => {
     axios
       .get(`${import.meta.env.VITE_BACKEND_URL}/decisions/${id}`, {
@@ -98,7 +90,11 @@ export default function Decision() {
         { withCredentials: true }
       )
       .catch((err) => console.error(err));
-    firstDecisionAdd();
+    toast.success(t("Toast.firstDecisionAdd"), {
+      color: "white",
+      backgroundColor: "green",
+      icon: "✔️",
+    });
     setTimeout(() => {
       getDecision();
     }, 500);
@@ -116,7 +112,12 @@ export default function Decision() {
       },
       { withCredentials: true }
     );
-    finalDecisionAdd();
+    toast.success(t("Toast.finalDecisionAdd"), {
+      color: "white",
+      backgroundColor: "green",
+      icon: "✔️",
+    });
+
     setDisplayValidation(false);
   };
 
@@ -166,24 +167,17 @@ export default function Decision() {
       .delete(`${import.meta.env.VITE_BACKEND_URL}/decisions/${id}`, {
         withCredentials: true,
       })
+      .then(() =>
+        toast.success(t("Toast.decisionRemoved"), {
+          color: "white",
+          backgroundColor: "green",
+          icon: "✔️",
+        })
+      )
       .catch((err) => console.error(err));
     navigate(-1);
   };
-  const deleteComment = (commId) => {
-    axios
-      .delete(
-        `${
-          import.meta.env.VITE_BACKEND_URL
-        }/decisions/${id}/comments/${commId}`,
-        {
-          withCredentials: true,
-        }
-      )
-      .catch((err) => console.error(err));
-    setTimeout(() => {
-      handleComment();
-    }, 500);
-  };
+
   return (
     <div className="decision">
       <div className="main-content">
@@ -214,143 +208,14 @@ export default function Decision() {
             </span>
           </p>
         </div>
-
-        <details>
-          <summary>
-            {t("decision.details.decisionDetails")}
-            <hr />
-          </summary>
-
-          <div className="summary-content">
-            <div className="context">
-              <p className="bold-text">{t("decision.details.context")}</p>{" "}
-              {strip(decision.context)}
-            </div>
-            {strip(decision.content)}
-          </div>
-        </details>
-
-        <details>
-          <summary>
-            {t("decision.details.impact")}
-            <hr />
-          </summary>
-          <div className="summary-content">{strip(decision.usefulness)}</div>
-        </details>
-
-        <details>
-          <summary>
-            {t("decision.details.benefit")}
-            <hr />
-          </summary>
-          <div className="summary-content">{strip(decision.benefit)}</div>
-        </details>
-
-        <details>
-          <summary>
-            {t("decision.details.risks")}
-            <hr />
-          </summary>
-
-          <div className="summary-content">{strip(decision.disadvantages)}</div>
-        </details>
-
-        {decision.first_decision_content && (
-          <details>
-            <summary>
-              {t("decision.details.firstTake")}
-              <hr />
-            </summary>
-            <div className="summary-content">
-              {strip(decision.first_decision_content)}
-            </div>
-          </details>
-        )}
-
-        <details>
-          <summary>
-            {t("decision.details.comments")}
-            <hr />
-          </summary>
-
-          <div className="comments summary-content">
-            {comments.map((comment) => (
-              <div key={comment.id} className="comment">
-                <div className="comment-info">
-                  <div className="info-block">
-                    <img
-                      src={
-                        comment.photo === "default_avatar.png"
-                          ? `${
-                              import.meta.env.VITE_BACKEND_URL
-                            }/assets/images/${comment.photo}`
-                          : `${import.meta.env.VITE_BACKEND_URL}/uploads/${
-                              comment.photo
-                            }`
-                      }
-                      alt={`${comment.firstname} ${comment.lastname}`}
-                    />{" "}
-                    <p className="bold-text ">
-                      {comment.firstname} {comment.lastname}
-                    </p>
-                    {experts.some((expert) => expert.id === comment.user_id) ? (
-                      <p className="bold-text">
-                        {t("decision.comment.expert")}
-                      </p>
-                    ) : (
-                      impactedUsers.some(
-                        (impactedUser) => impactedUser.id === comment.user_id
-                      ) && (
-                        <p className="bold-text ">
-                          {t("decision.comment.impacted")}
-                        </p>
-                      )
-                    )}{" "}
-                    <p>
-                      {t("decision.comment.on")} {comment.date}
-                    </p>
-                  </div>
-                  {(user.role_id === 1 || user.id === comment.user_id) && (
-                    <Button
-                      className="delete-button"
-                      type="button"
-                      onClick={() => {
-                        setOpenCommentModal(true);
-                        setCommentId(comment.id);
-                      }}
-                    >
-                      X
-                    </Button>
-                  )}
-                </div>
-                <div className="comment-text">
-                  <p>{comment.comment}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-          <Dialog
-            open={openCommentModal}
-            onClose={() => setOpenCommentModal(false)}
-          >
-            <DialogTitle>{t("decision.comment.deleteComm")}</DialogTitle>
-            <DialogContent>{t("decision.modal.carefull")}</DialogContent>
-            <DialogActions>
-              <Button
-                type="button"
-                onClick={() => {
-                  deleteComment(commentId);
-                  setOpenCommentModal(false);
-                }}
-              >
-                {t("decision.modal.confirm")}
-              </Button>
-              <Button type="button" onClick={() => setOpenCommentModal(false)}>
-                {t("decision.modal.cancel")}
-              </Button>
-            </DialogActions>
-          </Dialog>
-        </details>
+        <Details
+          decision={decision}
+          handleComment={handleComment}
+          comments={comments}
+          impactedUsers={impactedUsers}
+          experts={experts}
+          user={user}
+        />
 
         {experts.some((expert) => expert.id === user.id) &&
           decision.status_id === 4 &&
@@ -381,10 +246,7 @@ export default function Decision() {
           !decision.first_decision_content && (
             <div>
               {" "}
-              <FirstDecisionEditor
-                setFirstDecision={setFirstDecision}
-                firstDecisionAdd={firstDecisionAdd}
-              />
+              <FirstDecisionEditor setFirstDecision={setFirstDecision} />
               <button
                 type="button"
                 className="comment-button"

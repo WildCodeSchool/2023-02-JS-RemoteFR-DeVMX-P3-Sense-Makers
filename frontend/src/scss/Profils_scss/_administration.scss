@@ -1,0 +1,61 @@
+@import "../variables";
+
+.admin-global-container {
+  display: flex;
+  flex-direction: column;
+  padding: 2rem;
+  gap: 2rem;
+  font-family: $primary-font;
+
+  h1 {
+    color: $color-default;
+    width: 100%;
+    margin: $space-0;
+    text-align: start;
+    font-size: 3rem;
+  }
+
+  .timeline-zone {
+    height: 15vh;
+  }
+
+  .stats-chart {
+    display: none;
+  }
+
+  details[open] {
+    summary {
+      color: #9b084f;
+      font-weight: $primary-font-weight;
+    }
+  }
+
+  .details-container {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    cursor: pointer;
+
+    summary {
+      font-size: $font-size-xxl;
+      font-weight: $primary-font-weight;
+      color: $color-default;
+    }
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .admin-global-container {
+    .stats-chart {
+      display: block;
+      margin: 2rem;
+      height: 25vh;
+    }
+  }
+
+  .adminProfile .details-container {
+    summary {
+      font-size: $font-size-xxl;
+    }
+  }
+}

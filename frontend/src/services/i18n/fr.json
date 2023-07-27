@@ -114,7 +114,8 @@
 
   "modalEmail": {
     "email": "Saisir votre email",
-    "validate": "Valider"
+    "validate": "Valider",
+    "placeholderEmail" : "Insérez votre email"
   },
 
   "cookieConsent": {
@@ -242,7 +243,10 @@
     "role": "Rôle",
     "defaultRole": "Sélectionnez votre rôle",
     "expert": "Expert",
-    "addUser": "Ajouter l'utilisateur"
+    "addUser": "Ajouter l'utilisateur",
+    "placeholderFirstname" : "Insérez votre prénom",
+    "placeholderLastname" : "Insérez votre nom",
+    "placeholderEmail" : "Insérez votre email"
   },
 
   "notifImpacted": "vous a indiqué comme impacté sur une décision",
@@ -278,5 +282,25 @@
     "notValidated": "Non validées",
     "validated": "Validées",
     "notFinished": "Non abouties"
+  },
+  "Toast": {
+    "send":"Email envoyé",
+    "notSend":"L'email n'existe pas",
+    "dataNotValid":"Email ou mot de passe incorrect",
+    "undeletable":"Vous ne pouvez pas supprimer cet utilisateur",
+    "passwordReinit":"Mot de passe reinitialisé",
+    "errorSamePassword":"Les mots de passe ne sont pas similaires!",
+    "notifyDecision":"Décision postée",
+    "userAddNotif":"Utilisateur ajouté",
+    "userAddNotifMail":"Email envoyé",
+    "userNotAddNotif":"L'email existe déjà",
+    "userModifNotif" : "Utilisateur modifié",
+    "userNotModifyNotif":"Aucune modification effectuée",
+    "userDeleteNotif":"Utilisateur supprimé",
+    "commentAdd":"Commentaire ajouté",
+    "firstDecisionAdd":"Première décision ajoutée",
+    "finalDecisionAdd":"Validation prise en compte",
+    "decisionRemoved":"Décision supprimée",
+    "commentdeleted":"Commentaire supprimé"
   }
 }

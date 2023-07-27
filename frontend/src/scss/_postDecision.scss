@@ -7,9 +7,6 @@
   justify-content: space-around;
   align-items: center;
   max-width: 90vw;
-  @media screen and (min-width: 1280px) {
-    max-width: 70vw;
-  }
 
   .title-container {
     width: 100%;
@@ -57,9 +54,7 @@
         border: 1px #bdbdbd solid;
         box-shadow: 5px 5px 8px #bdbdbd;
         width: 35vw;
-        @media screen and (min-width: 1024px) {
-          width: 25vw;
-        }
+
         option {
           text-align: center;
           color: #bdbdbd;
@@ -84,9 +79,6 @@
       flex-direction: column;
       justify-content: space-between;
       gap: 1.5rem;
-      @media screen and (min-width: 1024px) {
-        flex-direction: row;
-      }
     }
   }
   .decision-write {
@@ -117,31 +109,53 @@
     width: 90%;
     justify-content: center;
     @media screen and (min-width: 1024px) {
-      width: 100%;
-      justify-content: flex-end;
+      .button-container {
+        width: 100%;
+        justify-content: flex-end;
+      }
     }
 
     button {
-      color: $background-color-base;
-      background-color: $sage-green;
-      border-radius: 50px;
-      height: 2.4rem;
-      width: 14.6rem;
-      margin-bottom: 15%;
-      box-shadow: rgba(16, 16, 16, 0.4) 1px 10px 10px;
-      &:hover {
-        color: $color-default;
-        transform: translate(0px, -2px);
-        box-shadow: white 0.006em 0.006em 0.007em, #9c9c9c 1px 1px 1px,
-          #9c9c9c 1px 2px 1px, #9c9c9c 1px 3px 1px, #9c9c9c 1px 4px 1px,
-          #9c9c9c 1px 5px 1px, rgba(16, 16, 16, 0.4) 1px 10px 10px,
-          rgba(16, 16, 16, 0.2) 1px 10px 10px,
-          rgba(16, 16, 16, 0.2) 1px 10px 10px,
-          rgba(16, 16, 16, 0.4) 1px 10px 10px, white -0.15em -0.1em 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    height: 3rem;
+    max-width: 65%;
+    padding: 0.5rem;
+    margin-bottom: 15%;
+    border: none;
+    background: $color-default;
+    color: #fff;
+    font-family: $primary-font;
+    font-weight: $primary-font-weight;
+    font-size: $font-size-m;
+    border-radius: $border-radius-s;
+    cursor: pointer;
+    &:hover {
+      color: #196c84;
+      background-color: $background-color-base;
+      transition: 0.2s ease-in-out;
+      border: 1px solid $color-default;
+    }
+    }
+  }
+
+  @media screen and (min-width: 1280px) {
+    max-width: 70vw;
+    .decision-information {
+      .hub-container {
+        #hub_decision {
+          width: 25vw;
+        }
       }
-      &:active {
-        transform: translate(0px, 2px);
+      .impacted-people {
+        flex-direction: row;
       }
     }
+  }
+  .button-container {
+    width: 100%;
+    justify-content: flex-end;
   }
 }

@@ -1,10 +1,9 @@
 import axios from "axios";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { Slide, ToastContainer } from "react-toastify";
+import { Slide, ToastContainer, toast } from "react-toastify";
 import { useTranslation } from "react-i18next";
 import Lang from "../components/Lang";
-import { passwordReinit, errorSamePassword } from "../services/toast";
 import GraphicElements from "../components/graphicElements/GraphicElements";
 
 export default function resetPassword() {
@@ -32,7 +31,11 @@ export default function resetPassword() {
           }
         )
         .then((response) => {
-          passwordReinit();
+          toast.success(t("Toast.passwordReinit"), {
+            color: "white",
+            backgroundColor: "green",
+            icon: "✔️",
+          });
           setTimeout(() => {
             navigate("/");
           }, 1500);
@@ -40,7 +43,11 @@ export default function resetPassword() {
         })
         .catch((err) => console.error(err));
     } else {
-      errorSamePassword();
+      toast.error(t("Toast.errorSamePassword"), {
+        color: "white",
+        backgroundColor: "red",
+        icon: "❌",
+      });
     }
   };
 
@@ -58,7 +65,7 @@ export default function resetPassword() {
               type="password"
               id="newpassword"
               name="newpassword"
-              placeholder=" Insérez votre mot de passe"
+              placeholder={t("resetPassword.newPassword")}
               onChange={(e) => setPassword(e.target.value)}
               required
             />
@@ -69,7 +76,7 @@ export default function resetPassword() {
               type="password"
               id="verifypassword"
               name="verifypassword"
-              placeholder=" Votre mot de passe"
+              placeholder={t("resetPassword.confirmationPassword")}
               onChange={(e) => setVerifPassword(e.target.value)}
               required
             />

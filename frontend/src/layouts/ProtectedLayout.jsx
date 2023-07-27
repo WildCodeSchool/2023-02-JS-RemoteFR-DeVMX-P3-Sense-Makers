@@ -2,7 +2,7 @@ import { useContext } from "react";
 import { Navigate, Outlet } from "react-router-dom";
 import userContext from "../contexts/userContext";
 
-function ProtectedLayout() {
+export default function ProtectedLayout() {
   const { user } = useContext(userContext);
 
   if (!user) {
@@ -11,5 +11,3 @@ function ProtectedLayout() {
 
   return <Outlet />;
 }
-
-export default ProtectedLayout;

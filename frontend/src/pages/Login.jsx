@@ -1,9 +1,8 @@
 import { useState, useContext } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import { Slide, ToastContainer } from "react-toastify";
+import { Slide, ToastContainer, toast } from "react-toastify";
 import { useTranslation } from "react-i18next";
-import { dataNotValide } from "../services/toast";
 import Lang from "../components/Lang";
 import userContext from "../contexts/userContext";
 import CookiesConsent from "../components/CookiesConsent";
@@ -33,14 +32,26 @@ export default function Login() {
           { withCredentials: true }
         )
         .then((res) => {
-          setUser(res.data.user);
-          setTimeout(() => {
-            navigate("/logged/decisions");
-          }, 500);
+          if (res.data.user.is_active === 0) {
+            toast.error(t("Toast.dataNotValid"), {
+              color: "white",
+              backgroundColor: "red",
+              icon: "❌",
+            });
+          } else {
+            setUser(res.data.user);
+            setTimeout(() => {
+              navigate("/logged/decisions");
+            }, 500);
+          }
         })
         .catch((err) => {
           console.error(err);
-          return dataNotValide();
+          return toast.error(t("Toast.dataNotValid"), {
+            color: "white",
+            backgroundColor: "red",
+            icon: "❌",
+          });
         });
     } else {
       setCookieValidation("cookie-obligation");

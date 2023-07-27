@@ -3,7 +3,7 @@ import greenPill from "../../assets/green_pill.png";
 import threeColoredTraits from "../../assets/three_colored_traits.png";
 import photoPill from "../../assets/photo_pill_with_border.png";
 
-export default function graphicElements() {
+export default function GraphicElements() {
   return (
     <>
       <div>
