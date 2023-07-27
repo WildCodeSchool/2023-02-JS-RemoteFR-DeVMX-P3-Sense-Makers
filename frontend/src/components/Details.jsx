@@ -52,7 +52,6 @@ export default function Details({
       handleComment();
     }, 500);
   };
-
   return (
     <>
       <details>
@@ -193,10 +192,54 @@ export default function Details({
 }
 
 Details.propTypes = {
-  decision: PropTypes.shape.isRequired,
+  decision: PropTypes.shape({
+    benefit: PropTypes.string,
+    context: PropTypes.string,
+    content: PropTypes.string,
+    usefulness: PropTypes.string,
+    disadvantages: PropTypes.string,
+    first_decision_content: PropTypes.string,
+  }),
   handleComment: PropTypes.func.isRequired,
-  comments: PropTypes.arrayOf.isRequired,
-  impactedUsers: PropTypes.arrayOf.isRequired,
-  experts: PropTypes.arrayOf.isRequired,
-  user: PropTypes.arrayOf.isRequired,
+  comments: PropTypes.arrayOf(
+    PropTypes.shape({
+      comment: PropTypes.string.isRequired,
+      firstname: PropTypes.string.isRequired,
+      lastname: PropTypes.string.isRequired,
+      photo: PropTypes.string.isRequired,
+    })
+  ).isRequired,
+  impactedUsers: PropTypes.arrayOf(
+    PropTypes.shape({
+      firstname: PropTypes.string.isRequired,
+      lastname: PropTypes.string.isRequired,
+      photo: PropTypes.string.isRequired,
+    })
+  ).isRequired,
+  experts: PropTypes.arrayOf(
+    PropTypes.shape({
+      firstname: PropTypes.string.isRequired,
+      lastname: PropTypes.string.isRequired,
+      photo: PropTypes.string.isRequired,
+    })
+  ).isRequired,
+  user: PropTypes.shape({
+    id: PropTypes.number.isRequired,
+    role_id: PropTypes.number.isRequired,
+    firstname: PropTypes.string.isRequired,
+    lastname: PropTypes.string.isRequired,
+    email: PropTypes.string.isRequired,
+    photo: PropTypes.string.isRequired,
+  }).isRequired,
+};
+
+Details.defaultProps = {
+  decision: PropTypes.shape({
+    benefit: "",
+    context: "",
+    content: "",
+    usefulness: "",
+    disadvantages: "",
+    first_decision_content: "",
+  }),
 };
