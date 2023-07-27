@@ -7,8 +7,8 @@ export default function SpecUser({ setImage, spec }) {
       <td className="picture-container mobile-hide">
         <img className="mobile-hide" src={spec.pict} alt="profil" />
       </td>
-      <td>{spec.firstname}</td>
       <td>{spec.lastname}</td>
+      <td>{spec.firstname}</td>
       <td>{spec.email}</td>
       <td>{spec.role}</td>
       <td>{spec.role2}</td>
