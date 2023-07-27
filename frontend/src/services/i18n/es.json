@@ -306,6 +306,8 @@
     "userDeleteNotif":"Usuario eliminado",
     "commentAdd":"Comentario añadido",
     "firstDecisionAdd":"Primera decisión añadida",
-    "finalDecisionAdd":"Validación tenida en cuenta"
+    "finalDecisionAdd":"Validación tenida en cuenta",
+    "decisionRemoved":"Decisión cancelada",
+    "commentdeleted":"comentario borrado"
   }
 }

@@ -1,11 +1,14 @@
+/* eslint-disable no-nested-ternary */
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { useTranslation } from "react-i18next";
 import AddUser from "./AddUser";
+import spec from "../../services/spec";
 import modifIcon from "../../assets/modif_user.png";
 import ModifyUser from "./ModifyUser";
-import pict from "../../assets/Screenshot_13.png";
 import pict1 from "../../assets/the-art-of-racing-in-the-rain-1558376409.png";
+import pict4 from "../../assets/toto.jpg";
+import SpecUser from "./SpecUser";
 
 export default function UsersList() {
   const [showAddUser, setShowAddUser] = useState(false);
@@ -17,8 +20,8 @@ export default function UsersList() {
   const recordsPerPage = 5;
   const lastIndex = currentPage * recordsPerPage;
   const firstIndex = lastIndex - recordsPerPage;
-  const spec = "antholebg";
   const [image, setImage] = useState(false);
+  const [image2, setImage2] = useState(false);
   const records = users.slice(firstIndex, lastIndex);
   const npage = Math.ceil(users.length / recordsPerPage);
   const numbers = [...Array(npage + 1).keys()].slice(1);
@@ -61,6 +64,19 @@ export default function UsersList() {
           <img src={pict1} alt="pic boss" />
         </div>
       )}
+      {image2 && (
+        <div className="img-spec-container">
+          <button
+            type="button"
+            className="close-modal-button"
+            onClick={() => setImage2(false)}
+          >
+            {" "}
+            X{" "}
+          </button>
+          <img src={pict4} alt="pic boss" />
+        </div>
+      )}
       {showAddUser && <AddUser setShowAddUser={setShowAddUser} />}
       {showUpdateUser && (
         <ModifyUser
@@ -98,29 +114,10 @@ export default function UsersList() {
           </tr>
         </thead>
         <tbody>
-          {filterUser === spec ? (
-            <tr>
-              <td className="picture-container mobile-hide">
-                <img className="mobile-hide" src={pict} alt="profil" />
-              </td>
-              <td>Antho</td>
-              <td>Le BG</td>
-              <td>antho.potter@griffondor.fr</td>
-              <td>Suprem Master</td>
-              <td>Of course ! </td>
-              <td>17/07/????</td>
-              <td>
-                <button
-                  type="button"
-                  className="viewBtn"
-                  onClick={() => {
-                    setImage(true);
-                  }}
-                >
-                  <img src={modifIcon} alt="icon update" />
-                </button>
-              </td>
-            </tr>
+          {filterUser === spec[0].pseudo ? (
+            <SpecUser setImage={setImage2} spec={spec[0]} />
+          ) : filterUser === spec[1].pseudo ? (
+            <SpecUser setImage={setImage} spec={spec[1]} />
           ) : (
             records &&
             records
