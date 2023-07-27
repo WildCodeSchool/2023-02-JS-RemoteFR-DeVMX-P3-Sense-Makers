@@ -14,9 +14,11 @@ export default function NotificationsMenu({
   const { t } = useTranslation();
 
   return (
-    <button
-      type="button"
+    <div
       className="notifications-modal"
+      role="button"
+      tabIndex="0"
+      onKeyDown={() => {}}
       onClick={handleShowNotificationsMenu}
     >
       <div className="notifications-container">
@@ -84,7 +86,7 @@ export default function NotificationsMenu({
             ))}
         </ul>
       </div>
-    </button>
+    </div>
   );
 }
 
