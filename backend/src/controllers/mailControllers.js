@@ -4,7 +4,7 @@ const jwt = require("jsonwebtoken");
 const path = require("path");
 
 const REFRESH_TOKEN =
-  "1//04bGjzinu086OCgYIARAAGAQSNwF-L9IrGVQov8CWNn9ek5-rdeNrdk9-wceANcNNx36JACBwvm4jZkMCZhVu7ErS8IjUaTjo7cs";
+  "1//04O70hq_LmHBSCgYIARAAGAQSNwF-L9IrRr54ieDq5TQMexwLgnwjH97FCsBchjq0z3GOevUPoJkPTeSHWhnYdBUYBBETkD_MGbg";
 
 const secret = process.env.SECRET_MAIL;
 const payload = { sub: "okkkk" }; // recup data from user where email = email saisie sur la demande
@@ -58,7 +58,7 @@ const sendMailResetById = (req, res) => {
   transport?.sendMail(
     {
       from: "Admin <nlopes93600@gmail.com>",
-      to: `${req.user.email}`, // put the email of user depuis le payload//
+      to: `${req.user.email}`,
       subject: "Reinitialisation du mot de passe",
       html: `Veuillez cliquer sur le lien si vous souhaitez mettre à jour votre mot de passe, si vous n'êtes pas à l'origine de la demande contactez dans les plus brefs délais votre administrateur.<a href="http://localhost:3000/resetpassword?token=${token}&id=${req.user.id}">Cliquez ici</a>`,
     },
