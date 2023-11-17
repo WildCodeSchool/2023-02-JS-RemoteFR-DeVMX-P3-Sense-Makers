@@ -82,8 +82,8 @@
 
   "timeline": {
     "firstDeadline": "Deadline to give opinion",
-    "secondDeadline": "First Decision Made",
-    "firstTake": "Deadline to Conflict",
+    "secondDeadline": "Deadline to Conflict",
+    "firstTake": "First Decision Made",
     "decisionOpen": "Decision making started",
     "finalDecision": "Final Decision",
     "dateDisplay": "en"

@@ -82,8 +82,8 @@
 
   "timeline": {
     "firstDeadline": "Deadline pour donner son avis",
-    "secondDeadline": "Première décision prise",
-    "firstTake": "Deadline pour entrer en conflit",
+    "secondDeadline": "Deadline pour entrer en conflit",
+    "firstTake":"Première décision prise",
     "decisionOpen": "Prise de décision commencée",
     "finalDecision": "Décision définitive",
     "dateDisplay": "fr"
