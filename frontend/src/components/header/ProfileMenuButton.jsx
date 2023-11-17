@@ -40,8 +40,8 @@ export default function ProfileMenuButton({
     setUser(null);
     setToken(null);
     localStorage.clear();
-    document.cookie =
-      "user_token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+    const cookieOptions = "SameSite=None; Secure";
+    document.cookie = `user_token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/; ${cookieOptions}`;
     handleShowLoginMenu();
   };
   return (
