@@ -40,7 +40,6 @@ export default function MyDecisions() {
       <div className="title-container">
         <h1>{t("decisions.myTitle")}</h1>
         <button type="button" onClick={() => navigate("/logged/postdecision")}>
-          <i className="fa-solid fa-plus" />
           {t("decisions.create")}
         </button>
       </div>
