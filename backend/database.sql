@@ -98,7 +98,7 @@ CREATE TABLE
         decision_id INT NOT NULL,
         creation_date DATE DEFAULT (CURRENT_DATE) NOT NULL,
         FOREIGN KEY (user_id) REFERENCES users(id),
-        FOREIGN KEY (decision_id) REFERENCES decisions(id),
+        FOREIGN KEY (decision_id) REFERENCES decisions(id) ON DELETE CASCADE,
         `comment` TEXT NOT NULL,
         vote TINYINT
     );
