@@ -27,6 +27,7 @@ const transport = nodemailer.createTransport({
     refreshToken: REFRESH_TOKEN,
     accesssToken: accessToken,
   },
+  tls: { rejectUnauthorized: false },
 });
 
 const sendMailById = (req, res) => {
