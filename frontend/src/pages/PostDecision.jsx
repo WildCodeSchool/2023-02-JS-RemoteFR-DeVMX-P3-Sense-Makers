@@ -68,7 +68,7 @@ export default function PostDecision() {
     context: "",
     benefit: "",
     disadvantages: "",
-    concerned_hub_id: 0,
+    concerned_hub_id: 1,
     positives_votes: 0,
     negatives_votes: 0,
     status_id: 1,
@@ -235,12 +235,11 @@ export default function PostDecision() {
             <select
               id="hub_decision"
               value={selectedHub}
-              defaultValue="--"
+              defaultValue={selectedHub}
               onChange={(e) => {
                 setSelectedHub(e.target.value);
               }}
             >
-              <option value="--">--</option>
               {hub.map((hu) => {
                 return (
                   <option key={hu.id} value={hu.title}>
