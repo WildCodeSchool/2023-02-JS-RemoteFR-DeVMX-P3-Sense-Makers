@@ -36,6 +36,8 @@ const verifyPassword = (req, res) => {
         res
           .status(200)
           .cookie("user_token", token, {
+            sameSite: "None",
+            secure: true,
             httpOnly: false,
             expires: new Date(Date.now() + 1000 * 60 * 60),
           })
