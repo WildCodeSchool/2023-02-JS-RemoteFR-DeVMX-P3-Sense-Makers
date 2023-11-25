@@ -5,7 +5,7 @@ export default function FirstDecisionEditor({ setFirstDecision }) {
   return (
     <Editor
       id="first_decision"
-      apiKey="kj8hy39rl1nje7nh6kf3etgbl37lrjlvhsxindvx30h9hskr"
+      apiKey={`${import.meta.env.VITE_TINY_API_KEY}`}
       onEditorChange={(content) => setFirstDecision(content)}
       initialValue="<p>première prise de décision</p>"
       init={{
